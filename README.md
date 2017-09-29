@@ -1,20 +1,7 @@
 # Treelib
 
-To start your Phoenix server:
+[Treelib](http://treelib.ca) in [ Elixir 1.5 // Phoenix 1.3 // MySQL // React ]
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+TreeLib is a dendrology website with curated high-quality tree photographs for educators, students and lay persons. It uses Flickr (with their API) as a CDN for images.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+The website was original written in [ Ruby // Sinatra // MySQL // React ] between 2015-2016. It's all hand rolled with "caching" (sort of), SQL, a db client, etc.. It works really well actually, but I've been inspired to rewrite it in Elixir so that it's more maintainable and stable. 
