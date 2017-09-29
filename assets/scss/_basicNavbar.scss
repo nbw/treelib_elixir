@@ -1,0 +1,72 @@
+$border-color: #AAA;
+
+.basicNavbar {
+	color: $base-font-color-lighter;
+	background-color: #EDEDED;
+	// text-transform: uppercase;
+	ul {
+		padding: 0;
+		margin: 0;
+		background-color: #EDEDED;
+		li {
+			cursor: pointer;
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			list-style: none;
+			height: 3rem;
+			padding: 3px 10px 3px 10px;
+			background-color: #EDEDED;
+			&:hover:not(.treelib) {
+				background-color: #DDDDDD;
+			}
+			&.treelib{
+				cursor: pointer;
+				a {
+					padding-right: 10px;
+					font-size: 3rem;
+					color: $logo-color;
+					&:hover{
+						color: $logo-color-hover;
+					}
+					* { vertical-align: middle; cursor: pointer; }
+					img {
+						height: 2.8rem;
+						padding-right: 0.5rem;
+					}
+				}
+			}
+
+		}
+	}
+	.navBorder {
+		display:inline-block;
+		width: 33.33%;
+		height: 3px;
+		&.first {
+			background-color: $family-color;
+		}
+		&.second {
+			background-color: $genus-color;
+		}
+		&.third {
+			background-color: $species-color;
+		}
+	}
+	@media screen and (max-width: $break-medium) {
+	 	ul {
+	 		li {
+	 			padding: 5px 0px 5px 0px;
+	 			display:inline-block;
+	 			width: 100%;
+	 			height: auto;
+	 			font-size: 1.9rem;
+	 			vertical-align: middle;
+	 			&:not(:last-child){
+	 				border-bottom: 1px solid #AAA;
+	 			}
+	 		}
+	 	}
+	 
+	 }
+}

@@ -1,0 +1,105 @@
+@import "_admin_general";
+#name, #genera{
+    display: inline-block;
+}
+.photoEditer {
+    display: inline-block;
+    margin: 10px;
+    &.active { 
+        border: 1px solid #cfcfcf;
+        width:150px;
+        display: inline-block;
+        padding: 10px;
+        margin: 10px;  
+    }
+    .name{ 
+        padding-top: 15px;
+    }
+    .name, .credit {
+        input {
+            padding: 5px;
+            border: none;
+            width: 100%;
+            &:focus {outline: 1pt solid #dfdfdf;}
+        }
+    }
+    .description textarea {
+        border: none;
+        width: 100%;
+        resize: none;
+        outline: none;
+        padding: 5px;
+        height: 100px;
+        &:focus {outline: 1pt solid #dfdfdf;}
+    }
+    
+}
+#linker { 
+    .linksTable {
+        border-collapse: collapse;
+        margin-top: 10px;
+        min-width: 150px;
+        th {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 10pt;
+            font-weight: normal;
+            color: #6f6f6f;
+            text-align: center;
+        }
+        td {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .link {
+            padding: 10px 0 10px 0;
+            &:not(:last-child) {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            }
+
+            .title {
+                font-weight: bold;
+                padding-right: 10px;
+            }
+            .url { 
+                color: #3366ff;
+                padding: 0 10px 0 10px;
+                &:hover {
+                    color: #3333ff;
+                    text-decoration: underline;
+                }
+            }
+            .delete{
+                font-size: 10pt;
+                color: #ff6666;
+                &:after{
+                    content: "delete";
+                }
+                &:hover{
+                    text-decoration: underline;
+                    color: #ff3333;
+                }
+            }
+        }
+    }
+    .addLinkBtn { 
+        margin-top: 5px;
+        text-transform: uppercase;
+        font-size: 10pt;
+        color: #7f7f7f;
+        &:hover{
+            color: #3f3f3f;
+        }
+    }
+    .addLinkInput {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        display: inline-block;
+        padding: 10px;
+        margin-top: 5px;
+        input { 
+            margin-right: 5px;
+        }
+    }
+}
+

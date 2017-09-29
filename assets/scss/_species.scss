@@ -1,0 +1,93 @@
+@import "_photoViewer";
+@import "_linkSharer";
+
+.species {
+	position: relative;
+	> .title {
+		.main { 
+			font-size:3.9rem;
+			font-style: italic;
+			.speciesTitle {
+				font-weight: bold;
+			}
+		}
+		.commonName {
+			font-size: 3rem;
+			padding: 0 1.5rem 0 1.5rem;
+		}
+		padding: 10px 0 10px 0;
+		margin: 0 10px 10px 10px;
+		border-bottom: 3px black solid;
+	}
+	> .description { 
+		padding: 10px 20px 10px 20px;
+		p:first-child {
+			padding-top: 0;
+			margin: 0;
+		}
+		ul {
+			li {
+				padding: 5px 0 5px 0;
+			}
+		}	
+	}
+	.links {
+		ul { margin: 0; }
+	}
+	.photos {
+
+		padding: 0 10px 10px 10px;
+		text-align: center;
+		img {
+			cursor: pointer;
+			display:inline-block;
+			margin:5px;
+			&.selected {
+				box-sizing: border-box;
+			    -moz-box-sizing: border-box;
+			    -webkit-box-sizing: border-box;
+				border: 2px #4385ef solid;
+				margin: 3px;
+			}
+			&:hover {
+				box-sizing: border-box;
+			    -moz-box-sizing: border-box;
+			    -webkit-box-sizing: border-box;
+				border: 2px #1467eb solid;
+				margin: 3px;
+			}
+		}
+	}
+}
+@media screen and (max-width: $break-medium) {
+	.species {
+		padding-bottom: 200px;
+		> .title {
+			text-align: center;
+			.main, .commmonName, .secondary {
+				display: block;
+			}
+			.main {
+				font-size: 2.0rem;
+			} 
+			.commonName {
+				font-size: 1.8rem;
+			}
+			.secondary {
+				font-size: 1.4rem;
+			}
+		}
+		> .description {
+			font-size: 1.4rem;
+		}
+		.photos {
+			margin-bottom: 150px;
+			padding: 0;
+			img {
+				margin: 1.5%;
+				width: 47%;
+			}
+		}
+		
+	}
+}

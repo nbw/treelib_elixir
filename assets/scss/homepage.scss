@@ -1,0 +1,48 @@
+$bio-image-width: 125px;
+$border-color: #AAA;
+$banner-height: 250px;
+
+@import "_basic";
+@import "_basicNavbar";
+@import "_home";
+@import "_about";
+@import "_contact";
+
+.section {
+	border: 1px solid #AAA;
+	padding: 10px;
+	font-size: 2.0rem;
+}
+
+
+
+@media screen and (max-width: $break-medium) {
+	.homePage {
+		.banner {
+			background-size: auto;
+			background-position: center top;
+			.innerBanner{
+				height: 90%;
+				padding: 3% 3% 3% 3%;
+			}
+		}
+	}
+	.contactPage, .aboutPage {
+		background-size: auto;
+		background-position: center top;
+	}
+	.aboutPage {
+		.banner {
+			background-image: url("/images/thuja.jpg");
+			background-size: auto;
+			background-position: center;
+			&:first-child {
+				height: 1000px;
+				background-image: url("/images/cogyria-1.jpg");
+			}
+			&:nth-child(2){
+				background-image: url("/images/cogyria-2.jpg");
+			}
+		}
+	}
+}

@@ -1,0 +1,16 @@
+@import "_admin_general";
+
+#login {
+    display: block;
+    text-align: center;
+    li{
+        padding: 10px 0 10px 0;
+    }
+    input {
+        width: 175px;
+    }
+}
+.message {
+        text-align: center;
+        color: #ff6666;
+}

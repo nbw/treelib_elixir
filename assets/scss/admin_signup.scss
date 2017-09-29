@@ -1,0 +1,12 @@
+@import "_admin_general";
+
+#signupList{
+    display: block;
+    text-align: center;
+    li{
+        padding: 10px 0 10px 0;
+    }
+    input {
+        width: 175px;
+    }
+}

@@ -1,0 +1,37 @@
+defmodule Treelib.Taxonomy.Genus do
+  use Ecto.Schema
+  import Ecto.Changeset
+  import Ecto.Query, warn: false
+
+  alias Treelib.Taxonomy.Family
+  alias Treelib.Taxonomy.Genus
+  alias Treelib.Taxonomy.Species
+
+  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :species]}
+
+  schema "genera" do
+    field :name, :string
+    field :common_name, :string
+    field :description, :string
+    field :enabled, :boolean
+
+    belongs_to :family, Family, foreign_key: :fam_id
+    has_many :species, Species
+
+    timestamps()
+  end
+
+  @doc false
+  def changeset(%Genus{} = genus, attrs) do
+    genus
+    |> cast(attrs, [:description])
+    |> validate_required([:description])
+  end
+
+  @doc false
+  def all(query \\ __MODULE__) do
+    from f in query,
+      where: [enabled: true]
+  end
+end
+

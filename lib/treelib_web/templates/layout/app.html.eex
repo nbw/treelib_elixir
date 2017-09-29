@@ -1,0 +1,29 @@
+<%# <!DOCTYPE html> %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Treelib</title>
+    <link rel='shortcut icon' href="<%= static_path(@conn, "/images/favicon.ico") %>" type='image/x-icon'/ >
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
+    <%# <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %1>"> %>
+  </head>
+
+  <body>
+    <div class="container">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <main role="main">
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+
+    </div> <!-- /container -->
+    <%# <script src="<%= static_path(@conn, "/js/app.js") %1>"></script> %>
+  </body>
+</html>

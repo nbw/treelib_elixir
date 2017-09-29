@@ -1,0 +1,54 @@
+$linkInput-width: 40rem;
+$share-width: 7.5rem;
+
+.linkSharer {
+	border-width: 0 0px 1px 1px; 
+	border-color: rgba(0,0,0,0);
+	border-style: dotted;
+	border-radius: 0 0 0px 2px;
+	-webkit-transition: all 0.33s ease-out; /* Safari */
+	transition:  all 0.33s ease-out;
+
+	position: absolute;
+	z-index: 100;
+	background-color:rgba(0,0,0,0);
+	top: 0;
+	right: 0;
+	width: $share-width;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	display: inline-block;
+	vertical-align: middle;
+
+	padding: 5px;
+
+
+	.title{ 
+		i::before{
+		    background:transparent;
+		}
+		cursor: pointer;
+		&:hover {
+			//from #364149
+			color: #21272c;
+		}
+	}
+
+	&.show{
+		.title:after{
+			content: ":";
+		}
+		border-color: #AAA;
+		background-color: #F5F5F5;
+		width: $linkInput-width + 22rem - $share-width;
+	}
+	.links {
+		width: $linkInput-width + 22rem;
+		> * { margin: 0 0 0 1.2rem; }
+		input {
+			text-align:center;
+			padding: 0.5rem;
+			width: $linkInput-width;
+		}
+	}
+}

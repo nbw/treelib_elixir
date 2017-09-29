@@ -1,0 +1,68 @@
+.contactPage {
+	background-image: url("/images/cogyria-2.jpg");
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-attachment: fixed;
+	background-size: cover;
+	height: 100%;
+	.section {
+		background-color: white;
+		padding: 50px 5% 20px 5%;
+		
+		table{
+			border-collapse: collapse;
+			tr {
+				td {
+					font-size: 2rem;
+					border-bottom: 50px solid white;
+					&:first-child {
+						text-align: right;
+						min-width: 200px;
+						color: #777;
+					}
+					&:nth-child(2) {
+						
+					}
+					padding: 0 20px 0 20px;
+					vertical-align: top;
+				}
+			}
+		}
+				
+
+	}
+	img {
+		display:block;
+    	margin:auto;
+		max-width: 750px;
+		width: 100%;
+		text-align: center;
+	}
+	@media screen and (max-width: $break-medium) {
+		.section {
+			table {
+				tr {
+					&:nth-child(2){
+						display:none;
+					}
+					td {
+						border: none;
+						// padding: 20px 0 50px 0;
+						// border-bottom: 25px solid white;
+						&:first-child {
+							display:none;
+							// text-align: left;
+							// padding: 40px 0 10px 0;	
+						}
+						display: block;
+						padding: 0;
+						width: 95%;
+					}
+				}
+			}
+		
+			padding: 10px 2.5% 0 2.5%;
+		}
+	}
+  
+}

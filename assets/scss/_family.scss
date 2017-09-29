@@ -1,0 +1,144 @@
+@import "_photoViewer";
+@import "_linkSharer";
+
+.family {
+	position: relative;
+	> .title {
+		.main{ 
+			font-size:40pt;
+			font-weight: bold;
+			font-style: italic;
+		}
+		.commonName {
+			font-size: 3rem;
+			padding: 0 1.5rem 0 1.5rem;
+		}
+		padding: 10px 0 10px 0;
+		margin: 0 10px 10px 10px;
+		border-bottom: 3px black solid;
+	}
+	.textContent {
+		padding: 10px 20px 20px 20px;
+		> * {
+			display:inline-block;
+			vertical-align: text-top;
+		}
+		.description { 
+			display:inline-block;
+			width:68%;
+			padding-right: 2%;
+			p:first-child {
+				padding-top: 0;
+				margin-top: 0;
+			}
+			ul {
+				li {
+					padding: 5px 0 5px 0;
+				}
+			}		
+		}
+		.genera {
+			.genusTitle {
+				font-weight: bold;
+			}
+			border-left: 1px solid #AAA;
+			width: 27%;
+			padding-left: 2%;
+			ul {
+				padding-left: 20px;
+				li {
+					list-style-type: circle;
+				}
+			}
+		}
+	}
+	.photos {
+		padding: 10px;
+		text-align: center;
+		img {
+			display:inline-block;
+			margin:5px;
+			&.selected {
+				box-sizing: border-box;
+			    -moz-box-sizing: border-box;
+			    -webkit-box-sizing: border-box;
+				border: 2px #4385ef solid;
+				margin: 3px;
+			}
+			&:hover {
+				box-sizing: border-box;
+			    -moz-box-sizing: border-box;
+			    -webkit-box-sizing: border-box;
+				border: 2px #1467eb solid;
+				margin: 3px;
+			}
+		}
+		.thumbs {
+			padding: 5px 0 5px 0;
+		}
+		.subtitle {
+			// font-size: 1.5rem;
+			font-style: italic;
+		}
+		.newPhotoSelectionButton {
+			-webkit-user-select: none; /* Chrome/Safari */        
+			-moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* IE10+ */
+			/* Rules below not implemented in browsers yet */
+			-o-user-select: none;
+			user-select: none;
+
+			cursor: pointer;
+			display: block;
+			text-align: middle;
+			margin: auto;
+			width: 23rem;
+			padding: 1rem;
+			border: 1pt solid #777;
+			border-radius: 4px;
+			&:hover {
+				background-color: #777;
+				color: white;
+				font-weight: bold;
+				font-style: underline;
+			}
+			&:active {
+				background-color: #555;
+				border-color: #555;
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: $break-medium) {
+	.family {
+		padding-bottom: 300px;
+		> .title {
+			text-align: center;
+			.main, .commmonName, .secondary {
+				display: block;
+			}
+			.main {
+				font-size: 2.5rem;
+			} 
+			.commonName {
+				font-size: 2.0rem;
+			}
+			.secondary {
+				font-size: 1.6rem;
+			}
+		}
+		> .textContent {
+			font-size: 1.4rem;
+		}
+		.photos {
+			margin-bottom: 150px;
+			padding: 0;
+			img {
+				margin: 1.5%;
+				width: 47%;
+			}
+		}
+	}
+}

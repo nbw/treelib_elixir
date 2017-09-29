@@ -1,0 +1,24 @@
+{
+  "name": "react_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run watch:react & npm run watch:sass",
+    "react": "webpack",
+    "watch:react": "webpack --watch --progress --inline",
+    "compile": "NODE_ENV=production webpack --progress -p",
+    "sass": "node-sass ./scss/ -o ../priv/static/css/",
+    "watch:sass": "node-sass ./scss/ -o ../priv/static/css/ --watch --progress --inline"
+  },
+  "author": "Nathan",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "node-sass": "^3.13.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "webpack": "^3.5.6",
+    "whatwg-fetch": "^2.0.1"
+  }
+}
