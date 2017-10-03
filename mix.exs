@@ -42,7 +42,10 @@ defmodule Treelib.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
 
-      {:httpoison, "~> 0.13"} # http client
+      {:httpoison, "~> 0.13"}, # http client
+
+      {:comeonin, "~> 4.0"}, # auth
+      {:bcrypt_elixir, "~> 0.12"} # encryption
     ]
   end
 

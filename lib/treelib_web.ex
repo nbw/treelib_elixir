@@ -24,6 +24,7 @@ defmodule TreelibWeb do
       import TreelibWeb.Router.Helpers
       import TreelibWeb.Gettext
       import TreelibWeb.JSON
+      import TreelibWeb.SessionAuth
     end
   end
 

@@ -7,6 +7,7 @@ defmodule TreelibWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug TreelibWeb.CurrentUser
   end
 
   pipeline :api do
@@ -14,23 +15,40 @@ defmodule TreelibWeb.Router do
   end
 
   scope "/", TreelibWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :home
     get "/about", PageController, :about
     get "/contact", PageController, :contact
 
     get "/search", SearchController, :index
+
+    get "/register", RegistrationController, :new
+    post "/register", RegistrationController, :create
+
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/logout", SessionController, :delete
   end
 
-  scope "/genus", TreelibWeb do
-    # get ":id/photos", GenusController, :photo
+  # scope "/genus", TreelibWeb do
+  #   get ":id/edit", GenusController, :photo
+  # end
+
+  scope "/family", TreelibWeb do
+    pipe_through :browser
+
+    get ":id/edit", FamilyController, :edit
   end
 
-
-  # Other scopes may use custom stacks.
   scope "/api", TreelibWeb do
     pipe_through :api
     get "/photos", PhotoController, :index
+  end
+
+  scope "/admin", TreelibWeb do
+    pipe_through :browser
+
+    get "/", AdminController, :index
   end
 end

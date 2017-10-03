@@ -36,6 +36,7 @@ defmodule Treelib.UserManager do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
+  def get_user(id), do: Repo.get(User, id)
 
   @doc """
   Creates a user.
@@ -101,4 +102,64 @@ defmodule Treelib.UserManager do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  @doc """
+  Finds a user matching the given email and password.
+
+  ## Examples
+
+  iex> authenticate_with_email_and_password("example@example.org", "valid-password")
+  {:ok, %User{}}
+
+  iex> authenticate_with_email_and_password("example@example.org", "invalid-password")
+  {:error, :unauthorized}
+
+  """
+  def authenticate_with_email_and_password(email, password) do
+    with %User{pw_hash: hash} = user <- Repo.get_by(User, email: email),
+         true <- Comeonin.Bcrypt.checkpw(password, hash) do
+           {:ok, user}
+    else
+      _ ->
+        Comeonin.Bcrypt.dummy_checkpw()
+        {:error, :unauthorized}
+         end
+  end
+
+  @doc """
+  Registers a user.
+
+  ## Examples
+
+  iex> register_user(%{field: value})
+  {:ok, %User{}}
+
+  iex> register_user(%{field: bad_value})
+  {:error, %Ecto.Changeset{}}
+
+  """
+  def register_user(attrs \\ %{}) do
+    %User{}
+    |> User.registration_changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Registers an admin user.
+
+  ## Examples
+
+  iex> register_admin_user(%{field: value})
+  {:ok, %User{}}
+
+  iex> register_admin_user(%{field: bad_value})
+  {:error, %Ecto.Changeset{}}
+
+  """
+  def register_admin_user(attrs \\ %{}) do
+    %User{admin_level: 1}
+    |> User.admin_registration_changeset(attrs)
+    |> Repo.insert()
+  end
+
 end
