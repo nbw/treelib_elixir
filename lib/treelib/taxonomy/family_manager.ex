@@ -1,7 +1,10 @@
-defmodule FamilyManager do
+defmodule Treelib.Taxonomy.FamilyManager do
   @moduledoc """
     Handles Family creation, updates, deletion, and get.
   """
+
+  import Ecto.Query, warn: false
+  alias Treelib.Repo
 
   alias Treelib.Taxonomy.Family
 
@@ -19,7 +22,21 @@ defmodule FamilyManager do
       ** (Ecto.NoResultsError)
 
   """
-  def get_family!(id), do: Repo.get!(Family, id)
+  def get_family!(id) do
+    Family.all
+    |> Repo.get!(id)
+  end
+
+  def get_family(id) do
+    Family.all 
+    |> Repo.get(id)
+    |> case do
+      %Family{} = family  -> 
+        {:ok, family}
+      nil -> 
+        {:error, :not_found} 
+    end
+  end
 
   @doc """
   Creates a family.

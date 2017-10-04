@@ -2,7 +2,7 @@ defmodule TreelibWeb.Router do
   use TreelibWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ["html", "json"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
@@ -29,20 +29,13 @@ defmodule TreelibWeb.Router do
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
-  end
 
-  # scope "/genus", TreelibWeb do
-  #   get ":id/edit", GenusController, :photo
-  # end
-
-  scope "/family", TreelibWeb do
-    pipe_through :browser
-
-    get ":id/edit", FamilyController, :edit
+    resources "/family", FamilyController, only: [:new, :edit, :create, :update, :delete]
   end
 
   scope "/api", TreelibWeb do
     pipe_through :api
+
     get "/photos", PhotoController, :index
   end
 

@@ -29,7 +29,7 @@ defmodule Treelib.Taxonomy.Species do
   end
 
   @doc false
-  def all(query \\ __MODULE__) do
+  def active(query \\ __MODULE__) do
     from f in query,
       where: [enabled: true]
   end

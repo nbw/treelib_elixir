@@ -30,6 +30,12 @@ defmodule Treelib.Taxonomy.Genus do
 
   @doc false
   def all(query \\ __MODULE__) do
+    Genus.active
+    |> preload(species: ^Species.active) 
+  end
+
+  @doc false
+  def active(query \\ __MODULE__) do
     from f in query,
       where: [enabled: true]
   end

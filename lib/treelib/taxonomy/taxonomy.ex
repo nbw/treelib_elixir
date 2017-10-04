@@ -15,8 +15,6 @@ defmodule Treelib.Taxonomy do
   """
   def all do
     Family.all
-    |> preload([genera: ^Genus.all]) 
-    |> preload(genera: [species: ^Species.all]) 
     |> Repo.all
   end
 end

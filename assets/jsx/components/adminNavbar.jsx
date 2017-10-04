@@ -27,9 +27,9 @@ class AdminNavbar extends React.Component {
         return (
             <div id="adminNavbar">
                 <div className="title"><a href="/">Treelib</a></div>
-                <div className="item"><a href="/admin/edit_family" >Add Family</a></div>
-                <div className="item"><a href="/admin/edit_genus" >Add Genus</a></div>
-                <div className="item"><a href="/admin/edit_species" >Add Species</a></div>
+                <div className="item"><a href="/family/new" >Add Family</a></div>
+                <div className="item"><a href="/genus/new" >Add Genus</a></div>
+                <div className="item"><a href="/species/new" >Add Species</a></div>
                 <div className="item"><a href="/admin/family_tree" >Master Tree</a></div>
                 <div className="refresh" onClick={(event) => self.refreshClick()}>Refresh</div>
             </div>

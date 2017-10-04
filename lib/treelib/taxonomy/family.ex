@@ -5,6 +5,7 @@ defmodule Treelib.Taxonomy.Family do
 
   alias Treelib.Taxonomy.Family
   alias Treelib.Taxonomy.Genus
+  alias Treelib.Taxonomy.Species
 
   @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genera]}
 
@@ -22,12 +23,20 @@ defmodule Treelib.Taxonomy.Family do
   @doc false
   def changeset(%Family{} = family, attrs) do
     family
-    |> cast(attrs, [:description])
+    |> cast(attrs, [:name, :common_name, :description])
+    |> validate_required([:name])
+    |> validate_required([:common_name])
     |> validate_required([:description])
   end
 
-  @doc false
   def all(query \\ __MODULE__) do
+    Family.active
+    |> preload([genera: ^Genus.active]) 
+    |> preload(genera: [species: ^Species.active]) 
+  end
+
+  @doc false
+  def active(query \\ __MODULE__) do
     from f in query,
       where: [enabled: true]
   end
