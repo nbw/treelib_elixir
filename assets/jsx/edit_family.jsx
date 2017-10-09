@@ -72,11 +72,7 @@ class App extends React.Component {
           'X-CSRF-Token': CSRF_TOKEN,
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: pg.family.id,
-          key: pg.key
-        })
+        }
       }).then(function(response) {
         if(response.ok) {
           response.json().then(function(obj) {
@@ -102,6 +98,7 @@ class App extends React.Component {
       <div>
         <AdminNavbar />
         <h1 className="mainTitle">{this.state.title || "New Family"}</h1>
+        <h2 className="commonTitle" >{this.state.common_name}</h2>
         { pg.family.id ? 
             <Buttoner id="deleteButton" 
               callback={this.deleteMe.bind(this)}

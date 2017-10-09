@@ -42,6 +42,7 @@ defmodule TreelibWeb do
       import TreelibWeb.Router.Helpers
       import TreelibWeb.ErrorHelpers
       import TreelibWeb.Gettext
+      import TreelibWeb.JSON
     end
   end
 

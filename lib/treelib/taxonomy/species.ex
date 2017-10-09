@@ -7,7 +7,7 @@ defmodule Treelib.Taxonomy.Species do
   alias Treelib.Taxonomy.Species
   alias Treelib.PhotoManager.PhotoAlbum
 
-  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genus_id]}
+  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genus_id, :album_id]}
 
   schema "species" do
     field :name, :string
@@ -24,8 +24,16 @@ defmodule Treelib.Taxonomy.Species do
   @doc false
   def changeset(%Species{} = species, attrs) do
     species
-    |> cast(attrs, [:description])
-    |> validate_required([:description])
+    |> cast(attrs, [:name, :common_name, :description, :genus_id, :album_id])
+    |> validate_required([:name, :common_name, :description, :genus_id, :album_id])
+    |> foreign_key_constraint(:genus_id)
+  end
+
+  @doc false
+  def disable_changeset(%Species{} = species, attrs) do
+    species
+    |> cast(attrs, [:id, :enabled])
+    |> validate_required([:id, :enabled])
   end
 
   @doc false

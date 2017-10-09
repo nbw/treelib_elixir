@@ -47,7 +47,7 @@ defmodule TreelibWeb.FamilyController do
   def delete(conn, %{"id" => id} = params) do
     with {:ok, current_user} <- auth_admin(conn), 
          {:ok, %Family{} = family} <- FamilyManager.get_family(id),
-         {:ok, %Family{} = family} <- FamilyManager.delete_family(family),
+         {:ok, %Family{} = family} <- FamilyManager.disable_family(family),
     do:
       conn
       |> put_status(:ok)

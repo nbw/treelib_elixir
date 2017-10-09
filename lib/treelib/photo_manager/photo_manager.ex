@@ -55,11 +55,14 @@ defmodule Treelib.PhotoManager do
   ## Examples
 
       iex> list_albums()
-      [%PhotoAlbum{}, ...]
+      [%{id: 1, name: "Pine"}, ...]
 
   """
   def list_albums do
-    Repo.all(PhotoAlbum)
+    PhotoAlbum
+    |> select([p], %{id: p.id, name: p.name})
+    |> order_by([p], asc: p.name)
+    |> Repo.all
   end
 
   @doc """

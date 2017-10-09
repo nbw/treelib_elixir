@@ -7,7 +7,7 @@ defmodule Treelib.Taxonomy.Genus do
   alias Treelib.Taxonomy.Genus
   alias Treelib.Taxonomy.Species
 
-  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :species]}
+  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :species, :fam_id]}
 
   schema "genera" do
     field :name, :string
@@ -24,8 +24,16 @@ defmodule Treelib.Taxonomy.Genus do
   @doc false
   def changeset(%Genus{} = genus, attrs) do
     genus
-    |> cast(attrs, [:description])
-    |> validate_required([:description])
+    |> cast(attrs, [:name, :common_name, :description, :fam_id])
+    |> validate_required([:name, :common_name, :description, :fam_id])
+    |> foreign_key_constraint(:fam_id)
+  end
+
+  @doc false
+  def disable_changeset(%Genus{} = genus, attrs) do
+    genus
+    |> cast(attrs, [:id, :enabled])
+    |> validate_required([:id, :enabled])
   end
 
   @doc false

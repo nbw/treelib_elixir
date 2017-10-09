@@ -29,6 +29,13 @@ defmodule Treelib.Taxonomy.Family do
     |> validate_required([:description])
   end
 
+  @doc false
+  def disable_changeset(%Family{} = family, attrs) do
+    family
+    |> cast(attrs, [:id, :enabled])
+    |> validate_required([:id, :enabled])
+  end
+
   def all(query \\ __MODULE__) do
     Family.active
     |> preload([genera: ^Genus.active]) 

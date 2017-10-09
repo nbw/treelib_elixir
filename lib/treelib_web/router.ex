@@ -23,14 +23,16 @@ defmodule TreelibWeb.Router do
 
     get "/search", SearchController, :index
 
-    get "/register", RegistrationController, :new
+    get  "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
 
-    get "/login", SessionController, :new
-    post "/login", SessionController, :create
+    get    "/login",  SessionController, :new
+    post   "/login",  SessionController, :create
     delete "/logout", SessionController, :delete
 
-    resources "/family", FamilyController, only: [:new, :edit, :create, :update, :delete]
+    resources "/family",   FamilyController
+    resources "/genus",    GenusController
+    resources "/species",  SpeciesController
   end
 
   scope "/api", TreelibWeb do

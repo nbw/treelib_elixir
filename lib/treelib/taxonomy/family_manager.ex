@@ -91,6 +91,24 @@ defmodule Treelib.Taxonomy.FamilyManager do
   end
 
   @doc """
+  Disables a Genus.
+
+  ## Examples
+
+      iex> disable_family(family)
+      {:ok, %Species{}}
+
+      iex> disable_family(family)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def disable_family(%Family{} = family) do
+    family
+    |> Family.disable_changeset(%{id: family.id, enabled: false})
+    |> Repo.update()
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking family changes.
 
   ## Examples
