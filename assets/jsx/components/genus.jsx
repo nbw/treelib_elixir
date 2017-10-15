@@ -5,17 +5,28 @@ import PhotoViewer from './photoViewer.jsx';
 import ShareLinker from './shareLinker.jsx';
 
 class Genus extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             selectedPhotoIndex: null,
+            photos: props.photos 
         };
     }
+    componentWillMount(){
+      // Load photos
+      if(!this.props.photos){
+        this.grabMorePhotos(this.props.genus);
+      }
+    }
     componentWillReceiveProps(nextProps){
-      var curr_genus = this.props.genus,
-        next_genus = nextProps.genus;
-      if(curr_genus != next_genus){
+      var currGenus = this.props.genus,
+        nextGenus = nextProps.genus;
+      if(currGenus != nextGenus){
         this.update("selectedPhotoIndex", null);
+      }
+      // Reload photos on props change
+      if(!this.props.photos){
+        this.grabMorePhotos(nextGenus);
       }
     }
     update(name, value) {
@@ -25,7 +36,7 @@ class Genus extends React.Component {
     }
     nextPhoto(){
         var selectedPhoto = this.state.selectedPhotoIndex;
-        if (selectedPhoto < this.props.genus.photos.length) {
+        if (selectedPhoto < this.props.photos.length) {
             this.update("selectedPhotoIndex", selectedPhoto + 1);
         }
         return;
@@ -42,10 +53,9 @@ class Genus extends React.Component {
     createMarkup(s) {
         return {__html: s};
     }
-    grabMorePhotos(event) {
-        var self = this,
-        g = this.props.genus;
-        fetch('/api/get_genus_photos?genus_id=' + g.id, {
+    grabMorePhotos(g) {
+        var self = this;
+        fetch('/api/photos?genus_id=' + g.id, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -54,7 +64,7 @@ class Genus extends React.Component {
         }).then(function(response) {
             if(response.ok) {
                 response.json().then(function(photos) {
-                    g.photos = photos;
+                    self.update("photos", photos);
                     self.update("selectedPhotoIndex", null);
                 });
             } else {
@@ -69,14 +79,15 @@ class Genus extends React.Component {
     render() {
         var self = this,
             g = this.props.genus,
+            photos = this.state.photos,
             selectedPhoto = this.state.selectedPhotoIndex,
             thumbs = [];
 
         var species_links = g.species.map(function(s,i){
             return <li key={i} ><a className="underlineable" href={'/search?species=' + encodeURI((s.genus_name + "_" + s.name).toLowerCase())}>{s.name}</a></li>
         });
-        if( g.photos && g.photos.length > 0 ) {
-            g.photos.forEach(function(link,index) {
+        if( photos && photos.length > 0 ) {
+            photos.forEach(function(link,index) {
                 if(index == selectedPhoto) { 
                     thumbs.push(<img key={index} src={link.thumb} className="selected" />);
                 } else {
@@ -87,12 +98,12 @@ class Genus extends React.Component {
         return (
             <div className="genus">
                 <div className="title">
-                    <a href={'/genus/' + g.name.replace(/ /g,'_')} ><label className="main">{g.name}</label></a>
+                  <a href={'/genus/' + g.id + "/" +  g.name.replace(/ /g,'_')} ><label className="main">{g.name}</label></a>
                     <label className="commonName">{g.common_name}</label>
                     <label className="secondary">genus</label>
                 </div>
                 <ShareLinker
-                    path={'/genus/' + g.name.replace(/ /g,'_')} 
+                  path={'/genus/' + g.id + "/" + g.name.replace(/ /g,'_')} 
                 />
                 <div className="textContent">
                     <div className="description">
@@ -112,11 +123,11 @@ class Genus extends React.Component {
                         closeCallback={() => this.closePhotoviewer()}
                         hideSidebarCallback={() => this.props.handler('sidebarHidden',true)}
                         showSidebarCallback={() => this.props.handler('sidebarHidden',false)}
-                        image={g.photos[selectedPhoto].medium}
-                        imageName={g.photos[selectedPhoto].name}
-                        imageDescription={g.photos[selectedPhoto].description}
-                        original = {g.photos[selectedPhoto].original} 
-                        flickr_url = {g.photos[selectedPhoto].flickr_url} /> : null }
+                        image={photos[selectedPhoto].medium}
+                        imageName={photos[selectedPhoto].name}
+                        imageDescription={photos[selectedPhoto].description}
+                        original = {photos[selectedPhoto].original} 
+                        flickr_url = {photos[selectedPhoto].flickr_url} /> : null }
                 { thumbs.length > 0 ? 
                 <div className="photos">
                     <label className="subtitle">The photos below have been randomly selected from species in {g.name}.</label>

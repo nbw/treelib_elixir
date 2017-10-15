@@ -7,7 +7,18 @@ defmodule TreelibWeb.FamilyController do
   alias Treelib.Taxonomy.FamilyManager
   alias Treelib.Taxonomy.Family
 
+  alias Treelib.PhotoManager
+
   action_fallback AdminFallbackController
+
+  def show(conn,  %{"id" => id} = params) do
+    with {:ok, %Family{} = family} <- FamilyManager.get_family(id) do
+        photos = PhotoManager.photos_for_family(family.id, 20) 
+                 |> Enum.map(&PhotoManager.format_photo_for_web(&1))
+
+        render conn, "show.html", page_data: %{family: family, photos: photos}, layout: {TreelibWeb.LayoutView, "family.html"}
+    end
+  end
 
   def create(conn, params) do
     with {:ok, current_user} <- auth_admin(conn), 

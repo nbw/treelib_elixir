@@ -1,0 +1,6 @@
+<div id="app"></div>
+<script type="text/javascript">
+  window.pageData = <%= raw json_encode!(@page_data) %>;
+</script>
+<script src="/js/autres.bundle.js"></script> 
+<script src="/js/family_page.js"></script>

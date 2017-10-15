@@ -1,4 +1,3 @@
-require IEx
 defmodule TreelibWeb.GenusController do
   use TreelibWeb, :controller
   @moduledoc """
@@ -9,11 +8,17 @@ defmodule TreelibWeb.GenusController do
   alias Treelib.Taxonomy.Genus
   alias Treelib.Taxonomy
 
+  alias Treelib.PhotoManager
+
   action_fallback AdminFallbackController
 
-  def index(conn, params) do
-    genus = GenusManager.get_genus!(2)
-    render conn, "index.html", page_data: %{genus: genus}
+  def show(conn,  %{"id" => id} = params) do
+    with {:ok, %Genus{} = genus} <- GenusManager.get_genus(id) do
+        photos = PhotoManager.photos_for_genus(genus.id, 20) 
+                 |> Enum.map(&PhotoManager.format_photo_for_web(&1))
+
+        render conn, "show.html", page_data: %{genus: genus, photos: photos}, layout: {TreelibWeb.LayoutView, "genus.html"}
+    end
   end
 
   def create(conn, params) do

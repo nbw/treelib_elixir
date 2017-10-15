@@ -1,4 +1,3 @@
-require IEx
 defmodule TreelibWeb.SpeciesController do
   use TreelibWeb, :controller
   @moduledoc """
@@ -11,8 +10,20 @@ defmodule TreelibWeb.SpeciesController do
   alias Treelib.Taxonomy
   alias Treelib.Taxonomy.SpeciesManager
   alias Treelib.Taxonomy.Species
+  alias Treelib.Taxonomy.GenusManager
+  alias Treelib.Taxonomy.Genus
 
   action_fallback AdminFallbackController
+
+  def show(conn,  %{"id" => id} = params) do
+    with {:ok, %Species{} = species} <- SpeciesManager.get_species(id),
+         {:ok, %Genus{} = genus} <- GenusManager.get_genus(species.genus_id) do
+        photos = PhotoManager.photos_for_species(species.id) 
+                 |> Enum.map(&PhotoManager.format_photo_for_web(&1))
+
+        render conn, "show.html", page_data: %{species: species, genus: genus, photos: photos}, layout: {TreelibWeb.LayoutView, "species.html"}
+    end
+  end
 
   def create(conn, params) do
     with {:ok, current_user} <- auth_admin(conn), 

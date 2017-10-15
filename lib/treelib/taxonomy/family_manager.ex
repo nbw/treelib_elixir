@@ -39,6 +39,36 @@ defmodule Treelib.Taxonomy.FamilyManager do
   end
 
   @doc """
+  Gets a single family by its name.
+
+  Raises `Ecto.NoResultsError` if the family does not exist.
+
+  ## Examples
+
+      iex> get_by_name!("Anacardiaceae")
+      %Family{}
+
+      iex> get_by_name!("Anacardiaceae")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_by_name!(name) do
+    Family.all
+    |> Repo.get_by!(name: name)
+  end
+
+  def get_by_name(name) do
+    Family.all 
+    |> Repo.get_by(name: name)
+    |> case do
+      %Family{} = family -> 
+        {:ok, family}
+      nil -> 
+        {:error, :not_found} 
+    end
+  end
+
+  @doc """
   Creates a family.
 
   ## Examples

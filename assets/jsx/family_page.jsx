@@ -12,18 +12,11 @@ class App extends React.Component {
         return (
             <div className="mainContainer">
             	<BasicNavbar />
-                <Family family={pg.family}/>
+                <Family family={pg.family} photos={pg.photos}/>
             </div>
         );
     }
 }
-
-if (self.fetch) {
-
-} else {
-    console.log('Unsupported browser. Please use Firefox or Google Chrome')
-}
-
 
 export default App
 ReactDOM.render(<App />, document.getElementById('app'));

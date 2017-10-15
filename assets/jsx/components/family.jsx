@@ -5,20 +5,28 @@ import PhotoViewer from './photoViewer.jsx';
 import ShareLinker from './shareLinker.jsx';
 
 class Family extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
-            selectedPhotoIndex: null
+            selectedPhotoIndex: null,
+            photos: props.photos 
         };
     }
-    componentWillReceiveProps(){
-      this.update("selectedPhotoIndex", null);
+    componentWillMount(){
+      // Load photos
+      if(!this.props.photos){
+        this.grabMorePhotos(this.props.family);
+      }
     }
     componentWillReceiveProps(nextProps){
-      var curr_family = this.props.family,
-        next_family = nextProps.family;
-      if(curr_family != next_family){
+      var currFamily = this.props.family,
+        nextFamily = nextProps.family;
+      if(currFamily != nextFamily){
         this.update("selectedPhotoIndex", null);
+      }
+      // Reload photos
+      if(!this.props.photos){
+        this.grabMorePhotos(nextFamily);
       }
     }
     update(name, value) {
@@ -28,7 +36,7 @@ class Family extends React.Component {
     }
     nextPhoto(){
         var selectedPhoto = this.state.selectedPhotoIndex;
-        if (selectedPhoto < this.props.family.photos.length) {
+        if (selectedPhoto < this.props.photos.length) {
             this.update("selectedPhotoIndex", selectedPhoto + 1);
         }
         return;
@@ -45,10 +53,10 @@ class Family extends React.Component {
     createMarkup(s) {
         return {__html: s};
     }
-    grabMorePhotos(event) {
-        var self = this,
+    grabMorePhotos(f) {
+        var self = this;
         f = this.props.family;
-        fetch('/api/get_family_photos?family_id=' + f.id, {
+        fetch('/api/photos?family_id=' + f.id, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -57,7 +65,7 @@ class Family extends React.Component {
         }).then(function(response) {
             if(response.ok) {
                 response.json().then(function(photos) {
-                    f.photos = photos;
+                    self.update("photos", photos);
                     self.update("selectedPhotoIndex", null);
                 });
             } else {
@@ -71,6 +79,7 @@ class Family extends React.Component {
     render() {
         var self = this,
             f = this.props.family,
+            photos = this.state.photos,
             selectedPhoto = this.state.selectedPhotoIndex,
             thumbs = [];
 
@@ -78,8 +87,8 @@ class Family extends React.Component {
             return <li key={i} ><a className="underlineable" href={'/search?genus=' + encodeURI((g.name).toLowerCase())}>{g.name}</a></li>
         });
 
-        if( f.photos && f.photos.length > 0 ) {
-            f.photos.forEach(function(link,index) {
+        if( photos && photos.length > 0 ) {
+            photos.forEach(function(link,index) {
                 if(index == selectedPhoto) { 
                     thumbs.push(<img key={index} src={link.thumb} className="selected" />);
                 } else {
@@ -90,12 +99,12 @@ class Family extends React.Component {
         return (
             <div className="family">
                 <div className="title">
-                    <a href={'/family/' + f.name.replace(/ /g,'_')}><label className="main">{f.name}</label></a>
+                  <a href={'/family/' + f.id + "/" + f.name.replace(/ /g,'_')}><label className="main">{f.name}</label></a>
                     <label className="commonName">{f.common_name}</label>
                     <label className="secondary">family</label>
                 </div>
                 <ShareLinker
-                    path={'/family/' + f.name.replace(/ /g,'_')} 
+                  path={'/family/' + f.id + "/" + f.name.replace(/ /g,'_')} 
                 />
                 <div className="textContent">
                     <div className="description">
@@ -115,11 +124,11 @@ class Family extends React.Component {
                         closeCallback={() => this.closePhotoviewer()}
                         hideSidebarCallback={() => this.props.handler('sidebarHidden',true)}
                         showSidebarCallback={() => this.props.handler('sidebarHidden',false)}
-                        image={f.photos[selectedPhoto].medium}
-                        imageName={f.photos[selectedPhoto].name}
-                        imageDescription={f.photos[selectedPhoto].description} 
-                        original = {f.photos[selectedPhoto].original} 
-                        flickr_url = {f.photos[selectedPhoto].flickr_url} /> : null }
+                        image={photos[selectedPhoto].medium}
+                        imageName={photos[selectedPhoto].name}
+                        imageDescription={photos[selectedPhoto].description} 
+                        original = {photos[selectedPhoto].original} 
+                        flickr_url = {photos[selectedPhoto].flickr_url} /> : null }
                 { thumbs.length > 0 ? 
                 <div className="photos">
                     <label className="subtitle">The photos below have been randomly selected from species in {f.name}.</label>

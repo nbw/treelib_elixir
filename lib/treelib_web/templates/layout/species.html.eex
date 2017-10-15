@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Species: <%= raw @page_data.species.name %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%# <meta property="og:url"           content="http://treelib.ca/species/genus/<%= @page_data.genus.name %1>" /> %>
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="treelib species: <%= @page_data.species.name %>" />
+    <meta property="og:description"   content="" />
+    <link rel='shortcut icon' href="<%= static_path(@conn, "/images/favicon.ico") %>" type='image/x-icon'/ >
+    <link href="https://fonts.googleapis.com/css?family=roboto:400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/css/species_page.css") %>">
+    <%# <% if @page_data.genus.photos && kernel.length(@page_data.species.photos) > 0 %1> %>
+    <%# <meta property="og:image"         content="<%= enum.take_random(@page_data.species.photos, kernel.length(@page_data.genus.photos)[:thumb] %1>" /> %>
+  <%# <% end %1> %>
+</head>
+<body>
+  <div class="maincontainer">
+    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+  </div> <!-- /container -->
+</body>
+</html>

@@ -7,6 +7,7 @@ defmodule Treelib.PhotoManager do
   alias Treelib.Repo
 
   alias Treelib.PhotoManager.PhotoAlbum
+  alias Treelib.PhotoManager.PhotoBuilder
   alias Treelib.PhotoManager.Photo
 
   alias Treelib.Taxonomy.Family
@@ -27,7 +28,8 @@ defmodule Treelib.PhotoManager do
   Returns photos for a genus.
 
   ## Examples
-      
+  iex> photos_for_genus(1)
+      [%Photo{..}, ..]
   """
   def photos_for_genus genus_id do
     Repo.all from p in Photo,
@@ -37,6 +39,20 @@ defmodule Treelib.PhotoManager do
       where: g.id == ^genus_id
   end
 
+
+  @doc"""
+  Returns random photos for a genus.
+
+  ## Examples
+  iex> photos_for_genus(1,20)
+      [%Photo{..}, ..]
+  """
+  def photos_for_genus genus_id, num do
+    photos_for_genus(genus_id)
+    |> Enum.take_random(num)
+  end
+
+    
   @doc"""
   Returns photos for a family.
   """
@@ -48,6 +64,19 @@ defmodule Treelib.PhotoManager do
       join: f in Family, on: g.fam_id == f.id and f.enabled == true,
       where: f.id == ^family_id
   end
+
+  @doc"""
+  Returns random photos for a family.
+
+  ## Examples
+  iex> photos_for_family(1,20)
+      [%Photo{..}, ..]
+  """
+  def photos_for_family family_id, num do
+    photos_for_family(family_id)
+    |> Enum.take_random(num)
+  end
+
 
   @doc """
   Returns the list of albums.
@@ -241,4 +270,31 @@ defmodule Treelib.PhotoManager do
   def change_photo(%Photo{} = photo) do
     Photo.changeset(photo, %{})
   end
+
+  @doc """
+  Returns a map of photo urls, name, description, and download url
+  
+  ## Examples
+
+      iex> format_photo_for_web(%Photo)
+          %{
+            thumb: "",
+            meduim: "",
+            original: "",
+            name: "",
+            description: "",
+            flickr_url: ""
+          }
+  """
+  def format_photo_for_web(%Photo{} = photo) do
+      %{
+        thumb: PhotoBuilder.photo_url(photo, "q"),
+        medium: PhotoBuilder.photo_url(photo, "z"),
+        original: PhotoBuilder.photo_url(photo, "h"),
+        name: photo.name,
+        description: photo.description,
+        flickr_url: ""
+      }
+  end
+
 end

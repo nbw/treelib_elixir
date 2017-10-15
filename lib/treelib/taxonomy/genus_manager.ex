@@ -39,6 +39,36 @@ defmodule Treelib.Taxonomy.GenusManager do
   end
 
   @doc """
+  Gets a single genus by its name.
+
+  Raises `Ecto.NoResultsError` if the genus does not exist.
+
+  ## Examples
+
+      iex> get_by_name!("Abies)
+      %Genus{}
+
+      iex> get_by_name!("Abies")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_by_name!(name) do
+    Genus.all
+    |> Repo.get_by!(name: name)
+  end
+
+  def get_by_name(name) do
+    Genus.all 
+    |> Repo.get_by(name: name)
+    |> case do
+      %Genus{} = genus -> 
+        {:ok, genus}
+      nil -> 
+        {:error, :not_found} 
+    end
+  end
+
+  @doc """
   Creates a genus.
 
   ## Examples

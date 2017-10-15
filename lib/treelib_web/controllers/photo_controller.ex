@@ -1,4 +1,3 @@
-require IEx
 defmodule TreelibWeb.PhotoController do
   use TreelibWeb, :controller
   @moduledoc """
@@ -14,15 +13,13 @@ defmodule TreelibWeb.PhotoController do
   end
 
   def index(%Plug.Conn{params: %{"genus_id" => id}} = conn, _params) do
-    photos = PhotoManager.photos_for_genus(id)
-    |> Enum.take_random(20)
+    photos = PhotoManager.photos_for_genus(id, 20)
     
     render(conn, "index.json", photos: photos)
   end
 
   def index(%Plug.Conn{params: %{"family_id" => id}} = conn, _params) do
-    photos = PhotoManager.photos_for_family(id)
-    |> Enum.take_random(20)
+    photos = PhotoManager.photos_for_family(id, 20)
     
     render(conn, "index.json", photos: photos)
   end

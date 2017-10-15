@@ -11,7 +11,6 @@
     <link rel='shortcut icon' href="<%= static_path(@conn, "/images/favicon.ico") %>" type='image/x-icon'/ >
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
-    <%# <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %1>"> %>
   </head>
 
   <body>
@@ -24,6 +23,5 @@
       </main>
 
     </div> <!-- /container -->
-    <%# <script src="<%= static_path(@conn, "/js/app.js") %1>"></script> %>
   </body>
 </html>
