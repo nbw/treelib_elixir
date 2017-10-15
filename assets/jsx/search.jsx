@@ -55,11 +55,11 @@ class App extends React.Component {
       if (pre.type == "species") {
         obj.species = pre.item;
         obj.genus = genera.find(function(g){ return g.id == obj.species.genus_id });
-        obj.family = families.find(function(f){ return f.id == obj.genus.family_id });
+        obj.family = families.find(function(f){ return f.id == obj.genus.fam_id });
       }
       else if(pre.type == "genus") { 
         obj.genus = pre.item;
-        obj.family = families.find(function(f){ return f.id == obj.genus.family_id });
+        obj.family = families.find(function(f){ return f.id == obj.genus.fam_id });
       }
       else if(pre.type == "family") {
         obj.family = pre.item;

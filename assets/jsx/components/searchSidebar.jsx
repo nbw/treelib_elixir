@@ -34,13 +34,13 @@ class SearchSidebar extends React.Component {
     this.update('selectedSpecies', null);
     this.props.familyHandler(item, this.props.handler);
     this.update('selectedFamily', item);
-    window.history.pushState({},"title","?family="+item.name.toLowerCase());
+    window.history.pushState({},"title","?f="+item.id);
   }
 	genusClicked(item,e) {
     this.update('selectedSpecies', null); 
     this.update('selectedGenus', item);
     this.props.genusHandler(item, this.props.handler);
-    window.history.pushState({},"title","?genus="+item.name.toLowerCase());
+    window.history.pushState({},"title","?g="+item.id);
   }
 	speciesClicked(species,e) {
     species = this.preloadSpeciesWithGenus(species);
@@ -48,7 +48,7 @@ class SearchSidebar extends React.Component {
     this.update('selectedSpecies', species);
     var genus_name = species.genus_name.toLowerCase(),
       name = species.name.toLowerCase();
-    window.history.pushState({},"title","?species="+genus_name+"_"+name);
+    window.history.pushState({},"title","?s="+species.id);
 	}
   hideSidebar(e) {
     var minimized = this.props.minimized;
@@ -126,23 +126,25 @@ class SearchSidebar extends React.Component {
                         />;
 	    	});
 	    } else if (!(selectedFamily || selectedSpecies) || !(selectedFamily || selectedGenus) || selectedGenus){
-            self.props.tree.forEach(function(family) {
-                family.genera.forEach(function(item) {
-                    var isSelected = selectedGenus && (selectedGenus.id == item.id),
-                    latinName = self.state.showLatinNames ? item.name : "",
-                    commonName = self.state.showCommonNames ? item.common_name : "";
-                    generaRows.push(
-                        <SidebarListItem 
-                            isSelected={isSelected} 
-                            value={item.id}
-                            key={"g" + item.id} 
-                            onClick={(event) => self.genusClicked(item, event)}
-                            latinName={latinName}
-                            commonName={commonName}
-                        />
-                    );
-                });
+        self.props.tree.forEach(function(family) {
+          // if(selectedGenus && (family.id == selectedGenus.fam_id)) {
+            family.genera.forEach(function(item) {
+              var isSelected = selectedGenus && (selectedGenus.id == item.id),
+                latinName = self.state.showLatinNames ? item.name : "",
+                commonName = self.state.showCommonNames ? item.common_name : "";
+              generaRows.push(
+                <SidebarListItem 
+                  isSelected={isSelected} 
+                  value={item.id}
+                  key={"g" + item.id} 
+                  onClick={(event) => self.genusClicked(item, event)}
+                  latinName={latinName}
+                  commonName={commonName}
+                />
+              );
             });
+          // }
+        });
             
         }
         // sort alphabetically
