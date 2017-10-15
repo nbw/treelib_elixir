@@ -36,7 +36,7 @@ defmodule Treelib.Taxonomy.Family do
     |> validate_required([:id, :enabled])
   end
 
-  def all(query \\ __MODULE__) do
+  def all(_query \\ __MODULE__) do
     Family.active
     |> preload([genera: ^Genus.active]) 
     |> preload(genera: [species: ^Species.active]) 

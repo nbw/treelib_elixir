@@ -16,7 +16,7 @@ defmodule Treelib.Taxonomy.Species do
     field :enabled, :boolean
 
     belongs_to :genus, Genus
-    belongs_to :album, Album
+    belongs_to :album, PhotoAlbum
 
     timestamps()
   end

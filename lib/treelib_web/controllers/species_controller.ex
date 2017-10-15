@@ -26,7 +26,7 @@ defmodule TreelibWeb.SpeciesController do
   end
 
   def create(conn, params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Species{} = species} <- SpeciesManager.create_species(params) do
       conn
       |> put_status(:created)
@@ -35,8 +35,8 @@ defmodule TreelibWeb.SpeciesController do
     end 
   end
 
-  def edit(conn, %{"id" => id} = params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+  def edit(conn, %{"id" => id} = _params) do
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Species{} = species} <- SpeciesManager.get_species(id) 
     do
       genera = Taxonomy.get_genus_list
@@ -49,13 +49,15 @@ defmodule TreelibWeb.SpeciesController do
   end
 
   def new(conn, _params) do
-    genera = Taxonomy.get_genus_list
-    photo_albums = PhotoManager.list_albums
-    render conn, "edit.html", page_data: json_encode!(%{species: %{}, genera: genera, photo_albums: photo_albums})
+    with {:ok, _current_user} <- auth_admin(conn) do
+      genera = Taxonomy.get_genus_list
+      photo_albums = PhotoManager.list_albums
+      render conn, "edit.html", page_data: json_encode!(%{species: %{}, genera: genera, photo_albums: photo_albums})
+    end
   end
 
   def update(conn, %{"id" => id} = params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Species{} = species} <- SpeciesManager.get_species(id),
          {:ok, %Species{} = species} <- SpeciesManager.update_species(species, params),
     do:
@@ -65,8 +67,8 @@ defmodule TreelibWeb.SpeciesController do
       |> json(%{id: species.id}) 
   end
 
-  def delete(conn, %{"id" => id} = params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+  def delete(conn, %{"id" => id} = _params) do
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Species{} = species} <- SpeciesManager.get_species(id),
          {:ok, %Species{} = species} <- SpeciesManager.disable_species(species),
     do:

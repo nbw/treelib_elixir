@@ -22,7 +22,7 @@ defmodule TreelibWeb.CurrentUser do
 
   defp user_token(conn, %{id: id}),
     do: Phoenix.Token.sign(conn, "user socket", id)
-  defp user_token(conn, _),
+  defp user_token(_conn, _),
     do: "null"
 
 end

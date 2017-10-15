@@ -23,7 +23,7 @@ defmodule Treelib.PhotoManager.PhotoAPI do
   Structure:
   https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key={api_key}photoset_id={photoset_id}&user_id={user_id}&format=json&nojsoncallback=1
   """
-  def get_photos_in_photoset ps_id do
+  def get_photos_in_photoset _ps_id do
 
   end
 end

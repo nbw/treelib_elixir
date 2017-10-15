@@ -7,7 +7,7 @@ defmodule TreelibWeb.AdminController do
   action_fallback AdminFallbackController
 
   def index(conn, _params) do
-    with {:ok, current_user} <- auth_admin(conn) do 
+    with {:ok, _current_user} <- auth_admin(conn) do 
       render conn, "index.html"
     end
   end

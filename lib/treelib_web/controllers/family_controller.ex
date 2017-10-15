@@ -21,7 +21,7 @@ defmodule TreelibWeb.FamilyController do
   end
 
   def create(conn, params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Family{} = family} <- FamilyManager.create_family(params) do
       conn
       |> put_status(:created)
@@ -30,8 +30,8 @@ defmodule TreelibWeb.FamilyController do
     end 
   end
 
-  def edit(conn, %{"id" => id} = params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+  def edit(conn, %{"id" => id} = _params) do
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Family{} = family} <- FamilyManager.get_family(id) 
     do
         render conn, "edit.html", page_data: json_encode!(%{family: family})
@@ -41,11 +41,13 @@ defmodule TreelibWeb.FamilyController do
   end
 
   def new(conn, _params) do
-    render conn, "edit.html", page_data: json_encode!(%{family: %{}})
+    with {:ok, _current_user} <- auth_admin(conn) do
+      render conn, "edit.html", page_data: json_encode!(%{family: %{}})
+    end
   end
 
   def update(conn, %{"id" => id} = params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Family{} = family} <- FamilyManager.get_family(id),
          {:ok, %Family{} = family} <- FamilyManager.update_family(family, params),
     do:
@@ -55,8 +57,8 @@ defmodule TreelibWeb.FamilyController do
       |> json(%{id: family.id}) 
   end
 
-  def delete(conn, %{"id" => id} = params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+  def delete(conn, %{"id" => id} = _params) do
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Family{} = family} <- FamilyManager.get_family(id),
          {:ok, %Family{} = family} <- FamilyManager.disable_family(family),
     do:

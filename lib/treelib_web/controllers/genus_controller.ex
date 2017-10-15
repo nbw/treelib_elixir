@@ -22,7 +22,7 @@ defmodule TreelibWeb.GenusController do
   end
 
   def create(conn, params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Genus{} = genus} <- GenusManager.create_genus(params) do
       conn
       |> put_status(:created)
@@ -31,8 +31,8 @@ defmodule TreelibWeb.GenusController do
     end 
   end
 
-  def edit(conn, %{"id" => id} = params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+  def edit(conn, %{"id" => id} = _params) do
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Genus{} = genus} <- GenusManager.get_genus(id) 
     do
         render conn, "edit.html", page_data: json_encode!(%{genus: genus, families: Taxonomy.get_family_list})
@@ -42,11 +42,13 @@ defmodule TreelibWeb.GenusController do
   end
 
   def new(conn, _params) do
-    render conn, "edit.html", page_data: json_encode!(%{genus: %{}, families: Taxonomy.get_family_list})
+    with {:ok, _current_user} <- auth_admin(conn) do
+      render conn, "edit.html", page_data: json_encode!(%{genus: %{}, families: Taxonomy.get_family_list})
+    end
   end
 
   def update(conn, %{"id" => id} = params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Genus{} = genus} <- GenusManager.get_genus(id),
          {:ok, %Genus{} = genus} <- GenusManager.update_genus(genus, params),
     do:
@@ -56,8 +58,8 @@ defmodule TreelibWeb.GenusController do
       |> json(%{id: genus.id}) 
   end
 
-  def delete(conn, %{"id" => id} = params) do
-    with {:ok, current_user} <- auth_admin(conn), 
+  def delete(conn, %{"id" => id} = _params) do
+    with {:ok, _current_user} <- auth_admin(conn), 
          {:ok, %Genus{} = genus} <- GenusManager.get_genus(id),
          {:ok, %Genus{} = genus} <- GenusManager.disable_genus(genus),
     do:
