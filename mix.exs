@@ -43,6 +43,7 @@ defmodule Treelib.Mixfile do
       {:cowboy, "~> 1.0"},
 
       {:httpoison, "~> 0.13"}, # http client
+      {:poison, "~> 3.1"}, # json (included in phx too)
 
       {:comeonin, "~> 4.0"}, # auth
       {:bcrypt_elixir, "~> 0.12"}, # encryption
