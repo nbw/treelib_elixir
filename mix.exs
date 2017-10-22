@@ -45,7 +45,10 @@ defmodule Treelib.Mixfile do
       {:httpoison, "~> 0.13"}, # http client
 
       {:comeonin, "~> 4.0"}, # auth
-      {:bcrypt_elixir, "~> 0.12"} # encryption
+      {:bcrypt_elixir, "~> 0.12"}, # encryption
+
+      # Testing
+      {:ex_machina, "~> 2.1", only: :test} # fixtures for testing
     ]
   end
 

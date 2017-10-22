@@ -1,3 +1,4 @@
+require IEx
 defmodule Treelib.UserManagerTest do
   use Treelib.DataCase
 
@@ -5,8 +6,9 @@ defmodule Treelib.UserManagerTest do
 
   describe "users" do
     alias Treelib.UserManager.User
+    import Treelib.Factory
 
-    @valid_attrs %{email: "some email", name: "some name", password_hash: "some password_hash"}
+    @valid_attrs %{email: "some email", name: "some name", password: nil, password_confirmation: nil}
     @update_attrs %{email: "some updated email", name: "some updated name", password_hash: "some updated password_hash"}
     @invalid_attrs %{email: nil, name: nil, password_hash: nil}
 
@@ -20,7 +22,9 @@ defmodule Treelib.UserManagerTest do
     end
 
     test "list_users/0 returns all users" do
-      user = user_fixture()
+      IEx.pry
+      user = insert(:user,@valid_attrs)
+      # user = user_fixture()
       assert UserManager.list_users() == [user]
     end
 
