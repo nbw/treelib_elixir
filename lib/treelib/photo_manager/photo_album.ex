@@ -20,7 +20,7 @@ defmodule Treelib.PhotoManager.PhotoAlbum do
   @doc false
   def changeset(%PhotoAlbum{} = album, attrs) do
     album
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:photoset_id, :name, :last_updated])
+    |> validate_required([:photoset_id, :name, :last_updated])
   end
 end
