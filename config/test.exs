@@ -17,3 +17,8 @@ config :treelib, Treelib.Repo,
   database: "treelib_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# General Config
+config :treelib, 
+  flickr_api_key: "flickr_test",
+  flickr_user_id: "user_test"

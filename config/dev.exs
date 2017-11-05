@@ -1,5 +1,6 @@
 use Mix.Config
 
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -60,3 +61,12 @@ config :treelib, Treelib.Repo,
   database: "treelib_dev",
   hostname: "localhost",
   pool_size: 10
+
+# General Config
+config :treelib, 
+  flickr_api_key: "FLICKR_KEY",
+  flickr_user_id: "FLICKR_USER_ID" # overridden in secret
+
+
+# Dev secret overrides Flickr API keys!
+import_config "dev.secret.exs"
