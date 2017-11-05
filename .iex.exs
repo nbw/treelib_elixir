@@ -10,4 +10,4 @@ alias Treelib.UserManager.User
 
 alias Treelib.PhotoManager
 alias Treelib.PhotoManager.Photo
-alias Treelib.PhotoManager.Album
+alias Treelib.PhotoManager.PhotoAlbum
