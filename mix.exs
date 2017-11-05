@@ -20,7 +20,7 @@ defmodule Treelib.Mixfile do
   def application do
     [
       mod: {Treelib.Application, []},
-      extra_applications: [:logger, :runtime_tools, :httpoison]
+      extra_applications: [:logger, :runtime_tools, :httpoison, :timex]
     ]
   end
 
@@ -47,6 +47,8 @@ defmodule Treelib.Mixfile do
 
       {:comeonin, "~> 4.0"}, # auth
       {:bcrypt_elixir, "~> 0.12"}, # encryption
+
+      {:timex, "~> 3.1"}, # Dates and Time
 
       # Testing
       {:ex_machina, "~> 2.1", only: :test} # fixtures for testing
