@@ -17,7 +17,7 @@ defmodule Treelib.Repo.Migrations.MigrateSinatraAppToElixir do
 
     # %%%%% PHOTO ALBUMS %%%%%%%
   	create table(:photo_albums) do
-      add :photoset_id, :integer
+      add :photoset_id, :bigint
       add :name, :string
       add :last_updated, :naive_datetime
     end
@@ -25,7 +25,7 @@ defmodule Treelib.Repo.Migrations.MigrateSinatraAppToElixir do
     # %%%%% PHOTOS %%%%%%%
   	create table(:photos) do
       add :flickr_id, :integer
-      add :photoset_id, :integer
+      add :photoset_id, :bigint
       add :farm, :integer
       add :secret, :string
       add :server, :integer
