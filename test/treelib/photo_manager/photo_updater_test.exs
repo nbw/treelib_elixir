@@ -11,12 +11,14 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
     #
     # OK: PhotoAlbum that doesn't need to be modified
     # (Flickr response's date_update is the same)
-    ok_attrs = %{photoset_id: 72157677069967095, name: "okay tree", last_updated: Timex.now}
+    ok_date = Timex.now
+    ok_attrs = %{photoset_id: 72157677069967095, name: "okay tree", last_updated: ok_date}
     pa_ok = insert(:photo_album, ok_attrs) 
 
     # UPDATE: PhotoAlbum that should be updated
     # (Flickr response's date_update is more recent)
-    update_attrs = %{photoset_id: 72157673092712473, name: "update tree", last_updated: Timex.shift(Timex.now, days: -1)}
+    update_date = Timex.now
+    update_attrs = %{photoset_id: 72157673092712473, name: "update tree", last_updated: update_date}
     pa_update = insert(:photo_album, update_attrs) 
 
     # DELETE: PhotoAlbum that should be deleted
@@ -40,7 +42,7 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
         "pages" => 1, 
         "perpage" => 36,
         "photoset" => [
-          %{
+          %{ # new photoset
             "can_comment" => 0,
             "count_comments" => "0",
             "count_views" => "6",
@@ -48,7 +50,7 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
             "date_update" => "1481058523",
             "description" => %{"_content" => ""},
             "farm" => 6,
-            "id" => "72157677069967095",
+            "id" => "7777777777777777",
             "needs_interstitial" => 0,
             "photos" => 15,
             "primary" => "30873961770",
@@ -57,15 +59,32 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
             "title" => %{"_content" => "Araucaria araucana "},
             "videos" => 0,
             "visibility_can_see_set" => 1},
-          %{
+          %{ # photoset to update
+            "can_comment" => 0,
+            "count_comments" => "0",
+            "count_views" => "6",
+            "date_create" => "1480120977",
+            "date_update" => Integer.to_string(DateTime.to_unix(Timex.shift(update_date, hours: 1))),
+            "description" => %{"_content" => ""},
+            "farm" => 6,
+            "id" => "72157673092712473",
+            "needs_interstitial" => 0,
+            "photos" => 15,
+            "primary" => "30873961770",
+            "secret" => "f71e1d46e9",
+            "server" => "5601",
+            "title" => %{"_content" => "Araucaria araucana "},
+            "videos" => 0,
+            "visibility_can_see_set" => 1},
+          %{ # photoset to leave as is
             "can_comment" => 0,
             "count_comments" => "0",
             "count_views" => "0",
             "date_create" => "1480121126",
-            "date_update" => "1481058523",
+            "date_update" => Integer.to_string(DateTime.to_unix(ok_date)),
             "description" => %{"_content" => ""},
             "farm" => 6,
-            "id" => "72157673092712473",
+            "id" => "72157677069967095",
             "needs_interstitial" => 0,
             "photos" => 6,
             "primary" => "31097794712",
@@ -78,7 +97,12 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
       }
     }
 
-    %{ "photosets" => %{"photoset" => photosets}} = flickr_pa_response 
+    # %{ "photosets" => %{"photoset" => photosets}} = flickr_pa_response 
+    photosets = 
+      flickr_pa_response 
+      |> Map.fetch!("photosets")
+      |> Map.fetch!("photoset")
+      |> Enum.map(&(Flickr.Photoset.new(&1)))
 
     {:ok, %{photo_albums: photo_albums, photosets: photosets}}
   end
@@ -89,4 +113,19 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
     end
   end
 
+  describe "albums_to_create" do
+    test "it returns any PhotoAlbums that should be created", %{photo_albums: photo_albums, photosets: photosets}  do
+      new_photoset = Enum.find(photosets, &( &1.id == "7777777777777777" ))
+      assert PhotoUpdater.albums_to_create(photo_albums, photosets) == [new_photoset]
+    end
+  end
+
+  describe "albums_to_update" do
+    test "it returns any PhotoAlbums that should be updated", %{photo_albums: photo_albums, photosets: photosets}  do
+      update_photoset = Enum.find(photosets, &( &1.id == "72157673092712473" ))
+      update_photo_album = Enum.find(photo_albums, &( &1.photoset_id == 72157673092712473 ))
+
+      assert PhotoUpdater.albums_to_update(photo_albums, photosets) == [[update_photo_album, update_photoset]]
+    end
+  end
 end
