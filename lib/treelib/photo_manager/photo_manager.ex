@@ -78,8 +78,28 @@ defmodule Treelib.PhotoManager do
   end
 
 
+  #####################################
+  #  *********  PhotoAlbums  **********
+  #####################################
+
   @doc """
-  Returns the list of albums.
+  Returns the list of photo albums.
+
+  ## Examples
+
+      iex> list_albums()
+      [%PhotoAlbum{}, ...]
+
+  """
+
+  def list_albums do
+    Repo.all(PhotoAlbum)
+  end
+
+  @doc """
+  Returns the list of albums, formatted by id and name. 
+
+  Used for frontend
 
   ## Examples
 
@@ -87,7 +107,7 @@ defmodule Treelib.PhotoManager do
       [%{id: 1, name: "Pine"}, ...]
 
   """
-  def list_albums do
+  def list_of_albums do
     PhotoAlbum
     |> select([p], %{id: p.id, name: p.name})
     |> order_by([p], asc: p.name)
@@ -129,6 +149,15 @@ defmodule Treelib.PhotoManager do
   end
 
   @doc """
+  Update album from photoset
+  """
+  def update_album(%PhotoAlbum{} = album, %Flickr.Photoset{} = photoset) do
+    album
+    |> PhotoAlbum.photoset_changeset(photoset)
+    |> Repo.update()
+  end
+
+  @doc """
   Updates a album.
 
   ## Examples
@@ -145,6 +174,7 @@ defmodule Treelib.PhotoManager do
     |> PhotoAlbum.changeset(attrs)
     |> Repo.update()
   end
+
 
   @doc """
   Deletes a Album.
@@ -175,7 +205,33 @@ defmodule Treelib.PhotoManager do
     PhotoAlbum.changeset(album, %{})
   end
 
-  alias Treelib.PhotoManager.Photo
+
+  @doc """
+  Uses an insert_all(..) to insert multiple PhotoAlbums 
+  into the db
+  """
+  def insert_albums(photosets) when is_list(photosets)  do
+    albums = Enum.map(photosets, fn(photoset) ->
+      Flickr.Photoset.into_photo_album(photoset)
+    end)
+    
+    Repo.insert_all(PhotoAlbum, albums)
+  end
+
+  @doc """
+  Delete a list of PhotoAlbums using Repo.delete_all
+  """
+  def delete_albums(album_ids) when is_list(album_ids)  do
+    PhotoAlbum 
+    |> where([p], p.photoset_id in ^album_ids)
+    |> Repo.delete_all
+  end
+
+
+
+  #####################################
+  #  *********  Photos  **********
+  #####################################
 
   @doc """
   Returns the list of photos.
@@ -189,6 +245,7 @@ defmodule Treelib.PhotoManager do
   def list_photos do
     Repo.all(Photo)
   end
+
 
   @doc """
   Gets a single photo.
@@ -256,6 +313,24 @@ defmodule Treelib.PhotoManager do
   """
   def delete_photo(%Photo{} = photo) do
     Repo.delete(photo)
+  end
+
+  @doc """
+  Delete photos from an album based on photoset_id
+  """
+  def delete_photos_in_album(%PhotoAlbum{} = album) do
+    Photo
+    |> where([p], p.photoset_id in ^album.photoset_id)
+    |> Repo.delete_all
+  end
+
+  @doc """
+  Delete photos from an album based on photoset_id
+  """
+  def delete_photos_in_albums(album_ids) when is_list(album_ids) do
+    Photo
+    |> where([p], p.photoset_id in ^album_ids)
+    |> Repo.delete_all
   end
 
   @doc """

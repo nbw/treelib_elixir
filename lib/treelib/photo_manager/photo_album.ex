@@ -1,9 +1,11 @@
+require IEx
 defmodule Treelib.PhotoManager.PhotoAlbum do
   use Ecto.Schema
   import Ecto.Changeset
   alias Treelib.PhotoManager.Photo
   alias Treelib.PhotoManager.PhotoAlbum
   alias Treelib.Taxonomy.Species
+  alias Flickr.Photoset
 
 
   schema "photo_albums" do
@@ -22,5 +24,11 @@ defmodule Treelib.PhotoManager.PhotoAlbum do
     album
     |> cast(attrs, [:photoset_id, :name, :last_updated])
     |> validate_required([:photoset_id, :name, :last_updated])
+  end
+
+  @doc false
+  def photoset_changeset(%PhotoAlbum{} = album, %Photoset{} = photoset) do
+    attrs = Photoset.into_photo_album(photoset)
+    changeset(album, attrs)
   end
 end

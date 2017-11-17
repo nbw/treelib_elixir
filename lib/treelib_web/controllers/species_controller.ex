@@ -40,7 +40,7 @@ defmodule TreelibWeb.SpeciesController do
          {:ok, %Species{} = species} <- SpeciesManager.get_species(id) 
     do
       genera = Taxonomy.get_genus_list
-      photo_albums = PhotoManager.list_albums
+      photo_albums = PhotoManager.list_of_albums
       photos = PhotoManager.photos_for_species(species.id) |> Enum.map(&(%{url: PhotoBuilder.photo_url(&1, "q")}))
       render conn, "edit.html", page_data: json_encode!(%{species: species, genera: genera, photo_albums: photo_albums, photos: photos})
     else
@@ -51,7 +51,7 @@ defmodule TreelibWeb.SpeciesController do
   def new(conn, _params) do
     with {:ok, _current_user} <- auth_admin(conn) do
       genera = Taxonomy.get_genus_list
-      photo_albums = PhotoManager.list_albums
+      photo_albums = PhotoManager.list_of_albums
       render conn, "edit.html", page_data: json_encode!(%{species: %{}, genera: genera, photo_albums: photo_albums})
     end
   end

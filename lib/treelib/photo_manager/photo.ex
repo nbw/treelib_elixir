@@ -7,7 +7,6 @@ defmodule Treelib.PhotoManager.Photo do
 
   schema "photos" do
     field :flickr_id, :integer
-    # field :photoset_id, :integer
     field :farm, :integer
     field :secret, :string
     field :server, :integer

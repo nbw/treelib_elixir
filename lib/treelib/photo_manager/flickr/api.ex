@@ -3,14 +3,26 @@ defmodule Flickr.API do
   Flickr API Client
   """
 
-  alias Treelib.PhotoManager.PhotoAlbum
-
+  alias Flickr.Photoset
   alias Flickr.Parser
   alias Flickr.Client
 
   @base_url "https://api.flickr.com/services/rest/?"
   @api_key Application.get_env(:treelib, :flickr_api_key)
   @user_id Application.get_env(:treelib, :flickr_user_id)
+
+  @doc """
+  For parsing the response of a Flickr
+  photoset request.
+
+  @return: [List] of [%Photoset]
+  """
+  def parse_photosets_resp flickr_response do
+    flickr_response
+    |> Map.fetch!("photosets")
+    |> Map.fetch!("photoset")
+    |> Enum.map(&(Flickr.Photoset.new(&1)))
+  end
 
   @doc """
   Reference: https://www.flickr.com/services/api/flickr.photosets.getList.html
@@ -24,6 +36,19 @@ defmodule Flickr.API do
     |> Client.get!
     |> Map.fetch!(:body)
     |> Parser.decode!
+  end
+
+  @doc """
+  For parsing the response of a Flickr
+  photoset request.
+
+  @return: [List] of [%Photoset]
+  """
+  def parse_photo_resp flickr_response do
+    flickr_response
+    |> Map.fetch!("photoset")
+    |> Map.fetch!("photo")
+    |> Enum.map(&(Flickr.Photo.new(&1)))
   end
 
   @doc """
@@ -48,8 +73,8 @@ defmodule Flickr.API do
   @doc """
   Returns photos of a photoset for a %PhotoAlbum{}
   """
-  def get_photos_in_photoset(%PhotoAlbum{ photoset_id: id}) do
-    get_photos_in_photoset(id) 
+  def get_photos_in_photoset(%Photoset{} = photoset) do
+    get_photos_in_photoset(photoset.id) 
   end
 
   @doc """

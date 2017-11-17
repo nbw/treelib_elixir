@@ -33,8 +33,18 @@ defmodule Flickr.Photoset do
   """
   def new(flickr_photoset \\ %{}) do 
     attrs = map_keys_as_atoms(flickr_photoset) 
-    
+            |> Map.update!(:id, &(String.to_integer(&1)))
+            |> Map.update!(:date_update, &(format_date(&1)))
+            |> Map.update!(:title, &(extract_title(&1)))
+
     struct(__MODULE__,attrs)
+  end
+
+  @doc """
+  Maps Photoset to attrs for PhotoAlbum
+  """
+  def into_photo_album %Flickr.Photoset{} = photoset do
+    %{photoset_id: photoset.id, name: photoset.title, last_updated: photoset.date_update, inserted_at: Timex.now, updated_at: Timex.now }
   end
 
   @doc """
@@ -51,4 +61,14 @@ defmodule Flickr.Photoset do
     end)
   end
 
+  defp format_date date do
+    date
+    |> String.to_integer
+    |> DateTime.from_unix!
+  end
+
+  defp extract_title title do
+    title
+    |> Map.fetch!("_content")
+  end
 end
