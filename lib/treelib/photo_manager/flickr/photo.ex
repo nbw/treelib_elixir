@@ -3,6 +3,7 @@ defmodule Flickr.Photo do
   defstruct [
     :farm,
     :id,
+    :photoset_id,
     :isfamily,
     :isfriend,
     :isprimary,
@@ -30,14 +31,33 @@ defmodule Flickr.Photo do
     }
 
   """
-  def new(flickr_photo \\ %{}) do 
+  def new(flickr_photo \\ %{}, photoset_id) do 
+
     attrs = map_keys_as_atoms(flickr_photo) 
+            |> Map.put(:photoset_id, String.to_integer(photoset_id))
             |> Map.update!(:id, &(String.to_integer(&1)))
             |> Map.update!(:server, &(String.to_integer(&1)))
 
     struct(__MODULE__,attrs)
   end
 
+  @doc """
+  Formats a Flickr.Photo for a Treelib.PhotoManager.Photo's
+  changeset
+  """
+  def into_db_photo %Flickr.Photo{} = photo do
+    %{
+      flickr_id: photo.id,
+      photoset_id: photo.photoset_id, 
+      name: photo.title,
+      farm: photo.farm,
+      server: photo.server,
+      secret: photo.secret,
+      inserted_at: Timex.now,
+      updated_at: Timex.now
+    }
+  end
+  
   @doc """
   Converts a map from string keys to atom keys.
 

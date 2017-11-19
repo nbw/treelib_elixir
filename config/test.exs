@@ -22,3 +22,6 @@ config :treelib, Treelib.Repo,
 config :treelib, 
   flickr_api_key: "flickr_test",
   flickr_user_id: "user_test"
+
+# Which API Client to use
+config :treelib, :flickr_api, Flickr.API.Mock

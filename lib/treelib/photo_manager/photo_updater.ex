@@ -11,13 +11,14 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   alias Treelib.PhotoManager.PhotoUpdater
   alias Flickr.API, as: Flickr
 
+  @flickr Application.get_env(:treelib, :flickr_api)
 
   @doc """
   Delete, Updates, and Creates for all PhotoAlbums/Photosets
   """
   def process_all do
     photo_albums = PhotoManager.list_albums
-    photosets = Flickr.get_photosets |> Flickr.parse_photosets_resp 
+    photosets = @flickr.get_photosets |> @flickr.parse_photosets_resp 
     PhotoUpdater.process(photo_albums, photosets)
   end
 
@@ -82,8 +83,11 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   @param pss [List] of %Photoset{}
   """
   def process_creates pas, pss do
-    PhotoUpdater.albums_to_create(pas, pss)
-    |> PhotoManager.insert_albums
+    new_albums = PhotoUpdater.albums_to_create(pas, pss)
+    PhotoManager.insert_albums(new_albums)
+
+    new_photos = PhotoUpdater.flickr_photos_in_photosets(new_albums)
+    PhotoManager.insert_photos(new_photos)
   end
 
   @doc """
@@ -107,7 +111,7 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   
 
   @doc """
-  Find albums to create, and create them
+  Find albums to update, and updates them
 
   @param pas [List] of %PhotoAlbum{}
   @param pss [List] of %Photoset{}
@@ -117,6 +121,15 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
     Enum.each(albums_to_update, fn([pa, ps]) ->
       PhotoManager.update_album(pa,ps)
     end)
+
+    # gather photoset_id for photos to delete
+    Enum.map(albums_to_update, fn([pa, ps]) -> pa.photoset_id end)
+    |> PhotoManager.delete_photos_in_albums
+
+    # gather photosets for photos to add
+    Enum.map(albums_to_update, fn([pa, ps]) -> ps end)
+    |> PhotoUpdater.flickr_photos_in_photosets
+    |> PhotoManager.insert_photos
   end
 
   @doc """
@@ -145,6 +158,15 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
       end
     end)
     |> Enum.filter(&(!is_nil(&1)))
+  end
+
+  def flickr_photos_in_photosets photosets do
+    photos = Enum.map(photosets, fn(ps) ->
+      ps
+      |> @flickr.get_photos_in_photoset
+      |> @flickr.parse_photo_resp 
+    end)
+    |> List.flatten
   end
 
 end

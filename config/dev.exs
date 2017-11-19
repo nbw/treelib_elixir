@@ -67,6 +67,8 @@ config :treelib,
   flickr_api_key: "FLICKR_KEY",
   flickr_user_id: "FLICKR_USER_ID" # overridden in secret
 
+# Which API Client to use
+config :treelib, :flickr_api, Flickr.API.HTTPClient
 
 # Dev secret overrides Flickr API keys!
 import_config "dev.secret.exs"

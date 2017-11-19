@@ -347,6 +347,19 @@ defmodule Treelib.PhotoManager do
   end
 
   @doc """
+  Uses an insert_all(..) to insert multiple Photos 
+  into the db
+  """
+  def insert_photos(photos) when is_list(photos)  do
+    photos = Enum.map(photos, fn(photo) ->
+      Flickr.Photo.into_db_photo(photo)
+    end)
+    
+    Repo.insert_all(Photo, photos)
+  end
+
+
+  @doc """
   Returns a map of photo urls, name, description, and download url
   
   ## Examples

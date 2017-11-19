@@ -1,4 +1,3 @@
-require IEx
 defmodule Treelib.PhotoManager.PhotoUpdaterTest do
   use Treelib.DataCase
   alias Treelib.PhotoManager.PhotoUpdater
@@ -9,6 +8,8 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
   import Ecto.Query, warn: false
 
   import Treelib.Factory
+
+  @flickr Application.get_env(:treelib, :flickr_api)
 
   setup do
     ###################################
@@ -24,6 +25,8 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
     update_date = Timex.now
     update_attrs = %{photoset_id: 72157673092712473, name: "update tree", last_updated: update_date}
     pa_update = insert(:photo_album, update_attrs) 
+    ph_update_attrs = %{photoset_id: 72157673092712473}
+    ph_update = insert(:photo, ph_update_attrs) 
 
     # DELETE: PhotoAlbum that should be deleted
     # (in the db, but not in the Flickr response)
@@ -39,136 +42,20 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
     ph_delete_2 = insert(:photo, ph_delete_attrs_2) 
 
     photo_albums = [pa_ok, pa_update, pa_delete]
-    photos = [ph_delete, ph_delete_2]
+    photos = [ph_update, ph_delete, ph_delete_2]
 
     ###################################
     #
-    # FLICKR Response
+    # FLICKR Photoset Response
     # 
     # Contains:
     #   1. OK: photoset that should be the same as the db
     #   2. UPDATE: photoset that should be newer the db
     #   3. NEW: photoset that isn't in the db
-    flickr_pa_response = %{
-      "photosets" => %{
-        "page" => 1, 
-        "pages" => 1, 
-        "perpage" => 36,
-        "photoset" => [
-          %{ # new photoset
-            "can_comment" => 0,
-            "count_comments" => "0",
-            "count_views" => "6",
-            "date_create" => "1480120977",
-            "date_update" => "1481058523",
-            "description" => %{"_content" => ""},
-            "farm" => 6,
-            "id" => "7777777777777777",
-            "needs_interstitial" => 0,
-            "photos" => 15,
-            "primary" => "30873961770",
-            "secret" => "f71e1d46e9",
-            "server" => "5601",
-            "title" => %{"_content" => "Araucaria araucana "},
-            "videos" => 0,
-            "visibility_can_see_set" => 1},
-          %{ # new photoset
-            "can_comment" => 0,
-            "count_comments" => "0",
-            "count_views" => "6",
-            "date_create" => "1480120977",
-            "date_update" => "1481058523",
-            "description" => %{"_content" => ""},
-            "farm" => 6,
-            "id" => "88888888888888888",
-            "needs_interstitial" => 0,
-            "photos" => 15,
-            "primary" => "30873961770",
-            "secret" => "f71e1d46e9",
-            "server" => "5601",
-            "title" => %{"_content" => "Araucaria araucana "},
-            "videos" => 0,
-            "visibility_can_see_set" => 1},
-          %{ # photoset to update
-            "can_comment" => 0,
-            "count_comments" => "0",
-            "count_views" => "6",
-            "date_create" => "1480120977",
-            "date_update" => Integer.to_string(DateTime.to_unix(Timex.shift(update_date, hours: 1))),
-            "description" => %{"_content" => ""},
-            "farm" => 6,
-            "id" => "72157673092712473",
-            "needs_interstitial" => 0,
-            "photos" => 15,
-            "primary" => "30873961770",
-            "secret" => "f71e1d46e9",
-            "server" => "5601",
-            "title" => %{"_content" => "Araucaria araucana "},
-            "videos" => 0,
-            "visibility_can_see_set" => 1},
-          %{ # photoset to leave as is
-            "can_comment" => 0,
-            "count_comments" => "0",
-            "count_views" => "0",
-            "date_create" => "1480121126",
-            "date_update" => Integer.to_string(DateTime.to_unix(ok_date)),
-            "description" => %{"_content" => ""},
-            "farm" => 6,
-            "id" => "72157677069967095",
-            "needs_interstitial" => 0,
-            "photos" => 6,
-            "primary" => "31097794712",
-            "secret" => "fab1da026f",
-            "server" => "5578",
-            "title" => %{"_content" => "Araucaria heterophylla"},
-            "videos" => 0,
-            "visibility_can_see_set" => 1}
-        ]
-      }
-    }
+    photosets = @flickr.get_photosets(%{ok_date: ok_date, update_date: update_date}) 
+                |> @flickr.parse_photosets_resp 
 
-    flickr_photo_response = %{
-      "photoset" => %{
-      "id" => "72157676961718766",
-      "owner" => "139437718@N03",
-      "ownername" => "wbnathan",
-      "page" => 1, "pages" => 1,
-      "per_page" => 500,
-      "perpage" => 500,
-      "photo" => [
-        %{
-          "farm" => 6,
-          "id" => "31091742462",
-          "isfamily" => 0,
-          "isfriend" => 0,
-          "isprimary" => "0",
-          "ispublic" => 1,
-          "secret" => "3f63cca59a",
-          "server" => "5612",
-          "title" => "Rhus typhina-12"
-        },
-        %{
-          "farm" => 6,
-          "id" => "31199988056",
-          "isfamily" => 0,
-          "isfriend" => 0,
-          "isprimary" => "0",
-          "ispublic" => 1,
-          "secret" => "118a651a21",
-          "server" => "5801",
-          "title" => "Rhus typhina-13"
-        }
-      ],
-      "primary" => "30414648384",
-      "title" => "Rhus typhina",
-      "total" => "24"
-      },
-      "stat" => "ok"
-    }
-
-
-    # %{ "photosets" => %{"photoset" => photosets}} = flickr_pa_response 
-    photosets = Flickr.API.parse_photosets_resp(flickr_pa_response)
+    # deletable_photos = @flickr.get_photos_in_photoset(
 
     {:ok, %{photo_albums: photo_albums, photosets: photosets, photos: photos}}
   end
@@ -181,8 +68,8 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
 
   describe "albums_to_create" do
     test "it returns any PhotoAlbums that should be created", %{photo_albums: photo_albums, photosets: photosets}  do
-      new_photoset = Enum.find(photosets, &( &1.id == 7777777777777777 ))
-      new_photoset_2 = Enum.find(photosets, &( &1.id == 88888888888888888 ))
+      new_photoset = Enum.find(photosets, &( &1.id == 7777 ))
+      new_photoset_2 = Enum.find(photosets, &( &1.id == 8888 ))
       
       albums_to_create = PhotoUpdater.albums_to_create(photo_albums, photosets)
 
@@ -205,7 +92,7 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
     test "deletes albums that are in the db, but not on flickr", %{photo_albums: photo_albums, photosets: photosets}  do
       deleted_album = Treelib.Repo.get_by!(PhotoAlbum, photoset_id: 123456)
 
-      PhotoUpdater.process(photo_albums, photosets)  
+      PhotoUpdater.process_deletes(photo_albums, photosets)  
 
       albums = PhotoManager.list_albums
 
@@ -215,7 +102,7 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
     test "deletes all photos of deleted albums too", %{photo_albums: photo_albums, photosets: photosets, photos: photos}  do
       deleted_photos = Photo|> where([p], p.photoset_id in [123456]) |> Treelib.Repo.all
 
-      PhotoUpdater.process(photo_albums, photosets)  
+      PhotoUpdater.process_deletes(photo_albums, photosets)  
 
       photos = PhotoManager.list_photos
 
@@ -225,32 +112,46 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
     end
   end
 
-  describe "process" do
+  describe "process_creates" do
     test "it does creates albums from flickr, that aren't in the db", %{photo_albums: photo_albums, photosets: photosets}  do
 
       # verify it doesn't exist yet
-      non_existing_new_album = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 7777777777777777 )
-      non_existing_new_album_2 = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 88888888888888888 )
+      non_existing_new_album = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 7777 )
+      non_existing_new_album_2 = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 8888 )
 
       assert non_existing_new_album == nil 
       assert non_existing_new_album_2 == nil 
 
-      PhotoUpdater.process(photo_albums, photosets)  
+      PhotoUpdater.process_creates(photo_albums, photosets)  
 
       albums = PhotoManager.list_albums
 
-      new_album = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 7777777777777777 )
-      new_album_2 = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 88888888888888888 )
+      new_album = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 7777 )
+      new_album_2 = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 8888 )
 
       # verify that it's persisted, now.
       assert Enum.member?(albums, new_album) == true 
       assert Enum.member?(albums, new_album_2) == true 
     end
 
+    test "it does creates photos from flickr, from the newly created db", %{photo_albums: photo_albums, photosets: photosets}  do
+      PhotoUpdater.process_creates(photo_albums, photosets)  
+
+      photos = PhotoManager.list_photos
+
+      new_photos = Photo |> where([p], p.photoset_id in [7777, 8888]) |> Treelib.Repo.all
+
+      Enum.each(new_photos, fn(p) ->
+        assert Enum.member?(photos, p) == true 
+      end)
+    end
+  end
+
+  describe "process_updates" do
     test "it updates albums that are new on flickr", %{photo_albums: photo_albums, photosets: photosets}  do
       before_update = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 72157673092712473 )
 
-      PhotoUpdater.process(photo_albums, photosets)  
+      PhotoUpdater.process_updates(photo_albums, photosets)  
 
       after_update = Treelib.Repo.get_by(PhotoAlbum, photoset_id: 72157673092712473 )
 
@@ -259,6 +160,21 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
 
       # check that the dates are about 1 hour apart
       assert_in_delta DateTime.diff(after_update.last_updated, before_update.last_updated), 3600, 1.0001
+    end
+
+    test "it updates photos for updated albums: by deleting and readding", %{photo_albums: photo_albums, photosets: photosets}  do
+      before_update = Photo |> where([p], p.photoset_id in [72157673092712473]) |> Treelib.Repo.all
+
+      PhotoUpdater.process_updates(photo_albums, photosets)  
+
+      new_photos = Photo |> where([p], p.photoset_id in [72157673092712473]) |> Treelib.Repo.all
+      photos = PhotoManager.list_photos
+
+      # Check that two photos were added
+      assert Kernel.length(new_photos) == 2
+
+      # Check that the photo before update is no longer present
+      assert Enum.member?(new_photos, before_update) == false
     end
   end
 end
