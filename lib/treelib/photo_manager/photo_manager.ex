@@ -222,9 +222,11 @@ defmodule Treelib.PhotoManager do
   Delete a list of PhotoAlbums using Repo.delete_all
   """
   def delete_albums(album_ids) when is_list(album_ids)  do
-    PhotoAlbum 
-    |> where([p], p.photoset_id in ^album_ids)
-    |> Repo.delete_all
+    if Kernel.length(album_ids) > 0 do
+      PhotoAlbum 
+      |> where([p], p.photoset_id in ^album_ids)
+      |> Repo.delete_all
+    end
   end
 
 
@@ -328,9 +330,11 @@ defmodule Treelib.PhotoManager do
   Delete photos from an album based on photoset_id
   """
   def delete_photos_in_albums(album_ids) when is_list(album_ids) do
-    Photo
-    |> where([p], p.photoset_id in ^album_ids)
-    |> Repo.delete_all
+    if Kernel.length(album_ids) > 0 do
+      Photo
+      |> where([p], p.photoset_id in ^album_ids)
+      |> Repo.delete_all
+    end
   end
 
   @doc """

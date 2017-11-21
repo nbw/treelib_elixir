@@ -12,6 +12,7 @@ alias Treelib.PhotoManager
 alias Treelib.PhotoManager.Photo
 alias Treelib.PhotoManager.PhotoAlbum
 alias Treelib.PhotoManager.PhotoUpdater
+alias Treelib.PhotoManager.PhotoChecker, as: PC
 
 alias Flickr.API
 alias Flickr.Photoset

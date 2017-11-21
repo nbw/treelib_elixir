@@ -53,5 +53,6 @@ defmodule TreelibWeb.Router do
     pipe_through :browser
 
     get "/", AdminController, :index
+    post "/refresh", AdminController, :refresh
   end
 end

@@ -3,10 +3,11 @@ import React, { PropTypes } from 'react'
 class AdminNavbar extends React.Component {
     refreshClick(){
         self = this;
-        fetch('/api/refresh', {
+        fetch('/admin/refresh', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
+                'X-CSRF-Token': CSRF_TOKEN,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             }

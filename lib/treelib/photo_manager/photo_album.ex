@@ -1,4 +1,3 @@
-require IEx
 defmodule Treelib.PhotoManager.PhotoAlbum do
   use Ecto.Schema
   import Ecto.Changeset
