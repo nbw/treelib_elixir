@@ -33,7 +33,7 @@ class Family extends React.Component {
             <table className="familyTable">
                 <tr>
                     <td id={'family-' + f.id} key={f.id}>
-                        <a target="_blank" href={"/admin/edit_family?id=" + f.id}>{f.name}</a><br/>
+                        <a target="_blank" href={"/family/" + f.id + "/edit"}>{f.name}</a><br/>
                         <span className="subtitle">family</span>
                     </td>
                     <td>
@@ -56,7 +56,7 @@ class Genus extends React.Component {
             <table className="genusTable">
                 <tr>
                     <td id={'genus-' + g.id} key={g.id}>
-                        <a target="_blank" href={"/admin/edit_genus?id=" + g.id}>{g.name}</a><br/>
+                        <a target="_blank" href={"/genus/" + g.id + "/edit" }>{g.name}</a><br/>
                         <span className="subtitle">genus</span>
                     </td>
                     <td>
@@ -76,7 +76,7 @@ class Species extends React.Component {
         return (
             <tr className="species" id={'species-' + s.id} key={s.id}>
                 <td>
-                    <a target="_blank" href={"/admin/edit_species?id=" + s.id}>{s.name}</a><br/>
+                    <a target="_blank" href={"/species/" + s.id + "/edit"}>{s.name}</a><br/>
                         <span className="subtitle">species</span>
                 </td>
             </tr>

@@ -1,2 +1,19 @@
-<h1>Welcome to the admin page</h1>
-<p>Just chill while we sort some stuff out fer ye'.
+<html>
+	<head>
+	    <title>Family Tree</title>
+	    <link rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon'/ >
+	    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/css/admin_family_tree.css") %>">
+	</head>
+	<body>
+    <div class="mainContainer">
+    	<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <div id="app"></div>
+    </div>
+    <script type="text/javascript">
+      window.pageData = <%= raw json_encode!(@page_data) %>;
+    </script>
+    <script src="<%= static_path(@conn, "/js/autres.bundle.js") %>"></script> 
+    <script src="<%= static_path(@conn, "/js/admin_family_tree.js") %>"></script>   
+	</body>
+</html>
