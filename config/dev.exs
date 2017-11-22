@@ -53,17 +53,27 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
+# MYSQL Configure your database
+# config :treelib, Treelib.Repo,
+#   adapter: Ecto.Adapters.MySQL,
+#   username: "root",
+#   password: "mysql",
+#   database: "treelib_dev",
+#   hostname: "localhost",
+#   pool_size: 10
+
 # Configure your database
 config :treelib, Treelib.Repo,
-  adapter: Ecto.Adapters.MySQL,
-  username: "root",
-  password: "mysql",
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
   database: "treelib_dev",
   hostname: "localhost",
   pool_size: 10
 
-# General Config
-config :treelib, 
+
+  # General Config
+  config :treelib, 
   flickr_api_key: "FLICKR_KEY",
   flickr_user_id: "FLICKR_USER_ID" # overridden in secret
 
