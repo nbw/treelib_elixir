@@ -1,11 +1,8 @@
-var webpack = require("webpack");
-var classNames = require('classnames');
 const path = require('path');
+const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  resolve: {
-    modulesDirectories: [ "node_modules", __dirname + "/web/static/js" ]
-  },
   entry: {
     edit_species: "./jsx/edit_species.jsx",
     edit_genus: "./jsx/edit_genus.jsx",
@@ -21,20 +18,23 @@ module.exports = {
     autres: ['react', 'react-dom','whatwg-fetch'],
   },
   output: {
-    path: path.resolve(__dirname, "priv/static/js"),
-    filename: "[name].js"
+    path: path.resolve(__dirname, "../priv/static"),
+    filename: "js/[name].js"
   },
   module: {
-    loaders: [{
-      test: /\.jsx$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['es2015', 'react']
+    loaders: [
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        query: {
+          presets: ["es2015", 'react']
+        }
       }
-    }]
+    ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({name: "autres", filename: "autres.bundle.js"})
+    new webpack.optimize.CommonsChunkPlugin({name: "autres", filename: "autres.bundle.js"}),
+    new CopyWebpackPlugin([{ from: "./assets"}])
   ]
-}
+};

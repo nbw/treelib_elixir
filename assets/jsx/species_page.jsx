@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 
-import BasicNavbar from './components/BasicNavbar.jsx';
+import BasicNavbar from './components/basicNavbar.jsx';
 import Species from './components/species.jsx';
 
 var pg = pageData;

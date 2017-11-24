@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 
-import BasicNavbar from './components/BasicNavbar.jsx';
+import BasicNavbar from './components/basicNavbar.jsx';
 import Home from './components/home.jsx';
 import About from './components/about.jsx';
 import Contact from './components/contact.jsx';
