@@ -60,4 +60,8 @@ config :treelib, Treelib.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
 
+# Flickr
+config :treelib, 
+  flickr_api_key: System.get_env("FLICKR_API_KEY"),
+  flickr_user_id: System.get_env("FLICKR_USER_ID")
 ######################################
