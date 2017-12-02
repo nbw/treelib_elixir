@@ -4,10 +4,10 @@ defmodule Treelib.UserManager.AuthAdmin do
   """
   alias Treelib.UserManager.User
 
-  def auth_admin(%User{admin_level: level} = user) when level > 0,
+  def auth_admin(%User{admin_level: level} = user) when level == true,
   	do: {:ok, user}
 
-  def auth_admin(%User{admin_level: level}) when level <= 0,
+  def auth_admin(%User{admin_level: level}) when level != true,
   	do: {:error, :non_admin}
 
   def auth_admin(nil), 
