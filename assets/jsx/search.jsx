@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Family from './components/family.jsx';
 import Genus from './components/genus.jsx';

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 //
 // Save Button
@@ -16,10 +16,6 @@ class Saver extends React.Component {
             </div>
         );
     }
-}
-
-Saver.propTypes = {
-    callback: PropTypes.func.isRequired
 }
 
 export default Saver

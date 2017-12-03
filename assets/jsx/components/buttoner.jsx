@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 //
 // Button with callback
@@ -16,10 +16,6 @@ class Buttoner extends React.Component {
             </div>
         );
     }
-}
-
-Buttoner.propTypes = {
-    callback: PropTypes.func.isRequired
 }
 
 export default Buttoner

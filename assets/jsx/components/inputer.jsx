@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 //
 // Input field with title next to it. 
@@ -21,12 +21,5 @@ class Inputer extends React.Component {
         );
     }
 }
-
-Inputer.propTypes = {
-    text: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    placeholder: PropTypes.string.isRequired,
-    handler: PropTypes.func.isRequired
-} 
 
 export default Inputer
