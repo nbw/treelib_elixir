@@ -40,6 +40,7 @@ defmodule Treelib.Taxonomy.Genus do
   def all(_query \\ __MODULE__) do
     Genus.active
     |> preload(species: ^Species.active) 
+    |> order_by(asc: :name)
   end
 
   @doc false

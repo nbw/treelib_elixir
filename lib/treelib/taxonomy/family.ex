@@ -40,6 +40,7 @@ defmodule Treelib.Taxonomy.Family do
     Family.active
     |> preload([genera: ^Genus.active]) 
     |> preload(genera: [species: ^Species.active]) 
+    |> order_by(asc: :name)
   end
 
   @doc false
