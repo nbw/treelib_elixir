@@ -21,13 +21,13 @@ class App extends React.Component {
     if(pg.pre_selected){
       var pre = pg.pre_selected
       if (pre.type == "species") {
-        this.speciesSelectedHandler (pre.item, this.update.bind(this));
+        this.selectedHandler (pre.item, "species", this.update.bind(this));
       }
       else if(pre.type == "genus") { 
-        this.genusSelectedHandler (pre.item, this.update.bind(this));
+        this.selectedHandler (pre.item, "genus", this.update.bind(this));
       }
       else if(pre.type == "family") {
-        this.familySelectedHandler (pre.item, this.update.bind(this));
+        this.selectedHandler (pre.item, "family", this.update.bind(this));
       }
     }
     window.addEventListener("fullScreenPhoto", () => {this.update('sidebarHidden', !this.state.sidebarHidden );});
@@ -99,16 +99,8 @@ class App extends React.Component {
     return obj;
   }
 
-  speciesSelectedHandler(s, handler) {
-    handler('selectedItem', {itemType: 'species', item: s});
-  }
-
-  genusSelectedHandler(g, handler) {
-    handler('selectedItem', {itemType: 'genus', item: g});
-  }
-
-  familySelectedHandler(f, handler) {
-    handler('selectedItem', {itemType: 'family', item: f});
+  selectedHandler(i, type, handler) {
+    handler('selectedItem', {itemType: type, item: i});
   }
 
   findGenus(genus_id) {
@@ -132,9 +124,7 @@ class App extends React.Component {
             <SearchSidebar 
               title = "Family"
               tree = {pg.tree}
-              speciesHandler ={this.speciesSelectedHandler.bind(this)}
-              genusHandler ={this.genusSelectedHandler.bind(this)}
-              familyHandler ={this.familySelectedHandler.bind(this)}
+              selectedHandler={this.selectedHandler.bind(this)}
               handler = {this.update.bind(this)} 
               minimized = {this.state.sidebarMinimized}
               preSelected = {this.searchPreSelect()}

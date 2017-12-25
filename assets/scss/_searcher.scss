@@ -1,0 +1,78 @@
+$searcher-input-width: 400px;
+$searcher-input-icon-width: 20px;
+$searcher-border-left: 3px;
+$searcher-grey-border: #dadada;
+
+#searcher-input {
+  width: $searcher-input-width;
+  padding: 0;
+  margin: auto;
+  > * {
+    display: inline-block;
+  }
+  input {
+    width: $searcher-input-width - $searcher-input-icon-width - 17px;
+    font-size: 1.6rem;
+    outline: none;
+    margin-top: 5px; 
+    padding: 7px;
+    border: 1px solid $searcher-grey-border;
+    border-left: 3px solid $searcher-grey-border;
+    border-right: 0px solid $searcher-grey-border;
+  }
+  .icon {
+    padding: 8px;
+    border-width: 1px 1px 1px 0;
+    border-color: $searcher-grey-border;
+    border-style: solid;
+    background-color: white;
+    width: $searcher-input-icon-width;
+    .fa-search {
+      color: #777;
+    }
+  }
+}
+ul#searcher-results {
+  background-color: white;
+  position: absolute;
+  z-index: 1000;
+  .searcher-result {
+    list-style: none;
+    padding: 7px 10px 7px 7px;
+    // borders
+    border-bottom: 1px solid $searcher-grey-border; 
+    border-right:  1px solid $searcher-grey-border; 
+    &:hover {
+      background-color: #fafafa;
+    }
+    ul.result-list {
+      li {
+        list-style: none;
+        text-align: left;
+        .type { 
+          float: right;
+          font-size: 1.4rem;
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+  .searcher-species {
+    border-left: $searcher-border-left solid $species-color; 
+  }
+  .searcher-genus {
+    border-left: $searcher-border-left solid $genus-color; 
+  }
+  .searcher-family {
+    border-left: $searcher-border-left solid $family-color; 
+  }
+  width: $searcher-input-width;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
