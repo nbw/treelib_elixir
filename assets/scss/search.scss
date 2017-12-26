@@ -2,6 +2,7 @@
 @import "_species";
 @import "_genus";
 @import "_family";
+@import "_searcher";
 
 $sidebar-width: 38%;
 $sidebar-title-height: 7%;
@@ -99,23 +100,22 @@ $searchBar-list-font-color-selected: #111;
 		background-color: $searchBar-background;
 		cursor: pointer; 
 		// default
-		border-bottom: 1px solid $searchBar-listItem-border-color;
 		font-size: 3rem;
 		height: $sidebar-title-height - 2%;
 		padding: 1% 0 1% 0;
 		min-height: 3.1rem;
 
-		border-color: $searchBar-listItem-border-color;
-		border-style: solid;
-	    border-width: 0 0 1px 0;
-	    -webkit-border-image: 
-	      -webkit-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-	    -moz-border-image:
-	      -moz-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-	    -o-border-image:
-	      -o-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-	    border-image:
-	      linear-gradient(to left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
+		// border-color: $searchBar-listItem-border-color;
+		// border-style: solid;
+	    // border-width: 0 0 1px 0;
+	    // -webkit-border-image: 
+	      // -webkit-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
+	    // -moz-border-image:
+	      // -moz-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
+	    // -o-border-image:
+	      // -o-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
+	    // border-image:
+	      // linear-gradient(to left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
 
 		text-align: center;
 		
