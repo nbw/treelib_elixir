@@ -70,7 +70,8 @@ config :treelib, Treelib.Repo,
   password: "postgres",
   database: "treelib_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 10,
+  timeout: 45_000
 
 
   # General Config
