@@ -299,6 +299,9 @@ $searchBar-list-font-color-selected: #111;
 		width: 100%;
 		> *:not( .default) { padding-top: 4rem;}
 	}
+  #searcher {
+    display: none;
+  }
 }
 
 @media screen and (max-width: $break-med-medium) {

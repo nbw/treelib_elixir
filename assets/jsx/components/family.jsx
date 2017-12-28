@@ -102,6 +102,7 @@ class Family extends React.Component {
                   <a href={'/family/' + f.id + "/" + f.name.replace(/ /g,'_')}><label className="main">{f.name}</label></a>
                     <label className="commonName">{f.common_name}</label>
                     <label className="secondary">family</label>
+                    { window.admin ? <a href={`/family/${f.id}/edit`} className="adminEdit">edit</a> : ""}
                 </div>
                 <ShareLinker
                   path={'/family/' + f.id + "/" + f.name.replace(/ /g,'_')} 

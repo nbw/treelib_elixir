@@ -103,6 +103,7 @@ class Species extends React.Component {
           <a href={'/species/' + s.id + "/" + encodeURI((g.name + "_" + s.name).toLowerCase())}><label className="main">{g.name} <span className="speciesTitle">{s.name}</span></label></a>
           <label className="commonName">{s.common_name} {g.common_name}</label>
           <label className="secondary">species</label>
+          { window.admin ? <a href={`/species/${s.id}/edit`} className="adminEdit">edit</a> : "" }
           <ShareLinker
             path={'/species/' + s.id + "/" + encodeURI((g.name + "_" + s.name).toLowerCase())} 
           />

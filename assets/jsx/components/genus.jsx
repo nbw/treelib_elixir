@@ -101,6 +101,7 @@ class Genus extends React.Component {
                   <a href={'/genus/' + g.id + "/" +  g.name.replace(/ /g,'_')} ><label className="main">{g.name}</label></a>
                     <label className="commonName">{g.common_name}</label>
                     <label className="secondary">genus</label>
+                    { window.admin ? <a href={`/genus/${g.id}/edit`} className="adminEdit">edit</a> : "" }
                 </div>
                 <ShareLinker
                   path={'/genus/' + g.id + "/" + g.name.replace(/ /g,'_')} 

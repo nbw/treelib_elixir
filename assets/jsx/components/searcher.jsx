@@ -116,7 +116,7 @@ class Searcher extends React.Component {
     });
 
     return (
-      <div>
+      <div id="searcher">
         <div id="searcher-input">
           <input 
             type="text"
