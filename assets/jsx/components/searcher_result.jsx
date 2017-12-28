@@ -13,8 +13,14 @@ class SearcherResult extends React.Component {
     this.props.selectedHandler(i, e);
   }
   highlight_input(s){
-    const html_string = s.replace(this.props.current_input, `<b>${this.props.current_input}</b>`);
+    let html_string = s;
+    const re = new RegExp(`\\b(${this.props.current_input})`, 'i');
+    const match = re.exec(s);
+    if(match){
+      html_string = s.replace(match[0], `<b>${match[0]}</b>`);
+    }
     return { __html: html_string };
+
   }
   render() {
     return (
