@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Family from './components/family.jsx';
-import Genus from './components/genus.jsx';
-import Species from './components/species.jsx';
-import SearchSidebar from './components/searchSidebar.jsx';
+import Family         from './components/family.jsx';
+import Genus          from './components/genus.jsx';
+import Species        from './components/species.jsx';
+import SearchSidebar  from './components/searchSidebar.jsx';
 
 var pg = pageData;
 class App extends React.Component {
