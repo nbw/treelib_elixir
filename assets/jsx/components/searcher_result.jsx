@@ -25,7 +25,6 @@ class SearcherResult extends React.Component {
   render() {
     return (
       <li 
-        key={`sr-${this.props.type}-${this.props.item.id}`}
         className={`searcher-result searcher-${this.props.type}`}
         onClick={(e) => this.selectHandler(this.props.item, e) }
       >

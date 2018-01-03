@@ -13,7 +13,28 @@ class Searcher extends React.Component {
       species: this.species(),
       results: []
     };
+
+    this.setWrapperRef = this.setWrapperRef.bind(this);           
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.update("results", []);
+    }
+  } 
 
   families() {
     return this.props.tree.map(function(f){
@@ -105,6 +126,7 @@ class Searcher extends React.Component {
     let self = this;
     let results = this.state.results.map(function(item){
       return <SearcherResult
+        key={`sr-${item.type}-${item.item.id}`}
         name = {item.name}
         common_name = {item.common_name}
         item = {item.item}
@@ -116,7 +138,7 @@ class Searcher extends React.Component {
     });
 
     return (
-      <div id="searcher">
+      <div id="searcher" ref={this.setWrapperRef}>
         <div id="searcher-input">
           <input 
             type="text"
