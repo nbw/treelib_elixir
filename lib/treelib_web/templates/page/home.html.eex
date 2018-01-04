@@ -1,9 +1,6 @@
+<link rel="stylesheet" type="text/css" href="/css/homepage.css">
 <div class="mainContainer">
   <div id="app"></div>
 </div>
-<link rel="stylesheet" type="text/css" href="/css/homepage.css">
-<script type="text/javascript">
-  window.pageData = "<%= @page %>";
-</script>
 <script src="<%= static_path(@conn, "/js/autres.bundle.js") %>"></script> 
 <script src="<%= static_path(@conn, "/js/homepage.js") %>"></script> 

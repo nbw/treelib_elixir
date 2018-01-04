@@ -15,6 +15,8 @@ module.exports = {
     genus_page: "./jsx/genus_page.jsx",
     family_page: "./jsx/family_page.jsx",
     homepage: "./jsx/homepage.jsx",
+    aboutpage: "./jsx/aboutpage.jsx",
+    contactpage: "./jsx/contactpage.jsx",
     autres: ['react', 'react-dom','whatwg-fetch'],
   },
   output: {
