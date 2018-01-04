@@ -34,7 +34,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({name: "autres", filename: "autres.bundle.js"}),
+    new webpack.optimize.CommonsChunkPlugin({name: "autres", filename: "js/autres.bundle.js"}),
     new CopyWebpackPlugin([{ from: "./assets"}])
   ]
 };

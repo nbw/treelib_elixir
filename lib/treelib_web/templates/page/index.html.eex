@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="/css/homepage.css">
 <script type="text/javascript">
   window.pageData = "<%= @page %>";
-  <%# window.pageData = "home" %>
 </script>
-<script src="/js/autres.bundle.js"></script> 
-<script src="/js/homepage.js"></script>
+<script src="<%= static_path(@conn, "/js/autres.bundle.js") %>"></script> 
+<script src="<%= static_path(@conn, "/js/homepage.js") %>"></script> 
