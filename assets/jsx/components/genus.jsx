@@ -84,7 +84,7 @@ class Genus extends React.Component {
             thumbs = [];
 
         var species_links = g.species.map(function(s,i){
-            return <li key={i} ><a className="underlineable" href={'/search?species=' + encodeURI((s.genus_name + "_" + s.name).toLowerCase())}>{s.name}</a></li>
+            return <li key={i} ><a className="underlineable" href={'/search?s=' + s.id}>{s.name}</a></li>
         });
         if( photos && photos.length > 0 ) {
             photos.forEach(function(link,index) {
