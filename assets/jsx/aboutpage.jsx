@@ -22,7 +22,7 @@ export default class About extends React.Component {
             <div>
               <label className="sectionTitle">About the site</label> 
               <p>
-                With a library of over 260 tree species, <b>TreeLib</b> is a new digital resource for studying trees in the Northern Hemisphere. The collection is organized at a Family, Genus or Species level with quick access to jump back a forth to get a sense of the bigger picture. 
+                With a library of over 380 tree species, <b>TreeLib</b> is a new digital resource for studying trees in the Northern Hemisphere. The collection is organized at a Family, Genus or Species level with quick access to jump back a forth to get a sense of the bigger picture. 
               </p>
               <p>
                 Please don't hesitate to <a href="/contact">contact</a> us with any questions and head over to the <a href="/search">search</a> page to get started!
