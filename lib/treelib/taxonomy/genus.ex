@@ -45,8 +45,9 @@ defmodule Treelib.Taxonomy.Genus do
 
   @doc false
   def active(query \\ __MODULE__) do
-    from f in query,
-      where: [enabled: true]
+    from g in query,
+      where: [enabled: true],
+      order_by: g.name
   end
 end
 
