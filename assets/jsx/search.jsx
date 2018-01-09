@@ -143,18 +143,18 @@ class App extends React.Component {
                   handler={this.update.bind(this)} 
                   isFullScreen={this.props.isFullScreenImageMode}
                 /> : null }
-                { type === "genus" ? 
-                    <Genus genus={item}
-                      handler={this.update.bind(this)} 
-                      isFullScreen={this.props.isFullScreenImageMode}
-                    /> : null }
-                    { type === "species" ? 
-                        <Species species={item} genus={this.findGenus(item.genus_id)}
-                          handler={this.update.bind(this)} 
-                          isFullScreen={this.props.isFullScreenImageMode}
-                        /> : null }
-                      </div>
-                    </div>
+            { type === "genus" ? 
+                <Genus genus={item}
+                  handler={this.update.bind(this)} 
+                  isFullScreen={this.props.isFullScreenImageMode}
+                /> : null }
+            { type === "species" ? 
+                <Species species={item} genus={this.findGenus(item.genus_id)}
+                  handler={this.update.bind(this)} 
+                  isFullScreen={this.props.isFullScreenImageMode}
+                /> : null }
+          </div>
+       </div>
     );
   }
 }

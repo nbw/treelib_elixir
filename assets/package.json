@@ -1,7 +1,7 @@
 {
   "name": "treelib",
   "description": "A site about trees",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "scripts": {
     "deploy": "webpack -p & node-sass ./scss/ -o ../priv/static/css/",

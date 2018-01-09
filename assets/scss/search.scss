@@ -16,6 +16,7 @@ body {
 #app {
 	width:100%;
 	.mainContainer {
+  // -webkit-overflow-scrolling: touch;
 		width:100%;
 		> * {
 			display:inline-block;
@@ -23,7 +24,6 @@ body {
 		}
 	}
 }
-
 .content {
 	position:fixed;
 	z-index: 0;
@@ -31,7 +31,7 @@ body {
 	width: 100% - $sidebar-width;
 	height: 100%;
 	overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  // -webkit-overflow-scrolling: touch;
 	> *:not(.default) {
 		>*:not(.photoViewer) {
 			margin-left: 10px;
@@ -85,7 +85,7 @@ $searchBar-list-font-color-selected: #111;
 	border-color: #666;
 	border-style: solid;
 	border-width: 0 1px 1px 0;
-	position:relative;
+	position:fixed;
 	cursor: pointer;
 	z-index: 1;
 	overflow-y: hidden;
@@ -96,26 +96,15 @@ $searchBar-list-font-color-selected: #111;
 
 	background-color: $searchBar-background;
 
+  // -webkit-overflow-scrolling: touch;
+
 	.title {
 		background-color: $searchBar-background;
 		cursor: pointer; 
 		// default
 		font-size: 3rem;
-		height: $sidebar-title-height - 2%;
 		padding: 1% 0 1% 0;
 		min-height: 3.1rem;
-
-		// border-color: $searchBar-listItem-border-color;
-		// border-style: solid;
-	    // border-width: 0 0 1px 0;
-	    // -webkit-border-image: 
-	      // -webkit-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-	    // -moz-border-image:
-	      // -moz-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-	    // -o-border-image:
-	      // -o-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-	    // border-image:
-	      // linear-gradient(to left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
 
 		text-align: center;
 		
@@ -148,6 +137,7 @@ $searchBar-list-font-color-selected: #111;
 	.lists {
 		height: 100% - 2*$sidebar-title-height;
 		overflow-y: hidden;
+    // -webkit-overflow-scrolling: touch;
 
     .familyList, .generaList, .speciesList {
       display: inline-block;
@@ -175,7 +165,8 @@ $searchBar-list-font-color-selected: #111;
 		position:relative;
 		height: 100%;
 		overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    // -webkit-overflow-scrolling: touch;
+
 		li.emptySpeciesItem {
 			padding: 10px 0 10px 0;
 			color: #AAA;
