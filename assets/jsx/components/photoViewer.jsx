@@ -16,7 +16,15 @@ class PhotoViewer extends React.Component {
   }
 
   componentDidMount() {
+    const viewer = this.refs.photoViewer;
+    viewer.scrollIntoView({behavior: "smooth"});
+  
     window.addEventListener("keydown", this.handleKeyPress.bind(this));
+  }
+
+  componentWillReceiveProps(nextProps){
+    const viewer = this.refs.photoViewer;
+    viewer.scrollIntoView({behavior: "smooth"});
   }
 
   componentWillUnmount(){
@@ -54,7 +62,7 @@ class PhotoViewer extends React.Component {
     var self = this,
       show = this.props.isFullScreen ? 'show' : '' ;
     return (
-      <div className="photoViewer">
+      <div ref="photoViewer" className="photoViewer">
         <div onClick={() => (self.closeFullSizeImage())} className={"fullSizeImage " + show }>
           <span className="helper"></span>
           <div className="imageWrapper">
