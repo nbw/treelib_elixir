@@ -264,6 +264,7 @@ $searchBar-list-font-color-selected: #111;
 		background-color: $searchBar-background;
 		height: $sidebar-title-height;
 		min-height: 3.1rem;
+		max-height: 4.6rem;
 		width: $sidebar-width - 10%;
 		z-index: 1;
 		.title {
@@ -336,3 +337,4 @@ $searchBar-list-font-color-selected: #111;
 		}
 	}
 }
+
