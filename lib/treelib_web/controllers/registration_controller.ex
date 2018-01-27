@@ -14,7 +14,7 @@ defmodule TreelibWeb.RegistrationController do
   end
 
   def create(conn, %{"user" => params}) do
-    with {:ok, "true"} <- Map.fetch!(System.get_env(), "REGISTRATION_ENABLED") do
+    with {:ok, "true"} <- Map.fetch(System.get_env(), "REGISTRATION_ENABLED") do
       case UserManager.register_admin_user(params) do
         {:ok, user} ->
           conn
