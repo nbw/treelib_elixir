@@ -9,47 +9,50 @@ class Species extends React.Component {
     super();
     this.state = {
       selectedPhotoIndex: null,
-      photos: props.photos 
+      photos: props.photos,
+      isFSPMode: props.isFSPMode || false // full screen photo
     };
   }
-  componentWillMount(){
-    // Load photos
-    if(!this.props.photos){
-      this.grabPhotos(this.props.species);
-    }
-  }
+
   componentWillReceiveProps(nextProps){
     var currSpecies = this.props.species,
-      nextSpecies = nextProps.species;
+        nextSpecies = nextProps.species;
+    // only grab photos (and reset index if new species)
     if(currSpecies != nextSpecies){
       this.update("selectedPhotoIndex", null);
-    }
-    // Reload photos
-    if(!this.props.photos){
       this.grabPhotos(nextSpecies);
     }
   }
+
+  componentDidMount(){
+      this.grabPhotos(this.props.species);
+  }
+
   update(name, value) {
     this.setState({
       [name]: value // ES6 computed property
     });
   }
+
   nextPhoto(){
     var selectedPhoto = this.state.selectedPhotoIndex;
-    if (selectedPhoto < this.props.photos.length - 1) {
+    if (selectedPhoto < this.state.photos.length - 1) {
       this.update("selectedPhotoIndex", selectedPhoto + 1);
     }
     return;
   }
+
   prevPhoto(){
     var selectedPhoto = this.state.selectedPhotoIndex;
     if (selectedPhoto > 0) {
       this.update("selectedPhotoIndex", selectedPhoto - 1);
     }
   }
+
   closePhotoviewer(){
     this.update("selectedPhotoIndex", null);
   }
+
   createMarkup(s) {
     return {__html: s};
   }
@@ -66,7 +69,6 @@ class Species extends React.Component {
       if(response.ok) {
         response.json().then(function(photos) {
           self.update("photos", photos);
-          self.update("selectedPhotoIndex", null);
         });
       } else {
         console.log('Network response was not ok.');
@@ -75,6 +77,24 @@ class Species extends React.Component {
       .catch(function(error) {
         console.log('There has been a problem with your fetch operation: ' + error.message);
       });
+  }
+
+  showFullSizePhoto() {
+    if (this.props.handler) {
+      this.props.handler('fullScreenPhotoMode', true);
+      this.update("isFSPMode", true);
+    } else {
+      this.update("isFSPMode", true);
+    }
+  }
+
+  closeFullSizePhoto() {
+    if (this.props.handler) {
+      this.props.handler('fullScreenPhotoMode', false);
+      this.update("isFSPMode", false);
+    } else {
+      this.update("isFSPMode", false);
+    }
   }
 
   render() {
@@ -122,8 +142,9 @@ class Species extends React.Component {
               nextCallback={() => this.nextPhoto()} 
               prevCallback={() => this.prevPhoto()} 
               closeCallback={() => this.closePhotoviewer()}
-              hideSidebarCallback={() => this.props.handler('sidebarHidden',true)}
-              showSidebarCallback={() => this.props.handler('sidebarHidden',false)}
+              isFullScreen={this.state.isFSPMode}
+              hideSidebarCallback={() => (this.showFullSizePhoto())}
+              showSidebarCallback={() => (this.closeFullSizePhoto())}
               image={photos[selectedPhoto].medium} 
               imageName={photos[selectedPhoto].name} 
               imageDescription={photos[selectedPhoto].description} 

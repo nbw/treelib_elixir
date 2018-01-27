@@ -13,8 +13,8 @@ class App extends React.Component {
       selectedItem: { item: null, itemType: null },
       sidebarMinimized: false,
       sidebarHidden: false,
+      fullScreenPhotoMode: false,
       preSelected: pg.pre_selected || null,
-      isFullScreenImageMode: null
     };
   }
   componentDidMount() {
@@ -30,11 +30,9 @@ class App extends React.Component {
         this.selectedHandler (pre.item, "family", this.update.bind(this));
       }
     }
-    window.addEventListener("fullScreenPhoto", () => {this.update('sidebarHidden', !this.state.sidebarHidden );});
+    // window.addEventListener("fullScreenPhoto", () => {this.update('sidebarHidden', !this.state.sidebarHidden );});
   }
-  componentWillUnmount() {
-    window.removeEventListener("fullScreenPhoto", () => {});
-  }
+
   update(name, value) {
     this.setState({
       [name]: value // ES6 computed property
@@ -117,7 +115,7 @@ class App extends React.Component {
     var type = this.state.selectedItem.itemType,
       item = this.state.selectedItem.item,
       minimized = this.state.sidebarMinimized,
-      hidden = this.state.sidebarHidden;
+      hidden = this.state.fullScreenPhotoMode;
     return (
       <div className='mainContainer'>
         { hidden ? null :
@@ -139,19 +137,26 @@ class App extends React.Component {
             </div>
             : null}
             { type === "family" ? 
-                <Family family={item}
+                <Family
+                  key={`f-${item.id}`}
+                  family={item}
                   handler={this.update.bind(this)} 
-                  isFullScreen={this.props.isFullScreenImageMode}
+                  isFSPMode={this.state.fullScreenPhotoMode}
                 /> : null }
             { type === "genus" ? 
-                <Genus genus={item}
+                <Genus
+                  key={`g-${item.id}`}
+                  genus={item}
                   handler={this.update.bind(this)} 
-                  isFullScreen={this.props.isFullScreenImageMode}
+                  isFSPMode={this.state.fullScreenPhotoMode}
                 /> : null }
             { type === "species" ? 
-                <Species species={item} genus={this.findGenus(item.genus_id)}
+                <Species
+                  key={`s-${item.id}`}
+                  species={item}
+                  genus={this.findGenus(item.genus_id)}
                   handler={this.update.bind(this)} 
-                  isFullScreen={this.props.isFullScreenImageMode}
+                  isFSPMode={this.state.fullScreenPhotoMode}
                 /> : null }
           </div>
        </div>
