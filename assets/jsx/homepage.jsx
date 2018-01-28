@@ -27,11 +27,11 @@ export default class Home extends React.Component {
             </p>
             <div className="photoBanner">
               <div>
-                <a href="/search?species=gymnocladus_dioicus"><img src="images/homepage-banner/1.jpg"/></a>
-                <a href="/search?species=liquidambar_formosana"><img src="images/homepage-banner/9.jpg"/></a>
+                <a href="/search?s=47"><img src="images/homepage-banner/1.jpg"/></a>
+                <a href="/search?s=2"><img src="images/homepage-banner/9.jpg"/></a>
                 </div><div>
-                <a href="/search?species=nyssa_sylvatica"><img src="images/homepage-banner/6.jpg"/></a>
-                <a href="/search?species=populus_tremuloides"><img src="images/homepage-banner/5.jpg"/></a>
+                <a href="/search?s=31"><img src="images/homepage-banner/6.jpg"/></a>
+                <a href="/search?s=101"><img src="images/homepage-banner/5.jpg"/></a>
 
               </div>
             </div>
@@ -50,11 +50,11 @@ export default class Home extends React.Component {
             </p>
             <div className="photoBanner">
               <div>
-                <a href="/search?species=tsuga_heterophylla"><img src="images/homepage-banner/4.jpg"/></a>
-                <a href="/search?species=cercis_canadensis"><img src="images/homepage-banner/2.jpg"/></a>
+                <a href="/search?s=78"><img src="images/homepage-banner/4.jpg"/></a>
+                <a href="/search?s=42"><img src="images/homepage-banner/2.jpg"/></a>
                 </div><div>
-                <a href="/search?species=acer_platanoides"><img src="images/homepage-banner/7.jpg"/></a>
-                <a href="/search?species=albizia_julibrissin"><img src="images/homepage-banner/8.jpg"/></a>
+                <a href="/search?s=146"><img src="images/homepage-banner/7.jpg"/></a>
+                <a href="/search?s=41"><img src="images/homepage-banner/8.jpg"/></a>
               </div>
             </div>
             <p>
