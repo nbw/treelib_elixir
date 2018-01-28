@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Family from './components/family.jsx';
-import Genus from './components/genus.jsx';
-import Species from './components/species.jsx';
-import SearchSidebar from './components/searchSidebar.jsx';
+import Family         from './components/family.jsx';
+import Genus          from './components/genus.jsx';
+import Species        from './components/species.jsx';
+import SearchSidebar  from './components/searchSidebar.jsx';
 
 var pg = pageData;
 class App extends React.Component {
@@ -13,28 +13,26 @@ class App extends React.Component {
       selectedItem: { item: null, itemType: null },
       sidebarMinimized: false,
       sidebarHidden: false,
+      fullScreenPhotoMode: false,
       preSelected: pg.pre_selected || null,
-      isFullScreenImageMode: null
     };
   }
   componentDidMount() {
     if(pg.pre_selected){
       var pre = pg.pre_selected
       if (pre.type == "species") {
-        this.speciesSelectedHandler (pre.item, this.update.bind(this));
+        this.selectedHandler (pre.item, "species", this.update.bind(this));
       }
       else if(pre.type == "genus") { 
-        this.genusSelectedHandler (pre.item, this.update.bind(this));
+        this.selectedHandler (pre.item, "genus", this.update.bind(this));
       }
       else if(pre.type == "family") {
-        this.familySelectedHandler (pre.item, this.update.bind(this));
+        this.selectedHandler (pre.item, "family", this.update.bind(this));
       }
     }
-    window.addEventListener("fullScreenPhoto", () => {this.update('sidebarHidden', !this.state.sidebarHidden );});
+    // window.addEventListener("fullScreenPhoto", () => {this.update('sidebarHidden', !this.state.sidebarHidden );});
   }
-  componentWillUnmount() {
-    window.removeEventListener("fullScreenPhoto", () => {});
-  }
+
   update(name, value) {
     this.setState({
       [name]: value // ES6 computed property
@@ -99,16 +97,8 @@ class App extends React.Component {
     return obj;
   }
 
-  speciesSelectedHandler(s, handler) {
-    handler('selectedItem', {itemType: 'species', item: s});
-  }
-
-  genusSelectedHandler(g, handler) {
-    handler('selectedItem', {itemType: 'genus', item: g});
-  }
-
-  familySelectedHandler(f, handler) {
-    handler('selectedItem', {itemType: 'family', item: f});
+  selectedHandler(i, type, handler) {
+    handler('selectedItem', {itemType: type, item: i});
   }
 
   findGenus(genus_id) {
@@ -125,16 +115,14 @@ class App extends React.Component {
     var type = this.state.selectedItem.itemType,
       item = this.state.selectedItem.item,
       minimized = this.state.sidebarMinimized,
-      hidden = this.state.sidebarHidden;
+      hidden = this.state.fullScreenPhotoMode;
     return (
       <div className='mainContainer'>
         { hidden ? null :
             <SearchSidebar 
               title = "Family"
               tree = {pg.tree}
-              speciesHandler ={this.speciesSelectedHandler.bind(this)}
-              genusHandler ={this.genusSelectedHandler.bind(this)}
-              familyHandler ={this.familySelectedHandler.bind(this)}
+              selectedHandler={this.selectedHandler.bind(this)}
               handler = {this.update.bind(this)} 
               minimized = {this.state.sidebarMinimized}
               preSelected = {this.searchPreSelect()}
@@ -149,22 +137,29 @@ class App extends React.Component {
             </div>
             : null}
             { type === "family" ? 
-                <Family family={item}
+                <Family
+                  key={`f-${item.id}`}
+                  family={item}
                   handler={this.update.bind(this)} 
-                  isFullScreen={this.props.isFullScreenImageMode}
+                  isFSPMode={this.state.fullScreenPhotoMode}
                 /> : null }
-                { type === "genus" ? 
-                    <Genus genus={item}
-                      handler={this.update.bind(this)} 
-                      isFullScreen={this.props.isFullScreenImageMode}
-                    /> : null }
-                    { type === "species" ? 
-                        <Species species={item} genus={this.findGenus(item.genus_id)}
-                          handler={this.update.bind(this)} 
-                          isFullScreen={this.props.isFullScreenImageMode}
-                        /> : null }
-                      </div>
-                    </div>
+            { type === "genus" ? 
+                <Genus
+                  key={`g-${item.id}`}
+                  genus={item}
+                  handler={this.update.bind(this)} 
+                  isFSPMode={this.state.fullScreenPhotoMode}
+                /> : null }
+            { type === "species" ? 
+                <Species
+                  key={`s-${item.id}`}
+                  species={item}
+                  genus={this.findGenus(item.genus_id)}
+                  handler={this.update.bind(this)} 
+                  isFSPMode={this.state.fullScreenPhotoMode}
+                /> : null }
+          </div>
+       </div>
     );
   }
 }

@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="<%= static_path(@conn, "/css/search.css") %>">
 <div id="app"></div>
 <script type="text/javascript">
+  <%= if user = @conn.assigns[:current_user] do %> 
+    window.admin = <%= user.admin_level  %>;
+  <% end %>
   window.pageData = <%= raw @page_data %>;
 </script>
 <script src="<%= static_path(@conn, "/js/autres.bundle.js") %>"></script>

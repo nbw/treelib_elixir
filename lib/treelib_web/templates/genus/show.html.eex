@@ -2,5 +2,5 @@
 <script type="text/javascript">
   window.pageData = <%= raw json_encode!(@page_data) %>;
 </script>
-<script src="/js/autres.bundle.js"></script> 
-<script src="/js/genus_page.js"></script>
+<script src="<%= static_path(@conn, "/js/autres.bundle.js") %>"></script> 
+<script src="<%= static_path(@conn, "/js/genus_page.js") %>"></script> 

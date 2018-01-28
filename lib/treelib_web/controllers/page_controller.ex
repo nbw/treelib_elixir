@@ -5,14 +5,14 @@ defmodule TreelibWeb.PageController do
   """
 
   def home(conn, _params) do
-    render conn, "index.html", page: "home"
+    render conn, "home.html"
   end
 
   def about(conn, _params) do
-    render conn, "index.html", page: "about" 
+    render conn, "about.html" 
   end
 
   def contact(conn, _params) do
-    render conn, "index.html", page: "contact" 
+    render conn, "contact.html" 
   end
 end

@@ -15,6 +15,8 @@ module.exports = {
     genus_page: "./jsx/genus_page.jsx",
     family_page: "./jsx/family_page.jsx",
     homepage: "./jsx/homepage.jsx",
+    aboutpage: "./jsx/aboutpage.jsx",
+    contactpage: "./jsx/contactpage.jsx",
     autres: ['react', 'react-dom','whatwg-fetch'],
   },
   output: {
@@ -34,7 +36,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({name: "autres", filename: "autres.bundle.js"}),
+    new webpack.optimize.CommonsChunkPlugin({name: "autres", filename: "js/autres.bundle.js"}),
     new CopyWebpackPlugin([{ from: "./assets"}])
   ]
 };

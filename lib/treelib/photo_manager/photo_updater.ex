@@ -29,8 +29,13 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   """
   def process pas, pss do
     transaction(fn ->
+      IO.puts("[ Deletes ]:")
       PhotoUpdater.process_deletes(pas,pss)
+
+      IO.puts("[ Updates ]:")
       PhotoUpdater.process_updates(pas,pss)
+
+      IO.puts("[ Creates ]:")
       PhotoUpdater.process_creates(pas,pss)
     end)
   end
