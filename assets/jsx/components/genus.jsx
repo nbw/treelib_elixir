@@ -59,7 +59,7 @@ class Genus extends React.Component {
 
   grabMorePhotos(g) {
     var self = this;
-    fetch('/api/photos?genus_id=' + g.id, {
+    return fetch('/api/photos?genus_id=' + g.id, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -155,7 +155,7 @@ class Genus extends React.Component {
                 <div className="photos">
                   <label className="subtitle">The photos below have been randomly selected from species in {g.name}.</label>
                   <div className="thumbs">{thumbs}</div>
-                  <div onClick={ this.grabMorePhotos.bind(this) } className="newPhotoSelectionButton">
+                  <div onClick={ this.grabMorePhotos.bind(this, g) } className="newPhotoSelectionButton">
                     new random photo selection
                   </div>
                 </div>

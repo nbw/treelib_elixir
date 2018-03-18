@@ -158,7 +158,7 @@ class Family extends React.Component {
                 <div className="photos">
                   <label className="subtitle">The photos below have been randomly selected from species in {f.name}.</label>
                   <div className="thumbs">{thumbs}</div>
-                  <div onClick={ this.grabMorePhotos.bind(this) } className="newPhotoSelectionButton">
+                  <div onClick={ this.grabMorePhotos.bind(this, f) } className="newPhotoSelectionButton">
                     new random photo selection
                   </div>
                 </div> 
