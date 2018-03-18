@@ -39,7 +39,7 @@ class Family extends React.Component {
 
   nextPhoto(){
     var selectedPhoto = this.state.selectedPhotoIndex;
-    if (selectedPhoto < this.state.photos.length) {
+    if (selectedPhoto < this.state.photos.length - 1) {
       this.update("selectedPhotoIndex", selectedPhoto + 1);
     }
     return;

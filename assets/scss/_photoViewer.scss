@@ -60,8 +60,9 @@
       white-space: nowrap;
 
       img {
-        width: 100%;
+        // width: 100%;
         border: 1px solid #444;
+        max-height: 550px;
       }
       .helper {
         display: inline-block;
@@ -166,6 +167,10 @@
         max-width: 640px;
         .title { 
           font-weight: bold;
+        }
+        .description {
+          white-space:normal;
+          word-wrap: break-word;
         }
       }
     }
