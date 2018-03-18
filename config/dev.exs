@@ -71,7 +71,7 @@ config :treelib, Treelib.Repo,
   database: "treelib_dev",
   hostname: "localhost",
   pool_size: 10,
-  timeout: String.to_integer(System.get_env("DATABASE_TIMEOUT") || 45_000)
+  timeout: String.to_integer(System.get_env("DATABASE_TIMEOUT") || "45000")
 
 
   # General Config
