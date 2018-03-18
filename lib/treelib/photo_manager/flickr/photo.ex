@@ -3,6 +3,7 @@ defmodule Flickr.Photo do
   defstruct [
     :farm,
     :id,
+    :description,
     :photoset_id,
     :isfamily,
     :isfriend,
@@ -16,7 +17,7 @@ defmodule Flickr.Photo do
   @doc """
   Creates a new Photo from a flickr response.
 
-  # Example "flickr_photoset"
+  # Example "flickr_photo"
 
     %{
       "farm" => 6,
@@ -32,13 +33,13 @@ defmodule Flickr.Photo do
 
   """
   def new(flickr_photo \\ %{}, photoset_id) do 
-
     attrs = map_keys_as_atoms(flickr_photo) 
             |> Map.put(:photoset_id, String.to_integer(photoset_id))
             |> Map.update!(:id, &(String.to_integer(&1)))
             |> Map.update!(:server, &(String.to_integer(&1)))
+            |> Map.update!(:description, &(&1["_content"]))
 
-    struct(__MODULE__,attrs)
+    struct(__MODULE__, attrs)
   end
 
   @doc """
@@ -53,6 +54,7 @@ defmodule Flickr.Photo do
       farm: photo.farm,
       server: photo.server,
       secret: photo.secret,
+      description: photo.description,
       inserted_at: Timex.now,
       updated_at: Timex.now
     }

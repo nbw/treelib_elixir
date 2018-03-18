@@ -70,8 +70,7 @@ defmodule Flickr.API.HTTPClient do
   https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key={api_key}photoset_id={photoset_id}&user_id={user_id}&format=json&nojsoncallback=1
   """
   def get_photos_in_photoset(photoset_id) when is_integer(photoset_id) do
-    flickr_url("flickr.photosets.getPhotos", %{ photoset_id: photoset_id}) 
-    |> IO.inspect
+    flickr_url("flickr.photosets.getPhotos", %{ photoset_id: photoset_id, extras: "description"}) 
     |> Client.get!
     |> Map.fetch!(:body)
     |> Parser.decode!
@@ -97,7 +96,7 @@ defmodule Flickr.API.HTTPClient do
     "https://api.flickr.com/services/rest/?api_key=flickr_test&format=json&method=flickr.photosets.getList&nojsoncallback=1&user_id=user_test"
 
     iex> Flickr.API.flickr_url("flickr.photosets.getPhotos", %{photoset_id: 1234})
-    "https://api.flickr.com/services/rest/?api_key=flickr_test&format=json&method=flickr.photosets.getPhotos&nojsoncallback=1&photoset_id=1234&user_id=user_test"
+    "https://api.flickr.com/services/rest/?api_key=flickr_test&format=json&method=flickr.photosets.getPhotos&nojsoncallback=1&photoset_id=1234&user_id=user_test&extras=description"
 
   """
   def flickr_url(method, opts \\ %{}) do
