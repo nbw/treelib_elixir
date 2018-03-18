@@ -12,7 +12,7 @@ defmodule Treelib.Taxonomy.Genus do
   schema "genera" do
     field :name, :string
     field :common_name, :string
-    field :description, :string
+    field :description, :string, default: ""
     field :enabled, :boolean
 
     belongs_to :family, Family, foreign_key: :fam_id
@@ -25,7 +25,7 @@ defmodule Treelib.Taxonomy.Genus do
   def changeset(%Genus{} = genus, attrs) do
     genus
     |> cast(attrs, [:name, :common_name, :description, :fam_id])
-    |> validate_required([:name, :common_name, :description, :fam_id])
+    |> validate_required([:name, :common_name, :fam_id])
     |> foreign_key_constraint(:fam_id)
   end
 

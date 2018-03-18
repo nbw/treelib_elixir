@@ -12,7 +12,7 @@ defmodule Treelib.Taxonomy.Species do
   schema "species" do
     field :name, :string
     field :common_name, :string
-    field :description, :string
+    field :description, :string, default: ""
     field :enabled, :boolean
 
     belongs_to :genus, Genus
@@ -25,7 +25,7 @@ defmodule Treelib.Taxonomy.Species do
   def changeset(%Species{} = species, attrs) do
     species
     |> cast(attrs, [:name, :common_name, :description, :genus_id, :album_id])
-    |> validate_required([:name, :common_name, :description, :genus_id, :album_id])
+    |> validate_required([:name, :common_name, :genus_id, :album_id])
     |> foreign_key_constraint(:genus_id)
   end
 

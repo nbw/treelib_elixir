@@ -12,7 +12,7 @@ defmodule Treelib.Taxonomy.Family do
   schema "families" do
     field :name, :string
     field :common_name, :string
-    field :description, :string
+    field :description, :string, default: ""
     field :enabled, :boolean
 
     has_many :genera, Genus, foreign_key: :fam_id
@@ -24,9 +24,7 @@ defmodule Treelib.Taxonomy.Family do
   def changeset(%Family{} = family, attrs) do
     family
     |> cast(attrs, [:name, :common_name, :description])
-    |> validate_required([:name])
-    |> validate_required([:common_name])
-    |> validate_required([:description])
+    |> validate_required([:name, :common_name])
   end
 
   @doc false
