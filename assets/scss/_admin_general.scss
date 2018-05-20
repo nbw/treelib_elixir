@@ -127,7 +127,7 @@ a {
         resize: none;
         outline: none;
         border-color: #CCC;
-    }   
+    }
 }
 
 .mainContainer {
@@ -193,4 +193,12 @@ a {
             border-right: 1px dotted #CCC;
         }
     }
+}
+
+.undecorated-list {
+    list-style-type: none;
+}
+
+.inline > * {
+    display: inline-block;
 }

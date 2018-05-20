@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class CheckBoxer extends React.Component {
 
@@ -14,7 +14,7 @@ class CheckBoxer extends React.Component {
                     key={this.props.key}
                     value={this.props.value}
                     onChange={() => this.toggleCheckbox()}
-                    checked={this.props.isChecked} 
+                    checked={this.props.isChecked}
                      />
                     <label>{this.props.title}</label>
             </div>
@@ -22,4 +22,4 @@ class CheckBoxer extends React.Component {
     }
 }
 
-export default CheckBoxer
+export default CheckBoxer;

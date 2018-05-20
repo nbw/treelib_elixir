@@ -5,8 +5,9 @@ import AdminNavbar from './components/adminNavbar.jsx';
 import Inputer from './components/inputer.jsx';
 import Buttoner from './components/buttoner.jsx';
 import Dropper from './components/dropper.jsx';
-import Texter from './components/texter.jsx'
+import Texter from './components/texter.jsx';
 import Markup from './components/markup.jsx';
+import CheckBoxer from './components/checkBoxer.jsx';
 
 var pg = pageData;
 
@@ -19,6 +20,9 @@ class App extends React.Component {
       description: pg.species.description || "",
       genus_id: pg.species.genus_id || pg.genera[0].id || 0,
       album_id: pg.species.album_id || 0,
+      hardiness_enabled: (pg.species.hardiness_min != null && pg.species.hardiness_max != null),
+      hardiness_min: pg.species.hardiness_min || 0,
+      hardiness_max: pg.species.hardiness_max || 9,
       links: []
     };
   }
@@ -36,6 +40,7 @@ class App extends React.Component {
     if ( this.state.title === "") {alert('Please enter a species name, then try again.');return;}
     if ( this.state.common_name === "") {alert('Please enter a common name, then try again.');return;}
     if( !this.state.album_id ) {alert('Please choose a photo album, then try again.');return;}
+    if(this.state.hardiness_enabled && (this.state.hardiness_min == null || this.state.hardiness_max)) {alert('At least one of the hardiness values is blank. Try again.');return;}
 
     var url = (pg.species.id) ? ("/species/" + pg.species.id): ("/species"),
       req_method = (pg.species.id) ? ("PATCH") : ("POST");
@@ -55,6 +60,8 @@ class App extends React.Component {
         description: this.state.description,
         genus_id: this.state.genus_id,
         album_id: this.state.album_id || null,
+        hardiness_min: this.hardiness_min(),
+        hardiness_max: this.hardiness_max(),
         links: this.state.links,
       })
     }).then(function(response) {
@@ -64,12 +71,37 @@ class App extends React.Component {
         });
       } else {
         console.log('Response was not ok.');
-        alert('Response was not ok.');
+        alert(response.statusText);
       }
     })
       .catch(function(error) {
         console.log('There has been a problem with your fetch operation: ' + error.message);
       });
+  }
+
+  hardinessInputs() {
+    return  <li>
+      <Inputer
+              id = "hardiness_min"
+              title = "Min"
+              placeholder = "value"
+              text = {this.state.hardiness_min}
+              handler = {this.handleInputChange.bind(this, "hardiness_min")} />
+      <Inputer
+              id = "hardiness_max"
+              title = "Max"
+              placeholder = "value"
+              text = {this.state.hardiness_max}
+              handler = {this.handleInputChange.bind(this, "hardiness_max")} />
+      </li>;
+  }
+
+  hardiness_min(){
+    return this.state.hardiness_enabled ? this.state.hardiness_min : null;
+  }
+
+  hardiness_max(){
+    return this.state.hardiness_enabled ? this.state.hardiness_max : null;
   }
 
   deleteMe() {
@@ -96,7 +128,7 @@ class App extends React.Component {
         .catch(function(error) {
           console.log('There has been a problem with your fetch operation: ' + error.message);
         });
-    } 
+    }
   }
 
   render() {
@@ -105,8 +137,8 @@ class App extends React.Component {
         <AdminNavbar />
         <h1 className="mainTitle" >{this.state.title || "New Species"}</h1>
         <h2 className="commonTitle" >{this.state.common_name}</h2>
-        { pg.species.id ? 
-            <Buttoner id="deleteButton" 
+        { pg.species.id ?
+            <Buttoner id="deleteButton"
               callback={this.deleteMe.bind(this)}
               text="delete" /> : null }
             <hr />
@@ -131,12 +163,24 @@ class App extends React.Component {
               handler = {this.handleInputChange.bind(this, "common_name")} />
             <hr />
             <Texter
-              id = "description" 
+              id = "description"
               title = "Description"
               placeholder = "enter description here"
               text = {this.state.description}
               handler = {this.handleInputChange.bind(this, "description")} />
             <Markup />
+            <hr />
+            <ul class="inline undecorated-list">
+              <li>
+            <CheckBoxer
+              isChecked = {this.state.hardiness_enabled}
+              handler   = {this.update.bind(this, "hardiness_enabled")}
+              value = "hardiness"
+              title =  {"Hardiness" + (this.state.hardiness_enabled ? ":" : "?")}
+              />
+              </li>
+              { (this.state.hardiness_enabled) ? this.hardinessInputs() : null }
+            </ul>
             <hr />
             <Dropper
               id = "photoAlbum"
@@ -156,91 +200,6 @@ class App extends React.Component {
   }
 }
 
-class Linker extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      newLinkName: "",
-      newLinkURL: "",
-      showAddLinkInput: false
-    };
-  }
-  showInput() {
-    this.setState({
-      showAddLinkInput: true
-    });
-  }
-  saveLink() {
-    if(this.state.newLinkName.length === 0 || this.state.newLinkURL.length === 0) {
-      alert('try again. something is missing.');
-    } else {
-      this.props.links.push({ name: this.state.newLinkName, url: this.state.newLinkURL});
-      this.props.handler(this.props.links);
-    }
-    this.setState({
-      newLinkName: "",
-      newLinkURL: "",
-      showAddLinkInput: false,
-    });
-  }
-  removeLink(e) {
-    var index = this.props.links.indexOf(e);
-    this.props.links.splice(index, 1);
-    this.props.handler(this.props.links);
-  }
-  updateLinkInput(name,e) {
-    this.setState({
-      [name]: e.target.value
-    });
-  }
-  render() {
-    var rows = [];
-    for ( let item of this.props.links ) {
-      rows.push(
-        <Link   key={item.name}
-          name={item.name}
-          url={item.url}
-          handler={this.removeLink.bind(this)} />);
-    }
-    return (
-      <div id="linker">
-        Links:
-        <table className="linksTable">
-          <thead>
-            <tr><th>Name</th><th>URL</th><th></th></tr>
-          </thead>
-          {rows}
-        </table>
-        { !this.state.showAddLinkInput ? <div className="addLinkBtn" onClick={this.showInput.bind(this)}>+ add URL</div> : null }
-        { this.state.showAddLinkInput ?
-            <div className="addLinkInput">
-              <input 
-                placeholder="display name"
-                value={this.state.newLinkName}
-                onChange={this.updateLinkInput.bind(this, 'newLinkName')} />
-              and <input 
-                placeholder="URL" 
-                value={this.state.newLinkURL} 
-                onChange={this.updateLinkInput.bind(this, 'newLinkURL')} />
-              <span className="btn-std" onClick={this.saveLink.bind(this)}>add</span>
-            </div> : null 
-        }
-      </div>
-    );
-  }
-}
-class Link extends React.Component {
-  delete() {
-    this.props.handler(this.props);
-  }
-  render() {
-    return (
-      <tr className="link">
-        <td className="title">{this.props.name}</td><td><a className="url" href={this.props.url}>{this.props.url}</a></td><td><span className="delete" onClick={this.delete.bind(this)}></span></td>
-      </tr>
-    );
-  }
-}
 
 class PhotoArray extends React.Component {
   render() {
