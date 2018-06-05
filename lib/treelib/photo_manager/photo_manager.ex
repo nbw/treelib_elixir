@@ -19,7 +19,7 @@ defmodule Treelib.PhotoManager do
   """
   def photos_for_species species_id do
     Repo.all from p in Photo,
-      join: a in assoc(p, :photo_album), 
+      join: a in assoc(p, :photo_album),
       join: s in Species, on: a.id == s.album_id and s.enabled == true,
       where: s.id == ^species_id
   end
@@ -33,7 +33,7 @@ defmodule Treelib.PhotoManager do
   """
   def photos_for_genus genus_id do
     Repo.all from p in Photo,
-      join: a in assoc(p, :photo_album), 
+      join: a in assoc(p, :photo_album),
       join: s in Species, on: a.id == s.album_id and s.enabled == true,
       join: g in Genus, on: s.genus_id == g.id and g.enabled == true,
       where: g.id == ^genus_id
@@ -52,13 +52,13 @@ defmodule Treelib.PhotoManager do
     |> Enum.take_random(num)
   end
 
-    
+
   @doc"""
   Returns photos for a family.
   """
   def photos_for_family family_id do
     Repo.all from p in Photo,
-      join: a in assoc(p, :photo_album), 
+      join: a in assoc(p, :photo_album),
       join: s in Species, on: a.id == s.album_id and s.enabled == true,
       join: g in Genus, on: s.genus_id == g.id and g.enabled == true,
       join: f in Family, on: g.fam_id == f.id and f.enabled == true,
@@ -97,7 +97,7 @@ defmodule Treelib.PhotoManager do
   end
 
   @doc """
-  Returns the list of albums, formatted by id and name. 
+  Returns the list of albums, formatted by id and name.
 
   Used for frontend
 
@@ -207,14 +207,14 @@ defmodule Treelib.PhotoManager do
 
 
   @doc """
-  Uses an insert_all(..) to insert multiple PhotoAlbums 
+  Uses an insert_all(..) to insert multiple PhotoAlbums
   into the db
   """
   def insert_albums(photosets) when is_list(photosets)  do
     albums = Enum.map(photosets, fn(photoset) ->
       Flickr.Photoset.into_photo_album(photoset)
     end)
-    
+
     Repo.insert_all(PhotoAlbum, albums)
   end
 
@@ -223,7 +223,7 @@ defmodule Treelib.PhotoManager do
   """
   def delete_albums(album_ids) when is_list(album_ids)  do
     if Kernel.length(album_ids) > 0 do
-      PhotoAlbum 
+      PhotoAlbum
       |> where([p], p.photoset_id in ^album_ids)
       |> Repo.delete_all
     end
@@ -351,21 +351,23 @@ defmodule Treelib.PhotoManager do
   end
 
   @doc """
-  Uses an insert_all(..) to insert multiple Photos 
+  Uses an insert_all(..) to insert multiple Photos
   into the db
   """
   def insert_photos(photos) when is_list(photos)  do
-    photos = Enum.map(photos, fn(photo) ->
-      Flickr.Photo.into_db_photo(photo)
+    photos
+    |> Enum.map(fn(p) ->
+      Flickr.Photo.into_db_photo(p)
     end)
-    
-    Repo.insert_all(Photo, photos)
+    |> Enum.chunk_every(500)
+    |> Enum.each(fn(p) ->
+      Repo.insert_all(Photo, p)
+    end)
   end
-
 
   @doc """
   Returns a map of photo urls, name, description, and download url
-  
+
   ## Examples
 
       iex> format_photo_for_web(%Photo)
