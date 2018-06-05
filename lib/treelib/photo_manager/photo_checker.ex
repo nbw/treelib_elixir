@@ -14,7 +14,7 @@ defmodule Treelib.PhotoManager.PhotoChecker   do
   end
 
   def update do
-    GenServer.call(:photo_checker, :update, 30000)
+    GenServer.call(:photo_checker, :update, System.get_env("DATABASE_TIMEOUT"))
   end
 
   def handle_call(:update, _from, state) do
