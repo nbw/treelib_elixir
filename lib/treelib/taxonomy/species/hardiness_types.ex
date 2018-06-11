@@ -3,7 +3,7 @@ defmodule Treelib.Taxonomy.Species.HardinessTypes do
   Defines accepted Hardiness Types
   """
 
-  @types ["a","b"]
+  @types [nil, "a","b"]
 
   def all, do: @types
 

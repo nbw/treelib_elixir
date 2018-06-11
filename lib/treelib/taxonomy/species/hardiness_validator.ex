@@ -8,8 +8,8 @@ defmodule Treelib.Taxonomy.Species.HardinessValidator do
     |> validate_hardiness_min
     |> validate_hardiness_max
     |> validate_hardiness_values
-    |> validate_inclusion(:hardiness_min_type, [nil] ++ HardinessTypes.all)
-    |> validate_inclusion(:hardiness_max_type, [nil] ++ HardinessTypes.all)
+    |> validate_inclusion(:hardiness_min_type, HardinessTypes.all)
+    |> validate_inclusion(:hardiness_max_type, HardinessTypes.all)
   end
 
   # If hardiness_min is nil, check that max is also nil
@@ -52,7 +52,6 @@ defmodule Treelib.Taxonomy.Species.HardinessValidator do
   # hardiness_max > hardiness_min
   defp validate_hardiness_values(%Ecto.Changeset{ changes: changes, data: %{hardiness_max: data_hardiness_max, hardiness_min: data_hardiness_min}} = changeset) do
     hardiness_max = changes[:hardiness_max] || data_hardiness_max
-    hardiness_min = changes[:hardiness_min] || data_hardiness_min
 
     changeset
     |> validate_number(:hardiness_min, less_than_or_equal_to: hardiness_max)

@@ -96,7 +96,7 @@ class App extends React.Component {
               id = "hardiness_min_type"
               title = ""
               default = {this.state.hardiness_min_type}
-              list = {[{id: null, name: null}, {id:"a", name: "a"}, {id:"b", name: "b"}]}
+              list = {this.hardiness_types()}
               handler = {this.handleInputChange.bind(this, "hardiness_min_type")} />
       <Inputer
               id = "hardiness_max"
@@ -108,7 +108,7 @@ class App extends React.Component {
               id = "hardiness_max_type"
               title = ""
               default = {this.state.hardiness_max_type}
-              list = {[{id: null, name: null}, {id:"a", name: "a"}, {id:"b", name: "b"}, {id:"c", name: "c"}]}
+              list = {this.hardiness_types()}
               handler = {this.handleInputChange.bind(this, "hardiness_max_type")} />
       </li>;
   }
@@ -119,6 +119,15 @@ class App extends React.Component {
 
   hardiness_max(){
     return this.state.hardiness_enabled ? this.state.hardiness_max : null;
+  }
+
+  hardiness_types() {
+    return pg.hardiness_types.map(type =>{
+      var obj = {};
+      obj["id"] = type;
+      obj["name"] = type;
+      return obj;
+    });
   }
 
   deleteMe() {
