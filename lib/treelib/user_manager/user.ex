@@ -9,7 +9,7 @@ defmodule Treelib.UserManager.User do
     field :email, :string
     field :name, :string
     field :pw_hash, :string
-    field :admin_level, :boolean
+    field :admin_level, :integer
     field :enabled, :boolean
 
     field :password, :string, virtual: true

@@ -71,11 +71,11 @@ config :treelib, Treelib.Repo,
   database: "treelib_dev",
   hostname: "localhost",
   pool_size: 10,
-  timeout: String.to_integer(System.get_env("DATABASE_TIMEOUT") || "45000")
+  timeout: String.to_integer(System.get_env("DATABASE_TIMEOUT") || "145000")
 
 
   # General Config
-  config :treelib, 
+  config :treelib,
   flickr_api_key: "FLICKR_KEY",
   flickr_user_id: "FLICKR_USER_ID" # overridden in secret
 

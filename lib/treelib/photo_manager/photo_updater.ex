@@ -17,7 +17,7 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   """
   def process_all do
     photo_albums = PhotoManager.list_albums
-    photosets = @flickr.get_photosets |> @flickr.parse_photosets_resp 
+    photosets = @flickr.get_photosets |> @flickr.parse_photosets_resp
     PhotoUpdater.process(photo_albums, photosets)
   end
 
@@ -68,11 +68,11 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   """
   def album_ids_to_delete photo_albums, flickr_photosets do
     # collect ids
-    photo_album_ids = 
+    photo_album_ids =
       photo_albums
       |> Enum.map(&(&1.photoset_id))
 
-    photoset_ids = 
+    photoset_ids =
       flickr_photosets
       |> Enum.map(&(&1.id))
 
@@ -112,7 +112,7 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
       end
     end)
   end
-  
+
 
   @doc """
   Find albums to update, and updates them
@@ -151,7 +151,7 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
 
       case photo_album do
         nil -> nil
-        _ -> 
+        _ ->
           # Check if photoset is newer
           photoset.date_update
           |> DateTime.compare(photo_album.last_updated)
@@ -168,7 +168,7 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
     photos = Enum.map(photosets, fn(ps) ->
       ps
       |> @flickr.get_photos_in_photoset
-      |> @flickr.parse_photo_resp 
+      |> @flickr.parse_photo_resp
     end)
     |> List.flatten
   end

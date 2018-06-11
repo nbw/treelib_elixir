@@ -15,14 +15,16 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: pg.species.name || "",
+      title:       pg.species.name || "",
       common_name: pg.species.common_name || "",
       description: pg.species.description || "",
-      genus_id: pg.species.genus_id || pg.genera[0].id || 0,
-      album_id: pg.species.album_id || 0,
+      genus_id:    pg.species.genus_id || pg.genera[0].id || 0,
+      album_id:    pg.species.album_id || 0,
       hardiness_enabled: (pg.species.hardiness_min != null && pg.species.hardiness_max != null),
-      hardiness_min: pg.species.hardiness_min || 0,
-      hardiness_max: pg.species.hardiness_max || 9,
+      hardiness_min:      pg.species.hardiness_min || 0,
+      hardiness_min_type: pg.species.hardiness_min_type || null,
+      hardiness_max:      pg.species.hardiness_max || 9,
+      hardiness_max_type: pg.species.hardiness_max_type || null,
       links: []
     };
   }
@@ -40,7 +42,8 @@ class App extends React.Component {
     if ( this.state.title === "") {alert('Please enter a species name, then try again.');return;}
     if ( this.state.common_name === "") {alert('Please enter a common name, then try again.');return;}
     if( !this.state.album_id ) {alert('Please choose a photo album, then try again.');return;}
-    if(this.state.hardiness_enabled && (this.state.hardiness_min == null || this.state.hardiness_max)) {alert('At least one of the hardiness values is blank. Try again.');return;}
+    console.log(this.state);
+    if(this.state.hardiness_enabled && (this.state.hardiness_min == null || this.state.hardiness_max == null)) {alert('At least one of the hardiness values is blank. Try again.');return;}
 
     var url = (pg.species.id) ? ("/species/" + pg.species.id): ("/species"),
       req_method = (pg.species.id) ? ("PATCH") : ("POST");
@@ -61,7 +64,9 @@ class App extends React.Component {
         genus_id: this.state.genus_id,
         album_id: this.state.album_id || null,
         hardiness_min: this.hardiness_min(),
+        hardiness_min_type: this.state.hardiness_min_type,
         hardiness_max: this.hardiness_max(),
+        hardiness_max_type: this.state.hardiness_max_type,
         links: this.state.links,
       })
     }).then(function(response) {
@@ -87,12 +92,24 @@ class App extends React.Component {
               placeholder = "value"
               text = {this.state.hardiness_min}
               handler = {this.handleInputChange.bind(this, "hardiness_min")} />
+      <Dropper
+              id = "hardiness_min_type"
+              title = ""
+              default = {this.state.hardiness_min_type}
+              list = {[{id: null, name: null}, {id:"a", name: "a"}, {id:"b", name: "b"}]}
+              handler = {this.handleInputChange.bind(this, "hardiness_min_type")} />
       <Inputer
               id = "hardiness_max"
               title = "Max"
               placeholder = "value"
               text = {this.state.hardiness_max}
               handler = {this.handleInputChange.bind(this, "hardiness_max")} />
+      <Dropper
+              id = "hardiness_max_type"
+              title = ""
+              default = {this.state.hardiness_max_type}
+              list = {[{id: null, name: null}, {id:"a", name: "a"}, {id:"b", name: "b"}, {id:"c", name: "c"}]}
+              handler = {this.handleInputChange.bind(this, "hardiness_max_type")} />
       </li>;
   }
 
@@ -170,14 +187,14 @@ class App extends React.Component {
               handler = {this.handleInputChange.bind(this, "description")} />
             <Markup />
             <hr />
-            <ul class="inline undecorated-list">
+            <ul className="inline undecorated-list">
               <li>
-            <CheckBoxer
-              isChecked = {this.state.hardiness_enabled}
-              handler   = {this.update.bind(this, "hardiness_enabled")}
-              value = "hardiness"
-              title =  {"Hardiness" + (this.state.hardiness_enabled ? ":" : "?")}
-              />
+                <CheckBoxer
+                  isChecked = {this.state.hardiness_enabled}
+                  handler   = {this.update.bind(this, "hardiness_enabled")}
+                  value = "hardiness"
+                  title =  {"Hardiness" + (this.state.hardiness_enabled ? ":" : "?")}
+                  />
               </li>
               { (this.state.hardiness_enabled) ? this.hardinessInputs() : null }
             </ul>
@@ -227,11 +244,9 @@ class PhotoEditer extends React.Component {
   }
 }
 
-if (self.fetch) {
-
-} else {
-  console.log('Unsupported browser. Please use Firefox or Google Chrome')
+if (!self.fetch) {
+  console.log('Unsupported browser. Please use Firefox or Google Chrome');
 }
 
-export default App
+export default App;
 ReactDOM.render(<App />, document.getElementById('app'));

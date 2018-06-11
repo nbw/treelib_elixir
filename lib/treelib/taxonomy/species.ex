@@ -9,7 +9,7 @@ defmodule Treelib.Taxonomy.Species do
   alias Treelib.Taxonomy.Species
   alias Treelib.PhotoManager.PhotoAlbum
 
-  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_max]}
+  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_min_type, :hardiness_max, :hardiness_max_type]}
 
   schema "species" do
     field :name, :string
@@ -18,6 +18,8 @@ defmodule Treelib.Taxonomy.Species do
     field :enabled, :boolean
     field :hardiness_min, :integer
     field :hardiness_max, :integer
+    field :hardiness_min_type, :string
+    field :hardiness_max_type, :string
 
     belongs_to :genus, Genus
     belongs_to :album, PhotoAlbum
@@ -28,7 +30,7 @@ defmodule Treelib.Taxonomy.Species do
   @doc false
   def changeset(%Species{} = species, attrs) do
     species
-    |> cast(attrs, [:name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_max])
+    |> cast(attrs, [:name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_max, :hardiness_min_type, :hardiness_max_type])
     |> validate_required([:name, :common_name, :genus_id, :album_id])
     |> validate_hardiness
     |> foreign_key_constraint(:genus_id)

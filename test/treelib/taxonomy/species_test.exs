@@ -12,7 +12,9 @@ defmodule Treelib.SpeciesTest do
     genus_id: 1,
     album_id: 2,
     hardiness_min: 0,
-    hardiness_max: 9
+    hardiness_max: 9,
+    hardiness_min_type: "a",
+    hardiness_max_type: "b"
   }
 
   @invalid_attrs %{}
@@ -32,7 +34,7 @@ defmodule Treelib.SpeciesTest do
     |> Map.replace!(:hardiness_min, nil)
 
     changeset = Species.changeset(%Species{hardiness_min: 0}, attrs)
-
+    IEx.pry
     assert changeset.valid?
   end
 
