@@ -29,22 +29,30 @@ defmodule Treelib.SpeciesTest do
     refute changeset.valid?
   end
 
-  test "changeset with hardiness_min = nil is still valid" do
+  test "changeset with hardiness max and min both nil is still valid" do
+    attrs = @valid_attrs
+    |> Map.replace!(:hardiness_min, nil)
+    |> Map.replace!(:hardiness_max, nil)
+
+    changeset = Species.changeset(%Species{hardiness_min: 0}, attrs)
+    assert changeset.valid?
+  end
+
+  test "changeset with just hardiness_min = nil is invalid" do
     attrs = @valid_attrs
     |> Map.replace!(:hardiness_min, nil)
 
     changeset = Species.changeset(%Species{hardiness_min: 0}, attrs)
-    IEx.pry
-    assert changeset.valid?
+    refute changeset.valid?
   end
 
-  test "changeset with hardiness_max = nil is still valid" do
+  test "changeset with just hardiness_max = nil is invalid" do
     attrs = @valid_attrs
     |> Map.replace!(:hardiness_max, nil)
 
     changeset = Species.changeset(%Species{hardiness_max: 9}, attrs)
 
-    assert changeset.valid?
+    refute changeset.valid?
   end
 
   test "hardiness_min must be between 0 to 9" do
@@ -110,5 +118,25 @@ defmodule Treelib.SpeciesTest do
     attrs = @valid_attrs |> Map.replace!(:hardiness_max, nil) |> Map.replace!(:hardiness_min, 0)
     changeset = Species.changeset(%Species{hardiness_max: 0}, attrs)
     refute changeset.valid?
+  end
+
+  test "hardiness types are validated" do
+    attrs = @valid_attrs |> Map.replace!(:hardiness_max_type, "a")
+    changeset = Species.changeset(%Species{hardiness_max_type: nil}, attrs)
+    assert changeset.valid?
+
+    attrs = @valid_attrs |> Map.replace!(:hardiness_min_type, "z")
+    changeset = Species.changeset(%Species{hardiness_min_type: nil}, attrs)
+    refute changeset.valid?
+  end
+
+  test "hardiness types can be nil" do
+    attrs = @valid_attrs |> Map.replace!(:hardiness_max_type, nil)
+    changeset = Species.changeset(%Species{hardiness_max_type: "a"}, attrs)
+    assert changeset.valid?
+
+    attrs = @valid_attrs |> Map.replace!(:hardiness_min_type, nil)
+    changeset = Species.changeset(%Species{hardiness_min_type: "b"}, attrs)
+    assert changeset.valid?
   end
 end
