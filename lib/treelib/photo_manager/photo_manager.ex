@@ -355,15 +355,15 @@ defmodule Treelib.PhotoManager do
   into the db
   """
   def insert_photos(photos) when is_list(photos)  do
-    Enum.map(photos, fn(photo) ->
-      Flickr.Photo.into_db_photo(photo)
+    photos
+    |> Enum.map(fn(p) ->
+      Flickr.Photo.into_db_photo(p)
     end)
     |> Enum.chunk_every(500)
-    |> Enum.each(fn(p)->
+    |> Enum.each(fn(p) ->
       Repo.insert_all(Photo, p)
     end)
   end
-
 
   @doc """
   Returns a map of photo urls, name, description, and download url
