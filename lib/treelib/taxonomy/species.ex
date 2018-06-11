@@ -3,17 +3,23 @@ defmodule Treelib.Taxonomy.Species do
   import Ecto.Changeset
   import Ecto.Query, warn: false
 
+  import Treelib.Taxonomy.Species.HardinessValidator
+
   alias Treelib.Taxonomy.Genus
   alias Treelib.Taxonomy.Species
   alias Treelib.PhotoManager.PhotoAlbum
 
-  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genus_id, :album_id]}
+  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_min_type, :hardiness_max, :hardiness_max_type]}
 
   schema "species" do
     field :name, :string
     field :common_name, :string
     field :description, :string, default: ""
     field :enabled, :boolean
+    field :hardiness_min, :integer
+    field :hardiness_max, :integer
+    field :hardiness_min_type, :string
+    field :hardiness_max_type, :string
 
     belongs_to :genus, Genus
     belongs_to :album, PhotoAlbum
@@ -24,8 +30,9 @@ defmodule Treelib.Taxonomy.Species do
   @doc false
   def changeset(%Species{} = species, attrs) do
     species
-    |> cast(attrs, [:name, :common_name, :description, :genus_id, :album_id])
+    |> cast(attrs, [:name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_max, :hardiness_min_type, :hardiness_max_type])
     |> validate_required([:name, :common_name, :genus_id, :album_id])
+    |> validate_hardiness
     |> foreign_key_constraint(:genus_id)
   end
 
@@ -43,4 +50,3 @@ defmodule Treelib.Taxonomy.Species do
       order_by: s.name
   end
 end
-

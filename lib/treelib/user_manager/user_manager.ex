@@ -38,6 +38,8 @@ defmodule Treelib.UserManager do
   def get_user!(id), do: Repo.get!(User, id)
   def get_user(id), do: Repo.get(User, id)
 
+
+
   @doc """
   Creates a user.
 
@@ -157,7 +159,7 @@ defmodule Treelib.UserManager do
 
   """
   def register_admin_user(attrs \\ %{}) do
-    %User{admin_level: true}
+    %User{admin_level: 1}
     |> User.admin_registration_changeset(attrs)
     |> Repo.insert()
   end

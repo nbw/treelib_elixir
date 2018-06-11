@@ -10,7 +10,7 @@ defmodule Treelib.UserManager.AuthAdmin do
   def auth_admin(%User{admin_level: level}) when level != true,
   	do: {:error, :non_admin}
 
-  def auth_admin(nil), 
+  def auth_admin(nil),
   	do: {:error, :not_logged_in}
 
 end

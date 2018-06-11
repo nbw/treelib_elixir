@@ -39,5 +39,3 @@ defmodule Treelib.PhotoManager.PhotoChecker   do
     Process.send_after(self(), :update_and_schedule,  30 * 60 * 1000)
   end
 end
-
-

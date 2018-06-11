@@ -24,13 +24,13 @@ defmodule Treelib.Repo.Migrations.MigrateSinatraAppToElixir do
 
     # %%%%% PHOTOS %%%%%%%
   	create table(:photos) do
-      add :flickr_id, :integer
+      add :flickr_id, :bigint
       add :photoset_id, :bigint
       add :farm, :integer
       add :secret, :string
       add :server, :integer
       add :name, :string
-      add :description, :string
+      add :description, :string, size: 1024
       add :credit, :string
       add :disable_date, :naive_datetime
     end

@@ -1,7 +1,7 @@
 import React from 'react'
 
 //
-// Input field with title next to it. 
+// Input field with title next to it.
 //
 // props: id, handler, placeholder, title, text
 //

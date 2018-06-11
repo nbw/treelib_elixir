@@ -9,17 +9,18 @@ config :treelib, TreelibWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
+
 # Configure your database
 config :treelib, Treelib.Repo,
-  adapter: Ecto.Adapters.MySQL,
-  username: "root",
-  password: "mysql",
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
   database: "treelib_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # General Config
-config :treelib, 
+config :treelib,
   flickr_api_key: "flickr_test",
   flickr_user_id: "user_test"
 
