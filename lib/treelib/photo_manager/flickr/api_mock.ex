@@ -18,7 +18,7 @@ defmodule Flickr.API.Mock do
       flickr_response
       |> Map.fetch!("photoset")
       |> Map.fetch!("id")
-    
+
     flickr_response
     |> Map.fetch!("photoset")
     |> Map.fetch!("photo")
@@ -28,8 +28,8 @@ defmodule Flickr.API.Mock do
   def get_photosets(%{ok_date: ok_date, update_date: update_date} \\ %{ok_date: Timex.now, update_date: Timex.now}) do
     %{
       "photosets" => %{
-        "page" => 1, 
-        "pages" => 1, 
+        "page" => 1,
+        "pages" => 1,
         "perpage" => 36,
         "photoset" => [
           %{ # new photoset
@@ -107,7 +107,7 @@ defmodule Flickr.API.Mock do
   end
 
   def get_photos_in_photoset(photoset_id) when is_integer(photoset_id) do
-    
+
     photos = case Integer.to_string(photoset_id) do
       "31091742462" -> [
         %{
@@ -119,7 +119,8 @@ defmodule Flickr.API.Mock do
           "ispublic" => 1,
           "secret" => "3f63cca59a",
           "server" => "5612",
-          "title" => "Rhus typhina-12"
+          "title" => "Rhus typhina-12",
+          "description" => %{"_content" => ""}
         },
         %{
           "farm" => 6,
@@ -130,7 +131,8 @@ defmodule Flickr.API.Mock do
           "ispublic" => 1,
           "secret" => "118a651a21",
           "server" => "5801",
-          "title" => "Rhus typhina-13"
+          "title" => "Rhus typhina-13",
+          "description" => %{"_content" => ""}
         }]
       "7777" -> [
         %{ # new photos for new photoset
@@ -142,7 +144,8 @@ defmodule Flickr.API.Mock do
           "ispublic" => 1,
           "secret" => "118a651a21",
           "server" => "5801",
-          "title" => "Pine Primary"
+          "title" => "Pine Primary",
+          "description" => %{"_content" => ""}
         },
         %{ # new photos for new photoset
           "farm" => 6,
@@ -153,7 +156,8 @@ defmodule Flickr.API.Mock do
           "ispublic" => 1,
           "secret" => "118a651a21",
           "server" => "5801",
-          "title" => "Pine Secondary"
+          "title" => "Pine Secondary",
+          "description" => %{"_content" => ""}
         }
       ]
       "8888" -> [
@@ -166,10 +170,11 @@ defmodule Flickr.API.Mock do
           "ispublic" => 1,
           "secret" => "118a651a21",
           "server" => "5801",
-          "title" => "Pine Secondary"
+          "title" => "Pine Secondary",
+          "description" => %{"_content" => ""}
         }
       ]
-      "72157673092712473" -> [ 
+      "72157673092712473" -> [
         %{ # new photos for updated photoset
           "farm" => 6,
           "id" => "123123",
@@ -179,7 +184,8 @@ defmodule Flickr.API.Mock do
           "ispublic" => 1,
           "secret" => "118a651a21",
           "server" => "5801",
-          "title" => "Pine Secondary"
+          "title" => "Pine Secondary",
+          "description" => %{"_content" => ""}
         },
         %{ # new photos for updated photoset
           "farm" => 6,
@@ -190,12 +196,13 @@ defmodule Flickr.API.Mock do
           "ispublic" => 1,
           "secret" => "118a651a21",
           "server" => "5801",
-          "title" => "Pine Secondary"
+          "title" => "Pine Secondary",
+          "description" => %{"_content" => ""}
         }
       ]
       _ -> []
     end
-    
+
     %{
       "photoset" => %{
         "id" => Integer.to_string(photoset_id),
