@@ -4,11 +4,17 @@ defmodule Treelib.PhotoManagerTest do
   alias Treelib.PhotoManager
 
   describe "albums" do
-    alias Treelib.PhotoManager.Album
+    alias Treelib.PhotoManager.PhotoAlbum
 
-    @valid_attrs %{}
+    @valid_attrs %{
+      photoset_id: 1,
+      name: "Melody",
+      last_updated: ~N[2018-06-11 23:00:07.000000Z]
+    }
     @update_attrs %{}
-    @invalid_attrs %{}
+    @invalid_attrs %{
+      name: nil
+    }
 
     def album_fixture(attrs \\ %{}) do
       {:ok, album} =
@@ -30,7 +36,7 @@ defmodule Treelib.PhotoManagerTest do
     end
 
     test "create_album/1 with valid data creates a album" do
-      assert {:ok, %Album{} = album} = PhotoManager.create_album(@valid_attrs)
+      assert {:ok, %PhotoAlbum{} = album} = PhotoManager.create_album(@valid_attrs)
     end
 
     test "create_album/1 with invalid data returns error changeset" do
@@ -40,7 +46,7 @@ defmodule Treelib.PhotoManagerTest do
     test "update_album/2 with valid data updates the album" do
       album = album_fixture()
       assert {:ok, album} = PhotoManager.update_album(album, @update_attrs)
-      assert %Album{} = album
+      assert %PhotoAlbum{} = album
     end
 
     test "update_album/2 with invalid data returns error changeset" do
@@ -51,7 +57,7 @@ defmodule Treelib.PhotoManagerTest do
 
     test "delete_album/1 deletes the album" do
       album = album_fixture()
-      assert {:ok, %Album{}} = PhotoManager.delete_album(album)
+      assert {:ok, %PhotoAlbum{}} = PhotoManager.delete_album(album)
       assert_raise Ecto.NoResultsError, fn -> PhotoManager.get_album!(album.id) end
     end
 
@@ -64,9 +70,23 @@ defmodule Treelib.PhotoManagerTest do
   describe "photos" do
     alias Treelib.PhotoManager.Photo
 
-    @valid_attrs %{}
+    @valid_attrs %{
+      flickr_id: 987654321,
+      farm: 1234,
+      secret: "The cake is a lie",
+      server: 123,
+      name: "John Wick",
+      description: "A movie about flowers",
+      credit: "Steven Spielberg",
+      disable_date: DateTime.utc_now()
+    }
     @update_attrs %{}
-    @invalid_attrs %{}
+    @invalid_attrs %{
+      flickr_id: nil,
+      farm: nil,
+      secret: nil,
+      server: nil
+    }
 
     def photo_fixture(attrs \\ %{}) do
       {:ok, photo} =
