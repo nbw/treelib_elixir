@@ -1,16 +1,9 @@
 # TreeLib 
+![circleci](https://circleci.com/gh/nbw/treelib_elixir.svg?style=shield)
 
 [TreeLib](http://treelib.ca) is a dendrology website with curated high-quality tree photographs for educators, students and lay persons. 
 
 It uses Flickr (with their API) as a CDN for images.
-
-# Current Tech stack
-
-* Elixir 1.5
-* Phoenix 1.3 
-* Postgres 
-* React frontend via webpack
-* Hosted on Heroku, for now
 
 # History
 
