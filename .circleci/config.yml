@@ -25,4 +25,6 @@ jobs:
       - run: mix deps.get
       - run: mix ecto.create
       - run: mix ecto.migrate
-      - run: mix test<Paste>
+      - run: mix test
+      - store_test_results:
+          path: _build/test/junit
