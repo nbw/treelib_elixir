@@ -4,7 +4,7 @@ defmodule Treelib.HardinessTypesTest do
   alias Treelib.Taxonomy.Species.HardinessTypes
 
   test "returns all accepted types" do
-    assert HardinessTypes.all == ["a","b"]
+    assert HardinessTypes.all == [nil,"a","b"]
   end
 
   test "returns true for a valid type" do
