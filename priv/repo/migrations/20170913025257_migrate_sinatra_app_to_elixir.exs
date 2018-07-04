@@ -10,7 +10,7 @@ defmodule Treelib.Repo.Migrations.MigrateSinatraAppToElixir do
       add :create_date, :naive_datetime
       add :disable_date, :naive_datetime
       add :enabled, :boolean, default: true
-      add :admin_level, :integer, default: 0
+      add :admin_level, :boolean, default: false
     end
 
     create unique_index(:users, [:email])

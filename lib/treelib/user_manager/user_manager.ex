@@ -159,7 +159,7 @@ defmodule Treelib.UserManager do
 
   """
   def register_admin_user(attrs \\ %{}) do
-    %User{admin_level: 1}
+    %User{admin_level: true}
     |> User.admin_registration_changeset(attrs)
     |> Repo.insert()
   end
