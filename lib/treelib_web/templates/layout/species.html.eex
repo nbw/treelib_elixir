@@ -9,9 +9,12 @@
     <link rel='shortcut icon' href="<%= static_path(@conn, "/images/favicon.ico") %>" type='image/x-icon'/ >
     <link href="https://fonts.googleapis.com/css?family=roboto:400,400i,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/css/species_page.css") %>">
-    <%# <% if @page_data.genus.photos && kernel.length(@page_data.species.photos) > 0 %1> %>
-    <%# <meta property="og:image"         content="<%= enum.take_random(@page_data.species.photos, kernel.length(@page_data.genus.photos)[:thumb] %1>" /> %>
-  <%# <% end %1> %>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-89482021-1');
+    </script>
 </head>
 <body>
   <div class="maincontainer">
