@@ -2,10 +2,10 @@ defmodule TreelibWeb.PhotoAlbumView do
   use TreelibWeb, :view
 
   def render("index.json", %{albums: albums}) do
-    Enum.map(albums, &json_album/1)
+    render_many(albums, TreelibWeb.PhotoAlbumView, "album.json", as: :album)
   end
 
-  defp json_album(album) do
+  def render("album.json", %{album: album}) do
     %{
       id: album.id,
       photoset_id: album.photoset_id,
