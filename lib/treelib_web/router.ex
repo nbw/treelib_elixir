@@ -30,7 +30,7 @@ defmodule TreelibWeb.Router do
     post   "/login",  SessionController, :create
     delete "/logout", SessionController, :delete
 
-    resources "/family", FamilyController, except: [:index, :show]
+    resources "/family", FamilyController, except: [:show]
     get "/family/:id/:name", FamilyController, :show
     get "/family/:id", FamilyController, :show
 
