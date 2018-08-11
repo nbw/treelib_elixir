@@ -41,6 +41,8 @@ defmodule TreelibWeb.Router do
     resources "/species", SpeciesController, except: [:show]
     get "/species/:id/:name", SpeciesController, :show
     get "/species/:id", SpeciesController, :show
+
+    get "/photo_album.json", PhotoAlbumController, :index
   end
 
   scope "/api", TreelibWeb do
