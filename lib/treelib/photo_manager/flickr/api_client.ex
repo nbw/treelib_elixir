@@ -28,12 +28,12 @@ defmodule Flickr.API.HTTPClient do
 
   @doc """
   Reference: https://www.flickr.com/services/api/flickr.photosets.getList.html
-  
+
   Structure:
     https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key={api_key}&user_id={user_id}&format=json&nojsoncallback=1
 
   """
-  def get_photosets(opts \\ %{}) do
+  def get_photosets(_opts \\ %{}) do
     flickr_url("flickr.photosets.getList")
     |> Client.get!
     |> Map.fetch!(:body)
@@ -51,7 +51,7 @@ defmodule Flickr.API.HTTPClient do
       flickr_response
       |> Map.fetch!("photoset")
       |> Map.fetch!("id")
-    
+
     flickr_response
     |> Map.fetch!("photoset")
     |> Map.fetch!("photo")
@@ -70,7 +70,7 @@ defmodule Flickr.API.HTTPClient do
   https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key={api_key}photoset_id={photoset_id}&user_id={user_id}&format=json&nojsoncallback=1
   """
   def get_photos_in_photoset(photoset_id) when is_integer(photoset_id) do
-    flickr_url("flickr.photosets.getPhotos", %{ photoset_id: photoset_id, extras: "description"}) 
+    flickr_url("flickr.photosets.getPhotos", %{ photoset_id: photoset_id, extras: "description"})
     |> Client.get!
     |> Map.fetch!(:body)
     |> Parser.decode!
@@ -80,7 +80,7 @@ defmodule Flickr.API.HTTPClient do
   Returns photos of a photoset for a %PhotoAlbum{}
   """
   def get_photos_in_photoset(%Photoset{} = photoset) do
-    get_photos_in_photoset(photoset.id) 
+    get_photos_in_photoset(photoset.id)
   end
 
   @doc """
@@ -91,7 +91,7 @@ defmodule Flickr.API.HTTPClient do
     opts: [Map]
 
   ## Examples
-  
+
     iex> Flickr.API.flickr_url("flickr.photosets.getList")
     "https://api.flickr.com/services/rest/?api_key=flickr_test&format=json&method=flickr.photosets.getList&nojsoncallback=1&user_id=user_test"
 
@@ -107,7 +107,7 @@ defmodule Flickr.API.HTTPClient do
       nojsoncallback: "1",
       user_id: @user_id
     }
-    
+
     params = Map.merge(default_params, opts)
 
     @base_url <> URI.encode_query(params)

@@ -31,8 +31,8 @@ defmodule Flickr.Photoset do
     }
 
   """
-  def new(flickr_photoset \\ %{}) do 
-    attrs = map_keys_as_atoms(flickr_photoset) 
+  def new(flickr_photoset \\ %{}) do
+    attrs = map_keys_as_atoms(flickr_photoset)
             |> Map.update!(:id, &(String.to_integer(&1)))
             |> Map.update!(:date_update, &(format_date(&1)))
             |> Map.update!(:title, &(extract_title(&1)))
@@ -47,16 +47,8 @@ defmodule Flickr.Photoset do
     %{photoset_id: photoset.id, name: photoset.title, last_updated: photoset.date_update, inserted_at: Timex.now, updated_at: Timex.now }
   end
 
-  @doc """
-  Converts a map from string keys to atom keys.
-
-  ## Example
-    
-    iex> map_keys_as_atoms(%{"name" => "Arbutus"})
-    %{name: "Arbutus"}
-  """
   defp map_keys_as_atoms map do
-    Map.new(map, fn {k, v} -> 
+    Map.new(map, fn {k, v} ->
       {String.to_existing_atom(k), v}
     end)
   end

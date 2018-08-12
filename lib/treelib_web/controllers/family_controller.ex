@@ -12,7 +12,7 @@ defmodule TreelibWeb.FamilyController do
 
   action_fallback AdminFallbackController
 
-  def index(conn, params) do
+  def index(conn, _params) do
     with {:ok, _current_user} <- auth_admin(conn) do
       render(conn, "index.json", families: Taxonomy.all)
     else
@@ -20,7 +20,7 @@ defmodule TreelibWeb.FamilyController do
     end
   end
 
-  def show(conn,  %{"id" => id} = params) do
+  def show(conn,  %{"id" => id}) do
     with {:ok, %Family{} = family} <- FamilyManager.get_family(id) do
         photos = PhotoManager.photos_for_family(family.id, 20)
                  |> Enum.map(&PhotoManager.format_photo_for_web(&1))

@@ -6,9 +6,7 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   import Treelib.Repo, only: [transaction: 1]
 
   alias Treelib.PhotoManager
-  alias Treelib.PhotoManager.PhotoAlbum
   alias Treelib.PhotoManager.PhotoUpdater
-  alias Flickr.API, as: Flickr
 
   @flickr Application.get_env(:treelib, :flickr_api)
 
@@ -127,11 +125,11 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
     end)
 
     # gather photoset_id for photos to delete
-    Enum.map(albums_to_update, fn([pa, ps]) -> pa.photoset_id end)
+    Enum.map(albums_to_update, fn([pa, _ps]) -> pa.photoset_id end)
     |> PhotoManager.delete_photos_in_albums
 
     # gather photosets for photos to add
-    Enum.map(albums_to_update, fn([pa, ps]) -> ps end)
+    Enum.map(albums_to_update, fn([_pa, ps]) -> ps end)
     |> PhotoUpdater.flickr_photos_in_photosets
     |> PhotoManager.insert_photos
   end
@@ -165,7 +163,7 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   end
 
   def flickr_photos_in_photosets photosets do
-    photos = Enum.map(photosets, fn(ps) ->
+    Enum.map(photosets, fn(ps) ->
       ps
       |> @flickr.get_photos_in_photoset
       |> @flickr.parse_photo_resp
