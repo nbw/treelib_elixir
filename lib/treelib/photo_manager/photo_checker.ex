@@ -14,7 +14,7 @@ defmodule Treelib.PhotoManager.PhotoChecker   do
   end
 
   def update do
-    GenServer.call(:photo_checker, :update, String.to_integer(System.get_env("DATABASE_TIMEOUT")) || 30000)
+    GenServer.call(:photo_checker, :update, timeout())
   end
 
   def handle_call(:update, _from, state) do
@@ -37,5 +37,16 @@ defmodule Treelib.PhotoManager.PhotoChecker   do
   # schedule a check every hour
   defp schedule_check() do
     Process.send_after(self(), :update_and_schedule,  30 * 60 * 1000)
+  end
+
+  # Pull the timout from the DATABASE_TIMEOUT envar
+  # Else: use 145000
+  defp timeout do
+    case System.get_env("DATABASE_TIMEOUT") do
+      nil ->
+        145000
+      db_t ->
+        String.to_integer(db_t)
+    end
   end
 end

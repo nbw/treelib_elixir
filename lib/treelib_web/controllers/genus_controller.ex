@@ -12,9 +12,9 @@ defmodule TreelibWeb.GenusController do
 
   action_fallback AdminFallbackController
 
-  def show(conn,  %{"id" => id} = params) do
+  def show(conn,  %{"id" => id}) do
     with {:ok, %Genus{} = genus} <- GenusManager.get_genus(id) do
-        photos = PhotoManager.photos_for_genus(genus.id, 20) 
+        photos = PhotoManager.photos_for_genus(genus.id, 20)
                  |> Enum.map(&PhotoManager.format_photo_for_web(&1))
 
         render conn, "show.html", page_data: %{genus: genus, photos: photos}, layout: {TreelibWeb.LayoutView, "genus.html"}
@@ -22,18 +22,18 @@ defmodule TreelibWeb.GenusController do
   end
 
   def create(conn, params) do
-    with {:ok, _current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn),
          {:ok, %Genus{} = genus} <- GenusManager.create_genus(params) do
       conn
       |> put_status(:created)
       |> put_resp_header("genus", genus_path(conn, :edit, genus))
-      |> json(%{id: genus.id}) 
-    end 
+      |> json(%{id: genus.id})
+    end
   end
 
   def edit(conn, %{"id" => id} = _params) do
-    with {:ok, _current_user} <- auth_admin(conn), 
-         {:ok, %Genus{} = genus} <- GenusManager.get_genus(id) 
+    with {:ok, _current_user} <- auth_admin(conn),
+         {:ok, %Genus{} = genus} <- GenusManager.get_genus(id)
     do
         render conn, "edit.html", page_data: json_encode!(%{genus: genus, families: Taxonomy.get_family_list})
     else
@@ -48,25 +48,25 @@ defmodule TreelibWeb.GenusController do
   end
 
   def update(conn, %{"id" => id} = params) do
-    with {:ok, _current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn),
          {:ok, %Genus{} = genus} <- GenusManager.get_genus(id),
          {:ok, %Genus{} = genus} <- GenusManager.update_genus(genus, params),
     do:
       conn
       |> put_status(:ok)
       |> put_resp_header("genus", genus_path(conn, :edit, genus))
-      |> json(%{id: genus.id}) 
+      |> json(%{id: genus.id})
   end
 
   def delete(conn, %{"id" => id} = _params) do
-    with {:ok, _current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn),
          {:ok, %Genus{} = genus} <- GenusManager.get_genus(id),
          {:ok, %Genus{} = genus} <- GenusManager.disable_genus(genus),
     do:
       conn
       |> put_status(:ok)
       |> put_resp_header("genus", genus_path(conn, :edit, genus))
-      |> json(%{id: genus.id}) 
+      |> json(%{id: genus.id})
   end
 
 end

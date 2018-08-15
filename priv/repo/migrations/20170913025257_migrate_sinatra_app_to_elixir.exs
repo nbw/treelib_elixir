@@ -56,7 +56,7 @@ defmodule Treelib.Repo.Migrations.MigrateSinatraAppToElixir do
   	create table(:species) do
       add :name, :string
       add :common_name, :string, default: ""
-      add :description, :string
+      add :description, :string, size: 1024
       add :genus_id, references(:genera)
       add :album_id, references(:photo_albums)
       add :enabled, :boolean, default: true

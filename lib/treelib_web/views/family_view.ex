@@ -1,4 +1,7 @@
 defmodule TreelibWeb.FamilyView do
   use TreelibWeb, :view
-end
 
+  def render("index.json", %{families: families}) do
+    families
+  end
+end

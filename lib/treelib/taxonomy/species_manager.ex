@@ -9,6 +9,14 @@ defmodule Treelib.Taxonomy.SpeciesManager do
   alias Treelib.Taxonomy.Species
 
   @doc """
+  Returns all active species.
+  """
+  def all do
+    Species.active
+    |> Repo.all
+  end
+
+  @doc """
   Gets a single species.
 
   Raises `Ecto.NoResultsError` if the Species does not exist.
@@ -28,13 +36,13 @@ defmodule Treelib.Taxonomy.SpeciesManager do
   end
 
   def get_species(id) do
-    Species.active 
+    Species.active
     |> Repo.get(id)
     |> case do
-      %Species{} = species -> 
+      %Species{} = species ->
         {:ok, species}
-      nil -> 
-        {:error, :not_found} 
+      nil ->
+        {:error, :not_found}
     end
   end
 
@@ -122,4 +130,3 @@ defmodule Treelib.Taxonomy.SpeciesManager do
   end
 
 end
-

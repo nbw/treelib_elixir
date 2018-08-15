@@ -4,6 +4,7 @@ defmodule TreelibWeb.FamilyController do
   Controller for families
   """
 
+  alias Treelib.Taxonomy
   alias Treelib.Taxonomy.FamilyManager
   alias Treelib.Taxonomy.Family
 
@@ -11,9 +12,17 @@ defmodule TreelibWeb.FamilyController do
 
   action_fallback AdminFallbackController
 
-  def show(conn,  %{"id" => id} = params) do
+  def index(conn, _params) do
+    with {:ok, _current_user} <- auth_admin(conn) do
+      render(conn, "index.json", families: Taxonomy.all)
+    else
+      {:error, _ } -> redirect conn, to: search_path(conn, :index)
+    end
+  end
+
+  def show(conn,  %{"id" => id}) do
     with {:ok, %Family{} = family} <- FamilyManager.get_family(id) do
-        photos = PhotoManager.photos_for_family(family.id, 20) 
+        photos = PhotoManager.photos_for_family(family.id, 20)
                  |> Enum.map(&PhotoManager.format_photo_for_web(&1))
 
         render conn, "show.html", page_data: %{family: family, photos: photos}, layout: {TreelibWeb.LayoutView, "family.html"}
@@ -21,18 +30,18 @@ defmodule TreelibWeb.FamilyController do
   end
 
   def create(conn, params) do
-    with {:ok, _current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn),
          {:ok, %Family{} = family} <- FamilyManager.create_family(params) do
       conn
       |> put_status(:created)
       |> put_resp_header("family", family_path(conn, :edit, family))
-      |> json(%{id: family.id}) 
-    end 
+      |> json(%{id: family.id})
+    end
   end
 
   def edit(conn, %{"id" => id} = _params) do
-    with {:ok, _current_user} <- auth_admin(conn), 
-         {:ok, %Family{} = family} <- FamilyManager.get_family(id) 
+    with {:ok, _current_user} <- auth_admin(conn),
+         {:ok, %Family{} = family} <- FamilyManager.get_family(id)
     do
         render conn, "edit.html", page_data: json_encode!(%{family: family})
     else
@@ -47,25 +56,25 @@ defmodule TreelibWeb.FamilyController do
   end
 
   def update(conn, %{"id" => id} = params) do
-    with {:ok, _current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn),
          {:ok, %Family{} = family} <- FamilyManager.get_family(id),
          {:ok, %Family{} = family} <- FamilyManager.update_family(family, params),
     do:
       conn
       |> put_status(:ok)
       |> put_resp_header("family", family_path(conn, :edit, family))
-      |> json(%{id: family.id}) 
+      |> json(%{id: family.id})
   end
 
   def delete(conn, %{"id" => id} = _params) do
-    with {:ok, _current_user} <- auth_admin(conn), 
+    with {:ok, _current_user} <- auth_admin(conn),
          {:ok, %Family{} = family} <- FamilyManager.get_family(id),
          {:ok, %Family{} = family} <- FamilyManager.disable_family(family),
     do:
       conn
       |> put_status(:ok)
       |> put_resp_header("family", family_path(conn, :edit, family))
-      |> json(%{id: family.id}) 
+      |> json(%{id: family.id})
   end
 
 end

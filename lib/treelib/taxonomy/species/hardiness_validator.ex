@@ -50,7 +50,7 @@ defmodule Treelib.Taxonomy.Species.HardinessValidator do
   defp validate_hardiness_max(changeset) do changeset end
 
   # hardiness_max > hardiness_min
-  defp validate_hardiness_values(%Ecto.Changeset{ changes: changes, data: %{hardiness_max: data_hardiness_max, hardiness_min: data_hardiness_min}} = changeset) do
+  defp validate_hardiness_values(%Ecto.Changeset{ changes: changes, data: %{hardiness_max: data_hardiness_max, hardiness_min: _data_hardiness_min}} = changeset) do
     hardiness_max = changes[:hardiness_max] || data_hardiness_max
 
     changeset

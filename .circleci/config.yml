@@ -5,7 +5,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/elixir:1.5  # ...with this image as the primary container; this is where all `steps` will run
+      - image: circleci/elixir:1.7.2  # ...with this image as the primary container; this is where all `steps` will run
         environment:  # environment variables for primary container
           MIX_ENV: test
       - image: postgres:9.6

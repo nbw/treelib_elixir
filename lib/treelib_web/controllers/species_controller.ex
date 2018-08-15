@@ -16,7 +16,15 @@ defmodule TreelibWeb.SpeciesController do
 
   action_fallback AdminFallbackController
 
-  def show(conn,  %{"id" => id} = params) do
+  def index(conn, _params) do
+    with {:ok, _current_user} <- auth_admin(conn) do
+      render(conn, "index.json", species: SpeciesManager.all)
+    else
+      {:error, _ } -> redirect conn, to: search_path(conn, :index)
+    end
+  end
+
+  def show(conn,  %{"id" => id}) do
     with {:ok, %Species{} = species} <- SpeciesManager.get_species(id),
          {:ok, %Genus{} = genus} <- GenusManager.get_genus(species.genus_id) do
         photos = PhotoManager.photos_for_species(species.id)

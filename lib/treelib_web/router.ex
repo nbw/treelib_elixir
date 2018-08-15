@@ -31,6 +31,7 @@ defmodule TreelibWeb.Router do
     delete "/logout", SessionController, :delete
 
     resources "/family", FamilyController, except: [:index, :show]
+    get "/family.json", FamilyController, :index
     get "/family/:id/:name", FamilyController, :show
     get "/family/:id", FamilyController, :show
 
@@ -38,9 +39,12 @@ defmodule TreelibWeb.Router do
     get "/genus/:id/:name", GenusController, :show
     get "/genus/:id", GenusController, :show
 
-    resources "/species", SpeciesController, except: [:index,:show]
+    resources "/species", SpeciesController, except: [:index, :show]
+    get "/species.json", SpeciesController, :index
     get "/species/:id/:name", SpeciesController, :show
     get "/species/:id", SpeciesController, :show
+
+    get "/photo_album.json", PhotoAlbumController, :index
   end
 
   scope "/api", TreelibWeb do
