@@ -47,7 +47,7 @@ defmodule Treelib.Mixfile do
       {:poison, "~> 3.1"}, # json (included in phx too)
 
       {:comeonin, "~> 4.0"}, # auth
-      {:bcrypt_elixir, "~> 0.12"}, # encryption
+      {:bcrypt_elixir, "~> 1.0"}, # encryption
 
       {:timex, "~> 3.1"}, # Dates and Time
 
