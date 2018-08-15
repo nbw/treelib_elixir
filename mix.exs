@@ -43,7 +43,7 @@ defmodule Treelib.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
 
-      {:httpoison, "~> 0.13"}, # http client
+      {:httpoison, "~> 1.2"}, # http client
       {:poison, "~> 3.1"}, # json (included in phx too)
 
       {:comeonin, "~> 4.0"}, # auth
