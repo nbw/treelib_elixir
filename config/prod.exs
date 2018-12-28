@@ -55,14 +55,13 @@ config :treelib, TreelibWeb.Endpoint,
 
 # Configure your database
 config :treelib, Treelib.Repo,
-  adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true,
   timeout: String.to_integer(System.get_env("DATABASE_TIMEOUT") || 15_000)
 
 # Flickr
-config :treelib, 
+config :treelib,
   flickr_api_key: System.get_env("FLICKR_API_KEY"),
   flickr_user_id: System.get_env("FLICKR_USER_ID")
 #####################################

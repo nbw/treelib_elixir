@@ -1,4 +1,6 @@
 defmodule Flickr.Photo do
+  import Helpers.DateHelper
+
   @enforce_keys [ :id, :date_update ]
   defstruct [
     :farm,
@@ -55,8 +57,8 @@ defmodule Flickr.Photo do
       server: photo.server,
       secret: photo.secret,
       description: photo.description,
-      inserted_at: Timex.now,
-      updated_at: Timex.now
+      inserted_at: naive_now(),
+      updated_at: naive_now()
     }
   end
 

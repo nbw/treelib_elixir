@@ -33,15 +33,16 @@ defmodule Treelib.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.4"},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.2"},
+      {:phoenix, "~> 1.4.0"},
+      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix_ecto, "~> 4.0"},
+      {:ecto_sql, "~> 3.0"},
       {:postgrex, ">= 0.0.0"},
       # {:mariaex, "~> 0.8.2"},
-      {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:phoenix_html, "~> 2.11"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
+      {:plug_cowboy, "~> 2.0"},
 
       {:httpoison, "~> 1.2"}, # http client
       {:poison, "~> 3.1"}, # json (included in phx too)
@@ -49,7 +50,7 @@ defmodule Treelib.Mixfile do
       {:comeonin, "~> 4.0"}, # auth
       {:bcrypt_elixir, "~> 1.0"}, # encryption
 
-      {:timex, "~> 3.1"}, # Dates and Time
+      {:timex, "~> 3.4.2"}, # Dates and Time
 
       # Testing
       {:ex_machina, "~> 2.1", only: :test} # fixtures for testing

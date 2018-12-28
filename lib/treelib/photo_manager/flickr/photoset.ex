@@ -1,4 +1,6 @@
 defmodule Flickr.Photoset do
+  import Helpers.DateHelper
+
   @enforce_keys [ :id, :date_update ]
   defstruct [
     :id,
@@ -44,7 +46,13 @@ defmodule Flickr.Photoset do
   Maps Photoset to attrs for PhotoAlbum
   """
   def into_photo_album %Flickr.Photoset{} = photoset do
-    %{photoset_id: photoset.id, name: photoset.title, last_updated: photoset.date_update, inserted_at: Timex.now, updated_at: Timex.now }
+    %{
+      photoset_id: photoset.id,
+      name: photoset.title,
+      last_updated: photoset.date_update,
+      inserted_at: naive_now(),
+      updated_at: naive_now()
+    }
   end
 
   defp map_keys_as_atoms map do
