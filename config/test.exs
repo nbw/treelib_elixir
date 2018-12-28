@@ -12,7 +12,6 @@ config :logger, level: :warn
 
 # Configure your database
 config :treelib, Treelib.Repo,
-  adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
   database: "treelib_test",
