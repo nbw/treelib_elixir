@@ -24,6 +24,8 @@ defmodule Treelib.Taxonomy.Species do
     belongs_to :genus, Genus
     belongs_to :album, PhotoAlbum
 
+    many_to_many :contributors, Treelib.Contributions.Contributor, join_through: "contributors_species"
+
     timestamps()
   end
 
