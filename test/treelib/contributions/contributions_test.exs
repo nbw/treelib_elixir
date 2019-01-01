@@ -1,4 +1,3 @@
-require IEx
 defmodule Treelib.ContributionsTest do
   use Treelib.DataCase
 
