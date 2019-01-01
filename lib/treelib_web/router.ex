@@ -45,6 +45,8 @@ defmodule TreelibWeb.Router do
     get "/species/:id", SpeciesController, :show
 
     get "/photo_album.json", PhotoAlbumController, :index
+
+    resources "/contributors", ContributorController
   end
 
   scope "/api", TreelibWeb do

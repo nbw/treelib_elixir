@@ -1,0 +1,24 @@
+<h1>Listing Contributors</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for contributor <- @contributors do %>
+    <tr>
+
+      <td>
+        <%= link "Show", to: Routes.contributor_path(@conn, :show, contributor) %>
+        <%= link "Edit", to: Routes.contributor_path(@conn, :edit, contributor) %>
+        <%= link "Delete", to: Routes.contributor_path(@conn, :delete, contributor), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Contributor", to: Routes.contributor_path(@conn, :new) %></span>

@@ -1,0 +1,5 @@
+<h1>Edit Contributor</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.contributor_path(@conn, :update, @contributor)) %>
+
+<span><%= link "Back", to: Routes.contributor_path(@conn, :index) %></span>
