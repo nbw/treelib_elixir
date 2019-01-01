@@ -2,5 +2,5 @@
 <div class="mainContainer">
   <div id="app"></div>
 </div>
-<script src="<%= static_path(@conn, "/js/autres.bundle.js") %>"></script> 
-<script src="<%= static_path(@conn, "/js/aboutpage.js") %>"></script> 
+<script src="<%= Routes.static_path(@conn, "/js/autres.bundle.js") %>"></script>
+<script src="<%= Routes.static_path(@conn, "/js/aboutpage.js") %>"></script>

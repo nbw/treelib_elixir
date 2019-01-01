@@ -2,7 +2,7 @@
   <head>
     <title>Edit Species</title>
     <link rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon'/ >
-    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/css/edit_species.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/edit_species.css") %>">
   </head>
   <body>
     <div class="mainContainer">
@@ -14,8 +14,8 @@
       var CSRF_TOKEN = <%= raw Poison.encode!(Plug.CSRFProtection.get_csrf_token()) %>;
       window.pageData = <%= raw @page_data %>;
     </script>
-    <script src="<%= static_path(@conn, "/js/autres.bundle.js") %>"></script> 
-    <script src="<%= static_path(@conn, "/js/edit_species.js") %>"></script> 
+    <script src="<%= Routes.static_path(@conn, "/js/autres.bundle.js") %>"></script>
+    <script src="<%= Routes.static_path(@conn, "/js/edit_species.js") %>"></script>
   </body>
 </html>
 
