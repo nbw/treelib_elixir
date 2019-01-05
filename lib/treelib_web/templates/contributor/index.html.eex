@@ -1,4 +1,4 @@
-<div id="app">
+<div id="app" class="admin">
   <div>
     <%= render TreelibWeb.AdminView, "_navbar.html", assigns %>
 

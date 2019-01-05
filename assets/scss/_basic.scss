@@ -14,6 +14,7 @@ $species-color: $color-third-0;
 html { font-size: 62.5%; }
 
 body {
+  background-color: white;
   height: 100%;
   width: 100%;
   font-family: 'Roboto', sans-serif;
@@ -105,4 +106,17 @@ input[type=radio]:not(old):checked + label{
 
 .select2-tag-selector {
   width: 100%;
+}
+
+.alert {
+  text-align: center;
+  color: white;
+
+  &.alert-info {
+    background-color: $color-fourth-0;
+  }
+
+  &.alert-danger {
+    background-color: $color-first-3
+  }
 }

@@ -27,7 +27,7 @@ a {
         color:black;
     }
 }
-#app{
+#app.admin {
     > div {
         min-height: 100%;
         background-color: white;
@@ -146,7 +146,7 @@ a {
     }
 }
 
-.mainContainer {
+.admin .mainContainer {
     background-color: #AAA;
     min-height:100%;
 }
