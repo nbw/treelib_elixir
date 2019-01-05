@@ -23,7 +23,7 @@ defmodule TreelibWeb.ContributorController do
       {:ok, contributor} ->
         conn
         |> put_flash(:info, "Contributor created successfully.")
-        |> redirect(to: Routes.contributor_path(conn, :show, contributor))
+        |> redirect(to: Routes.contributor_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
