@@ -3,8 +3,8 @@ defmodule Treelib.Repo.Migrations.CreateContributorsSpecies do
 
   def change do
     create table(:contributors_species) do
-      add :species_id, references(:species)
-      add :contributor_id, references(:contributors)
+      add :species_id, references(:species, on_delete: :delete_all)
+      add :contributor_id, references(:contributors, on_delete: :delete_all)
     end
   end
 end
