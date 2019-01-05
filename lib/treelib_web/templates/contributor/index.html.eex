@@ -42,3 +42,4 @@
     </table>
   </div>
 </div>
+<script src="<%= Routes.static_path(@conn, "/js/autres.bundle.js") %>"></script>
