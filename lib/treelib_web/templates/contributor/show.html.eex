@@ -1,8 +1,21 @@
-<h1>Show Contributor</h1>
+<div id="app">
+  <div>
+    <%= render TreelibWeb.AdminView, "_navbar.html", assigns %>
 
-<ul>
+    <div>
+      <h1>Contributor: <%= "#{@contributor.first_name} #{@contributor.last_name}" %> <span><%= link "Edit", to: Routes.contributor_path(@conn, :edit, @contributor), class: "header-btn edit"%></span></h1>
 
-</ul>
+      <h3>Description</h3>
+      <p>
+        <%= "#{@contributor.description}" %>
+      </p>
 
-<span><%= link "Edit", to: Routes.contributor_path(@conn, :edit, @contributor) %></span>
-<span><%= link "Back", to: Routes.contributor_path(@conn, :index) %></span>
+      <h3>Species</h3>
+      <ul>
+        <%= for species <- @contributor.species do %>
+          <li><%= link species.name, to: Routes.species_path(@conn, :edit, species) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

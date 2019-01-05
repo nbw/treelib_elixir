@@ -1,44 +1,11 @@
 @import "font-awesome/font-awesome";
-
-$logo-color: #00a651;
-$logo-color-hover: #00803e;
+@import "_colors";
 
 $break-small: 320px;
 $break-medium: 640px;
 $break-med-medium: 850px;
 $break-ipad-horiz: 1024px;
 $break-large: 1200px;
-
-// As hex codes */
-
-$base-font-color: #364149;
-$base-font-color-hover: #161a1d;
-$base-font-color-lighter: #4c5b67;
-$base-font-color-lighter-lighter: #627684;
-
-$color-first-0: #FF846B;	// Main Primary color */
-$color-first-1: #FFC6BA;
-$color-first-2: #FFA28F;
-$color-first-3: #FF6B4C;
-$color-first-4: #E94725;
-
-$color-second-0: #FFB86B;	// Main Secondary color (1) */
-$color-second-1: #FFDEBA;
-$color-second-2: #FFC98F;
-$color-second-3: #FFA94C;
-$color-second-4: #E98B25;
-
-$color-third-0: #54A1BF;	// Main Secondary color (2) */
-$color-third-1: #B0DDEE;
-$color-third-2: #7DBFD8;
-$color-third-3: #3584A3;
-$color-third-4: #1C7292;
-
-$color-fourth-0: #57D084;	// Main Complement color */
-$color-fourth-1: #B1F2C9;
-$color-fourth-2: #7FE2A4;
-$color-fourth-3: #38BB69;
-$color-fourth-4: #1BA950;
 
 $family-color: $color-first-0;
 $genus-color: $color-fourth-0;
@@ -49,22 +16,22 @@ html { font-size: 62.5%; }
 body {
   height: 100%;
   width: 100%;
-	font-family: 'Roboto', sans-serif;
-	font-size: 1.6rem;
-	color: $base-font-color;
-	padding: 0;
-	margin: 0;
-	text-rendering: optimizeLegibility;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  color: $base-font-color;
+  padding: 0;
+  margin: 0;
+  text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-	text-decoration: none;
-	color: $base-font-color;
-	&:hover {
-		color: $base-font-color-hover;
-	}
+  text-decoration: none;
+  color: $base-font-color;
+  &:hover {
+    color: $base-font-color-hover;
+  }
   &.underlineable {
     &:hover{
       text-decoration: underline;
@@ -98,7 +65,7 @@ input[type=radio]:not(old):checked + label{
 .adminEdit {
   padding: 30px 10px 0 0;
   float: right;
-  color: 	#4169E1;
+  color:  #4169E1;
 }
 
 .adminEdit {
@@ -111,4 +78,31 @@ input[type=radio]:not(old):checked + label{
 
 .undecorated-list {
   list-style-type: none;
+}
+
+.form-basic {
+  .form-group {
+    margin: 2rem auto 2rem auto;
+    &> * {
+      vertical-align: text-top;
+      display: inline-block;
+    }
+
+    label {
+      min-width: 150px;
+      text-align: right;
+      margin-right: 1rem;
+      &::after {
+        content: ":"
+      }
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.select2-tag-selector {
+  width: 100%;
 }

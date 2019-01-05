@@ -12,7 +12,9 @@ defmodule Treelib.Contributions.Contributor do
     field :last_name, :string
     field :enabled, :boolean, default: true
 
-    many_to_many :species, Treelib.Taxonomy.Species, join_through: "contributors_species"
+    field :species_ids, {:array, :integer}, virtual: true
+
+    many_to_many :species, Species, join_through: "contributors_species"
 
     timestamps()
   end
@@ -34,10 +36,10 @@ defmodule Treelib.Contributions.Contributor do
   defp maybe_assoc_species(changeset, _attrs), do: changeset
 
   defp maybe_load_species(%{valid?: true, changes: %{species_ids: ids}} = changeset) do
-		species = Repo.all(from s in Species, where: s.id in ^ids)
+    species = Repo.all(from s in Species, where: s.id in ^ids)
 
-		put_change(changeset, :species, species)
-	end
+    put_change(changeset, :species, species)
+  end
 
   defp maybe_load_species(changeset),
   do: changeset

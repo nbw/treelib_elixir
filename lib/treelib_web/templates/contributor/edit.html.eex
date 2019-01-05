@@ -1,5 +1,9 @@
-<h1>Edit Contributor</h1>
+<div id="app">
+  <div>
+    <%= render TreelibWeb.AdminView, "_navbar.html", assigns %>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.contributor_path(@conn, :update, @contributor)) %>
+    <h1>Edit Contributor</h1>
 
-<span><%= link "Back", to: Routes.contributor_path(@conn, :index) %></span>
+    <%= render "form.html", Map.put(assigns, :action, Routes.contributor_path(@conn, :update, @contributor)) %>
+  </div>
+</div>

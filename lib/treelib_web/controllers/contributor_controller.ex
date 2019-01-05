@@ -10,8 +10,12 @@ defmodule TreelibWeb.ContributorController do
   end
 
   def new(conn, _params) do
-    changeset = Contributions.change_contributor(%Contributor{})
-    render(conn, "new.html", changeset: changeset)
+    contributor =
+      %Contributor{}
+      |> Treelib.Repo.preload(:species)
+
+    changeset = Contributions.change_contributor(contributor)
+    render(conn, "new.html", contributor: contributor, changeset: changeset)
   end
 
   def create(conn, %{"contributor" => contributor_params}) do
@@ -33,7 +37,8 @@ defmodule TreelibWeb.ContributorController do
 
   def edit(conn, %{"id" => id}) do
     contributor = Contributions.get_contributor!(id)
-    changeset = Contributions.change_contributor(contributor)
+    changeset   = Contributions.change_contributor(contributor)
+
     render(conn, "edit.html", contributor: contributor, changeset: changeset)
   end
 
@@ -59,4 +64,5 @@ defmodule TreelibWeb.ContributorController do
     |> put_flash(:info, "Contributor deleted successfully.")
     |> redirect(to: Routes.contributor_path(conn, :index))
   end
+
 end
