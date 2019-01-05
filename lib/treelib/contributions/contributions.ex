@@ -20,6 +20,7 @@ defmodule Treelib.Contributions do
   def list_contributors do
     Contributor.active
     |> Repo.all
+    |> Repo.preload(:species)
   end
 
   @doc """
@@ -36,7 +37,10 @@ defmodule Treelib.Contributions do
       ** (Ecto.NoResultsError)
 
   """
-  def get_contributor!(id), do: Repo.get!(Contributor, id)
+  def get_contributor!(id) do
+    Repo.get!(Contributor, id)
+    |> Repo.preload(:species)
+  end
 
   @doc """
   Creates a contributor.
@@ -54,12 +58,6 @@ defmodule Treelib.Contributions do
     %Contributor{}
     |> Contributor.changeset(attrs)
     |> Repo.insert()
-
-    # contributor = contributor
-    # |> Repo.preload(:species)
-    # |> Ecto.Changeset.change()
-    # |> Ecto.Changeset.put_assoc(:species, attrs[:species])
-    # |> Repo.update!
   end
 
   @doc """

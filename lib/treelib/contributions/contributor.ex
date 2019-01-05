@@ -3,6 +3,8 @@ defmodule Treelib.Contributions.Contributor do
   import Ecto.Changeset
   import Ecto.Query, warn: false
 
+  alias Treelib.Repo
+  alias Treelib.Taxonomy.Species
 
   schema "contributors" do
     field :description, :string
@@ -18,21 +20,32 @@ defmodule Treelib.Contributions.Contributor do
   @doc false
   def changeset(contributor, attrs) do
     contributor
-    |> cast(attrs, [:first_name, :last_name, :description, :enabled])
+    |> cast(attrs, [:first_name, :last_name, :description, :enabled, :species_ids])
     |> validate_required([:first_name, :last_name, :description])
+    |> maybe_load_species()
     |> maybe_assoc_species(attrs)
   end
 
-  def maybe_assoc_species(changeset, %{species: species}) do
+  defp maybe_assoc_species(changeset, %{species: species}) do
     changeset
     |> Ecto.Changeset.put_assoc(:species, species)
   end
 
-  def maybe_assoc_species(changeset, _attrs), do: changeset
+  defp maybe_assoc_species(changeset, _attrs), do: changeset
+
+  defp maybe_load_species(%{valid?: true, changes: %{species_ids: ids}} = changeset) do
+		species = Repo.all(from s in Species, where: s.id in ^ids)
+
+		put_change(changeset, :species, species)
+	end
+
+  defp maybe_load_species(changeset),
+  do: changeset
 
   @doc false
   def active(query \\ __MODULE__) do
     from c in query,
-      where: [enabled: true]
+      where: [enabled: true],
+      order_by: c.first_name
   end
 end
