@@ -21,7 +21,7 @@ class AdminNavbar extends React.Component {
         .catch(function(error) {
             console.log('There has been a problem with your fetch operation: ' + error.message);
             alert('Response was not ok.');
-        });    
+        });
     }
     render() {
         self = this;
@@ -31,6 +31,7 @@ class AdminNavbar extends React.Component {
                 <div className="item"><a href="/family/new" >Add Family</a></div>
                 <div className="item"><a href="/genus/new" >Add Genus</a></div>
                 <div className="item"><a href="/species/new" >Add Species</a></div>
+                <div className="item"><a href="/contributors" >Contributors</a></div>
                 <div className="item"><a href="/admin" >Master Tree</a></div>
                 <div className="refresh" onClick={(event) => self.refreshClick()}>Refresh</div>
             </div>
