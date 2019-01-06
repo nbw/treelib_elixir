@@ -1,4 +1,4 @@
-defmodule TreelibWeb.ContributorController do
+defmodule TreelibWeb.AdminContributorController do
   use TreelibWeb, :controller
 
   alias Treelib.Contributions
@@ -23,7 +23,7 @@ defmodule TreelibWeb.ContributorController do
       {:ok, contributor} ->
         conn
         |> put_flash(:info, "Contributor created successfully.")
-        |> redirect(to: Routes.contributor_path(conn, :index))
+        |> redirect(to: Routes.admin_contributor_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -49,7 +49,7 @@ defmodule TreelibWeb.ContributorController do
       {:ok, contributor} ->
         conn
         |> put_flash(:info, "Contributor updated successfully.")
-        |> redirect(to: Routes.contributor_path(conn, :show, contributor))
+        |> redirect(to: Routes.admin_contributor_path(conn, :show, contributor))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", contributor: contributor, changeset: changeset)
@@ -62,7 +62,7 @@ defmodule TreelibWeb.ContributorController do
 
     conn
     |> put_flash(:info, "Contributor deleted successfully.")
-    |> redirect(to: Routes.contributor_path(conn, :index))
+    |> redirect(to: Routes.admin_contributor_path(conn, :index))
   end
 
 end

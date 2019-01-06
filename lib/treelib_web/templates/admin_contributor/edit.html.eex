@@ -4,6 +4,6 @@
 
     <h1>Edit Contributor</h1>
 
-    <%= render "form.html", Map.put(assigns, :action, Routes.contributor_path(@conn, :update, @contributor)) %>
+    <%= render "form.html", Map.put(assigns, :action, Routes.admin_contributor_path(@conn, :update, @contributor)) %>
   </div>
 </div>

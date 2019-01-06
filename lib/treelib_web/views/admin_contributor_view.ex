@@ -1,4 +1,4 @@
-defmodule TreelibWeb.ContributorView do
+defmodule TreelibWeb.AdminContributorView do
   use TreelibWeb, :view
 
   alias Treelib.Taxonomy

@@ -3,7 +3,7 @@
     <%= render TreelibWeb.AdminView, "_navbar.html", assigns %>
 
     <div>
-      <h1>Contributor: <%= "#{@contributor.first_name} #{@contributor.last_name}" %> <span><%= link "Edit", to: Routes.contributor_path(@conn, :edit, @contributor), class: "header-btn edit"%></span></h1>
+      <h1>Contributor: <%= "#{@contributor.first_name} #{@contributor.last_name}" %> <span><%= link "Edit", to: Routes.admin_contributor_path(@conn, :edit, @contributor), class: "header-btn edit"%></span></h1>
 
       <h3>Description</h3>
       <p>
