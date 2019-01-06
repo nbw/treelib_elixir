@@ -3,7 +3,6 @@ defmodule TreelibWeb.AdminContributorControllerTest do
   use TreelibWeb.ConnCase
 
   alias Treelib.Contributions
-  alias Treelib.Contributions.Contributor
 
   @create_attrs %{
     first_name: "Joe",
@@ -21,6 +20,8 @@ defmodule TreelibWeb.AdminContributorControllerTest do
     contributor
     |> Treelib.Repo.preload(:species)
   end
+
+  setup [:login_admin]
 
   describe "index" do
     test "lists all contributors", %{conn: conn} do
@@ -93,5 +94,26 @@ defmodule TreelibWeb.AdminContributorControllerTest do
   defp create_contributor(_) do
     contributor = fixture(:contributor)
     {:ok, contributor: contributor}
+  end
+
+  @email "contact@website.com"
+  @password "123456789"
+  @valid_user_params %{
+    name: "Nathan",
+    email: @email,
+    password: @password,
+    password_confirmation: @password
+  }
+
+  defp login_admin(%{conn: conn} = params) do
+    # Create an admin user
+    {:ok, _user} = Treelib.UserManager.register_admin_user(@valid_user_params)
+
+    session_params = %{ session: %{email: @email, password: @password}}
+
+    # Login
+    admin_conn = post(conn, session_path(conn, :create, session_params))
+
+    Map.replace!(params, :conn, admin_conn)
   end
 end
