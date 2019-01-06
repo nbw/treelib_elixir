@@ -26,7 +26,10 @@ defmodule TreelibWeb.AdminContributorController do
         |> redirect(to: Routes.admin_contributor_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        contributor =
+          %Contributor{}
+          |> Treelib.Repo.preload(:species)
+        render(conn, "new.html", contributor: contributor, changeset: changeset)
     end
   end
 
@@ -52,6 +55,7 @@ defmodule TreelibWeb.AdminContributorController do
         |> redirect(to: Routes.admin_contributor_path(conn, :show, contributor))
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        contributor = contributor |> Treelib.Repo.preload(:species)
         render(conn, "edit.html", contributor: contributor, changeset: changeset)
     end
   end

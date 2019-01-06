@@ -27,8 +27,8 @@
 
     <div id="description" class="form-group">
       <%= label f, :description, class: "control-label" %>
-      <%= textarea f, :description %>
       <%= error_tag f, :description %>
+      <%= textarea f, :description %>
     </div>
 
     <hr/>

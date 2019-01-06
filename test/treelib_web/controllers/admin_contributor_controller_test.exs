@@ -1,22 +1,31 @@
 defmodule TreelibWeb.AdminContributorControllerTest do
+  use TreelibWeb, :controller
   use TreelibWeb.ConnCase
 
   alias Treelib.Contributions
+  alias Treelib.Contributions.Contributor
 
-  @create_attrs %{}
+  @create_attrs %{
+    first_name: "Joe",
+    last_name: "Bloe",
+    description: "He's a dude."
+  }
   @update_attrs %{}
-  @invalid_attrs %{}
+  @invalid_attrs %{
+    first_name: "",
+  }
 
   def fixture(:contributor) do
     {:ok, contributor} = Contributions.create_contributor(@create_attrs)
 
     contributor
+    |> Treelib.Repo.preload(:species)
   end
 
   describe "index" do
     test "lists all contributors", %{conn: conn} do
-      conn = get(conn, Routes.admin_contributor_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Contributors"
+      conn = get(conn, Routes.admin_contributor_path(conn, :index, contributors: []))
+      assert html_response(conn, 200) =~ "Contributors"
     end
   end
 
@@ -31,11 +40,10 @@ defmodule TreelibWeb.AdminContributorControllerTest do
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post(conn, Routes.admin_contributor_path(conn, :create), contributor: @create_attrs)
 
-      assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.admin_contributor_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.admin_contributor_path(conn, :index)
 
-      conn = get(conn, Routes.admin_contributor_path(conn, :show, id))
-      assert html_response(conn, 200) =~ "Show Contributor"
+      conn = get(conn, Routes.admin_contributor_path(conn, :index))
+      assert html_response(conn, 200) =~ "Contributors"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
