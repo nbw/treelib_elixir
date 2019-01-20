@@ -46,6 +46,7 @@ defmodule TreelibWeb.Router do
 
     get "/photo_album.json", PhotoAlbumController, :index
 
+    get "/contributors", ContributorController, :index
   end
 
   scope "/api", TreelibWeb do
