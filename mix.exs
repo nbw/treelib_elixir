@@ -50,7 +50,7 @@ defmodule Treelib.Mixfile do
       {:comeonin, "~> 4.0"}, # auth
       {:bcrypt_elixir, "~> 1.0"}, # encryption
 
-      {:timex, "~> 3.4.2"}, # Dates and Time
+      {:timex, "~> 3.5.0"}, # Dates and Time
 
       # Testing
       {:ex_machina, "~> 2.1", only: :test} # fixtures for testing
