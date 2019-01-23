@@ -65,3 +65,8 @@ config :treelib,
   flickr_api_key: System.get_env("FLICKR_API_KEY"),
   flickr_user_id: System.get_env("FLICKR_USER_ID")
 #####################################
+
+config :flickrex, :config, [
+  consumer_key:    System.get_env("FLICKR_API_KEY"),
+  consumer_secret: System.get_env("FLICKR_SECRET")
+]

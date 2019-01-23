@@ -53,7 +53,9 @@ defmodule Treelib.Mixfile do
       {:timex, "~> 3.4.2"}, # Dates and Time
 
       # Testing
-      {:ex_machina, "~> 2.1", only: :test} # fixtures for testing
+      {:ex_machina, "~> 2.1", only: :test}, # fixtures for testing
+
+      {:flickrex, "~> 0.7"}
     ]
   end
 

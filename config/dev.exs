@@ -72,11 +72,15 @@ config :treelib, Treelib.Repo,
   pool_size: 10,
   timeout: String.to_integer(System.get_env("DATABASE_TIMEOUT") || "145000")
 
-
-  # General Config
-  config :treelib,
+# General Config
+config :treelib,
   flickr_api_key: "FLICKR_KEY",
   flickr_user_id: "FLICKR_USER_ID" # overridden in secret
+
+config :flickrex, :config, [
+  consumer_key:    "FLICKR_KEY", # overridden in secret
+  consumer_secret: "FLICKR_SECRET" # overridden in secret
+]
 
 # Which API Client to use
 config :treelib, :flickr_api, Flickr.API.HTTPClient
