@@ -1,0 +1,11 @@
+<h2>Auth</h2>
+<p>Go through the auth flow and obtain a token</p>
+<p>URL: <%= link(@url, to: @url, target: "_blank") %></p>
+</hr>
+<%= form_for @conn, o_auth_path(@conn, :access_token), fn f -> %>
+  <label>Token:</label>
+  <%= text_input f, :token %>
+  <%= hidden_input f, :oauth_token, value: @oauth_token %>
+  <%= hidden_input f, :oauth_token_secret, value: @oauth_token_secret %>
+  <%= submit "Submit" %>
+<% end %>
