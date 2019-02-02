@@ -60,9 +60,7 @@ class App extends React.Component {
                 });
             } else {
                 alert("uh oh.");
-                console.log('Network response was not ok.');
-            }
-        })
+                console.log('Network response was not ok.'); } })
         .catch(function(error) {
             console.log('There has been a problem with your fetch operation: ' + error.message);
         });
