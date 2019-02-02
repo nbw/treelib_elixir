@@ -1,39 +1,39 @@
 <link rel="stylesheet" type="text/css" href="/css/homepage.css">
 <div id="app" class="contributorsPage">
-	<div class="mainContainer">
-		<%= render TreelibWeb.SharedView, "_navbar.html", assigns %>
-		<div class="content">
-			<h1>Contributors</h1>
-			<p>
-				Treelib would not be possible without the efforts of many contributors. We'd like to extend a personal thank you to everything that helped make Treelib into the educational tool that it is today.
-			</p>
-			<p>
-				If you have photos that you're interested in contributing (we only take the best!) then please <a href="/contact">contact us</a>.
-			</p>
+  <div class="mainContainer">
+    <%= render TreelibWeb.SharedView, "_navbar.html", assigns %>
+    <div class="content">
+      <h1>Contributors</h1>
+      <p>
+        Treelib would not be possible without the efforts of many contributors. We'd like to extend a personal thank you to everything that helped make Treelib into the educational tool that it is today.
+      </p>
+      <p>
+        If you have photos that you're interested in contributing (we only take the best!) then please <a href="/contact">contact us</a>.
+      </p>
 
-			<p class="note">
-				Contributors are listed in alphabetical order.
-			</p>
-			<ul id="contributors-list">
-				<%= for contributor <- @contributors do %>
-					<li>
-						<label class="name"><%= "#{contributor.first_name} #{contributor.last_name}" %></label>
-						<p class="description"><%= contributor.description %></p>
-						<p class="description">
-							<%= if(length(contributor.species) > 0) do %>
-								<%
-									{last_species, remaining_species} = last_species = List.pop_at(contributor.species, -1)
-								%>
-								They've contributed to species
-								<%= for species <- remaining_species do %>
-									<%= link species_name(species), to: search_species_path(species), class: "species" %>,
-								<% end %>
+      <p class="note">
+        Contributors are listed in alphabetical order.
+      </p>
+      <ul id="contributors-list">
+        <%= for contributor <- @contributors do %>
+          <li id=<%= "cont-" <> Integer.to_string(contributor.id) %>>
+            <label class="name"><%= "#{contributor.first_name} #{contributor.last_name}" %></label>
+            <p class="description"><%= contributor.description %></p>
+            <p class="description">
+              <%= if(length(contributor.species) > 0) do %>
+                <%
+                  {last_species, remaining_species} = last_species = List.pop_at(contributor.species, -1)
+                %>
+                They've contributed to species
+                <%= for species <- remaining_species do %>
+                  <%= link species_name(species), to: search_species_path(species), class: "species" %>,
+                <% end %>
                 <%= link species_name(last_species), to: search_species_path(last_species), class: "species" %>.
-							<% end %>
-						</p>
-					</li>
-				<% end %>
-			</ul>
-		</div>
-	</div>
+              <% end %>
+            </p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -6,6 +6,8 @@ defmodule Treelib.Contributions.Contributor do
   alias Treelib.Repo
   alias Treelib.Taxonomy.Species
 
+  @derive {Poison.Encoder, only: [:id, :first_name, :last_name, :description]}
+
   schema "contributors" do
     field :description, :string
     field :first_name, :string

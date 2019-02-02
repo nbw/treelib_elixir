@@ -15,7 +15,7 @@ defmodule TreelibWeb.SearchController do
   def index(conn, %{"f" => id} = _params) do
     with {:ok, %Family{} = family} <- FamilyManager.get_family(id) do
       pay_load = %{
-        tree: Taxonomy.all ,
+        tree: Taxonomy.all,
         pre_selected: %{
           type: "family",
           item: family

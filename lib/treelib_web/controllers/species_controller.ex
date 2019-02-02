@@ -30,7 +30,7 @@ defmodule TreelibWeb.SpeciesController do
         photos = PhotoManager.photos_for_species(species.id)
                  |> Enum.map(&PhotoManager.format_photo_for_web(&1))
 
-        render conn, "show.html", page_data: %{species: species, genus: genus, photos: photos}, layout: {TreelibWeb.LayoutView, "species.html"}
+        render conn, "show.html", page_data: %{species: species, genus: genus, photos: photos, contributors: species.contributors}, layout: {TreelibWeb.LayoutView, "species.html"}
     end
   end
 
