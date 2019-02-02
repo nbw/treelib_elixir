@@ -133,16 +133,17 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
 
     IO.puts("[ Updates ]: working on inserts..")
     # gather photosets for photos to add
-      albums_to_update
-      |> Enum.chunk_every(100)
-      |> Enum.each(fn(albums_to_update_chunk)->
-        inserts = albums_to_update_chunk
-        |> Enum.map(fn([_pa, ps]) -> ps end)
-        |> PhotoUpdater.flickr_photos_in_photosets
+    albums_to_update_chunk = albums_to_update
+    |> Enum.chunk_every(20)
 
-        IO.puts("[ Updates ]: inserting #{length(albums_to_update_chunk)} of #{length(albums_to_update)}..")
-        PhotoManager.insert_photos(inserts)
-      end)
+    for {albums, i} <- Enum.with_index(albums_to_update_chunk) do
+      inserts = albums
+      |> Enum.map(fn([_pa, ps]) -> ps end)
+      |> PhotoUpdater.flickr_photos_in_photosets
+
+      IO.puts("[ Updates ]: inserting #{(i+1)*length(albums_to_update_chunk)} of #{length(albums_to_update)}..")
+      PhotoManager.insert_photos(inserts)
+    end
 
   end
 
