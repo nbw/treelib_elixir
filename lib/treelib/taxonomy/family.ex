@@ -36,8 +36,9 @@ defmodule Treelib.Taxonomy.Family do
 
   def all(_query \\ __MODULE__) do
     Family.active
-    |> preload([genera: ^Genus.active]) 
-    |> preload(genera: [species: ^Species.active]) 
+    |> preload([genera: ^Genus.active])
+    |> preload(genera: [species: ^Species.active])
+    |> preload(genera: [species: [:contributors]])
     |> order_by(asc: :name)
   end
 

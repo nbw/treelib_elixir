@@ -9,7 +9,7 @@ defmodule Treelib.Taxonomy.Species do
   alias Treelib.Taxonomy.Species
   alias Treelib.PhotoManager.PhotoAlbum
 
-  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_min_type, :hardiness_max, :hardiness_max_type]}
+  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_min_type, :hardiness_max, :hardiness_max_type, :contributors]}
 
   schema "species" do
     field :name, :string
