@@ -14,6 +14,8 @@ defmodule Treelib.PhotoManager do
   alias Treelib.Taxonomy.Genus
   alias Treelib.Taxonomy.Species
 
+  @chunk_size 100
+
   @doc"""
   Returns photos for a species.
   """
@@ -215,7 +217,11 @@ defmodule Treelib.PhotoManager do
       Flickr.Photoset.into_photo_album(photoset)
     end)
 
-    Repo.insert_all(PhotoAlbum, albums)
+    albums
+    |> Enum.chunk_every(@chunk_size)
+    |> Enum.each(fn(albums_chunk)->
+      Repo.insert_all(PhotoAlbum, albums_chunk)
+    end)
   end
 
   @doc """
@@ -223,9 +229,13 @@ defmodule Treelib.PhotoManager do
   """
   def delete_albums(album_ids) when is_list(album_ids)  do
     if Kernel.length(album_ids) > 0 do
-      PhotoAlbum
-      |> where([p], p.photoset_id in ^album_ids)
-      |> Repo.delete_all
+      album_ids
+      |> Enum.chunk_every(@chunk_size)
+      |> Enum.each(fn(album_ids_chunk) ->
+        PhotoAlbum
+        |> where([p], p.photoset_id in ^album_ids_chunk)
+        |> Repo.delete_all
+      end)
     end
   end
 
@@ -331,9 +341,13 @@ defmodule Treelib.PhotoManager do
   """
   def delete_photos_in_albums(album_ids) when is_list(album_ids) do
     if Kernel.length(album_ids) > 0 do
-      Photo
-      |> where([p], p.photoset_id in ^album_ids)
-      |> Repo.delete_all
+      album_ids
+      |> Enum.chunk_every(@chunk_size)
+      |> Enum.each(fn(album_ids_chunk)->
+        Photo
+        |> where([p], p.photoset_id in ^album_ids_chunk)
+        |> Repo.delete_all
+      end)
     end
   end
 
@@ -359,7 +373,7 @@ defmodule Treelib.PhotoManager do
     |> Enum.map(fn(p) ->
       Flickr.Photo.into_db_photo(p)
     end)
-    |> Enum.chunk_every(500)
+    |> Enum.chunk_every(@chunk_size)
     |> Enum.each(fn(p) ->
       Repo.insert_all(Photo, p)
     end)
