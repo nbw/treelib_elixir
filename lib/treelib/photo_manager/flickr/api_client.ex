@@ -80,8 +80,10 @@ defmodule Flickr.API.HTTPClient do
     |> case do
       {:ok, resp} ->
         resp.body
-      {:error, _} ->
+      {:error, msg} ->
         IO.puts("Failed photo resync for photoset #{photoset_id}")
+        IO.puts(msg)
+        %{}
     end
   end
 
