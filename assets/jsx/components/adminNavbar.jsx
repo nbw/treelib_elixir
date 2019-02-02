@@ -2,7 +2,7 @@ import React from 'react'
 
 class AdminNavbar extends React.Component {
     refreshClick(){
-        self = this;
+        var self = this;
         fetch('/admin/refresh', {
             method: 'POST',
             credentials: 'same-origin',
@@ -24,7 +24,7 @@ class AdminNavbar extends React.Component {
         });
     }
     render() {
-        self = this;
+        var self = this;
         return (
             <div id="adminNavbar">
                 <div className="title"><a href="/">Treelib</a></div>

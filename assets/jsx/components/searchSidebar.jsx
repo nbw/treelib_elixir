@@ -62,7 +62,7 @@ class SearchSidebar extends React.Component {
   }
 
   findGenus(genus_id) {
-    var families = self.props.tree,
+    var families = this.props.tree,
       genus = {};
     for(var f_index=0; f_index < families.length; f_index++) {
       genus = families[f_index].genera.find(function(g){ return g.id == genus_id;});
@@ -78,7 +78,7 @@ class SearchSidebar extends React.Component {
     return species;
   };
   render() {
-    self = this;
+    var self = this;
     var selectedFamily =  this.state.selectedFamily,
       selectedGenus = this.state.selectedGenus,
       selectedSpecies = this.state.selectedSpecies,

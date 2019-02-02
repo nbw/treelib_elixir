@@ -35,7 +35,7 @@ class App extends React.Component {
         }
     }
     updateTheMotherShip(){
-        self = this; 
+        var self = this;
         if( self.state.username.length === 0 || self.state.password.length === 0){
             alert('try again. something is missing.');
             return;
