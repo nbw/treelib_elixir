@@ -11,6 +11,12 @@
         If you have photos that you're interested in contributing (we only take the best!) then please <a href="/contact">contact us</a>.
       </p>
 
+      <div class="contributorImages">
+        <img src="/images/contrib-1.jpg"/>
+        <img src="/images/contrib-2.jpg"/>
+        <img src="/images/contrib-3.jpg"/>
+        <img src="/images/contrib-4.jpg"/>
+      </div>
       <p class="note">
         Contributors are listed in alphabetical order.
       </p>

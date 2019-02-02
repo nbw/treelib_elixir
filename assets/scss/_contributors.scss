@@ -12,6 +12,19 @@
     color: #777;
   }
 
+  .contributorImages {
+    display: inline-block;
+    text-align: center;
+    margin-top: 45px;
+    margin-bottom: 30px;
+    img {
+      width: 22%;
+      &:not(:last-child) {
+        margin-right: 3%;
+      }
+    }
+  }
+
   ul#contributors-list {
     list-style-type: none;
     margin: 0;
