@@ -1,4 +1,3 @@
-require IEx
 defmodule TreelibWeb.OAuthController do
   use TreelibWeb, :controller
   @moduledoc """
