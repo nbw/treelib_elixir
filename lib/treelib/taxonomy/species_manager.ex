@@ -7,6 +7,7 @@ defmodule Treelib.Taxonomy.SpeciesManager do
   alias Treelib.Repo
 
   alias Treelib.Taxonomy.Species
+  alias Treelib.Contributions.Contributor
 
   @doc """
   Returns all active species.
@@ -38,7 +39,7 @@ defmodule Treelib.Taxonomy.SpeciesManager do
   def get_species(id) do
     Species.active
     |> Repo.get(id)
-    |> Repo.preload(:contributors)
+    |> Repo.preload([contributors: Contributor.active])
     |> case do
       %Species{} = species ->
         {:ok, species}

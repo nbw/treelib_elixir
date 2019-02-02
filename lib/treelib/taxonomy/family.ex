@@ -6,6 +6,7 @@ defmodule Treelib.Taxonomy.Family do
   alias Treelib.Taxonomy.Family
   alias Treelib.Taxonomy.Genus
   alias Treelib.Taxonomy.Species
+  alias Treelib.Contributions.Contributor
 
   @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genera]}
 
@@ -38,7 +39,7 @@ defmodule Treelib.Taxonomy.Family do
     Family.active
     |> preload([genera: ^Genus.active])
     |> preload(genera: [species: ^Species.active])
-    |> preload(genera: [species: [:contributors]])
+    |> preload(genera: [species: [contributors: ^Contributor.active]])
     |> order_by(asc: :name)
   end
 
