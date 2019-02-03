@@ -213,8 +213,7 @@ defmodule Treelib.PhotoManager do
   into the db
   """
   def insert_albums(photosets) when is_list(photosets)  do
-    photosets
-    |>Enum.map(fn(photoset) ->
+    albums = Enum.map(photosets, fn(photoset) ->
       Flickr.Photoset.into_photo_album(photoset)
     end)
 
