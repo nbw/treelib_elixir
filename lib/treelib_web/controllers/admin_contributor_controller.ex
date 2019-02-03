@@ -19,7 +19,7 @@ defmodule TreelibWeb.AdminContributorController do
     with {:ok, _current_user} <- auth_admin(conn) do
       contributor =
         %Contributor{}
-        |> Treelib.Repo.preload(:species)
+        |> Treelib.Repo.preload([species: [:genus]])
 
       changeset = Contributions.change_contributor(contributor)
       render(conn, "new.html", contributor: contributor, changeset: changeset)
@@ -39,7 +39,7 @@ defmodule TreelibWeb.AdminContributorController do
         {:error, %Ecto.Changeset{} = changeset} ->
           contributor =
             %Contributor{}
-            |> Treelib.Repo.preload(:species)
+            |> Treelib.Repo.preload([species: [:genus]])
           render(conn, "new.html", contributor: contributor, changeset: changeset)
       end
     else
