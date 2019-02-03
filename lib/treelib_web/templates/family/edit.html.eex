@@ -2,19 +2,19 @@
   <head>
     <title>Edit Family</title>
     <link rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon'/ >
-    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/css/edit_family.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/edit_family.css") %>">
   </head>
   <body>
     <div class="mainContainer">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <div id="app"></div>
+      <div id="app" class="admin"></div>
     </div>
     <script type="text/javascript">
       var CSRF_TOKEN = <%= raw Poison.encode!(Plug.CSRFProtection.get_csrf_token()) %>;
       window.pageData = <%= raw @page_data %>;
     </script>
-    <script src="<%= static_path(@conn, "/js/autres.bundle.js") %>"></script> 
-    <script src="<%= static_path(@conn, "/js/edit_family.js") %>"></script> 
+    <script src="<%= Routes.static_path(@conn, "/js/autres.bundle.js") %>"></script>
+    <script src="<%= Routes.static_path(@conn, "/js/edit_family.js") %>"></script>
   </body>
 </html>

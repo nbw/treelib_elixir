@@ -1,0 +1,45 @@
+<div id="app" class="admin">
+  <div>
+    <%= render TreelibWeb.AdminView, "_navbar.html", assigns %>
+
+    <h1>
+      Contributors
+      <span><%= link "New Contributor", to: Routes.admin_contributor_path(@conn, :new), class: "header-btn success"%></span>
+    </h1>
+    <table class="admin responsive">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Species</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for contributor <- @contributors do %>
+          <tr>
+            <td>
+              <%= "#{contributor.first_name} #{contributor.last_name}" %>
+            </td>
+            <td>
+              <%= contributor.description %>
+            </td>
+            <td>
+              <ul>
+              <%= for species <- contributor.species do %>
+                <li><%= link species.name, to: Routes.species_path(@conn, :edit, species) %></li>
+              <% end %>
+              </ul>
+            </td>
+            <td class="center-column">
+              <%= link "Show", to: Routes.admin_contributor_path(@conn, :show, contributor), class: "action" %>
+              <%= link "Edit", to: Routes.admin_contributor_path(@conn, :edit, contributor), class: "action edit" %>
+              <%= link "Delete", to: Routes.admin_contributor_path(@conn, :delete, contributor), method: :delete, data: [confirm: "Are you sure?"], class: "action delete" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src="<%= Routes.static_path(@conn, "/js/autres.bundle.js") %>"></script>

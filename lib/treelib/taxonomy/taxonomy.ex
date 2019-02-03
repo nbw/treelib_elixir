@@ -8,6 +8,7 @@ defmodule Treelib.Taxonomy do
 
   alias Treelib.Taxonomy.Family
   alias Treelib.Taxonomy.Genus
+  alias Treelib.Taxonomy.Species
 
   @doc """
   Returns a list of all families, genera, and species; all enabled
@@ -38,7 +39,7 @@ defmodule Treelib.Taxonomy do
   end
 
   @doc """
-  Returns a list of all active families with their corresponding id
+  Returns a list of all active genera with their corresponding id
 
   ## Examples
 
@@ -52,6 +53,25 @@ defmodule Treelib.Taxonomy do
   def get_genus_list do
     Genus.active
     |> select([g], %{id: g.id, name: g.name})
+    |> order_by([p], asc: p.name)
+    |> Repo.all
+  end
+
+  @doc """
+  Returns a list of all active species with their corresponding id
+
+  ## Examples
+
+      iex> get_species_list
+      [
+        %{ id: 34, name: "Fir" },
+        %{ ... },
+        ...
+      ]
+  """
+  def get_species_list do
+    Species.active
+    |> select([s], %{id: s.id, name: s.name})
     |> order_by([p], asc: p.name)
     |> Repo.all
   end

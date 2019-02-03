@@ -11,7 +11,11 @@ class App extends React.Component {
     return (
       <div className="mainContainer">
         <BasicNavbar />
-        <Species species={pg.species} genus={pg.genus}/>
+        <Species
+          species={pg.species}
+          genus={pg.genus}
+          contributors={pg.contributors}
+        />
       </div>
     );
   }

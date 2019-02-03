@@ -35,7 +35,7 @@ class App extends React.Component {
         }
     }
     updateTheMotherShip(){
-        self = this; 
+        var self = this;
         if( self.state.username.length === 0 || self.state.password.length === 0){
             alert('try again. something is missing.');
             return;
@@ -60,9 +60,7 @@ class App extends React.Component {
                 });
             } else {
                 alert("uh oh.");
-                console.log('Network response was not ok.');
-            }
-        })
+                console.log('Network response was not ok.'); } })
         .catch(function(error) {
             console.log('There has been a problem with your fetch operation: ' + error.message);
         });

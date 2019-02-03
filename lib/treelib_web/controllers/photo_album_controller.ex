@@ -10,7 +10,7 @@ defmodule TreelibWeb.PhotoAlbumController do
     with {:ok, _current_user} <- auth_admin(conn) do
     render(conn, "index.json", albums: PhotoManager.list_albums)
     else
-      {:error, _ } -> redirect conn, to: page_path(conn, :home)
+      {:error, _ } -> redirect conn, to: Routes.page_path(conn, :home)
     end
   end
 end

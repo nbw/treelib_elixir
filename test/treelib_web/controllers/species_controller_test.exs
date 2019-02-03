@@ -61,10 +61,14 @@ defmodule TreelibWeb.SpeciesControllerTest do
   def species_fixture({:ok, genus}) do
     {:ok, album} = PhotoManager.create_album(@album_params)
 
-    @species_params
+    {:ok, species} = @species_params
     |> Map.merge(%{genus_id: genus.id})
     |> Map.merge(%{album_id: album.id})
     |> SpeciesManager.create_species()
+
+    species = species |> Treelib.Repo.preload(:contributors)
+
+    {:ok, species}
   end
 
   # GET /species.json
@@ -92,7 +96,7 @@ defmodule TreelibWeb.SpeciesControllerTest do
         conn
         |> post(session_path(conn, :create, session_params))
         |> get(species_path(conn, :index))
-        |>json_response(200)
+        |> json_response(200)
 
       assert response == [
         %{
@@ -105,7 +109,8 @@ defmodule TreelibWeb.SpeciesControllerTest do
           "hardiness_min" => 0,
           "hardiness_min_type" => "a",
           "id" => species.id,
-          "name" => species.name
+          "name" => species.name,
+          "contributors" => []
         }
       ]
     end
