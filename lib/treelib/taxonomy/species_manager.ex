@@ -15,6 +15,7 @@ defmodule Treelib.Taxonomy.SpeciesManager do
   def all do
     Species.active
     |> Repo.all
+    |> Repo.preload([contributors: Contributor.active])
   end
 
   @doc """

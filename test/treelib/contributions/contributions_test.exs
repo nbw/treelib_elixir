@@ -24,6 +24,7 @@ defmodule Treelib.ContributionsTest do
         |> Contributions.create_contributor()
 
       contributor
+      |> Treelib.Repo.preload(:species)
     end
 
     def species_fixture do

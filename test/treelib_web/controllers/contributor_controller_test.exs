@@ -18,7 +18,7 @@ defmodule TreelibWeb.ContributorControllerTest do
   describe "index" do
     test "lists all contributors", %{conn: conn} do
       conn = get(conn, Routes.contributor_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Contributors"
+      assert html_response(conn, 200) =~ "Treelib would not be possible without the efforts of many contributors."
     end
   end
 
