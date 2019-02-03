@@ -26,7 +26,7 @@ defmodule TreelibWeb.GenusController do
          {:ok, %Genus{} = genus} <- GenusManager.create_genus(params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("genus", genus_path(conn, :edit, genus))
+      |> put_resp_header("genus", Routes.genus_path(conn, :edit, genus))
       |> json(%{id: genus.id})
     end
   end
@@ -37,7 +37,7 @@ defmodule TreelibWeb.GenusController do
     do
         render conn, "edit.html", page_data: json_encode!(%{genus: genus, families: Taxonomy.get_family_list})
     else
-      {:error, :not_found} -> redirect(conn, to: genus_path(conn, :new))
+      {:error, :not_found} -> redirect(conn, to: Routes.genus_path(conn, :new))
     end
   end
 
@@ -54,7 +54,7 @@ defmodule TreelibWeb.GenusController do
     do:
       conn
       |> put_status(:ok)
-      |> put_resp_header("genus", genus_path(conn, :edit, genus))
+      |> put_resp_header("genus", Routes.genus_path(conn, :edit, genus))
       |> json(%{id: genus.id})
   end
 
@@ -65,7 +65,7 @@ defmodule TreelibWeb.GenusController do
     do:
       conn
       |> put_status(:ok)
-      |> put_resp_header("genus", genus_path(conn, :edit, genus))
+      |> put_resp_header("genus", Routes.genus_path(conn, :edit, genus))
       |> json(%{id: genus.id})
   end
 

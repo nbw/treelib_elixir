@@ -4,8 +4,8 @@
 .species {
 	position: relative;
 	> .title {
-		.main { 
-			font-size:3.9rem;
+		.main {
+			font-size: 3.9rem;
 			font-style: italic;
 			.speciesTitle {
 				font-weight: bold;
@@ -17,9 +17,9 @@
 		}
 		padding: 10px 0 10px 0;
 		margin: 0 10px 10px 10px;
-		border-bottom: 3px black solid;
+		border-bottom: 3px $species-color solid;
 	}
-	> .description { 
+	> .description {
 		padding: 10px 20px 10px 20px;
 		p:first-child {
 			padding-top: 0;
@@ -29,7 +29,7 @@
 			li {
 				padding: 5px 0 5px 0;
 			}
-		}	
+		}
 	}
 	.links {
 		ul { margin: 0; }
@@ -58,6 +58,18 @@
 			}
 		}
 	}
+
+  div.contributors {
+    border-top: 1px solid #DDD;
+    margin: 10px;
+    padding: 15px;
+    a {
+      font-style: italic;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  }
 }
 @media screen and (max-width: $break-medium) {
 	.species {
@@ -69,7 +81,7 @@
 			}
 			.main {
 				font-size: 2.0rem;
-			} 
+			}
 			.commonName {
 				font-size: 1.8rem;
 			}
@@ -88,6 +100,6 @@
 				width: 47%;
 			}
 		}
-		
+
 	}
 }

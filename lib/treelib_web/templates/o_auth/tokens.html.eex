@@ -1,0 +1,8 @@
+<h1>Huzzah</h1>
+<p>Tasty results.</p>
+<p>
+  <label>oauth_token:</label><%= @oauth_token %>
+</p>
+<p>
+  <label>oauth_token_secret:</label><%= @oauth_token_secret %>
+</p>

@@ -154,6 +154,7 @@ class App extends React.Component {
                 <Species
                   key={`s-${item.id}`}
                   species={item}
+                  contributors={item.contributors}
                   genus={this.findGenus(item.genus_id)}
                   handler={this.update.bind(this)} 
                   isFSPMode={this.state.fullScreenPhotoMode}

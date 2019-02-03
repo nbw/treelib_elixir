@@ -124,14 +124,27 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
       PhotoManager.update_album(pa,ps)
     end)
 
+    IO.puts("[ Updates ]: working on deletes..")
     # gather photoset_id for photos to delete
-    Enum.map(albums_to_update, fn([pa, _ps]) -> pa.photoset_id end)
-    |> PhotoManager.delete_photos_in_albums
+    deletes = Enum.map(albums_to_update, fn([pa, _ps]) -> pa.photoset_id end)
 
+    IO.puts("[ Updates ]: deleting..")
+    PhotoManager.delete_photos_in_albums(deletes)
+
+    IO.puts("[ Updates ]: working on inserts..")
     # gather photosets for photos to add
-    Enum.map(albums_to_update, fn([_pa, ps]) -> ps end)
-    |> PhotoUpdater.flickr_photos_in_photosets
-    |> PhotoManager.insert_photos
+    albums_to_update_chunk = albums_to_update
+    |> Enum.chunk_every(20)
+
+    for {albums, i} <- Enum.with_index(albums_to_update_chunk) do
+      inserts = albums
+      |> Enum.map(fn([_pa, ps]) -> ps end)
+      |> PhotoUpdater.flickr_photos_in_photosets
+
+      IO.puts("[ Updates ]: inserting #{(i+1)*length(albums_to_update_chunk)} of #{length(albums_to_update)}..")
+      PhotoManager.insert_photos(inserts)
+    end
+
   end
 
   @doc """

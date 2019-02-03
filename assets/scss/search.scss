@@ -61,22 +61,6 @@ body {
 	}
 }
 
-.family {
-	.title{
-		border-color: $family-color;
-	}
-}
-.species {
-	.title {
-		border-color: $species-color;
-	}
-}
-.genus {
-	.title {
-		border-color: $genus-color;
-	}
-}
-
 $searchBar-listItem-border-color: #cacaca;
 $searchBar-background: fafafa;
 $searchBar-list-font-color: #555;
@@ -100,15 +84,15 @@ $searchBar-list-font-color-selected: #111;
 
 	.title {
 		background-color: $searchBar-background;
-		cursor: pointer; 
+		cursor: pointer;
 		// default
 		font-size: 3rem;
 		padding: 1% 0 1% 0;
 		min-height: 3.1rem;
 
 		text-align: center;
-		
-		a { 
+
+		a {
 			color: $logo-color;
 			&:hover {
 				color: $logo-color-hover;
@@ -116,7 +100,7 @@ $searchBar-list-font-color-selected: #111;
 			* { vertical-align: middle; }
 			img {
 				height: 3rem;
-			}	
+			}
 		}
 	}
 	.nameSelector {
@@ -190,7 +174,7 @@ $searchBar-list-font-color-selected: #111;
 			border-style: solid;
 
 		    border-width: 0 0 1px 0;
-		    -webkit-border-image: 
+		    -webkit-border-image:
 		      -webkit-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
 		    -moz-border-image:
 		      -moz-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
@@ -288,7 +272,7 @@ $searchBar-list-font-color-selected: #111;
 				content: "SHOW ";
 			}
 		}
-	}		
+	}
 	&.content {
 		left: 0%;
 		width: 100%;

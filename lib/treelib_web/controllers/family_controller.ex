@@ -16,7 +16,7 @@ defmodule TreelibWeb.FamilyController do
     with {:ok, _current_user} <- auth_admin(conn) do
       render(conn, "index.json", families: Taxonomy.all)
     else
-      {:error, _ } -> redirect conn, to: search_path(conn, :index)
+      {:error, _ } -> redirect conn, to: Routes.search_path(conn, :index)
     end
   end
 
@@ -34,7 +34,7 @@ defmodule TreelibWeb.FamilyController do
          {:ok, %Family{} = family} <- FamilyManager.create_family(params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("family", family_path(conn, :edit, family))
+      |> put_resp_header("family", Routes.family_path(conn, :edit, family))
       |> json(%{id: family.id})
     end
   end
@@ -45,7 +45,7 @@ defmodule TreelibWeb.FamilyController do
     do
         render conn, "edit.html", page_data: json_encode!(%{family: family})
     else
-      {:error, :not_found} -> redirect(conn, to: family_path(conn, :new))
+      {:error, :not_found} -> redirect(conn, to: Routes.family_path(conn, :new))
     end
   end
 
@@ -62,7 +62,7 @@ defmodule TreelibWeb.FamilyController do
     do:
       conn
       |> put_status(:ok)
-      |> put_resp_header("family", family_path(conn, :edit, family))
+      |> put_resp_header("family", Routes.family_path(conn, :edit, family))
       |> json(%{id: family.id})
   end
 
@@ -73,7 +73,7 @@ defmodule TreelibWeb.FamilyController do
     do:
       conn
       |> put_status(:ok)
-      |> put_resp_header("family", family_path(conn, :edit, family))
+      |> put_resp_header("family", Routes.family_path(conn, :edit, family))
       |> json(%{id: family.id})
   end
 

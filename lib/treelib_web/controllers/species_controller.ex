@@ -20,7 +20,7 @@ defmodule TreelibWeb.SpeciesController do
     with {:ok, _current_user} <- auth_admin(conn) do
       render(conn, "index.json", species: SpeciesManager.all)
     else
-      {:error, _ } -> redirect conn, to: search_path(conn, :index)
+      {:error, _ } -> redirect conn, to: Routes.search_path(conn, :index)
     end
   end
 
@@ -30,7 +30,7 @@ defmodule TreelibWeb.SpeciesController do
         photos = PhotoManager.photos_for_species(species.id)
                  |> Enum.map(&PhotoManager.format_photo_for_web(&1))
 
-        render conn, "show.html", page_data: %{species: species, genus: genus, photos: photos}, layout: {TreelibWeb.LayoutView, "species.html"}
+        render conn, "show.html", page_data: %{species: species, genus: genus, photos: photos, contributors: species.contributors}, layout: {TreelibWeb.LayoutView, "species.html"}
     end
   end
 
@@ -39,7 +39,7 @@ defmodule TreelibWeb.SpeciesController do
          {:ok, %Species{} = species} <- SpeciesManager.create_species(params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("species", species_path(conn, :edit, species))
+      |> put_resp_header("species", Routes.species_path(conn, :edit, species))
       |> json(%{id: species.id})
     end
   end
@@ -62,7 +62,7 @@ defmodule TreelibWeb.SpeciesController do
             hardiness_types: HardinessTypes.all
           })
     else
-      {:error, :not_found} -> redirect(conn, to: species_path(conn, :new))
+      {:error, :not_found} -> redirect(conn, to: Routes.species_path(conn, :new))
     end
   end
 
@@ -81,7 +81,7 @@ defmodule TreelibWeb.SpeciesController do
     do:
       conn
       |> put_status(:ok)
-      |> put_resp_header("species", species_path(conn, :edit, species))
+      |> put_resp_header("species", Routes.species_path(conn, :edit, species))
       |> json(%{id: species.id})
   end
 
@@ -92,7 +92,7 @@ defmodule TreelibWeb.SpeciesController do
     do:
       conn
       |> put_status(:ok)
-      |> put_resp_header("species", species_path(conn, :edit, species))
+      |> put_resp_header("species", Routes.species_path(conn, :edit, species))
       |> json(%{id: species.id})
   end
 

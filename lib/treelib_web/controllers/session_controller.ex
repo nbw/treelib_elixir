@@ -27,6 +27,6 @@ defmodule TreelibWeb.SessionController do
     conn
     |> configure_session(drop: true)
     |> put_flash(:info, "Logged out")
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 end

@@ -1,0 +1,61 @@
+@import "_contact";
+
+.contributorsPage {
+  .content {
+    padding: 0 5% 20px 5%;
+  }
+
+  .note {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #777;
+  }
+
+  .contributorImages {
+    display: inline-block;
+    text-align: center;
+    margin-top: 45px;
+    margin-bottom: 30px;
+    img {
+      width: 22%;
+      &:not(:last-child) {
+        margin-right: 3%;
+      }
+    }
+  }
+
+  ul#contributors-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+      padding: 3rem 2rem 3rem 2rem;
+      border-top-width: 2px;
+      border-top-style: solid;
+      &:nth-child(n) {
+        border-top-color: $color-first-0
+      }
+      &:nth-child(2n) {
+        border-top-color: $color-fourth-0;
+      }
+      &:nth-child(3n) {
+        border-top-color: $color-third-0;
+      }
+      // border-top: 1px solid #EEE;
+      &:last-child {
+        border-bottom: 1px solid #EEE;
+      }
+    }
+    .name {
+      font-weight: bold;
+      font-size: 3rem;
+    }
+    .species {
+      text-decoration: underline;
+      font-style: italic;
+    }
+  }
+}
+
