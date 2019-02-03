@@ -12,6 +12,10 @@ defmodule Flickr.API.HTTPClient do
   @base_url "https://api.flickr.com/services/rest/?"
   @api_key Application.get_env(:treelib, :flickr_api_key)
   @user_id Application.get_env(:treelib, :flickr_user_id)
+  @oauth_config [
+    oauth_token: Application.get_env(:treelib, :flickr_oauth_token),
+    oauth_token_secret: Application.get_env(:treelib, :flickr_oauth_token_secret)
+  ]
 
   @doc """
   For parsing the response of a Flickr
@@ -70,10 +74,17 @@ defmodule Flickr.API.HTTPClient do
   https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key={api_key}photoset_id={photoset_id}&user_id={user_id}&format=json&nojsoncallback=1
   """
   def get_photos_in_photoset(photoset_id) when is_integer(photoset_id) do
-    flickr_url("flickr.photosets.getPhotos", %{ photoset_id: photoset_id, extras: "description"})
-    |> Client.get!
-    |> Map.fetch!(:body)
-    |> Parser.decode!
+    photoset_id
+    |> Flickrex.Flickr.Photosets.get_photos(@user_id, extras: "description")
+    |> Flickrex.request(@oauth_config)
+    |> case do
+      {:ok, resp} ->
+        resp.body
+      {:error, msg} ->
+        IO.puts("Failed photo resync for photoset #{photoset_id}")
+        IO.puts(msg)
+        %{}
+    end
   end
 
   @doc """

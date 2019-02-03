@@ -59,6 +59,8 @@ defmodule TreelibWeb.Router do
     pipe_through :browser
 
     get "/", AdminController, :index
+    get "/oauth", OAuthController, :index
+    post "/oauth/access_token", OAuthController, :access_token
     post "/refresh", AdminController, :refresh
     resources "/contributors", AdminContributorController
   end
