@@ -1,0 +1,8 @@
+<div id="adminNavbar">
+	<div class="title"><a href="/">Treelib</a></div>
+	<div class="item"><a href="/family/new" >Add Family</a></div>
+	<div class="item"><a href="/genus/new" >Add Genus</a></div>
+	<div class="item"><a href="/species/new" >Add Species</a></div>
+	<div class="item"><a href="/admin/contributors" >Contributors</a></div>
+	<div class="item"><a href="/admin" >Master Tree</a></div>
+</div>

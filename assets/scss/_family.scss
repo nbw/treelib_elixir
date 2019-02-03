@@ -4,7 +4,7 @@
 .family {
 	position: relative;
 	> .title {
-		.main{ 
+		.main{
 			font-size:40pt;
 			font-weight: bold;
 		}
@@ -14,7 +14,7 @@
 		}
 		padding: 10px 0 10px 0;
 		margin: 0 10px 10px 10px;
-		border-bottom: 3px black solid;
+		border-bottom: 3px $family-color solid;
 	}
 	.textContent {
 		padding: 10px 20px 20px 20px;
@@ -22,7 +22,7 @@
 			display:inline-block;
 			vertical-align: text-top;
 		}
-		.description { 
+		.description {
 			display:inline-block;
 			width:68%;
 			padding-right: 2%;
@@ -34,7 +34,7 @@
 				li {
 					padding: 5px 0 5px 0;
 				}
-			}		
+			}
 		}
 		.genera {
 			.genusTitle {
@@ -80,7 +80,7 @@
 			font-style: italic;
 		}
 		.newPhotoSelectionButton {
-			-webkit-user-select: none; /* Chrome/Safari */        
+			-webkit-user-select: none; /* Chrome/Safari */
 			-moz-user-select: none; /* Firefox */
 			-ms-user-select: none; /* IE10+ */
 			/* Rules below not implemented in browsers yet */
@@ -120,7 +120,7 @@
 			}
 			.main {
 				font-size: 2.5rem;
-			} 
+			}
 			.commonName {
 				font-size: 2.0rem;
 			}

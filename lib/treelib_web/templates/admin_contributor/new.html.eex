@@ -1,0 +1,9 @@
+<div id="app" class="admin">
+  <div>
+    <%= render TreelibWeb.AdminView, "_navbar.html", assigns %>
+
+    <h1>New Contributor</h1>
+
+    <%= render "form.html", Map.put(assigns, :action, Routes.admin_contributor_path(@conn, :create)) %>
+  </div>
+</div>

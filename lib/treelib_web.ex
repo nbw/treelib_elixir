@@ -21,7 +21,7 @@ defmodule TreelibWeb do
     quote do
       use Phoenix.Controller, namespace: TreelibWeb
       import Plug.Conn
-      import TreelibWeb.Router.Helpers
+      alias TreelibWeb.Router.Helpers, as: Routes
       import TreelibWeb.Gettext
       import TreelibWeb.JSON
       import TreelibWeb.SessionAuth
@@ -39,7 +39,7 @@ defmodule TreelibWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import TreelibWeb.Router.Helpers
+      alias TreelibWeb.Router.Helpers, as: Routes
       import TreelibWeb.ErrorHelpers
       import TreelibWeb.Gettext
       import TreelibWeb.JSON

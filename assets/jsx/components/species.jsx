@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import PhotoViewer from './photoViewer.jsx';
 import ShareLinker from './shareLinker.jsx';
+import Contributors from './contributors.jsx';
 
 class Species extends React.Component {
   constructor(props) {
@@ -97,6 +98,13 @@ class Species extends React.Component {
     }
   }
 
+  contributions() {
+    var contributors = this.props.contributors;
+    if(contributors && contributors.length > 0) {
+      return <Contributors contributors={contributors} />
+    }
+  }
+
   render() {
     var self = this,
       s = this.props.species,
@@ -137,22 +145,23 @@ class Species extends React.Component {
             {links}
           </ul>
         </div>
-        { (selectedPhoto != null) ? 
-            <PhotoViewer 
-              nextCallback={() => this.nextPhoto()} 
-              prevCallback={() => this.prevPhoto()} 
+        { (selectedPhoto != null) ?
+            <PhotoViewer
+              nextCallback={() => this.nextPhoto()}
+              prevCallback={() => this.prevPhoto()}
               closeCallback={() => this.closePhotoviewer()}
               isFullScreen={this.state.isFSPMode}
               hideSidebarCallback={() => (this.showFullSizePhoto())}
               showSidebarCallback={() => (this.closeFullSizePhoto())}
-              image={photos[selectedPhoto].medium} 
-              imageName={photos[selectedPhoto].name} 
-              imageDescription={photos[selectedPhoto].description} 
-              original = {photos[selectedPhoto].original} 
+              image={photos[selectedPhoto].medium}
+              imageName={photos[selectedPhoto].name}
+              imageDescription={photos[selectedPhoto].description}
+              original = {photos[selectedPhoto].original}
               flickr_url = {photos[selectedPhoto].flickr_url} /> : null }
             <div className="photos">
               {thumbs}
             </div>
+            { this.contributions() }
           </div>
     );
   }
