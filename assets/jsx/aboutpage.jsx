@@ -116,7 +116,7 @@ export default class About extends React.Component {
                             Blake is an industry manager, botanist and photographer with over 30 years in the forestry industry, specifically with government and industry between Canada and Japan.
                           </p>
                           <p>
-                            He is a member of the International Dendrology Society (a UK-based global group of professors and scientists dedicated to the study and teaching about woody plants) and the American Coniferous Society.
+                            He is a member of the International Dendrology Society (a UK-based global group of professors and scientists dedicated to the study and teaching about woody plants) and the American Conifer Society.
                           </p>
                         </li>
                       </ul>

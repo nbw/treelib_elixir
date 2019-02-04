@@ -48,7 +48,7 @@ export default class Home extends React.Component {
           </div>
           <div className="section">
             <p>
-              Make use of the site from any platform or device with access to an internet browser. Whether projecting in a classroom or studying from a phone while walking around a park, <b>TreeLib</b> aims to accessible everywhere.  Want to develop a specific format for your class? Contact us to develop scripts and picture series to fit your needs.
+              Make use of the site from any platform or device with access to an internet browser. Whether projecting in a classroom or studying from a phone while walking around a park, <b>TreeLib</b> aims to be accessible everywhere.  Want to develop a specific format for your class? Contact us to develop scripts and picture series to fit your needs.
             </p>
             <div className="photoBanner">
               <div>
