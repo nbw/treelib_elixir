@@ -14,16 +14,18 @@ export default class Home extends React.Component {
             <div className="innerBanner">
               <span className="helper"></span>
               <div className="wrapper">
-                A collection of high-quality tree photographs for educators, students and lay persons.
+                A high-quality tree database for educators, students and lay persons.
                 <div className="searchButton">
-                  <a  href='/search'>start searching</a>
+                  <a  href='/search'>
+                  <i className="fa fa-search"></i>
+                  start searching</a>
                 </div>
               </div>
             </div>
           </div>
           <div className="section">
             <p>
-              A <i>tree library</i> for students, professors, laymen, artists, naturalists – anyone studying trees or who just appreciates their beauty.  Need more pictures for a dendrology class, or to make your own collection, or to add background to a new website? <b>TreeLib</b> is yours all in one spot.
+            The <i>Tree Library</i> is a digital platform for teaching and studying trees with a focus on promoting awareness and understanding of trees and their global importance to the environment.
             </p>
             <div className="photoBanner">
               <div>
@@ -46,7 +48,7 @@ export default class Home extends React.Component {
           </div>
           <div className="section">
             <p>
-              Help yourself to the site, at home or in the field, to enhance your learning and understanding of the trees around you. It is not the final resource for every aspect of identification, but rather a tool to be used to visually complement many other good sources of information.  Visitors are encouraged to connect to other excellent sources of technical information such as the Northern Ontario Plant Database, Wikipedia and so on.
+              Make use of the site from any platform or device with access to an internet browser. Whether projecting in a classroom or studying from a phone while walking around a park, <b>TreeLib</b> aims to be accessible everywhere.  Want to develop a specific format for your class? Contact us to develop scripts and picture series to fit your needs.
             </p>
             <div className="photoBanner">
               <div>
@@ -58,7 +60,7 @@ export default class Home extends React.Component {
               </div>
             </div>
             <p>
-              <u><b>TreeLib</b> is for educational purposes</u> to complement many excellent sources of technical information on trees. Copying them and using them for commercial purposes is not permitted without specific written permission from the author.
+              <b>TreeLib</b> is for educational purposes.  Copying information or pictures for commercial purposes is not permitted without specific written permission from the author.
             </p>
           </div>
         </div>

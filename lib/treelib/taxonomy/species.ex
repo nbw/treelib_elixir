@@ -51,4 +51,9 @@ defmodule Treelib.Taxonomy.Species do
       where: [enabled: true],
       order_by: s.name
   end
+
+  @doc false
+  def active_count() do
+    Treelib.Repo.aggregate(from(s in __MODULE__.active), :count, :id)
+  end
 end
