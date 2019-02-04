@@ -16,7 +16,7 @@ defmodule Treelib.Contributions.Contributor do
 
     field :species_ids, {:array, :integer}, virtual: true
 
-    many_to_many :species, Species, join_through: "contributors_species"
+    many_to_many :species, Species, join_through: "contributors_species", on_replace: :delete
 
     timestamps()
   end

@@ -1,3 +1,4 @@
+require IEx
 defmodule TreelibWeb.AdminContributorView do
   use TreelibWeb, :view
 
@@ -5,7 +6,7 @@ defmodule TreelibWeb.AdminContributorView do
   defp formatted_species_list do
     Taxonomy.get_species_list()
     |> Enum.map( fn s ->
-      {s[:name], s[:id]}
+      {"#{s[:genus_name]} #{s[:name]}", s[:id]}
     end)
   end
 end

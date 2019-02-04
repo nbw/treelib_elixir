@@ -19,7 +19,7 @@ defmodule TreelibWeb.AdminContributorController do
     with {:ok, _current_user} <- auth_admin(conn) do
       contributor =
         %Contributor{}
-        |> Treelib.Repo.preload(:species)
+        |> Treelib.Repo.preload([species: [:genus]])
 
       changeset = Contributions.change_contributor(contributor)
       render(conn, "new.html", contributor: contributor, changeset: changeset)
@@ -39,7 +39,7 @@ defmodule TreelibWeb.AdminContributorController do
         {:error, %Ecto.Changeset{} = changeset} ->
           contributor =
             %Contributor{}
-            |> Treelib.Repo.preload(:species)
+            |> Treelib.Repo.preload([species: [:genus]])
           render(conn, "new.html", contributor: contributor, changeset: changeset)
       end
     else
@@ -71,6 +71,8 @@ defmodule TreelibWeb.AdminContributorController do
     with {:ok, _current_user} <- auth_admin(conn) do
       contributor = Contributions.get_contributor!(id)
 
+      contributor_params = maybe_set_empty_species(contributor_params)
+
       case Contributions.update_contributor(contributor, contributor_params) do
         {:ok, contributor} ->
           conn
@@ -97,6 +99,15 @@ defmodule TreelibWeb.AdminContributorController do
     else
       {:error, _ } -> redirect conn, to: Routes.search_path(conn, :index)
     end
+  end
+
+  defp maybe_set_empty_species(%{"species_ids" => _ } = params), do: params
+
+  # If no species_ids are passed, assume the user has removed
+  # any associated species from the contributor
+  defp maybe_set_empty_species params do
+    params
+    |> Map.put("species_ids", [])
   end
 
 end
