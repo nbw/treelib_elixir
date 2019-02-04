@@ -1,72 +1,83 @@
 .homePage {
-	.section {
-		padding: 20px 8% 20px 8%;
-	}
-	.banner {
-		min-height: $banner-height;
-		font-size: 2.8rem;
-		position: relative;
-		.innerBanner {
-			background-color: rgba(20,20,20,0.6);
-			height: 100%;
-			width: 94%;
-			padding: 0 3% 0 3%;
-			position: absolute;
-			text-align: center;
-			> * {
-				display: inline-block;
-				vertical-align: middle;
-			}
-			.helper {
-				height: 100%;
-			}
-		}
+  .section {
+    padding: 20px 8% 20px 8%;
+  }
+  .banner {
+    min-height: $banner-height;
+    font-size: 2.8rem;
+    position: relative;
+    .innerBanner {
+      background-color: rgba(20,20,20,0.6);
+      height: 100%;
+      width: 94%;
+      padding: 0 3% 0 3%;
+      position: absolute;
+      text-align: center;
+      > * {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .helper {
+        height: 100%;
+      }
+    }
 
-		&:first-child {
-			background-image: url("/images/cogyria-1.jpg");
-		}
-		&:nth-child(2n){
-			background-image: url("/images/cogyria-2.jpg");
-		}
-		&:nth-child(3n){
-			background-image: url("/images/cogyria-3.jpg");
-		}
-		background-repeat: no-repeat;
-		background-position: left top;
-		background-attachment: fixed;
-		background-size: cover;
+    &:first-child {
+      background-image: url("/images/cogyria-1.jpg");
+    }
+    &:nth-child(2n){
+      background-image: url("/images/cogyria-2.jpg");
+    }
+    &:nth-child(3n){
+      background-image: url("/images/cogyria-3.jpg");
+    }
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-attachment: fixed;
+    background-size: cover;
 
-		* {
-			color: white;
-		}
-	}
-	.searchButton {
-		cursor: pointer;
-		text-align:center;
-		margin-top: 1.2em;
-		a {
-			border-radius: 3px;
-			border: 2px solid white;
-			padding: 5px;
+    * {
+      color: white;
+    }
+  }
+  .searchButton {
+    cursor: pointer;
+    text-align:center;
+    margin-top: 1.2em;
+    a {
+      border-radius: 3px;
+      border: 2px solid white;
+      padding: 7px;
 
-			&:hover {
-				border-width: 3px;
-				text-decoration: underline;
-			}
-		}
-	}
-	.photoBanner {
-		text-align: center;
-		> div {display: inline-block;}
+      &:hover {
+        border-width: 3px;
+        i {
+          font-size: 2.7rem;
+        }
+        padding: 9px;
+      }
+      -webkit-transition: padding 0.15s; /* Safari */
+      transition: padding 0.15s;
+    }
+    i {
+      font-size: 2.5rem;
+      padding: 0 7px 0 0px;
+      -webkit-transition: font-size 0.12s; /* Safari */
+      transition: font-size 0.12s;
+    }
+  }
+  .photoBanner {
+    text-align: center;
+    > div {display: inline-block;}
 
-		img {
-			display: inline-block;
-			margin: 10px;
-			border: 1px solid #BBB;
-			&:hover {
-				border: 2px #1467eb solid;
-				margin: 9px;
-			}
-		}
-	}
+    img {
+      display: inline-block;
+      margin: 10px;
+      border: 1px solid #BBB;
+      &:hover {
+        border: 2px #1467eb solid;
+        margin: 9px;
+      }
+    }
+  }
 }

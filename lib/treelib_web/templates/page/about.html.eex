@@ -2,5 +2,13 @@
 <div class="mainContainer">
   <div id="app"></div>
 </div>
+<script type="text/javascript">
+  var pageData = {
+    "count": {
+      "genera":  <%= Treelib.Taxonomy.Genus.active_count() %>,
+      "species": <%= Treelib.Taxonomy.Species.active_count() %>
+    }
+  };
+</script>
 <script src="<%= Routes.static_path(@conn, "/js/autres.bundle.js") %>"></script>
 <script src="<%= Routes.static_path(@conn, "/js/aboutpage.js") %>"></script>

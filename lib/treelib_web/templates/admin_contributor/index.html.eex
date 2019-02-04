@@ -27,7 +27,7 @@
             <td>
               <ul>
               <%= for species <- contributor.species do %>
-                <li><%= link species.name, to: Routes.species_path(@conn, :edit, species) %></li>
+                <li><%= link "#{species.genus.name} #{species.name}", to: Routes.species_path(@conn, :edit, species) %></li>
               <% end %>
               </ul>
             </td>
