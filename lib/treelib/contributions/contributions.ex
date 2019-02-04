@@ -20,7 +20,7 @@ defmodule Treelib.Contributions do
   def list_contributors do
     Contributor.active
     |> Repo.all
-    |> Repo.preload(:species)
+    |> Repo.preload(species: [:genus])
   end
 
   @doc """

@@ -237,11 +237,12 @@ table.responsive {
 
 table.admin {
     .action {
-        display: inline-block;
+        display: block;
         min-width: 50px;
         border: 0;
         padding: 0.7rem;
         border-radius: 2px;
+        margin: 3px;
 
         color: white;
         background-color: #888;
