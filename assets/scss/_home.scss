@@ -47,12 +47,23 @@
 		a {
 			border-radius: 3px;
 			border: 2px solid white;
-			padding: 5px;
+			padding: 7px;
 
 			&:hover {
 				border-width: 3px;
-				text-decoration: underline;
+				i {
+					font-size: 2.7rem;
+				}
+				padding: 9px;
 			}
+			-webkit-transition: padding 0.15s; /* Safari */
+			transition: padding 0.15s;
+		}
+		i {
+			font-size: 2.5rem;
+			padding: 0 7px 0 0px;
+			-webkit-transition: font-size 0.12s; /* Safari */
+			transition: font-size 0.12s;
 		}
 	}
 	.photoBanner {

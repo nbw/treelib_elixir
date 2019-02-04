@@ -16,7 +16,9 @@ export default class Home extends React.Component {
               <div className="wrapper">
                 A high-quality tree database for educators, students and lay persons.
                 <div className="searchButton">
-                  <a  href='/search'>start searching</a>
+                  <a  href='/search'>
+                  <i className="fa fa-search"></i>
+                  start searching</a>
                 </div>
               </div>
             </div>
