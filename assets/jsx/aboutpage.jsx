@@ -15,12 +15,14 @@ export default class About extends React.Component {
           <div className="tableOfContents">
             <div className="tocTitle"><label><u>Contents</u></label></div>
             <ul>
-              <li><a href="#aboutPhotos">About the Photos</a></li>
-              <li><a href="#speciesConfirm">Species Confirmation</a></li>
+              <li><a href="#aboutSite">About the site</a></li>
+              <li><a href="#speciesHier">Species hierarchy</a></li>
+              <li><a href="#aboutPhotos">About the photos</a></li>
+              <li><a href="#speciesConfirm">Species confirmation</a></li>
               <li><a href="#bio">Who we are</a></li>
             </ul>
             </div><div className="content">
-            <div>
+            <div id="aboutSite">
               <label className="sectionTitle">About the site</label>
               <p>
                 <b>TreeLib</b>'s dendrology collection boasts {pg.count.genera} genera and {pg.count.species} species and continues to grow. Origins of the collection can roughly be broken down into:
@@ -45,7 +47,7 @@ export default class About extends React.Component {
             </div>
             <hr/>
             <div id="speciesHier">
-              <label className="sectionTitle">Species Hierarchy</label>
+              <label className="sectionTitle">Species hierarchy</label>
               <p>
                 All species are arranged by Taxonomic Hierarchy, beginning with Family, which is further divided into Genus and finally into Species.
               </p>
