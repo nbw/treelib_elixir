@@ -25,7 +25,7 @@ defmodule Treelib.Contributions.Contributor do
   def changeset(contributor, attrs) do
     contributor
     |> cast(attrs, [:first_name, :last_name, :description, :enabled, :species_ids])
-    |> validate_required([:first_name, :last_name, :description])
+    |> validate_required([:first_name, :last_name])
     |> maybe_load_species()
     |> maybe_assoc_species(attrs)
   end
