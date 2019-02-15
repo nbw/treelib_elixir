@@ -51,10 +51,21 @@
     .name {
       font-weight: bold;
       font-size: 3rem;
+      width: 100%;
+      display: block;
     }
     .species {
       text-decoration: underline;
       font-style: italic;
+    }
+    .description {
+      width: 50%;
+      display: inline-block;
+      vertical-align: top;
+      &:nth-child(3) {
+        width: calc(50% - 25px);
+        padding-left: 25px;
+      }
     }
   }
 }

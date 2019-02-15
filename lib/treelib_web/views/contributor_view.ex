@@ -11,4 +11,8 @@ defmodule TreelibWeb.ContributorView do
     genus_name <> " " <> species_name
   end
 
+  def description_present?(description) do
+    description && (String.trim(description) != "")
+  end
+
 end

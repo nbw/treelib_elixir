@@ -24,19 +24,17 @@
         <%= for contributor <- @contributors do %>
           <li id=<%= "cont-" <> Integer.to_string(contributor.id) %>>
             <label class="name"><%= "#{contributor.first_name} #{contributor.last_name}" %></label>
-            <p class="description"><%= contributor.description %></p>
-            <p class="description">
-              <%= if(length(contributor.species) > 0) do %>
+            <%= if (description_present?(contributor.description)) do %><p class="description"><%= contributor.description %></p><% end %><%= if(length(contributor.species) > 0) do %><p class="description">
                 <%
-                  {last_species, remaining_species} = last_species = List.pop_at(contributor.species, -1)
+                  {last_species, remaining_species} = Enum.sort(contributor.species) |> List.pop_at(-1)
                 %>
-                They've contributed to species
+                This person has contributed to species:
                 <%= for species <- remaining_species do %>
                   <%= link species_name(species), to: search_species_path(species), class: "species" %>,
                 <% end %>
                 <%= link species_name(last_species), to: search_species_path(last_species), class: "species" %>.
-              <% end %>
             </p>
+              <% end %>
           </li>
         <% end %>
       </ul>
