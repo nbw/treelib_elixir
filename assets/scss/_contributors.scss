@@ -68,5 +68,12 @@
       }
     }
   }
+
+  @media screen and (max-width: $break-medium) {
+    ul#contributors-list p.description {
+      width: 100% !important;
+      padding: 0 !important;
+    }
+  }
 }
 
