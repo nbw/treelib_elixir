@@ -47,7 +47,7 @@ defmodule Treelib.Mixfile do
       {:httpoison, "~> 1.2"}, # http client
       {:poison, "~> 3.1"}, # json (included in phx too)
 
-      {:comeonin, "~> 4.0"}, # auth
+      {:comeonin, "~> 5.1"}, # auth
       {:bcrypt_elixir, "~> 1.0"}, # encryption
 
       {:timex, "~> 3.4.2"}, # Dates and Time
