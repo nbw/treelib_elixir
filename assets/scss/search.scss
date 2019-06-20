@@ -16,7 +16,7 @@ body {
 #app {
 	width:100%;
 	.mainContainer {
-  // -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
 		width:100%;
 		> * {
 			display:inline-block;
@@ -31,7 +31,7 @@ body {
 	width: 100% - $sidebar-width;
 	height: 100%;
 	overflow-y: scroll;
-  // -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
 	> *:not(.default) {
 		>*:not(.photoViewer) {
 			margin-left: 10px;
@@ -80,7 +80,7 @@ $searchBar-list-font-color-selected: #111;
 
 	background-color: $searchBar-background;
 
-  // -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
 
 	.title {
 		background-color: $searchBar-background;
@@ -121,7 +121,7 @@ $searchBar-list-font-color-selected: #111;
 	.lists {
 		height: 100% - 2*$sidebar-title-height;
 		overflow-y: hidden;
-    // -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
 
     .familyList, .generaList, .speciesList {
       display: inline-block;
@@ -149,7 +149,7 @@ $searchBar-list-font-color-selected: #111;
 		position:relative;
 		height: 100%;
 		overflow-y: scroll;
-    // -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
 
 		li.emptySpeciesItem {
 			padding: 10px 0 10px 0;
