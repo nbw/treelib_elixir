@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Promise from 'promise';
 
 import PhotoViewer from './photoViewer.jsx';
 import ShareLinker from './shareLinker.jsx';
@@ -112,7 +111,7 @@ class Family extends React.Component {
 
     if( photos && photos.length > 0 ) {
       photos.forEach(function(link,index) {
-        if(index == selectedPhoto) { 
+        if(index == selectedPhoto) {
           thumbs.push(<img key={index} src={link.thumb} className="selected" />);
         } else {
           thumbs.push(<img key={index} src={link.thumb} onClick={() => self.update('selectedPhotoIndex',index)} />);
@@ -128,7 +127,7 @@ class Family extends React.Component {
           { window.admin ? <a href={`/family/${f.id}/edit`} className="adminEdit">edit</a> : ""}
         </div>
         <ShareLinker
-          path={'/family/' + f.id + "/" + f.name.replace(/ /g,'_')} 
+          path={'/family/' + f.id + "/" + f.name.replace(/ /g,'_')}
         />
         <div className="textContent">
           <div className="description">
@@ -141,27 +140,27 @@ class Family extends React.Component {
             </ul>
           </div>
         </div>
-        { (selectedPhoto != null) ? 
-            <PhotoViewer 
-              nextCallback={() => this.nextPhoto()} 
-              prevCallback={() => this.prevPhoto()} 
+        { (selectedPhoto != null) ?
+            <PhotoViewer
+              nextCallback={() => this.nextPhoto()}
+              prevCallback={() => this.prevPhoto()}
               closeCallback={() => this.closePhotoviewer()}
               isFullScreen={this.state.isFSPMode}
               hideSidebarCallback={() => (this.showFullSizePhoto())}
               showSidebarCallback={() => (this.closeFullSizePhoto())}
               image={photos[selectedPhoto].medium}
               imageName={photos[selectedPhoto].name}
-              imageDescription={photos[selectedPhoto].description} 
-              original = {photos[selectedPhoto].original} 
+              imageDescription={photos[selectedPhoto].description}
+              original = {photos[selectedPhoto].original}
               flickr_url = {photos[selectedPhoto].flickr_url} /> : null }
-            { thumbs.length > 0 ? 
+            { thumbs.length > 0 ?
                 <div className="photos">
                   <label className="subtitle">The photos below have been randomly selected from species in {f.name}.</label>
                   <div className="thumbs">{thumbs}</div>
                   <div onClick={ this.grabMorePhotos.bind(this, f) } className="newPhotoSelectionButton">
                     new random photo selection
                   </div>
-                </div> 
+                </div>
                 : null }
               </div>
     );
