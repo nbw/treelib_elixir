@@ -14,7 +14,7 @@ class App extends React.Component {
       sidebarMinimized: false,
       sidebarHidden: false,
       fullScreenPhotoMode: false,
-      preSelected: pg.pre_selected || null,
+      preSelected: pg.pre_selected || null
     };
   }
   componentDidMount() {
@@ -23,7 +23,7 @@ class App extends React.Component {
       if (pre.type == "species") {
         this.selectedHandler (pre.item, "species", this.update.bind(this));
       }
-      else if(pre.type == "genus") { 
+      else if(pre.type == "genus") {
         this.selectedHandler (pre.item, "genus", this.update.bind(this));
       }
       else if(pre.type == "family") {
@@ -55,14 +55,14 @@ class App extends React.Component {
         obj.genus = genera.find(function(g){ return g.id == obj.species.genus_id });
         obj.family = families.find(function(f){ return f.id == obj.genus.fam_id });
       }
-      else if(pre.type == "genus") { 
+      else if(pre.type == "genus") {
         obj.genus = pre.item;
         obj.family = families.find(function(f){ return f.id == obj.genus.fam_id });
       }
       else if(pre.type == "family") {
         obj.family = pre.item;
       }
-    } 
+    }
     return obj;
   }
 
@@ -86,7 +86,7 @@ class App extends React.Component {
         paramName = paramName.toLowerCase();
         paramValue = paramValue.toLowerCase();
 
-        if (obj[paramName]) { 
+        if (obj[paramName]) {
           if (typeof obj[paramName] === 'string') { obj[paramName] = [obj[paramName]]; }
           if (typeof paramNum === 'undefined') { obj[paramName].push(paramValue); }
           else { obj[paramName][paramNum] = paramValue; }
@@ -119,11 +119,11 @@ class App extends React.Component {
     return (
       <div className='mainContainer'>
         { hidden ? null :
-            <SearchSidebar 
+            <SearchSidebar
               title = "Family"
               tree = {pg.tree}
               selectedHandler={this.selectedHandler.bind(this)}
-              handler = {this.update.bind(this)} 
+              handler = {this.update.bind(this)}
               minimized = {this.state.sidebarMinimized}
               preSelected = {this.searchPreSelect()}
             />
@@ -136,27 +136,27 @@ class App extends React.Component {
               </div>
             </div>
             : null}
-            { type === "family" ? 
+            { type === "family" ?
                 <Family
                   key={`f-${item.id}`}
                   family={item}
-                  handler={this.update.bind(this)} 
+                  handler={this.update.bind(this)}
                   isFSPMode={this.state.fullScreenPhotoMode}
                 /> : null }
-            { type === "genus" ? 
+            { type === "genus" ?
                 <Genus
                   key={`g-${item.id}`}
                   genus={item}
-                  handler={this.update.bind(this)} 
+                  handler={this.update.bind(this)}
                   isFSPMode={this.state.fullScreenPhotoMode}
                 /> : null }
-            { type === "species" ? 
+            { type === "species" ?
                 <Species
                   key={`s-${item.id}`}
                   species={item}
                   contributors={item.contributors}
                   genus={this.findGenus(item.genus_id)}
-                  handler={this.update.bind(this)} 
+                  handler={this.update.bind(this)}
                   isFSPMode={this.state.fullScreenPhotoMode}
                 /> : null }
           </div>
