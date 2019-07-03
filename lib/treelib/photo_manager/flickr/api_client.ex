@@ -50,6 +50,10 @@ defmodule Flickr.API.HTTPClient do
 
   @return: [List] of [%Flickr.Photo]
   """
+  def parse_photo_resp %{} do
+    IO.puts("No photos to parse")
+  end
+
   def parse_photo_resp flickr_response do
     photoset_id =
       flickr_response
@@ -82,7 +86,7 @@ defmodule Flickr.API.HTTPClient do
         resp.body
       {:error, msg} ->
         IO.puts("Failed photo resync for photoset #{photoset_id}")
-        IO.puts(msg)
+        IO.inspect(msg)
         %{}
     end
   end
