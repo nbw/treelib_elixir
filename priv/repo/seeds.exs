@@ -107,10 +107,10 @@ defmodule Treelib.DbSeeder do
 
     def insert_photo(
       photoset_id \\ 72157703072517021,
-      flickr_id \\ 32407648188,
+      flickr_id \\ 34334479214,
       farm \\ 5,
-      secret \\ "cb70cf3fbc",
-      server \\ 4810
+      secret \\ "12a854bcbc",
+      server \\ 4274
     ) do
       %Photo{}
       |> Photo.changeset(%{
