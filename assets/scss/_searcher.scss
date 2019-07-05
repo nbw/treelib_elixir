@@ -1,3 +1,4 @@
+$searcher-input-height: 34px;
 $searcher-input-width: 400px;
 $searcher-ipad-input-width: 340px;
 $searcher-input-icon-width: 20px;
@@ -27,9 +28,10 @@ $searcher-grey-border: #dadada;
     -webkit-appearance: none;
     -moz-appearance: none;
     box-sizing: border-box;
-    height: 34px;
+    height: $searcher-input-height;
   }
   .icon {
+    height: $searcher-input-height - 16px - 2px;
     padding: 8px;
     border-width: 1px 1px 1px 0;
     border-color: $searcher-grey-border;
@@ -95,6 +97,8 @@ ul#searcher-results {
   }
   ul#searcher-results {
     max-width: $searcher-ipad-input-width;
+    max-height: 175px;
+    overflow-y: scroll;
     width: 100%;
   }
 }
