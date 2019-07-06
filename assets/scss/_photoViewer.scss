@@ -5,7 +5,7 @@
   background-color: #161616;
   border: 1px solid #444;
   color: #EEE;
-  a { 
+  a {
     color: #EEE;
   }
   .fullSizeImage {
@@ -60,7 +60,7 @@
       white-space: nowrap;
 
       img {
-        // width: 100%;
+        width: 100%;
         border: 1px solid #444;
         max-height: 550px;
       }
@@ -165,7 +165,7 @@
         display:block;
         margin:auto;
         max-width: 640px;
-        .title { 
+        .title {
           font-weight: bold;
         }
         .description {
@@ -225,8 +225,8 @@
       }
       .next, .prev {
         position:absolute;
-        bottom: 1em;	
-        font-size: 3rem;			
+        bottom: 1em;
+        font-size: 3rem;
       }
       .next {
         left: 75%;
