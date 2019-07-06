@@ -19,6 +19,7 @@ $searcher-grey-border: #dadada;
     font-size: 1.6rem;
     outline: none;
     padding: 7px;
+    height: $searcher-input-height;
     border: 1px solid $searcher-grey-border;
     border-left: 3px solid $searcher-grey-border;
     border-right: 0px solid $searcher-grey-border;
@@ -28,14 +29,15 @@ $searcher-grey-border: #dadada;
     -webkit-appearance: none;
     -moz-appearance: none;
     box-sizing: border-box;
-    height: $searcher-input-height;
   }
   .icon {
-    height: $searcher-input-height - 15px - 2px;
+    height: $searcher-input-height;
+    min-width: $searcher-input-height;
     padding: 8px;
     border-width: 1px 1px 1px 0;
     border-color: $searcher-grey-border;
     border-style: solid;
+    box-sizing: border-box;
     background-color: white;
     width: $searcher-input-icon-width;
     .fa-search {
