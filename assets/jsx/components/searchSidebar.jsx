@@ -38,7 +38,7 @@ class SearchSidebar extends React.Component {
     window.history.pushState({},"title","?f="+item.id);
   }
   genusClicked(item,e) {
-    this.update('selectedSpecies', null); 
+    this.update('selectedSpecies', null);
     this.update('selectedGenus', item);
     this.props.selectedHandler(item, "genus", this.props.handler);
     window.history.pushState({},"title","?g="+item.id);
@@ -87,10 +87,10 @@ class SearchSidebar extends React.Component {
         var isSelected = selectedFamily && (selectedFamily.id == item.id),
           latinName = self.state.showLatinNames ? item.name : "",
           commonName = self.state.showCommonNames ? item.common_name : "";
-        return <SidebarListItem 
-          isSelected={isSelected} 
+        return <SidebarListItem
+          isSelected={isSelected}
           value={item.id}
-          key={"f" + item.id} 
+          key={"f" + item.id}
           onClick={(event) => self.familyClicked(item, event)}
           latinName={latinName}
           commonName={commonName}
@@ -117,10 +117,10 @@ class SearchSidebar extends React.Component {
         var isSelected = selectedGenus && (selectedGenus.id == item.id),
           latinName = self.state.showLatinNames ? item.name : "",
           commonName = self.state.showCommonNames ? item.common_name : "";
-        return <SidebarListItem 
-          isSelected={isSelected} 
+        return <SidebarListItem
+          isSelected={isSelected}
           value={item.id}
-          key={"g" + item.id} 
+          key={"g" + item.id}
           onClick={(event) => self.genusClicked(item, event)}
           latinName={latinName}
           commonName={commonName}
@@ -134,10 +134,10 @@ class SearchSidebar extends React.Component {
             latinName = self.state.showLatinNames ? item.name : "",
             commonName = self.state.showCommonNames ? item.common_name : "";
           generaRows.push(
-            <SidebarListItem 
-              isSelected={isSelected} 
+            <SidebarListItem
+              isSelected={isSelected}
               value={item.id}
-              key={"g" + item.id} 
+              key={"g" + item.id}
               onClick={(event) => self.genusClicked(item, event)}
               latinName={latinName}
               commonName={commonName}
@@ -170,10 +170,10 @@ class SearchSidebar extends React.Component {
         var isSelected = selectedSpecies && (selectedSpecies.id == item.id),
           latinName = self.state.showLatinNames ?  item.genus_name + " " + item.name : "",
           commonName = self.state.showCommonNames ? item.common_name + " " + item.genus_common_name : "";
-        return <SidebarListItem 
-          isSelected={isSelected} 
-          value={item.id} 
-          key={"s" + item.id} 
+        return <SidebarListItem
+          isSelected={isSelected}
+          value={item.id}
+          key={"s" + item.id}
           onClick={(event) => self.speciesClicked(item, event)}
           latinName={latinName}
           commonName={commonName}
@@ -189,9 +189,9 @@ class SearchSidebar extends React.Component {
       //                 commonName = self.state.showCommonNames ? item.common_name + " " + item.genus_common_name : "";
 
       //             speciesRows.push(
-      //                     <SidebarListItem 
-      //                     isSelected={isSelected} 
-      //                     value={item.id} key={item.id} 
+      //                     <SidebarListItem
+      //                     isSelected={isSelected}
+      //                     value={item.id} key={item.id}
       //                     onClick={(event) => self.speciesClicked(item, event)}
       //                     latinName={latinName}
       //                     commonName={commonName}
@@ -199,7 +199,7 @@ class SearchSidebar extends React.Component {
       //             );
       //         });
       //     });
-      // });     
+      // });
     }
     // sort alphabetically
     speciesRows.sort(function(a, b){
@@ -224,11 +224,11 @@ class SearchSidebar extends React.Component {
       <div id={this.props.id}　className={ minimized ? "searchbar minimized" : "searchbar"} >
         <div className="title"><a href="/"><img src="/images/logo.png"></img><label>TreeLib</label></a></div>
         <div className="closeButton" onClick={(event) => self.hideSidebar(event)}>
-          { minimized ? 
-            <i className="fa fa-angle-right"></i> : 
+          { minimized ?
+            <i className="fa fa-angle-right"></i> :
             <i className="fa fa-angle-left"></i>}
           </div>
-          <Searcher 
+          <Searcher
             speciesHandler = {this.speciesClicked.bind(this)}
             genusHandler   = {this.genusClicked.bind(this)}
             familyHandler  = {this.familyClicked.bind(this)}
@@ -267,6 +267,11 @@ class SearchSidebar extends React.Component {
                 {speciesRows}
               </ul>
             </div>
+          </div>
+          <div className="mobileCloseButton" onClick={(event) => self.hideSidebar(event)}>
+          { minimized ?
+            <i className="fa fa-angle-down"></i> :
+            <i className="fa fa-angle-up"></i>}
           </div>
         </div>
     );
