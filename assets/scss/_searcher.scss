@@ -97,7 +97,8 @@ ul#searcher-results {
   }
   ul#searcher-results {
     max-width: $searcher-ipad-input-width;
-    max-height: 175px;
+    max-height: 225px;
+    margin-bottom: 100px;
     overflow-y: scroll;
     width: 100%;
   }
@@ -105,7 +106,7 @@ ul#searcher-results {
 @media screen and (max-width: $break-medium) {
   ul#searcher-results {
     .searcher-result:nth-child(n+6) {
-        display: none;
+      display: none;
     }
   }
 }
