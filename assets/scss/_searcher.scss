@@ -46,6 +46,8 @@ $searcher-grey-border: #dadada;
 ul#searcher-results {
   background-color: white;
   position: absolute;
+  overflow-y: scroll;
+  max-height: calc(100% - 90px);
   z-index: 1000;
   .searcher-result {
     list-style: none;
@@ -99,7 +101,6 @@ ul#searcher-results {
     max-width: $searcher-ipad-input-width;
     max-height: 225px;
     margin-bottom: 100px;
-    overflow-y: scroll;
     width: 100%;
   }
 }

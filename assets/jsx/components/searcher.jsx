@@ -14,7 +14,7 @@ class Searcher extends React.Component {
       results: []
     };
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);           
+    this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -34,7 +34,7 @@ class Searcher extends React.Component {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.update("results", []);
     }
-  } 
+  }
 
   families() {
     return this.props.tree.map(function(f){
@@ -43,7 +43,7 @@ class Searcher extends React.Component {
         name: f.name,
         common_name: f.common_name,
         item: f
-      }  
+      }
     });
   }
 
@@ -55,9 +55,9 @@ class Searcher extends React.Component {
           name: g.name,
           common_name:g.common_name,
           item: g
-        }  
+        }
       });
-    }); 
+    });
     return [].concat.apply([], g);
   }
 
@@ -70,10 +70,10 @@ class Searcher extends React.Component {
             name: `${g.name} ${s.name}`,
             common_name:  `${s.common_name} ${g.common_name} `,
             item: s
-          }  
+          }
         });
       });
-    }); 
+    });
     return [].concat.apply([],([].concat.apply([], s)));
   }
 
@@ -87,9 +87,9 @@ class Searcher extends React.Component {
     const val = e.target.value
     this.update("val", val);
     if(val.length > 2){
-      const families =  this.search(val, "families", 3); 
-      const genera   =  this.search(val, "genera",   3); 
-      const species  =  this.search(val, "species",  5); 
+      const families =  this.search(val, "families", 15);
+      const genera   =  this.search(val, "genera",   15);
+      const species  =  this.search(val, "species",  15);
       this.update("results", [].concat(species, genera, families));
     } else {
       this.update("results", []);
@@ -102,7 +102,7 @@ class Searcher extends React.Component {
     const master_list = this.state[type]
     let list = master_list.filter(
       i => (re.test(i.name.toLowerCase()) || re.test(i.common_name.toLowerCase()))
-    ); 
+    );
     return list.slice(0,num_results);
   }
 
@@ -140,7 +140,7 @@ class Searcher extends React.Component {
     return (
       <div id="searcher" ref={this.setWrapperRef}>
         <div id="searcher-input">
-          <input 
+          <input
             type="text"
             value={this.state.val}
             placeholder="enter a family, genus, or species"
