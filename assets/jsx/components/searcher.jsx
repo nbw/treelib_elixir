@@ -87,9 +87,9 @@ class Searcher extends React.Component {
     const val = e.target.value
     this.update("val", val);
     if(val.length > 2){
-      const families =  this.search(val, "families", 25);
-      const genera   =  this.search(val, "genera",   25);
-      const species  =  this.search(val, "species",  25);
+      const families =  this.search(val, "families", 50);
+      const genera   =  this.search(val, "genera",   50);
+      const species  =  this.search(val, "species",  50);
       this.update("results", [].concat(species, genera, families));
     } else {
       this.update("results", []);
