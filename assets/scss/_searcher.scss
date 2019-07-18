@@ -51,6 +51,12 @@ ul#searcher-results {
   overflow-y: scroll;
   max-height: calc(100% - 90px);
   z-index: 1000;
+  & > * {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    perspective: 1000;
+    -webkit-perspective: 1000;
+  }
   .searcher-result {
     list-style: none;
     padding: 7px 10px 7px 7px;
@@ -107,9 +113,14 @@ ul#searcher-results {
   }
 }
 @media screen and (max-width: $break-medium) {
-  ul#searcher-results {
-    .searcher-result:nth-child(n+6) {
-      display: none;
-    }
+  #searcher-input {
+    display: none;
   }
+  /*
+   ul#searcher-results {
+     .searcher-result:nth-child(n+6) {
+       display: none;
+     }
+   }
+   */
 }
