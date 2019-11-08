@@ -346,7 +346,7 @@ $searchBar-list-font-color-selected: #111;
       width: 100%;
     }
     &.content {
-      top: $sidebar-title-height;
+      top: calc(#{$sidebar-title-height} + #{$mobile-hide-height});
       > *:not( .default) { padding-top: 0;}
     }
   }
