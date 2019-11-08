@@ -18,7 +18,7 @@ class PhotoViewer extends React.Component {
   componentDidMount() {
     const viewer = this.refs.photoViewer;
     viewer.scrollIntoView({behavior: "smooth"});
-  
+
     window.addEventListener("keydown", this.handleKeyPress.bind(this));
   }
 
@@ -36,14 +36,14 @@ class PhotoViewer extends React.Component {
       this.props.prevCallback();
     }
     if(event.key === "ArrowRight") {
-      this.props.nextCallback();   
+      this.props.nextCallback();
     }
   }
   showFullSizeImage() {
     // if defined, let the parents know what's up.
     if(this.props.hideSidebarCallback) {
       this.update('showFullSize', true);
-      this.props.hideSidebarCallback(); 
+      this.props.hideSidebarCallback();
     } else {
       this.update('showFullSize', true);
     }
@@ -52,7 +52,7 @@ class PhotoViewer extends React.Component {
   closeFullSizeImage() {
     // if defined, let the parents know what's up.
     if(this.props.showSidebarCallback) {
-      this.props.showSidebarCallback(); 
+      this.props.showSidebarCallback();
     }
 
     this.update('showFullSize', false);
@@ -83,7 +83,6 @@ class PhotoViewer extends React.Component {
               <div className="photoButtons">
                 <ul>
                   <li className="fullScreen" onClick={() => self.showFullSizeImage()}><i className="fa fa-expand fa-lg"></i> </li>
-                  <li><a target="_blank" className="flickr" href={this.props.flickr_url}><i className="fa fa-flickr fa-lg"></i> </a></li>
                   <li><a className="downloadLink" href={this.props.original} download={this.props.imageName}><i className="fa fa-download fa-lg"></i> </a></li>
                 </ul>
               </div>
