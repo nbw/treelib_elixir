@@ -396,9 +396,9 @@ defmodule Treelib.PhotoManager do
   """
   def format_photo_for_web(%Photo{} = photo) do
       %{
-        thumb: PhotoBuilder.photo_url(photo, "q"),
-        medium: PhotoBuilder.photo_url(photo, "z"),
-        original: PhotoBuilder.photo_url(photo, "h"),
+        thumb: PhotoBuilder.photo_url(photo, "b"),
+        medium: PhotoBuilder.photo_url(photo, "b"),
+        original: PhotoBuilder.photo_url(photo, "b"),
         name: photo.name,
         description: photo.description,
         flickr_url: ""
