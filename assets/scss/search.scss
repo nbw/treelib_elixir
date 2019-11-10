@@ -9,7 +9,7 @@ $sidebar-title-height: 7%;
 $mobile-hide-height: 30px;
 
 $searchbar-shadow-height: 3px;
-$searchbar-shadow-color: #D0D0D0;
+$searchbar-shadow-color: #C5C5C5;
 
 body {
   box-sizing: border-box;
@@ -333,9 +333,9 @@ $searchBar-list-font-color-selected: #111;
     height: 80.1%;
     display: none;
 
-    -moz-box-shadow: 0 $searchbar-shadow-height 5px 0 $searchbar-shadow-color;
-    -webkit-box-shadow: 0 $searchbar-shadow-height 5px 0 $searchbar-shadow-color;
-    box-shadow: 0 $searchbar-shadow-height 5px 0 $searchbar-shadow-color;
+    -moz-box-shadow: 0 $searchbar-shadow-height $searchbar-shadow-height 0 $searchbar-shadow-color;
+    -webkit-box-shadow: 0 $searchbar-shadow-height $searchbar-shadow-height 0 $searchbar-shadow-color;
+    box-shadow: 0 $searchbar-shadow-height $searchbar-shadow-height 0 $searchbar-shadow-color;
   }
   .content {
     width: 100%;
