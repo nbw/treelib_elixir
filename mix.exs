@@ -20,7 +20,7 @@ defmodule Treelib.Mixfile do
   def application do
     [
       mod: {Treelib.Application, []},
-      extra_applications: [:logger, :runtime_tools, :httpoison, :timex]
+      extra_applications: [:logger, :runtime_tools, :httpoison, :timex, :sitemap]
     ]
   end
 
@@ -55,7 +55,8 @@ defmodule Treelib.Mixfile do
       # Testing
       {:ex_machina, "~> 2.1", only: :test}, # fixtures for testing
 
-      {:flickrex, "~> 0.7"}
+      {:flickrex, "~> 0.7"},
+      {:sitemap, "~> 1.1"}
     ]
   end
 

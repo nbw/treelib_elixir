@@ -49,6 +49,12 @@ defmodule TreelibWeb.Router do
     get "/contributors", ContributorController, :index
   end
 
+  scope "/", TreelibWeb do
+    get "/sitemap.xml", SitemapController, :sitemap
+    get "/sitemaps/sitemap.xml", SitemapController, :sitemap
+    get "/sitemaps/sitemap1.xml", SitemapController, :sitemap1
+  end
+
   scope "/api", TreelibWeb do
     pipe_through :api
 

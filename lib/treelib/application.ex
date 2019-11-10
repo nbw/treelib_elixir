@@ -15,6 +15,7 @@ defmodule Treelib.Application do
       # Start your own worker by calling: Treelib.Worker.start_link(arg1, arg2, arg3)
       # worker(Treelib.Worker, [arg1, arg2, arg3]),
       worker(Treelib.PhotoManager.PhotoChecker, []),
+      {TreelibWeb.Sitemap.Worker, %{}},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
