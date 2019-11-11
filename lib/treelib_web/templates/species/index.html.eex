@@ -10,9 +10,6 @@
       <p>
         Species are ordered alphabetically.
       </p>
-      <p>
-        Latin names include the genus name.
-      </p>
       <table>
         <thead>
           <tr>
@@ -29,7 +26,7 @@
               </td>
               <td>
                 <a href=<%= "/search?s=#{Integer.to_string(species.id)}" %>>
-                  <%= "#{latin_name(species)}" %>
+                  <i><%= "#{latin_name(species)}" %></i>
                 </a>
               </td>
               <td>

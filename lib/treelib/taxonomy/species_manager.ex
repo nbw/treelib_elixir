@@ -34,8 +34,9 @@ defmodule Treelib.Taxonomy.SpeciesManager do
       select: %{
         id: s.id,
         genus_name: g.name,
+        genus_common_name: g.common_name,
         species_name: s.name,
-        common_name: s.common_name
+        species_common_name: s.common_name
       })
   end
 
