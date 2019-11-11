@@ -6,7 +6,10 @@ defmodule Treelib.Taxonomy.SpeciesManager do
   import Ecto.Query, warn: false
   alias Treelib.Repo
 
-  alias Treelib.Taxonomy.Species
+  alias Treelib.Taxonomy.{
+    Species,
+    Genus
+  }
   alias Treelib.Contributions.Contributor
 
   @doc """
@@ -16,6 +19,24 @@ defmodule Treelib.Taxonomy.SpeciesManager do
     Species.active
     |> Repo.all
     |> Repo.preload([contributors: Contributor.active])
+  end
+
+  @doc """
+  Returns all active species for Species List page.
+  """
+  def species_list do
+    Repo.all(
+      from s in Species,
+      join: g in Genus,
+      on: s.genus_id == g.id,
+      where: s.enabled == true,
+      order_by: [g.name, s.name],
+      select: %{
+        id: s.id,
+        genus_name: g.name,
+        species_name: s.name,
+        common_name: s.common_name
+      })
   end
 
   @doc """
@@ -132,4 +153,8 @@ defmodule Treelib.Taxonomy.SpeciesManager do
     Species.changeset(species, %{})
   end
 
+  def with_genus(species) do
+    species
+    |> Repo.preload(:genus)
+  end
 end

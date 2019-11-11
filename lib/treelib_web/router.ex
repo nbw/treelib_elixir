@@ -39,8 +39,8 @@ defmodule TreelibWeb.Router do
     get "/genus/:id/:name", GenusController, :show
     get "/genus/:id", GenusController, :show
 
-    resources "/species", SpeciesController, except: [:index, :show]
-    get "/species.json", SpeciesController, :index
+    resources "/species", SpeciesController, except: [:show]
+    get "/species.json", SpeciesController, :index_json
     get "/species/:id/:name", SpeciesController, :show
     get "/species/:id", SpeciesController, :show
 

@@ -1,0 +1,48 @@
+<link rel="stylesheet" type="text/css" href="/css/homepage.css">
+<div id="species-index">
+  <div class="mainContainer">
+    <%= render TreelibWeb.SharedView, "_navbar.html", assigns %>
+    <div class="content">
+      <h1>Species List</h1>
+      <p>
+        A list of all <b><%= length(@species) %></b> documented species on Treelib.
+      </p>
+      <p>
+        Species are ordered alphabetically.
+      </p>
+      <p>
+        Latin names include the genus name.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Latin Name</th>
+            <th>Common Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for {species, index} <- Enum.with_index(@species) do %>
+            <tr>
+              <td>
+                <%= index + 1 %>.
+              </td>
+              <td>
+                <a href=<%= "/search?s=#{Integer.to_string(species.id)}" %>>
+                  <%= "#{latin_name(species)}" %>
+                </a>
+              </td>
+              <td>
+                <a href=<%= "/search?s=#{Integer.to_string(species.id)}" %>>
+                  <%= "#{common_name(species)}" %>
+                </a>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </ul>
+    </div>
+  </div>
+</div>
+

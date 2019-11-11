@@ -17,6 +17,12 @@ defmodule TreelibWeb.SpeciesController do
   action_fallback AdminFallbackController
 
   def index(conn, _params) do
+    species = SpeciesManager.species_list
+
+    render conn, "index.html", species: species
+  end
+
+  def index_json(conn, _params) do
     with {:ok, _current_user} <- auth_admin(conn) do
       render(conn, "index.json", species: SpeciesManager.all)
     else
