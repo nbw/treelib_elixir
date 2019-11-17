@@ -29,7 +29,7 @@ defmodule Treelib.Taxonomy.SpeciesManager do
       from s in Species,
       join: g in Genus,
       on: s.genus_id == g.id,
-      where: s.enabled == true,
+      where: s.enabled == true and s.hide == false,
       order_by: [g.name, s.name],
       select: %{
         id: s.id,
