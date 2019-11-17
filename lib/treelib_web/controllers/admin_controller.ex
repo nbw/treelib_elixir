@@ -4,6 +4,8 @@ defmodule TreelibWeb.AdminController do
   Controller for admin pages
   """
 
+  Treelib.PhotoManager.PhotoChecker
+
   action_fallback AdminFallbackController
 
   def index(conn, _params) do

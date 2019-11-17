@@ -14,10 +14,10 @@ defmodule Treelib.PhotoManager.PhotoChecker   do
   end
 
   def update do
-    GenServer.call(:photo_checker, :update, timeout())
+    GenServer.cast(:photo_checker, :update)
   end
 
-  def handle_call(:update, _from, state) do
+  def handle_cast(:update, state) do
     IO.puts("Check Flickr..")
     process()
     {:noreply, state}
