@@ -3,6 +3,7 @@
 		<li class="treelib"><a href="/"><img src="/images/logo.png"></img><label>TreeLib</label></a></li>
 		<li class="home"><a href="/">HOME</a></li>
 		<li class="search"><a href="/search">SEARCH</a></li>
+		<li class="species"><a href="/species">SPECIES</a></li>
 		<li class="about"><a href="/about">ABOUT</a></li>
 		<li class="contact"><a href="/contact">CONTACT</a></li>
 		<li class="contributors"><a href="/contributors">CONTRIBUTORS</a></li>
