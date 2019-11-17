@@ -1,8 +1,7 @@
 defmodule Flickr.Photoset do
   import Helpers.DateHelper
 
-  @enforce_keys [ :id, :date_update ]
-  defstruct [
+  @keys [
     :id,
     :farm,
     :photos,
@@ -12,14 +11,22 @@ defmodule Flickr.Photoset do
     :title,
     :can_comment,
     :count_comments,
+    :count_photos,
+    :count_videos,
     :count_views,
     :date_create,
     :date_update,
     :description,
+    :owner,
     :needs_interstitial,
+    :username,
     :videos,
     :visibility_can_see_set
   ]
+
+
+  @enforce_keys [ :id, :date_update ]
+  defstruct @keys
 
   @doc """
   Creates a new Photoset from a flickr response.
