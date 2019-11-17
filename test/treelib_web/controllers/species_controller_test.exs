@@ -110,7 +110,8 @@ defmodule TreelibWeb.SpeciesControllerTest do
           "hardiness_min_type" => "a",
           "id" => species.id,
           "name" => species.name,
-          "contributors" => []
+          "contributors" => [],
+          "hide" => false
         }
       ]
     end
