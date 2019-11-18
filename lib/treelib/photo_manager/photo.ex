@@ -24,7 +24,7 @@ defmodule Treelib.PhotoManager.Photo do
   @doc false
   def changeset(%Photo{} = photo, attrs) do
     photo
-    |> cast(attrs, [:flickr_id, :farm, :secret, :server, :name, :description, :credit, :disable_date])
+    |> cast(attrs, [:flickr_id, :farm, :secret, :server, :name, :description, :credit, :disable_date, :photoset_id])
     |> validate_required([:flickr_id, :farm, :secret, :server])
   end
 end
