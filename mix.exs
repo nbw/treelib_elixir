@@ -56,7 +56,8 @@ defmodule Treelib.Mixfile do
       {:ex_machina, "~> 2.1", only: :test}, # fixtures for testing
 
       {:flickrex, "~> 0.7"},
-      {:sitemap, "~> 1.1"}
+      {:sitemap, "~> 1.1"},
+      {:faker, "~> 0.12", only: [:dev, :test]} # for seeds
     ]
   end
 
