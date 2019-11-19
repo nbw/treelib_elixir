@@ -54,16 +54,14 @@ defmodule Flickr.API.HTTPClient do
     # Response
     photosets_resp = get_photosets(%{page: page})
 
-    # Photosets
-    photosets = photosets ++ parse_photosets_resp(photosets_resp)
-
-    # Current page
-    page = Map.fetch!(photosets, "page")
-
-    # Total pages
-    pages = Map.fetch!(photosets, "pages")
+    # Current page and total pages
+    page = Map.fetch!(photosets_resp, "page")
+    pages = Map.fetch!(photosets_resp, "pages")
 
     IO.puts("[ Photoset ]: #{page}/#{pages}")
+
+    # Photosets
+    photosets = photosets ++ parse_photosets_resp(photosets_resp)
 
     if page < pages do
       get_all_photosets(photosets, page + 1)
