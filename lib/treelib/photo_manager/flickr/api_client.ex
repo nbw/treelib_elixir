@@ -75,8 +75,9 @@ defmodule Flickr.API.HTTPClient do
 
   @return: [List] of [%Flickr.Photo]
   """
-  def parse_photo_resp %{} do
+  def parse_photo_resp(map) when map == %{} do
     IO.puts("No photos to parse")
+    []
   end
 
   def parse_photo_resp flickr_response do
