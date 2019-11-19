@@ -25,6 +25,7 @@ class App extends React.Component {
       hardiness_min_type: pg.species.hardiness_min_type || null,
       hardiness_max:      pg.species.hardiness_max || 9,
       hardiness_max_type: pg.species.hardiness_max_type || null,
+      hide: pg.species.hide || false,
       links: []
     };
   }
@@ -67,6 +68,7 @@ class App extends React.Component {
         hardiness_min_type: this.state.hardiness_min_type,
         hardiness_max: this.hardiness_max(),
         hardiness_max_type: this.state.hardiness_max_type,
+        hide: this.state.hide,
         links: this.state.links,
       })
     }).then(function(response) {
@@ -206,6 +208,17 @@ class App extends React.Component {
                   />
               </li>
               { (this.state.hardiness_enabled) ? this.hardinessInputs() : null }
+            </ul>
+            <hr />
+            <ul className="inline undecorated-list">
+              <li>
+                <CheckBoxer
+                  isChecked = {this.state.hide}
+                  handler   = {this.update.bind(this, "hide")}
+                  value = "hide"
+                  title =  {"Hide from Species page"}
+                />
+              </li>
             </ul>
             <hr />
             <Dropper

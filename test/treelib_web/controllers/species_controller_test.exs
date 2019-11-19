@@ -72,11 +72,11 @@ defmodule TreelibWeb.SpeciesControllerTest do
   end
 
   # GET /species.json
-  describe "index/2" do
+  describe "species.json/2" do
     test "Redirects to /search if non-admin (not logged in)", %{conn: conn} do
       response =
         conn
-        |> get(species_path(conn, :index))
+        |> get(species_path(conn, :index_json))
 
       assert redirected_to(response) =~ search_path(conn, :index)
     end
@@ -95,7 +95,7 @@ defmodule TreelibWeb.SpeciesControllerTest do
       response =
         conn
         |> post(session_path(conn, :create, session_params))
-        |> get(species_path(conn, :index))
+        |> get(species_path(conn, :index_json))
         |> json_response(200)
 
       assert response == [
@@ -110,7 +110,8 @@ defmodule TreelibWeb.SpeciesControllerTest do
           "hardiness_min_type" => "a",
           "id" => species.id,
           "name" => species.name,
-          "contributors" => []
+          "contributors" => [],
+          "hide" => false
         }
       ]
     end
