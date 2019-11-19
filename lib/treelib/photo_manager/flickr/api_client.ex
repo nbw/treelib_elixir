@@ -36,8 +36,8 @@ defmodule Flickr.API.HTTPClient do
     https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key={api_key}&user_id={user_id}&format=json&nojsoncallback=1
 
   """
-  def get_photosets(_opts \\ %{}) do
-    flickr_url("flickr.photosets.getList")
+  def get_photosets(opts \\ %{}) do
+    flickr_url("flickr.photosets.getList", opts)
     |> Client.get!
     |> Map.fetch!(:body)
     |> Parser.decode!
