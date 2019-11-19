@@ -10,6 +10,9 @@
       <p>
         Species are ordered alphabetically by Latin name.
       </p>
+      <p>
+        Clicking on a species name will open its species page.
+      </p>
       <table>
         <thead>
           <tr>
@@ -25,12 +28,12 @@
                 <%= index + 1 %>.
               </td>
               <td>
-                <a href=<%= "/search?s=#{Integer.to_string(species.id)}" %>>
+                <a target="_blank" href=<%= "/search?s=#{Integer.to_string(species.id)}" %>>
                   <i><%= "#{latin_name(species)}" %></i>
                 </a>
               </td>
               <td>
-                <a href=<%= "/search?s=#{Integer.to_string(species.id)}" %>>
+                <a target="_blank" href=<%= "/search?s=#{Integer.to_string(species.id)}" %>>
                   <%= "#{common_name(species)}" %>
                 </a>
               </td>
