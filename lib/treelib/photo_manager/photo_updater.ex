@@ -15,7 +15,7 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   """
   def process_all do
     photo_albums = PhotoManager.list_albums
-    photosets = @flickr.get_photosets |> @flickr.parse_photosets_resp
+    photosets = @flickr.get_all_photosets
     PhotoUpdater.process(photo_albums, photosets)
   end
 
@@ -36,6 +36,7 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
       IO.puts("[ Creates ]:")
       PhotoUpdater.process_creates(pas,pss)
     end)
+      IO.puts("[ Done ]:")
   end
 
 

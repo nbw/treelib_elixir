@@ -8,7 +8,6 @@ defmodule Flickr.API.Mock do
   def parse_photosets_resp flickr_response do
 
     flickr_response
-    |> Map.fetch!("photosets")
     |> Map.fetch!("photoset")
     |> Enum.map(&(Flickr.Photoset.new(&1)))
   end
@@ -23,6 +22,12 @@ defmodule Flickr.API.Mock do
     |> Map.fetch!("photoset")
     |> Map.fetch!("photo")
     |> Enum.map(&(Flickr.Photo.new(&1, photoset_id)))
+  end
+
+
+  # TO DO
+  def get_all_photosets(photosets \\ [], page \\ 1) do
+    nil
   end
 
   def get_photosets(%{ok_date: ok_date, update_date: update_date} \\ %{ok_date: Timex.now, update_date: Timex.now}) do
@@ -103,7 +108,7 @@ defmodule Flickr.API.Mock do
         ]
       }
     }
-
+    |> Map.fetch!("photosets")
   end
 
   def get_photos_in_photoset(photoset_id) when is_integer(photoset_id) do

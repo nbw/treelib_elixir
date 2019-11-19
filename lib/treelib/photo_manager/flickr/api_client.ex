@@ -25,7 +25,6 @@ defmodule Flickr.API.HTTPClient do
   """
   def parse_photosets_resp flickr_response do
     flickr_response
-    |> Map.fetch!("photosets")
     |> Map.fetch!("photoset")
     |> Enum.map(&(Flickr.Photoset.new(&1)))
   end
@@ -42,8 +41,36 @@ defmodule Flickr.API.HTTPClient do
     |> Client.get!
     |> Map.fetch!(:body)
     |> Parser.decode!
+    |> Map.fetch!("photosets")
   end
 
+  @doc """
+  get_photosets that accounts for pages
+
+  Also does the parsing
+  """
+  def get_all_photosets(photosets \\ [], page \\ 1) do
+
+    # Response
+    photosets_resp = get_photosets(%{page: page})
+
+    # Photosets
+    photosets = photosets ++ parse_photosets_resp(photosets_resp)
+
+    # Current page
+    page = Map.fetch!(photosets, "page")
+
+    # Total pages
+    pages = Map.fetch!(photosets, "pages")
+
+    IO.puts("[ Photoset ]: #{page}/#{pages}")
+
+    if page < pages do
+      get_all_photosets(photosets, page + 1)
+    else
+      photosets
+    end
+  end
   @doc """
   For parsing the response of a Flickr
   photo request.
