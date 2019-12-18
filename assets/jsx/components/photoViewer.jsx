@@ -6,7 +6,8 @@ class PhotoViewer extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      showFullSize: props.isFullScreen
+      showFullSize: props.isFullScreen,
+      drift: null
     };
   }
 
@@ -22,9 +23,13 @@ class PhotoViewer extends React.Component {
 
     window.addEventListener("keydown", this.handleKeyPress.bind(this));
 
-    new Drift(document.getElementById('imageMain'), {
-      paneContainer: document.getElementById('imageZoom')
-    });
+    this.update(
+      'drift',
+      new Drift(document.getElementById('imageMain'), {
+        paneContainer: document.getElementById('imageZoom'),
+        boundingBoxContainer: document.getElementById('imageContainer')
+      })
+    );
 
     this.trackMouseForZoom("imageZoom", "imageMain");
   }
@@ -32,6 +37,10 @@ class PhotoViewer extends React.Component {
   componentWillReceiveProps(nextProps){
     const viewer = this.refs.photoViewer;
     viewer.scrollIntoView({behavior: "smooth"});
+
+    if (this.props.drift) {
+      this.props.drift.setZoomImageURL(nextProps.image);
+    }
   }
 
   componentWillUnmount(){
