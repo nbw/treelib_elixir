@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Drift from 'drift-zoom';
 
 class PhotoViewer extends React.Component {
   constructor(props) {
@@ -20,6 +21,12 @@ class PhotoViewer extends React.Component {
     viewer.scrollIntoView({behavior: "smooth"});
 
     window.addEventListener("keydown", this.handleKeyPress.bind(this));
+
+    new Drift(document.getElementById('imageMain'), {
+      paneContainer: document.getElementById('imageZoom')
+    });
+
+    this.trackMouseForZoom("imageZoom", "imageMain");
   }
 
   componentWillReceiveProps(nextProps){
@@ -39,6 +46,7 @@ class PhotoViewer extends React.Component {
       this.props.nextCallback();
     }
   }
+
   showFullSizeImage() {
     // if defined, let the parents know what's up.
     if(this.props.hideSidebarCallback) {
@@ -58,6 +66,41 @@ class PhotoViewer extends React.Component {
     this.update('showFullSize', false);
   }
 
+  trackMouseForZoom(id, container) {
+    var div = document.getElementById(id);
+    var container = document.getElementById(container);
+    var x, y, offset;
+    self = this;
+
+    window.addEventListener('mousemove', function(event){
+      x = event.clientX;
+      y = event.clientY;
+
+      if ( typeof x !== 'undefined' ){
+        offset = (self.getOffset(container).left + container.offsetWidth) - x;
+
+        if (offset < div.offsetWidth) {
+          div.style.left = (x - div.offsetWidth) + "px";
+        } else {
+          div.style.left = x + "px";
+        }
+
+        div.style.top = y + "px";
+      }
+    }, false);
+  }
+
+  getOffset(el) {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+  }
+
   render() {
     var self = this,
       show = this.props.isFullScreen ? 'show' : '' ;
@@ -66,7 +109,7 @@ class PhotoViewer extends React.Component {
         <div onClick={() => (self.closeFullSizeImage())} className={"fullSizeImage " + show }>
           <span className="helper"></span>
           <div className="imageWrapper">
-            <img src={this.props.original} />
+            <img src={this.props.original}  />
             <div className="info">
               <label className="title">{this.props.imageName}</label>
               <p className="description">{this.props.imageDescription}</p>
@@ -79,7 +122,10 @@ class PhotoViewer extends React.Component {
           <div className="imageWrapper">
             <span className="helper"></span>
             <div className="imageInnerWrapper">
-              <img src={this.props.image} onClick={() => self.showFullSizeImage()} />
+              <div id="imageContainer">
+                <img id="imageMain" src={this.props.image + "?w=826"} data-zoom={this.props.image + "?w=1200"} onClick={() => self.showFullSizeImage()}/>
+                <div id="imageZoom"></div>
+              </div>
               <div className="photoButtons">
                 <ul>
                   <li className="fullScreen" onClick={() => self.showFullSizeImage()}><i className="fa fa-expand fa-lg"></i> </li>

@@ -5,9 +5,30 @@
   background-color: #161616;
   border: 1px solid #444;
   color: #EEE;
+
   a {
     color: #EEE;
   }
+
+  #imageZoom {
+    border: 1px solid #AAA;
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    pointer-events: none;
+    display: none;
+  }
+
+  #imageContainer {
+    max-width: 100%;
+    max-height: 550px;
+    &:hover {
+      #imageZoom {
+        display: block;
+      }
+    }
+  }
+
   .fullSizeImage {
     position: fixed;
     z-index: 9999;
@@ -60,9 +81,9 @@
       white-space: nowrap;
 
       img {
-        max-width: 100%;
+        max-width: inherit;
+        max-height: inherit;
         border: 1px solid #444;
-        max-height: 550px;
       }
       .helper {
         display: inline-block;
