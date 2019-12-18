@@ -7,7 +7,8 @@ class PhotoViewer extends React.Component {
     super();
     this.state = {
       showFullSize: props.isFullScreen,
-      drift: null
+      drift: null,
+      fullDrift: null,
     };
   }
 
@@ -23,6 +24,7 @@ class PhotoViewer extends React.Component {
 
     window.addEventListener("keydown", this.handleKeyPress.bind(this));
 
+    // Drift in normal mode
     this.update(
       'drift',
       new Drift(document.getElementById('imageMain'), {
@@ -32,7 +34,18 @@ class PhotoViewer extends React.Component {
       })
     );
 
+    // Drift in fullscreen mode
+    this.update(
+      'driftFull',
+      new Drift(document.getElementById('fullImage'), {
+        paneContainer: document.getElementById('fullImageZoom'),
+        boundingBoxContainer: document.getElementById('fullImageContainer'),
+        zoomFactor: 1.8
+      })
+    );
+
     this.trackMouseForZoom("imageZoom", "imageMain");
+    this.trackMouseForZoom("fullImageZoom", "fullImage");
   }
 
   componentWillReceiveProps(nextProps){
@@ -41,6 +54,7 @@ class PhotoViewer extends React.Component {
 
     if (this.state.drift) {
       this.state.drift.setZoomImageURL(nextProps.image);
+      this.state.driftFull.setZoomImageURL(nextProps.original);
     }
   }
 
@@ -118,8 +132,9 @@ class PhotoViewer extends React.Component {
       <div ref="photoViewer" className="photoViewer">
         <div onClick={() => (self.closeFullSizeImage())} className={"fullSizeImage " + show }>
           <span className="helper"></span>
-          <div className="imageWrapper">
-            <img src={this.props.original}  />
+          <div id="fullImageContainer" className="imageWrapper">
+            <img id="fullImage" src={this.props.original + "?w=900"} data-zoom={this.props.original + "?w=1000"} />
+            <div id="fullImageZoom"></div>
             <div className="info">
               <label className="title">{this.props.imageName}</label>
               <p className="description">{this.props.imageDescription}</p>

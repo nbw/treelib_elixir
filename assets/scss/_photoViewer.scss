@@ -10,13 +10,14 @@
     color: #EEE;
   }
 
-  #imageZoom {
+  #imageZoom, #fullImageZoom {
     border: 1px solid #AAA;
     width: 200px;
     height: 200px;
     position: fixed;
     pointer-events: none;
     display: none;
+    z-index: 9000;
   }
 
   #imageContainer {
@@ -29,9 +30,17 @@
     }
   }
 
+  #fullImageContainer {
+    &:hover {
+      #fullImageZoom {
+        display: block;
+      }
+    }
+  }
+
   .fullSizeImage {
     position: fixed;
-    z-index: 9999;
+    z-index: 9000;
     opacity: 0;
     top: 0;
     left: 0;
@@ -50,11 +59,11 @@
       height: 100%;
     }
     .imageWrapper{
-      // max-width: 70%;
       height: 90%;
+      max-height: 93%;
       img {
-        // max-width: 90%;
-        max-height: 93%;
+        max-width: inherit;
+        max-height: inherit;
       }
       .info {
         .title{ font-weight: bold;}
