@@ -27,7 +27,8 @@ class PhotoViewer extends React.Component {
       'drift',
       new Drift(document.getElementById('imageMain'), {
         paneContainer: document.getElementById('imageZoom'),
-        boundingBoxContainer: document.getElementById('imageContainer')
+        boundingBoxContainer: document.getElementById('imageContainer'),
+        zoomFactor: 2.2
       })
     );
 
@@ -132,7 +133,7 @@ class PhotoViewer extends React.Component {
             <span className="helper"></span>
             <div className="imageInnerWrapper">
               <div id="imageContainer">
-                <img id="imageMain" src={this.props.image + "?w=826"} data-zoom={this.props.image + "?w=1200"} onClick={() => self.showFullSizeImage()}/>
+                <img id="imageMain" src={this.props.image + "?w=826"} data-zoom={this.props.image + "?w=1000"} onClick={() => self.showFullSizeImage()}/>
                 <div id="imageZoom"></div>
               </div>
               <div className="photoButtons">
