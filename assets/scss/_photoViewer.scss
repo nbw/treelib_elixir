@@ -23,6 +23,7 @@
   #imageContainer {
     max-width: 100%;
     max-height: 550px;
+    cursor: zoom-in;
     &:hover {
       #imageZoom {
         display: block;
@@ -31,6 +32,7 @@
   }
 
   #fullImageContainer {
+    cursor: zoom-in;
     &:hover {
       #fullImageZoom {
         display: block;
