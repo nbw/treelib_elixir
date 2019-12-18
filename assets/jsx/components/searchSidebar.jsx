@@ -33,22 +33,35 @@ class SearchSidebar extends React.Component {
   familyClicked(item,e) {
     this.update('selectedGenus', null);
     this.update('selectedSpecies', null);
-    this.props.selectedHandler(item, "family", this.props.handler);
     this.update('selectedFamily', item);
+
+    this.props.selectedHandler(item, "family", this.props.handler);
+
     window.history.pushState({},"title","?f="+item.id);
   }
-  genusClicked(item,e) {
+  genusClicked(genus,e) {
+    var family = this.findFamily(genus.fam_id);
+    console.log(family);
+
     this.update('selectedSpecies', null);
-    this.update('selectedGenus', item);
-    this.props.selectedHandler(item, "genus", this.props.handler);
-    window.history.pushState({},"title","?g="+item.id);
+    this.update('selectedFamily', family);
+    this.update('selectedGenus', genus);
+
+    this.props.selectedHandler(genus, "genus", this.props.handler);
+
+    window.history.pushState({},"title","?g="+genus.id);
   }
   speciesClicked(species,e) {
     species = this.preloadSpeciesWithGenus(species);
-    this.props.selectedHandler(species, "species", this.props.handler);
+    var genus = this.findGenus(species.genus_id);
+    var family = this.findFamily(genus.fam_id);
+
+    this.update('selectedFamily', family);
+    this.update('selectedGenus', genus);
     this.update('selectedSpecies', species);
-    var genus_name = species.genus_name.toLowerCase(),
-      name = species.name.toLowerCase();
+
+    this.props.selectedHandler(species, "species", this.props.handler);
+
     window.history.pushState({},"title","?s="+species.id);
   }
   hideSidebar(e) {
@@ -69,7 +82,11 @@ class SearchSidebar extends React.Component {
       if(genus){break;}
     }
     return genus;
-  };
+  }
+
+  findFamily(family_id) {
+    return this.props.tree.find(function(f) { return f.id == family_id});
+  }
 
   preloadSpeciesWithGenus(species){
     var genus = this.findGenus(species.genus_id);
