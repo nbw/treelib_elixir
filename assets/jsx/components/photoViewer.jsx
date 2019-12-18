@@ -38,8 +38,8 @@ class PhotoViewer extends React.Component {
     const viewer = this.refs.photoViewer;
     viewer.scrollIntoView({behavior: "smooth"});
 
-    if (this.props.drift) {
-      this.props.drift.setZoomImageURL(nextProps.image);
+    if (this.state.drift) {
+      this.state.drift.setZoomImageURL(nextProps.image);
     }
   }
 
