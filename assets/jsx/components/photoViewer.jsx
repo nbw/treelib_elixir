@@ -101,15 +101,15 @@ class PhotoViewer extends React.Component {
       y = event.clientY;
 
       if ( typeof x !== 'undefined' ){
-        offset = (self.getOffset(container).left + container.offsetWidth) - x;
+        // offset = (self.getOffset(container).left + container.offsetWidth) - x;
+        //
+        // if (offset < div.offsetWidth) {
+        //   div.style.left = (x - div.offsetWidth - 100) + "px";
+        // } else {
+        div.style.left = (x - 100) + "px";
+        // }
 
-        if (offset < div.offsetWidth) {
-          div.style.left = (x - div.offsetWidth) + "px";
-        } else {
-          div.style.left = x + "px";
-        }
-
-        div.style.top = y + "px";
+        div.style.top = (y - 100) + "px";
       }
     }, false);
   }
