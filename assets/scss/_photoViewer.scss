@@ -31,13 +31,6 @@
     }
   }
 
-  @media (hover: none) {
-    #imageContainer:hover {
-      #imageZoom {
-        display: none;
-      }
-    }
-  }
 
   #fullImageContainer {
     cursor: none;
@@ -287,4 +280,18 @@
     }
   }
 
+}
+
+@media (hover: none) {
+  #imageContainer:hover {
+    #imageZoom {
+      display: none;
+    }
+  }
+
+  #fullImageContainer:hover {
+    #fullImageZoom {
+      display: block;
+    }
+  }
 }
