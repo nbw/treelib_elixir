@@ -23,10 +23,18 @@
   #imageContainer {
     max-width: 100%;
     max-height: 550px;
-    cursor: zoom-in;
+    cursor: none;
     &:hover {
       #imageZoom {
         display: block;
+      }
+    }
+  }
+
+  @media (hover: none) {
+    #imageContainer:hover {
+      #imageZoom {
+        display: none;
       }
     }
   }
