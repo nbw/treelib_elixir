@@ -24,28 +24,31 @@ class PhotoViewer extends React.Component {
 
     window.addEventListener("keydown", this.handleKeyPress.bind(this));
 
-    // Drift in normal mode
-    this.update(
-      'drift',
-      new Drift(document.getElementById('imageMain'), {
-        paneContainer: document.getElementById('imageZoom'),
-        boundingBoxContainer: document.getElementById('imageContainer'),
-        zoomFactor: 2.2
-      })
-    );
+    // Only use Drift for non-mobile
+    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      // Drift in normal mode
+      this.update(
+        'drift',
+        new Drift(document.getElementById('imageMain'), {
+          paneContainer: document.getElementById('imageZoom'),
+          boundingBoxContainer: document.getElementById('imageContainer'),
+          zoomFactor: 2.2
+        })
+      );
 
-    // Drift in fullscreen mode
-    this.update(
-      'driftFull',
-      new Drift(document.getElementById('fullImage'), {
-        paneContainer: document.getElementById('fullImageZoom'),
-        boundingBoxContainer: document.getElementById('fullImageContainer'),
-        zoomFactor: 1.8
-      })
-    );
+      // Drift in fullscreen mode
+      this.update(
+        'driftFull',
+        new Drift(document.getElementById('fullImage'), {
+          paneContainer: document.getElementById('fullImageZoom'),
+          boundingBoxContainer: document.getElementById('fullImageContainer'),
+          zoomFactor: 1.8
+        })
+      );
 
-    this.trackMouseForZoom("imageZoom", "imageMain");
-    this.trackMouseForZoom("fullImageZoom", "fullImage");
+      this.trackMouseForZoom("imageZoom", "imageMain");
+      this.trackMouseForZoom("fullImageZoom", "fullImage");
+    }
   }
 
   componentWillReceiveProps(nextProps){

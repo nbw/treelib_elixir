@@ -282,16 +282,11 @@
 
 }
 
-@media (hover: none) {
-  #imageContainer:hover {
-    #imageZoom {
+@media(hover: hover) and (pointer: fine) {
+  #imageZoom, #fullImageZoom {
       display: none;
-    }
-  }
-
-  #fullImageContainer:hover {
-    #fullImageZoom {
-      display: block;
-    }
+      &:hover {
+        display: none;
+      }
   }
 }
