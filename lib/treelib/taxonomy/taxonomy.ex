@@ -71,7 +71,7 @@ defmodule Treelib.Taxonomy do
   """
   def get_species_list do
     Species.active
-    |> join(:inner, [s], g in Genus, s.genus_id == g.id)
+    |> join(:inner, [s], g in Genus, on: s.genus_id == g.id)
     |> select([s,g], %{id: s.id, name: s.name, genus_name: g.name })
     |> order_by([p], asc: p.name)
     |> Repo.all

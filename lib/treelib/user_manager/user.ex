@@ -1,7 +1,7 @@
 defmodule Treelib.UserManager.User do
   use Ecto.Schema
   import Ecto.Changeset
-  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
+  import Bcrypt, only: [hash_pwd_salt: 1]
   alias Treelib.UserManager.User
 
 
@@ -46,7 +46,7 @@ defmodule Treelib.UserManager.User do
   end
 
   defp maybe_hash_password(%{valid?: true, changes: %{password: password}} = changeset),
-  do: put_change(changeset, :pw_hash, hashpwsalt(password))
+  do: put_change(changeset, :pw_hash, hash_pwd_salt(password))
   defp maybe_hash_password(changeset),
   do: changeset
 end

@@ -4,8 +4,8 @@ defmodule Treelib.Mixfile do
   def project do
     [
       app: :treelib,
-      version: "0.0.2",
-      elixir: "~> 1.7.2",
+      version: "0.0.3",
+      elixir: "~> 1.9.4",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -33,29 +33,29 @@ defmodule Treelib.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.0"},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix, "~> 1.4.6"},
+      {:phoenix_pubsub, "~> 1.1.2"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.0"},
-      {:postgrex, ">= 0.0.0"},
+      {:ecto_sql, "~> 3.3.2"},
+      {:postgrex, ">= 0.14.3"},
       # {:mariaex, "~> 0.8.2"},
-      {:phoenix_html, "~> 2.11"},
+      {:phoenix_html, "~> 2.13.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
-      {:plug_cowboy, "~> 2.0"},
+      {:plug_cowboy, "~> 2.1"},
 
       {:httpoison, "~> 1.2"}, # http client
       {:poison, "~> 3.1"}, # json (included in phx too)
 
-      {:comeonin, "~> 4.0"}, # auth
-      {:bcrypt_elixir, "~> 1.0"}, # encryption
+      {:comeonin, "~> 5.0"}, # auth
+      {:bcrypt_elixir, "~> 2.0"}, # encryption
 
-      {:timex, "~> 3.4.2"}, # Dates and Time
+      {:timex, "~> 3.6.1"}, # Dates and Time
 
       # Testing
-      {:ex_machina, "~> 2.1", only: :test}, # fixtures for testing
+      {:ex_machina, "~> 2.3", only: :test}, # fixtures for testing
 
-      {:flickrex, "~> 0.7"},
+      {:flickrex, "~> 0.8"},
       {:sitemap, "~> 1.1"},
       {:faker, "~> 0.12", only: [:dev, :test]} # for seeds
     ]

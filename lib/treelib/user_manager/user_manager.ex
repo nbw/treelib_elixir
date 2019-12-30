@@ -119,11 +119,11 @@ defmodule Treelib.UserManager do
   """
   def authenticate_with_email_and_password(email, password) do
     with %User{pw_hash: hash} = user <- Repo.get_by(User, email: email),
-         true <- Comeonin.Bcrypt.checkpw(password, hash) do
+         true <- Bcrypt.verify_pass(password, hash) do
            {:ok, user}
     else
       _ ->
-        Comeonin.Bcrypt.dummy_checkpw()
+        Bcrypt.no_user_verify()
         {:error, :unauthorized}
          end
   end
