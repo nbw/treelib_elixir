@@ -16,7 +16,7 @@ defmodule TreelibWeb.SpeciesLiveView do
                 genus_common_name: g_cn,
                 species_name: s_n,
                 species_common_name: s_cn} = species ->
-                  Map.put(species, :searchable_string, "#{g_cn} #{g_n} #{s_cn} #{s_n}")
+                  Map.put(species, :searchable_string, String.downcase("#{g_cn} #{g_n} #{s_cn} #{s_n}"))
               end)
 
     {:ok, assign(socket, species: species, filtered_species: species)}
