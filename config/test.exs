@@ -4,7 +4,10 @@ use Mix.Config
 # you can enable the server option below.
 config :treelib, TreelibWeb.Endpoint,
   http: [port: 4001],
-  server: false
+  server: false,
+  live_view: [
+    signing_salt: "SECRET_SALT"
+  ]
 
 # Print only warnings and errors during test
 config :logger, level: :warn

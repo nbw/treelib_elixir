@@ -51,7 +51,11 @@ config :treelib, TreelibWeb.Endpoint,
   url: [scheme: "https", host: "treelib.ca", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
+  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+  live_view: [
+    signing_salt: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+  ]
+
 
 # Configure your database
 config :treelib, Treelib.Repo,

@@ -12,7 +12,10 @@ config :treelib, TreelibWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [npm: ["run", "watch", cd: Path.expand("../assets", __DIR__)]]
+  watchers: [npm: ["run", "watch", cd: Path.expand("../assets", __DIR__)]],
+  live_view: [
+    signing_salt: "SECRET_SALT"
+  ]
   # watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
   #                   cd: Path.expand("../assets", __DIR__)]]
   # watchers: [
