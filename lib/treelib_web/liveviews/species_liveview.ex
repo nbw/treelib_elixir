@@ -29,7 +29,7 @@ defmodule TreelibWeb.SpeciesLiveView do
       "" -> species
       nil -> species
       q -> Enum.filter(species, fn %{searchable_string: s} ->
-          String.contains?(s, query)
+          String.contains?(s, String.downcase(query))
       end)
     end
 
