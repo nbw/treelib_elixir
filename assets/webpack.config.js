@@ -18,6 +18,7 @@ module.exports = {
     homepage: "./jsx/homepage.jsx",
     aboutpage: "./jsx/aboutpage.jsx",
     contactpage: "./jsx/contactpage.jsx",
+    species_list_page: "./jsx/species_list_page.jsx",
     autres: ['react', 'react-dom','whatwg-fetch', './js/phoenix_html.js'],
   },
   output: {

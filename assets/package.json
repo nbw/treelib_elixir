@@ -10,9 +10,14 @@
     "watch:sass": "node-sass ./scss/ -o ../priv/static/css/ --watch --progress --inline"
   },
   "dependencies": {
+    "child-replace-with-polyfill": "^1.0.1",
+    "classlist-polyfill": "^1.2.0",
     "drift-zoom": "^1.4.0",
+    "formdata-polyfill": "^3.0.19",
+    "mdn-polyfills": "^5.19.0",
     "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html"
+    "phoenix_html": "file:../deps/phoenix_html",
+    "url-search-params-polyfill": "^7.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
