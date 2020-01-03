@@ -8,18 +8,26 @@ defmodule TreelibWeb.SpeciesController do
   alias Treelib.PhotoManager.PhotoBuilder
 
   alias Treelib.Taxonomy
-  alias Treelib.Taxonomy.SpeciesManager
-  alias Treelib.Taxonomy.Species
-  alias Treelib.Taxonomy.GenusManager
-  alias Treelib.Taxonomy.Genus
-  alias Treelib.Taxonomy.Species.HardinessTypes
+  alias Treelib.Taxonomy.{
+    SpeciesManager,
+    Species,
+    GenusManager,
+    Genus,
+    Species.HardinessType
+   }
 
   action_fallback AdminFallbackController
 
   def index(conn, _params) do
     species = SpeciesManager.species_list
 
-    render conn, "index.html", species: species
+    live_render(conn, TreelibWeb.SpeciesLiveView,
+      species: species,
+      session: %{
+        species: species
+      })
+
+    # render conn, "index.html", species: species
   end
 
   def index_json(conn, _params) do

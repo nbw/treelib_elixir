@@ -16,13 +16,20 @@
       <table>
         <thead>
           <tr>
+            <th colspan="3">
+              <form phx-change="search" class="search-form">
+                <%= text_input :search_field, :query, placeholder: "Search", autofocus: true, "phx-debounce": "300" %>
+              </form>
+            </th>
+          </tr>
+          <tr>
             <th></th>
             <th>Latin Name</th>
             <th>Common Name</th>
           </tr>
         </thead>
         <tbody>
-          <%= for {species, index} <- Enum.with_index(@species) do %>
+          <%= for {species, index} <- Enum.with_index(@filtered_species) do %>
             <tr>
               <td>
                 <%= index + 1 %>.
@@ -45,4 +52,5 @@
     </div>
   </div>
 </div>
-
+<script src="<%= Routes.static_path(@socket, "/js/autres.bundle.js") %>"></script>
+<script src="<%= Routes.static_path(@socket, "/js/species_list_page.js") %>"></script>

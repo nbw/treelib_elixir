@@ -36,7 +36,7 @@ defmodule Treelib.Taxonomy.SpeciesManager do
         genus_name: g.name,
         genus_common_name: g.common_name,
         species_name: s.name,
-        species_common_name: s.common_name
+        species_common_name: s.common_name,
       })
   end
 

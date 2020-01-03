@@ -38,6 +38,18 @@
       }
     }
   }
+
+  #search_field_query {
+    padding: 5px;
+    min-width: 300px;
+    border-width: 1px 1px 1px 3px;
+    border-color: #777;
+    border-style: solid;
+    font-size: 1.5rem;
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 
