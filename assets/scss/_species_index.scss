@@ -40,6 +40,12 @@
   }
 
   #search_field_query {
+		/* For ios, remove shadow */
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+
+
 		height: 30px;
     padding: 5px;
     min-width: 250px;
