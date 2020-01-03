@@ -27,6 +27,7 @@ defmodule TreelibWeb.SpeciesLiveView do
 
     filtered_species = case query do
       "" -> species
+      nil -> species
       q -> Enum.filter(species, fn %{searchable_string: s} ->
           String.contains?(s, query)
       end)
