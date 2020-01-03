@@ -73,7 +73,7 @@ defmodule TreelibWeb.SpeciesController do
             genera: genera,
             photo_albums: photo_albums,
             photos: photos,
-            hardiness_types: HardinessTypes.all
+            hardiness_types: Species.HardinessTypes.all
           })
     else
       {:error, :not_found} -> redirect(conn, to: Routes.species_path(conn, :new))
