@@ -13,6 +13,23 @@
 
     th {
       text-align: center;
+      > * {
+        vertical-align: top;
+      }
+      i {
+        margin-left: 3px;
+        opacity: 0.5;
+        &:hover{ opacity: 1;}
+      }
+      .fa-sort-up {
+        margin-bottom: 0;
+        margin-top: 5px;
+      }
+      .fa-sort-down {
+        margin-bottom: 7px;
+        margin-top: -2px;
+      }
+
     }
 
     td, th {
@@ -40,13 +57,13 @@
   }
 
   #search_field_query {
-		/* For ios, remove shadow */
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
+    /* For ios, remove shadow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 
 
-		height: 30px;
+    height: 30px;
     padding: 5px;
     min-width: 250px;
     border-width: 1px 0px 1px 3px;
@@ -57,22 +74,22 @@
       outline: none;
     }
     margin: 1rem 0 1rem 0;
-		display: inline-block;
-		vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
     border-radius: 0;
   }
   #search_field_logo {
-		display: inline-block;
+    display: inline-block;
     border-width: 1px 1px 1px 0px;
     color: #777;
     border-color: #777;
     border-style: solid;
-		height: 28px;
-		vertical-align: middle;
-		i {
-			padding: 5px;
-		}
-	}
+    height: 28px;
+    vertical-align: middle;
+    i {
+      padding: 5px;
+    }
+  }
 }
 
 

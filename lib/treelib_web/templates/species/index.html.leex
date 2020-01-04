@@ -19,15 +19,26 @@
             <th colspan="3">
               <form phx-change="search" class="search-form" onsubmit="return false;">
                 <%= text_input :search_field, :query, placeholder: "Search", autofocus: true, "phx-debounce": "300" %><div id="search_field_logo">
-									<i class="fa fa-search"></i>
-								</div>
+                  <i class="fa fa-search"></i>
+                </div>
               </form>
             </th>
           </tr>
           <tr>
             <th></th>
-            <th>Latin Name</th>
-            <th>Common Name</th>
+            <th>
+              <span>Latin Name</span>
+              <i class="<%= "fas fa-sort-#{@sort}" %>"
+                phx-click="sort"
+                phx-value-dir=<%= @sort %>
+                phx-value-col="latin"></i>
+            </th>
+            <th>Common Name
+              <i class="<%= "fas fa-sort-#{@sort}" %>"
+                phx-click="sort"
+                phx-value-dir=<%= @sort %>
+                phx-value-col="common"></i>
+            </th>
           </tr>
         </thead>
         <tbody>
