@@ -38,12 +38,12 @@
               </td>
               <td>
                 <a target="_blank" href=<%= "/search?s=#{Integer.to_string(species.id)}" %>>
-                  <i><%= "#{latin_name(species)}" %></i>
+                  <i><%= bold_query(latin_name(species), @query) %></i>
                 </a>
               </td>
               <td>
                 <a target="_blank" href=<%= "/search?s=#{Integer.to_string(species.id)}" %>>
-                  <%= "#{common_name(species)}" %>
+                  <%= bold_query(common_name(species), @query) %>
                 </a>
               </td>
             </tr>

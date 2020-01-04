@@ -19,7 +19,7 @@ defmodule TreelibWeb.SpeciesLiveView do
                   Map.put(species, :searchable_string, String.downcase("#{g_cn} #{g_n} #{s_cn} #{s_n}"))
               end)
 
-    {:ok, assign(socket, species: species, filtered_species: species)}
+    {:ok, assign(socket, species: species, filtered_species: species, query: "")}
   end
 
   def handle_event("search", %{"search_field" => %{"query" => query}}, socket) do
@@ -33,6 +33,6 @@ defmodule TreelibWeb.SpeciesLiveView do
       end)
     end
 
-    {:noreply, assign(socket, :filtered_species, filtered_species)}
+    {:noreply, assign(socket, filtered_species: filtered_species, query: query)}
   end
 end
