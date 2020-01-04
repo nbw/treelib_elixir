@@ -18,7 +18,7 @@
           <tr>
             <th colspan="3">
               <form phx-change="search" class="search-form" onsubmit="return false;">
-                <%= text_input :search_field, :query, placeholder: "Search", autofocus: true, "phx-debounce": "300" %><div id="search_field_logo">
+                <%= text_input :search_field, :query, placeholder: "Search", autofocus: true, "phx-debounce": "300", value: @query %><div id="search_field_logo">
                   <i class="fa fa-search"></i>
                 </div>
               </form>
