@@ -12,6 +12,7 @@
     border-collapse: collapse;
 
     th {
+      cursor: pointer;
       text-align: center;
       > * {
         vertical-align: top;
@@ -19,7 +20,6 @@
       i {
         margin-left: 3px;
         opacity: 0.5;
-        &:hover{ opacity: 1;}
       }
       .fa-sort-up {
         margin-bottom: 0;
@@ -29,7 +29,7 @@
         margin-bottom: 7px;
         margin-top: -2px;
       }
-
+      &:hover i{ opacity: 1;}
     }
 
     td, th {

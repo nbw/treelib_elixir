@@ -26,18 +26,19 @@
           </tr>
           <tr>
             <th></th>
-            <th>
+            <th
+                phx-click="sort"
+                phx-value-dir=<%= @sort %>
+                phx-value-col="latin">
               <span>Latin Name</span>
-              <i class="<%= "fas fa-sort-#{@sort}" %>"
-                phx-click="sort"
-                phx-value-dir=<%= @sort %>
-                phx-value-col="latin"></i>
+              <i class="<%= "fas fa-sort-#{@sort}" %>" ></i>
             </th>
-            <th>Common Name
-              <i class="<%= "fas fa-sort-#{@sort}" %>"
+            <th
                 phx-click="sort"
                 phx-value-dir=<%= @sort %>
-                phx-value-col="common"></i>
+                phx-value-col="common"
+                >Common Name
+              <i class="<%= "fas fa-sort-#{@sort}" %>"></i>
             </th>
           </tr>
         </thead>
