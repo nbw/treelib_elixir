@@ -16,6 +16,7 @@ defmodule TreelibWeb.Sitemap do
       add "/", priority: 0.5, changefreq: "hourly", expires: nil
       add "/about", priority: 0.5, changefreq: "hourly", expires: nil
       add "/search", priority: 0.5, changefreq: "hourly", expires: nil
+      add "/species", priority: 0.5, changefreq: "hourly", expires: nil
       add "/contributors", priority: 0.5, changefreq: "hourly", expires: nil
     end
   end
