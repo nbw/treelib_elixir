@@ -26,6 +26,7 @@ export default class About extends React.Component {
               <label className="sectionTitle">About the site</label>
               <p>
                 <b>TreeLib</b>'s dendrology collection boasts {pg.count.genera} genera and {pg.count.species} species and continues to grow. Origins of the collection can roughly be broken down into:
+              </p>
                 <ul>
                   <li>32% from North and Central America</li>
                   <li>23% from Europe</li>
@@ -34,7 +35,6 @@ export default class About extends React.Component {
                   <li>4% from Australia and New Zealand</li>
                   <li>3% from Chile and Argentina</li>
                 </ul>
-              </p>
               <p>
                 The format is streamlined to teach basic characteristics of families and genera, and then focus on specific details of each species. Teaching material is supported by high resolution pictures of defining characteristics through to natural appearance of young and old growth stands.  The unique and completely digital platform makes it most suitable for projecting onto screens in classrooms as well as for use on all digital devices including computers, tablets and smart phones.
               </p>
