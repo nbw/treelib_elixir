@@ -8,36 +8,37 @@
     <meta name="description" content="A high-quality tree database for educators, students and lay persons.">
     <meta name="author" content="Blake Willson">
     <meta name="keywords" content="treelib, tree, tree library, education, tree education, tree photos, dendrology, species, genus, genera, family, photography">
-		<meta name="robots" content="index, follow">
-		<meta name="language" content="English">
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:creator" content="@nathanwillson" />
-		<meta property="og:url" content="https://treelib.ca/" />
-		<meta property="og:title" content="TreeLib: The Tree Library" />
-		<meta property="og:description" content="A high-quality tree database for educators, students and lay persons." />
-		<meta property="og:image" content="https://treelib.ca/images/treelib_banner.jpg" />
-		<title>Treelib</title>
-		<link rel='shortcut icon' href="<%= Routes.static_path(@conn, "/images/favicon.ico") %>" type='image/x-icon'/ >
-		<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/basic.css") %>">
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-89482021-1"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'UA-89482021-1');
-		</script>
-	</head>
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@nathanwillson" />
+    <meta property="og:url" content="https://treelib.ca/" />
+    <meta property="og:title" content="TreeLib: The Tree Library" />
+    <meta property="og:description" content="A high-quality tree database for educators, students and lay persons." />
+    <meta property="og:image" content="https://treelib.ca/images/treelib_banner.jpg" />
+    <meta property="og:type" content="website" />
+    <title>Treelib</title>
+    <link rel='shortcut icon' href="<%= Routes.static_path(@conn, "/images/favicon.ico") %>" type='image/x-icon'/ >
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/basic.css") %>">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89482021-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-89482021-1');
+    </script>
+  </head>
 
-	<body>
-		<div class="container">
-			<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-			<p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+  <body>
+    <div class="container">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
-			<main role="main">
-				<%= render @view_module, @view_template, assigns %>
-			</main>
+      <main role="main">
+        <%= render @view_module, @view_template, assigns %>
+      </main>
 
-		</div> <!-- /container -->
-	</body>
+    </div> <!-- /container -->
+  </body>
 </html>
