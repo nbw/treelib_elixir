@@ -36,7 +36,7 @@ defmodule Treelib.Mixfile do
       {:phoenix, "~> 1.4.6"},
       {:phoenix_pubsub, "~> 1.1.2"},
       {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_live_view, "~> 0.4.1"},
+      {:phoenix_live_view, "~> 0.6.0"},
       {:ecto_sql, "~> 3.3.2"},
       {:postgrex, ">= 0.14.3"},
       # {:mariaex, "~> 0.8.2"},
