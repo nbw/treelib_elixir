@@ -50,6 +50,6 @@ defmodule Treelib.Contributions.Contributor do
   def active(query \\ __MODULE__) do
     from c in query,
       where: [enabled: true],
-      order_by: c.first_name
+      order_by: c.last_name
   end
 end
