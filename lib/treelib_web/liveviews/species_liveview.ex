@@ -42,8 +42,8 @@ defmodule TreelibWeb.SpeciesLiveView do
       "common" -> :species_common_name
     end
 
-    species = Enum.sort(socket.assigns.species, &(&1[key] < &2[key]))
-    filtered = Enum.sort(socket.assigns.filtered_species, &(&1[key] < &2[key]))
+    species = Enum.sort(socket.assigns.species, &(String.downcase(&1[key]) < String.downcase(&2[key])))
+    filtered = Enum.sort(socket.assigns.filtered_species, &(String.downcase(&1[key]) < String.downcase(&2[key])))
 
     {:noreply, assign(socket, species: species, filtered_species: filtered, sort: "down")}
   end
@@ -54,8 +54,8 @@ defmodule TreelibWeb.SpeciesLiveView do
       "common" -> :species_common_name
     end
 
-    species = Enum.sort(socket.assigns.species, &(&1[key] >= &2[key]))
-    filtered = Enum.sort(socket.assigns.filtered_species, &(&1[key] >= &2[key]))
+    species = Enum.sort(socket.assigns.species, &(String.downcase(&1[key]) >= String.downcase(&2[key])))
+    filtered = Enum.sort(socket.assigns.filtered_species, &(String.downcase(&1[key]) >= String.downcase(&2[key])))
 
     {:noreply, assign(socket, species: species, filtered_species: filtered, sort: "up")}
   end
