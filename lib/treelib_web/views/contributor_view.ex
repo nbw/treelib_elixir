@@ -3,7 +3,7 @@ defmodule TreelibWeb.ContributorView do
   alias Treelib.Taxonomy.Species
   alias Treelib.Taxonomy.Genus
 
-  def search_species_path(%Species{id: id}) do
+  def search_species_path(id) do
     "/search?s=" <> Integer.to_string(id)
   end
 

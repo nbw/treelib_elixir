@@ -28,13 +28,16 @@
             <p class="description">
               <%= if(length(contributor.species) > 0) do %>
                 <%
-                  {last_species, remaining_species} = last_species = List.pop_at(contributor.species, -1)
+                  species = Stream.map(contributor.species, fn s -> {species_name(s), s.id} end)
+									|> Enum.sort(fn({s1_n, _}, {s2_n, _}) -> String.downcase(s2_n) >= String.downcase(s1_n) end)
+
+                  {{last_species_name, last_species_id}, remaining_species} = List.pop_at(species, -1)
                 %>
                 They've contributed to species
-                <%= for species <- remaining_species do %>
-                  <%= link species_name(species), to: search_species_path(species), class: "species" %>,
+                <%= for {s_n, s_id} <- remaining_species do %>
+                  <%= link s_n, to: search_species_path(s_id), class: "species" %>,
                 <% end %>
-                <%= link species_name(last_species), to: search_species_path(last_species), class: "species" %>.
+                <%= link last_species_name, to: search_species_path(last_species_id), class: "species" %>.
               <% end %>
             </p>
           </li>
