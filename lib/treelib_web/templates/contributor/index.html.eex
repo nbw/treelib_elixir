@@ -23,7 +23,7 @@
       <ul id="contributors-list">
         <%= for contributor <- @contributors do %>
           <li id=<%= "cont-" <> Integer.to_string(contributor.id) %>>
-            <label class="name"><%= "#{contributor.last_name} #{contributor.first_name}" %></label>
+            <label class="name"><%= "#{contributor.last_name}, #{contributor.first_name}" %></label>
             <p class="description"><%= contributor.description %></p>
             <p class="description">
               <%= if(length(contributor.species) > 0) do %>
