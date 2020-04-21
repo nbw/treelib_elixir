@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "deploy": "webpack -p & node-sass ./scss/ -o ../priv/static/css/",
-    "watch": "webpack --debug --progress --watch --colors",
+    "watch": "webpack --debug --watch --colors",
     "sass": "node-sass ./scss/ -o ../priv/static/css/",
     "watch:sass": "node-sass ./scss/ -o ../priv/static/css/ --watch --progress --inline"
   },
