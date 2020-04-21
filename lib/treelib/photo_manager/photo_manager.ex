@@ -131,6 +131,9 @@ defmodule Treelib.PhotoManager do
 
   """
   def get_album!(id), do: Repo.get!(PhotoAlbum, id)
+  def get_album(id), do: Repo.get(PhotoAlbum, id)
+
+  def get_album_by_name(name), do: Repo.get_by(PhotoAlbum, name: name)
 
   @doc """
   Creates a album.
