@@ -50,7 +50,10 @@ defmodule Treelib.PhotoManager.PhotoUpdater do
   def process_deletes pas, pss do
     delete_album_ids = PhotoUpdater.album_ids_to_delete(pas, pss)
 
-    PhotoManager.delete_albums(delete_album_ids)
+
+    # Note: No longer delete albums
+    # PhotoManager.delete_albums(delete_album_ids)
+
     PhotoManager.delete_photos_in_albums(delete_album_ids)
   end
 
