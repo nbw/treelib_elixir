@@ -89,6 +89,7 @@ defmodule Treelib.PhotoManager.PhotoUpdaterTest do
   end
 
   describe "process_deletes" do
+    @tag :skip
     test "deletes albums that are in the db, but not on flickr", %{photo_albums: photo_albums, photosets: photosets}  do
       deleted_album = Treelib.Repo.get_by!(PhotoAlbum, photoset_id: 123456)
 
