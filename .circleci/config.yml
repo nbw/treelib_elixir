@@ -9,6 +9,10 @@ jobs:
         environment:  # environment variables for primary container
           MIX_ENV: test
       - image: postgres:9.6
+        environment:
+          POSTGRES_USER: 'postgres'
+          POSTGRES_PASSWORD: 'postgres'
+          POSTGRES_HOST_AUTH_METHOD: trust
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
