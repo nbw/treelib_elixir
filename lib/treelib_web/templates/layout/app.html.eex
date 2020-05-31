@@ -13,11 +13,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@nathanwillson" />
     <meta property="og:url" content="https://treelib.ca/" />
-    <meta property="og:title" content="TreeLib: The Tree Library" />
+    <meta property="og:title" content="Tree Libray: A high-quality tree database for educators, students and lay persons" />
     <meta property="og:description" content="A high-quality tree database for educators, students and lay persons." />
     <meta property="og:image" content="https://treelib.ca/images/treelib_banner.jpg" />
     <meta property="og:type" content="website" />
-    <title>Treelib</title>
+    <title>Tree Library</title>
     <link rel='shortcut icon' href="<%= Routes.static_path(@conn, "/images/favicon.ico") %>" type='image/x-icon'/ >
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/basic.css") %>">
