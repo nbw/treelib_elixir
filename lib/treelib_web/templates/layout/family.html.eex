@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Family: <%= raw @page_data.family.name %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,8 +19,8 @@
 </head>
 <body>
   <div class="mainContainer">
-    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <%# <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %1></p> %>
+    <%# <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %1></p> %>
     <main role="main">
       <%= render @view_module, @view_template, assigns %>
     </main>
