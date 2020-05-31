@@ -136,7 +136,7 @@ class PhotoViewer extends React.Component {
         <div onClick={() => (self.closeFullSizeImage())} className={"fullSizeImage " + show }>
           <span className="helper"></span>
           <div id="fullImageContainer" className="imageWrapper">
-            <img id="fullImage" src={this.props.original + "?w=900"} data-zoom={this.props.original + "?w=1000"} />
+            <img alt={this.props.imageName} id="fullImage" src={this.props.original + "?w=900"} data-zoom={this.props.original + "?w=1000"} />
             <div id="fullImageZoom"></div>
             <div className="info">
               <label className="title">{this.props.imageName}</label>
@@ -151,7 +151,7 @@ class PhotoViewer extends React.Component {
             <span className="helper"></span>
             <div className="imageInnerWrapper">
               <div id="imageContainer">
-                <img id="imageMain" src={this.props.image + "?w=826"} data-zoom={this.props.image + "?w=1000"} onClick={() => self.showFullSizeImage()}/>
+                <img id="imageMain" alt={this.props.imageName} src={this.props.image + "?w=826"} data-zoom={this.props.image + "?w=1000"} onClick={() => self.showFullSizeImage()}/>
                 <div id="imageZoom"></div>
               </div>
               <div className="photoButtons">
