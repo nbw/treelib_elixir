@@ -40,7 +40,9 @@ $border-color: #AAA;
 
     }
   }
+  .navBorders { height: 3px; }
   .navBorder {
+		vertical-align: top;
     display:inline-block;
     width: 33.33%;
     height: 3px;

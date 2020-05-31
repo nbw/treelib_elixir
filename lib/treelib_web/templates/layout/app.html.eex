@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="title" content="TreeLib: The Tree Library">
-    <meta name="description" content="A high-quality tree database for educators, students and lay persons.">
+    <meta name="title" content="Tree Library: A high-quality tree database for educators, students and lay persons">
+    <meta name="description" content="A platform for teaching and studying trees with a focus on promoting awareness and understanding of trees and their global importance to the environment.">
     <meta name="author" content="Blake Willson">
-    <meta name="keywords" content="treelib, tree, tree library, education, tree education, tree photos, dendrology, species, genus, genera, family, photography">
+    <meta name="keywords" content="treelib, tree, tree library, education, tree education, tree photos, dendrology, species, genus, genera, family, photography, tree canada, botany">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
     <meta name="twitter:card" content="summary_large_image" />
@@ -34,11 +34,9 @@
     <div class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
-
     </div> <!-- /container -->
   </body>
 </html>
