@@ -70,7 +70,7 @@ config :phoenix, :stacktrace_depth, 20
 config :treelib, Treelib.Repo,
   username: "postgres",
   password: "postgres",
-  database: "treelib_dev",
+  database: "herokubackup",
   hostname: "localhost",
   pool_size: 10,
   timeout: String.to_integer(System.get_env("DATABASE_TIMEOUT") || "145000")
