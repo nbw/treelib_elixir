@@ -9,7 +9,7 @@ $sidebar-title-height: 7%;
 $mobile-hide-height: 30px;
 
 $searchbar-shadow-height: 3px;
-$searchbar-shadow-color: #C5C5C5;
+$searchbar-shadow-color: #c5c5c5;
 
 body {
   box-sizing: border-box;
@@ -18,32 +18,38 @@ body {
 }
 
 #app {
-  width:100%;
+  width: 100%;
+
   .mainContainer {
     -webkit-overflow-scrolling: touch;
-    width:100%;
+    width: 100%;
+
     > * {
-      display:inline-block;
+      display: inline-block;
       vertical-align: text-top;
     }
   }
 }
+
 .content {
-  position:fixed;
+  position: fixed;
   z-index: 0;
   left: $sidebar-width;
   width: 100% - $sidebar-width;
   height: 100%;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+
   > *:not(.default) {
-    >*:not(.photoViewer) {
+    > *:not(.photoViewer) {
       margin-left: 10px;
       margin-right: 10px;
     }
   }
+
   -webkit-transition: width 0.25s ease-out, left 0.33s ease-out; /* Safari */
-  transition:  width 0.25 ease-out, left 0.33s ease-out;
+  transition: width 0.25 ease-out, left 0.33s ease-out;
+
   > * {
     -webkit-transition: padding-top 0.33s ease-out;
     transition: padding-top 0.33s ease-out;
@@ -53,116 +59,132 @@ body {
 .default {
   height: 100%;
   font-size: 2rem;
-  background: repeating-linear-gradient(
-  45deg,
-  rgba(0, 0, 0, 0.05),
-  rgba(0, 0, 0, 0.05) 10px,
-  rgba(0, 0, 0, 0.1) 10px,
-  rgba(0, 0, 0, 0.1) 20px
-  );
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0.05) 10px,
+      rgba(0, 0, 0, 0.1) 10px,
+      rgba(0, 0, 0, 0.1) 20px
+    );
+
   .message {
     padding: 10% 0 0 10px;
   }
 }
 
 $searchBar-listItem-border-color: #cacaca;
-$searchBar-background: fafafa;
+$searchBar-background: #fafafa;
 $searchBar-list-font-color: #555;
 $searchBar-list-font-color-selected: #111;
-.searchBar {
+
+#searchBar {
   border-color: #666;
   border-style: solid;
   border-width: 0 1px 1px 0;
-  position:fixed;
+  position: fixed;
   cursor: pointer;
   z-index: 1;
   overflow-y: hidden;
   height: 100%;
   width: $sidebar-width;
   min-width: 300px;
-  text-align:center;
-
+  text-align: center;
   background-color: $searchBar-background;
-
   -webkit-overflow-scrolling: touch;
 
   .title {
     background-color: $searchBar-background;
     cursor: pointer;
-    // default
     font-size: 3rem;
     padding: 1% 0 1% 0;
     min-height: 3.1rem;
-
     text-align: center;
 
     a {
       color: $logo-color;
+
       &:hover {
         color: $logo-color-hover;
       }
-      * { vertical-align: middle; }
+
+      * {
+        vertical-align: middle;
+      }
+
       img {
         height: 3rem;
       }
     }
   }
+
   .nameSelector {
     height: $sidebar-title-height - 2%;
     padding: 1% 0 1% 0;
     min-height: 3.1rem;
+
     > * {
       vertical-align: middle;
       display: inline-block;
       text-align: center;
       width: 45%;
     }
+
     .helper {
       height: 100%;
       width: 0;
     }
   }
+
   .lists {
     height: 100% - 2*$sidebar-title-height;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
 
-    .familyList, .generaList, .speciesList {
+    .familyList,
+    .generaList,
+    .speciesList {
       display: inline-block;
       vertical-align: text-top;
       width: 33%;
-      &:not(:last-child){
-        border-color: #AAA;
+
+      &:not(:last-child) {
+        border-color: #aaa;
         border-style: solid;
         border-width: 0 1px 0 0;
       }
+
       .subtitle {
         border-top: 1px solid #777;
         text-align: center;
         background-color: white;
         width: 100%;
+
         &:hover {
           color: #21272c;
         }
       }
     }
   }
+
   ul.searchSidebar-list {
     padding: 0;
     margin: 0;
-    position:relative;
+    position: relative;
     height: 100%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 
     li.emptySpeciesItem {
       padding: 10px 0 10px 0;
-      color: #AAA;
+      color: #aaa;
     }
+
     li.sidebarListItem {
       &:last-child {
         margin: 0 0 125% 0;
       }
+
       word-wrap: break-word;
       -webkit-hyphens: auto;
       -moz-hyphens: auto;
@@ -171,78 +193,81 @@ $searchBar-list-font-color-selected: #111;
       list-style-type: none;
       color: $searchBar-list-font-color;
       padding: 5px 5px 5px 5px;
-
-      // defaults
-      border-bottom-width: 1px;
       border-color: $searchBar-listItem-border-color;
       border-style: solid;
-
       border-width: 0 0 1px 0;
-      -webkit-border-image:
-      -webkit-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-      -moz-border-image:
-      -moz-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-      -o-border-image:
-      -o-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-      border-image:
-      linear-gradient(to left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
-
+      -webkit-border-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
+      -moz-border-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
+      -o-border-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
+      border-image: linear-gradient(to left, rgba(0, 0, 0, 0), $searchBar-listItem-border-color, rgba(0, 0, 0, 0)) 1 5% 100%;
 
       &:hover {
         color: $searchBar-list-font-color-selected;
       }
+
       &.selected {
         color: $searchBar-list-font-color-selected;
         background-color: white;
         font-weight: bold;
-        &:first-child{
+
+        &:first-child {
           border-width: 0 0 1px 0;
         }
       }
+
       ul.sidebarListItem-names {
         padding: 0;
         margin: 0;
+
         li {
           list-style-type: none;
+
           .latinName {
             font-style: italic;
           }
         }
       }
     }
-
   }
+
   .familyList {
-    .subtitle{
+    .subtitle {
       border-bottom: 3px solid $family-color;
     }
+
     .latinName {
       font-style: normal !important;
     }
   }
+
   .generaList {
-    .subtitle{
+    .subtitle {
       border-bottom: 3px solid $genus-color;
     }
   }
+
   .speciesList {
-    .subtitle{
+    .subtitle {
       border-bottom: 3px solid $species-color;
     }
   }
+
   .closeButton {
     font-size: 1.8rem;
-    position:absolute;
+    position: absolute;
     top: 1.4rem;
     right: 0.5em;
     color: #8a9ca8;
-    &:hover{
+
+    &:hover {
       color: $base-font-color-lighter;
     }
-    &:after{
+
+    &::after {
       content: " HIDE";
     }
   }
+
   .mobileCloseButton {
     display: none;
     position: absolute;
@@ -250,30 +275,33 @@ $searchBar-list-font-color-selected: #111;
     height: calc(#{$mobile-hide-height} - 10px);
     padding: 5px;
     width: 100%;
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     text-align: center;
     font-size: 1.8rem;
     color: $base-font-color;
-    border-top: 1px solid #AAA;
-    &:hover{
+    border-top: 1px solid #aaa;
+
+    &:hover {
       color: $base-font-color-lighter;
     }
-    &:after{
+
+    &::after {
       content: " HIDE";
     }
   }
-  -webkit-transition: width 0.5s cubic-bezier(.87,-.21,.19,1.24), height 0.2s ease-out; /* Safari */
-  transition:  width 0.5s cubic-bezier(.87,-.21,.19,1.24), height 0.2s ease-out;
+
+  -webkit-transition: width 0.5s cubic-bezier(0.87, -0.21, 0.19, 1.24), height 0.2s ease-out; /* Safari */
+  transition: width 0.5s cubic-bezier(0.87, -0.21, 0.19, 1.24), height 0.2s ease-out;
 }
 
-.minimized {
-  &.searchBar {
+#searchBar.minimized {
     background-color: $searchBar-background;
     height: $sidebar-title-height;
     min-height: 3.1rem;
     max-height: 4.6rem;
     width: $sidebar-width - 10%;
     z-index: 1;
+
     .title {
       border-color: $searchBar-background;
       -webkit-border-image: none;
@@ -281,26 +309,35 @@ $searchBar-list-font-color-selected: #111;
       -o-border-image: none;
       border-image: none;
     }
+
     .nameSelector {
       opacity: 0;
     }
-    .closeButton, .mobileCloseButton{
-      &:hover{
+
+    .closeButton,
+    .mobileCloseButton {
+      &:hover {
         color: $base-font-color-lighter;
       }
-      &:after{
+
+      &::after {
         content: "";
       }
-      &:before{
+
+      &::before {
         content: "SHOW ";
       }
     }
-  }
+
   &.content {
     left: 0%;
     width: 100%;
-    > *:not( .default) { padding-top: 4rem;}
+
+    > *:not(.default) {
+      padding-top: 4rem;
+    }
   }
+
   #searcher {
     display: none;
   }
@@ -309,10 +346,12 @@ $searchBar-list-font-color-selected: #111;
 @media screen and (max-width: $break-med-medium) {
   .searchBar {
     width: 50%;
+
     .nameSelector {
       font-size: 1.4rem;
     }
   }
+
   .content {
     width: 50%;
     left: 50%;
@@ -323,28 +362,32 @@ $searchBar-list-font-color-selected: #111;
   .closeButton {
     display: none;
   }
+
   .searchBar .mobileCloseButton {
     display: block;
   }
+
   .searchBar {
     overflow-x: hidden;
     font-size: 1.4rem;
     width: 100%;
     height: 80.1%;
     display: none;
-
     -moz-box-shadow: 0 $searchbar-shadow-height $searchbar-shadow-height 0 $searchbar-shadow-color;
     -webkit-box-shadow: 0 $searchbar-shadow-height $searchbar-shadow-height 0 $searchbar-shadow-color;
     box-shadow: 0 $searchbar-shadow-height $searchbar-shadow-height 0 $searchbar-shadow-color;
   }
+
   .content {
     width: 100%;
     left: 0;
     top: 80%;
-    .default .message{
+
+    .default .message {
       display: none;
     }
   }
+
   .minimized {
     &.searchBar {
       height: calc(#{$sidebar-title-height} + #{$mobile-hide-height});
@@ -352,10 +395,13 @@ $searchBar-list-font-color-selected: #111;
       min-height: 45px + $mobile-hide-height;
       width: 100%;
     }
+
     &.content {
       top: calc(#{$sidebar-title-height} + #{$mobile-hide-height});
-      > *:not( .default) { padding-top: 0;}
+
+      > *:not(.default) {
+        padding-top: 0;
+      }
     }
   }
 }
-

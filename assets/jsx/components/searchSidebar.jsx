@@ -238,7 +238,7 @@ class SearchSidebar extends React.Component {
     }
 
     return (
-      <div id={this.props.id}　className={ minimized ? "searchbar minimized" : "searchbar"} >
+      <div id="searchBar"　className={ minimized ? "minimized" : ""} >
         <div className="title"><a href="/"><img src="/images/logo.png"></img><label>TreeLib</label></a></div>
         <div className="closeButton" onClick={(event) => self.hideSidebar(event)}>
           { minimized ?
