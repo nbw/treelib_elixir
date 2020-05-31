@@ -9,7 +9,10 @@ defmodule TreelibWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :treelib, gzip: true,
+    at: "/",
+    from: :treelib,
+    gzip: true,
+    cache_control_for_etags: "public, max-age=31536000",
     only: ~w(css webfonts fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
