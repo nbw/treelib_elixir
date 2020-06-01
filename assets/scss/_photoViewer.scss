@@ -4,14 +4,15 @@
   position: relative;
   background-color: #161616;
   border: 1px solid #444;
-  color: #EEE;
+  color: #eee;
 
   a {
-    color: #EEE;
+    color: #eee;
   }
 
-  #imageZoom, #fullImageZoom {
-    border: 1px solid #AAA;
+  #imageZoom,
+  #fullImageZoom {
+    border: 1px solid #aaa;
     width: 200px;
     height: 200px;
     position: fixed;
@@ -24,6 +25,7 @@
     max-width: 100%;
     max-height: 550px;
     cursor: none;
+
     &:hover {
       #imageZoom {
         display: block;
@@ -31,9 +33,9 @@
     }
   }
 
-
   #fullImageContainer {
     cursor: none;
+
     &:hover {
       #fullImageZoom {
         display: block;
@@ -49,42 +51,54 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(7,7,7,1);
+    background-color: rgba(7, 7, 7, 1);
     text-align: center;
     pointer-events: none;
     webkit-transition: opacity 0.33s ease-out; /* Safari */
     transition: opacity 0.33s ease-out;
+
     > * {
       display: inline-block;
       vertical-align: middle;
     }
+
     .helper {
       height: 100%;
     }
-    .imageWrapper{
+
+    .imageWrapper {
       height: 90%;
       max-height: 93%;
+
       img {
         max-width: inherit;
         max-height: inherit;
       }
+
       .info {
-        .title{ font-weight: bold;}
+        .title {
+          font-weight: bold;
+        }
+
         padding-top: 5px;
       }
     }
+
     &.show {
       opacity: 1;
       pointer-events: auto;
     }
   }
+
   .image {
     width: 100%;
     text-align: center;
+
     > div { // [prev] -- [photo] -- [next]
       display: inline-block;
       vertical-align: middle;
     }
+
     .imageWrapper {
       margin: 0 10px 0 10px;
       position: relative;
@@ -97,121 +111,140 @@
         max-height: inherit;
         border: 1px solid #444;
       }
+
       .helper {
         display: inline-block;
         height: 100%;
         vertical-align: middle;
       }
+
       .imageInnerWrapper {
         vertical-align: middle;
-        display:inline-block;
+        display: inline-block;
       }
+
       .photoButtons {
         position: absolute;
         font-size: 1.4rem;
         opacity: 0.75;
+
         ul {
           padding: 0.5em 0 0.3em 0.3em;
           margin: 0;
           float: right;
+
           li {
             list-style: none;
             display: inline-block;
             padding: 3px 5px 0 5px;
           }
         }
+
         @keyframes download {
-          0%      {content: ' ';}
-          12.5%   {content: 'd';}
-          25%     {content: 'do';}
-          37.5%   {content: 'dow';}
-          50%     {content: 'down';}
-          62.5%   {content: 'downl';}
-          75%     {content: 'downlo';}
-          87.5%   {content: 'downloa';}
-          100%    {content: 'download';}
+          0%      { content: ' '; }
+          12.5%   { content: 'd'; }
+          25%     { content: 'do'; }
+          37.5%   { content: 'dow'; }
+          50%     { content: 'down'; }
+          62.5%   { content: 'downl'; }
+          75%     { content: 'downlo'; }
+          87.5%   { content: 'downloa'; }
+          100%    { content: 'download'; }
         }
+
         @keyframes flickr {
-          0%      {content: ' ';}
-          16.6%   {content: 'f';}
-          33.2%   {content: 'fl';}
-          49.8%   {content: 'fli';}
-          66.4%   {content: 'flic';}
-          83%     {content: 'flick';}
-          100%    {content: 'flickr';}
+          0%      { content: ' '; }
+          16.6%   { content: 'f'; }
+          33.2%   { content: 'fl'; }
+          49.8%   { content: 'fli'; }
+          66.4%   { content: 'flic'; }
+          83%     { content: 'flick'; }
+          100%    { content: 'flickr'; }
         }
         @keyframes fullscreen {
-          0%    {content: ' ';}
-          10%   {content: 'f';}
-          20%   {content: 'fu';}
-          30%   {content: 'ful';}
-          40%   {content: 'full';}
-          50%   {content: 'fulls';}
-          60%   {content: 'fullsc';}
-          70%   {content: 'fullscr';}
-          80%   {content: 'fullscre';}
-          90%   {content: 'fullscree';}
-          100%  {content: 'fullscreen';}
+          0%    { content: ' '; }
+          10%   { content: 'f'; }
+          20%   { content: 'fu'; }
+          30%   { content: 'ful'; }
+          40%   { content: 'full'; }
+          50%   { content: 'fulls'; }
+          60%   { content: 'fullsc'; }
+          70%   { content: 'fullscr'; }
+          80%   { content: 'fullscre'; }
+          90%   { content: 'fullscree'; }
+          100%  { content: 'fullscreen'; }
         }
+
         .flickr {
-          &:after {
+          &::after {
             opacity: 0;
             -webkit-transition: all 0.18s ease-out; /* Safari */
-            transition:  all 0.18s ease-out;
+            transition: all 0.18s ease-out;
             content: "";
           }
-          &:hover:after {
+
+          &:hover::after {
             opacity: 1;
             animation: flickr 0.18s ease-out;
             animation-fill-mode: forwards;
           }
         }
+
         .downloadLink {
-          &:after {
+          &::after {
             opacity: 0;
             -webkit-transition: all 0.15s ease-out; /* Safari */
-            transition:  all 0.15s ease-out;
+            transition: all 0.15s ease-out;
             content: "";
           }
-          &:hover:after {
+
+          &:hover::after {
             opacity: 1;
             animation: download 0.15s ease-out;
             animation-fill-mode: forwards;
           }
         }
+
         .fullscreen {
-          &:after {
+          &::after {
             opacity: 0;
             -webkit-transition: all 0.15s ease-out; /* Safari */
-            transition:  all 0.15s ease-out;
+            transition: all 0.15s ease-out;
             content: "";
           }
-          &:hover:after {
+
+          &:hover::after {
             opacity: 1;
             animation: fullscreen 0.15s ease-out;
             animation-fill-mode: forwards;
           }
         }
       }
+
       .info {
         padding-top: 0.5em;
-        display:block;
-        margin:auto;
+        display: block;
+        margin: auto;
         max-width: 640px;
+
         .title {
           font-weight: bold;
         }
+
         .description {
-          white-space:normal;
+          white-space: normal;
           word-wrap: break-word;
         }
       }
     }
-    .next, .prev {
+
+    .next,
+    .prev {
       cursor: pointer;
       -moz-user-select: -moz-none;
       -khtml-user-select: none;
       -webkit-user-select: none;
+
       /*
       Introduced in IE 10.
       See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
@@ -220,23 +253,28 @@
   user-select: none;
   font-size: 2rem;
   opacity: 0.45;
+
   &:hover {
     opacity: 0.8;
   }
 }
+
 .next {
   padding-left: 2%;
 }
+
 .prev {
   padding-right: 2%;
 }
   }
+
   .closeButton {
     opacity: 0.7;
-    position:absolute;
+    position: absolute;
     cursor: pointer;
     top: 0.6em;
     right: 0.6em;
+
     &:hover {
       opacity: 1;
     }
@@ -244,49 +282,59 @@
 
   @media screen and (max-width: $break-medium) {
     padding: 0;
+
     .image {
       .imageWrapper {
         width: auto;
         height: auto;
         margin: 0;
+
         .imageInnerWrapper .photoButtons {
           display: none;
         }
+
         img {
           width: 98%;
         }
       }
-      .next, .prev {
-        position:absolute;
+
+      .next,
+      .prev {
+        position: absolute;
         bottom: 1em;
         font-size: 3rem;
       }
+
       .next {
         left: 75%;
       }
+
       .prev {
         left: 25%;
       }
-
     }
+
     .fullSizeImage {
       padding-top: 3rem;
+
       img {
         width: 100%;
       }
     }
+
     .closeButton {
       font-size: 2.5rem;
     }
   }
-
 }
 
-@media(hover: hover) and (pointer: fine) {
-  #imageZoom, #fullImageZoom {
+@media (hover: hover) and (pointer: fine) {
+  #imageZoom,
+  #fullImageZoom {
+    display: none;
+
+    &:hover {
       display: none;
-      &:hover {
-        display: none;
-      }
+    }
   }
 }
