@@ -147,6 +147,7 @@ $searchBar-list-font-color-selected: #111;
       display: inline-block;
       vertical-align: text-top;
       width: 33%;
+      height: 100%;
 
       &:not(:last-child) {
         border-color: #aaa;
