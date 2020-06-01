@@ -1,6 +1,14 @@
 {
   "extends": "stylelint-config-standard",
   "rules": {
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "indentation": [
+      2,
+      {
+        "except": ["block"],
+        "message": "Please use 2 spaces for indentation.",
+        "severity": "warning"
+      }
+    ]
   }
 }
