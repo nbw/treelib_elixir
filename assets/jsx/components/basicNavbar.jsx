@@ -16,7 +16,7 @@ class BasicNavbar extends React.Component {
                     <li className="contact"><a href="/contact">CONTACT</a></li>
                     <li className="contributors"><a href="/contributors">CONTRIBUTORS</a></li>
                 </ul>
-              <div class="navBorders">
+              <div className="navBorders">
                 <div className="navBorder first"></div><div className="navBorder second"></div><div className="navBorder third"></div>
               </div>
             </div>

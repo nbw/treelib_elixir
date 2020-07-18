@@ -29,12 +29,31 @@ export default class Home extends React.Component {
             </p>
             <div className="photoBanner">
               <div>
-                <a href="/search?s=47"><img src="images/homepage-banner/1.jpg"/></a>
-                <a href="/search?s=2"><img src="images/homepage-banner/9.jpg"/></a>
-                </div><div>
-                <a href="/search?s=31"><img src="images/homepage-banner/6.jpg"/></a>
-                <a href="/search?s=101"><img src="images/homepage-banner/5.jpg"/></a>
-
+                <a href="/search?s=47">
+                  <picture>
+                    <source srcset="images/homepage-banner/1.webp" type="image/webp" />
+                    <img src="images/homepage-banner/1.jpg"/>
+                  </picture>
+                </a>
+                <a href="/search?s=2">
+                  <picture>
+                    <source srcset="images/homepage-banner/9.webp" type="image/webp" />
+                    <img src="images/homepage-banner/9.jpg"/>
+                  </picture>
+                </a>
+              </div><div>
+                <a href="/search?s=31">
+                  <picture>
+                    <source srcset="images/homepage-banner/6.webp" type="image/webp" />
+                    <img src="images/homepage-banner/6.jpg"/>
+                  </picture>
+                </a>
+                <a href="/search?s=101">
+                  <picture>
+                    <source srcset="images/homepage-banner/5.webp" type="image/webp" />
+                    <img src="images/homepage-banner/5.jpg"/>
+                  </picture>
+                </a>
               </div>
             </div>
           </div>
@@ -52,11 +71,31 @@ export default class Home extends React.Component {
             </p>
             <div className="photoBanner">
               <div>
-                <a href="/search?s=78"><img src="images/homepage-banner/4.jpg"/></a>
-                <a href="/search?s=42"><img src="images/homepage-banner/2.jpg"/></a>
+                <a href="/search?s=78">
+                  <picture>
+                    <source srcset="images/homepage-banner/4.webp" type="image/webp" />
+                    <img src="images/homepage-banner/4.jpg"/>
+                  </picture>
+                </a>
+                <a href="/search?s=42">
+                  <picture>
+                    <source srcset="images/homepage-banner/2.webp" type="image/webp" />
+                    <img src="images/homepage-banner/2.jpg"/>
+                  </picture>
+                </a>
                 </div><div>
-                <a href="/search?s=146"><img src="images/homepage-banner/7.jpg"/></a>
-                <a href="/search?s=41"><img src="images/homepage-banner/8.jpg"/></a>
+                <a href="/search?s=146">
+                  <picture>
+                    <source srcset="images/homepage-banner/7.webp" type="image/webp" />
+                    <img src="images/homepage-banner/7.jpg"/>
+                  </picture>
+                </a>
+                <a href="/search?s=41">
+                  <picture>
+                    <source srcset="images/homepage-banner/8.webp" type="image/webp" />
+                    <img src="images/homepage-banner/8.jpg"/>
+                  </picture>
+                </a>
               </div>
             </div>
             <p>

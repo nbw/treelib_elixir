@@ -25,18 +25,30 @@
           <div class="photoBanner">
             <div>
               <a href="/search?s=47">
-                <img alt="Gymnocladus dioicusKentucky coffeetree" src="images/homepage-banner/1.jpg">
+                <picture>
+                  <source srcset="images/homepage-banner/1.webp" type="image/webp" />
+                  <img src="images/homepage-banner/1.jpg" alt="Gymnocladus dioicusKentucky coffeetree"/>
+                </picture>
               </a>
               <a href="/search?s=2">
-                <img alt="Liquidambar formosanaFormosan sweetgum"  src="images/homepage-banner/9.jpg">
+                <picture>
+                  <source srcset="images/homepage-banner/9.webp" type="image/webp" />
+                  <img src="images/homepage-banner/9.jpg" alt="Liquidambar formosanaFormosan sweetgum"/>
+                </picture>
               </a>
             </div>
             <div>
               <a href="/search?s=31">
-                <img alt="Nyssa sylvaticablack tupelo" src="images/homepage-banner/6.jpg">
+                <picture>
+                  <source srcset="images/homepage-banner/6.webp" type="image/webp" />
+                  <img src="images/homepage-banner/6.jpg" alt="Nyssa sylvaticablack tupelo"/>
+                </picture>
               </a>
               <a href="/search?s=101">
-                <img alt="Populus tremuloidestrembling aspen poplar" src="images/homepage-banner/5.jpg">
+                <picture>
+                  <source srcset="images/homepage-banner/5.webp" type="image/webp" />
+                  <img src="images/homepage-banner/5.jpg" alt="Populus tremuloidestrembling aspen poplar"/>
+                </picture>
               </a>
             </div>
           </div>
@@ -55,18 +67,30 @@
           <div class="photoBanner">
             <div>
               <a href="/search?s=78">
-                <img alt="Tsuga heterophyllawestern hemlock" src="images/homepage-banner/4.jpg">
+                <picture>
+                  <source srcset="images/homepage-banner/4.webp" type="image/webp" />
+                  <img src="images/homepage-banner/4.jpg" alt="Tsuga heterophyllawestern hemlock"/>
+                </picture>
               </a>
               <a href="/search?s=42">
-                <img alt="Cercis canadensiseastern redbud" src="images/homepage-banner/2.jpg">
+                <picture>
+                  <source srcset="images/homepage-banner/2.webp" type="image/webp" />
+                  <img src="images/homepage-banner/2.jpg" alt="Cercis canadensiseastern redbud"/>
+                </picture>
               </a>
             </div>
             <div>
               <a href="/search?s=146">
-                <img alt="Acer platanoidesNorway maple" src="images/homepage-banner/7.jpg">
+                <picture>
+                  <source srcset="images/homepage-banner/7.webp" type="image/webp" />
+                  <img src="images/homepage-banner/7.jpg" alt="Acer platanoidesNorway maple"/>
+                </picture>
               </a>
               <a href="/search?s=41">
-                <img alt="Albizia julibrissinPersian silk tree" src="images/homepage-banner/8.jpg">
+                <picture>
+                  <source srcset="images/homepage-banner/8.webp" type="image/webp" />
+                  <img src="images/homepage-banner/8.jpg" alt="Albizia julibrissinPersian silk tree"/>
+                </picture>
               </a>
             </div>
           </div>

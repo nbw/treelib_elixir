@@ -1,5 +1,4 @@
 .contactPage {
-	background-image: url("/images/cogyria-2.jpg");
 	background-repeat: no-repeat;
 	background-position: left bottom;
 	background-attachment: fixed;
@@ -65,4 +64,12 @@
 		}
 	}
   
+}
+
+.no-webp .contactPage {
+	background-image: url("/images/cogyria-2.jpg");
+}
+
+.webp .contactPage {
+	background-image: url("/images/cogyria-2.webp");
 }
