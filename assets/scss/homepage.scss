@@ -21,6 +21,7 @@ $banner-height: 250px;
 		.banner {
 			background-size: auto;
 			background-position: center top;
+			background-repeat: repeat-y;
 			.innerBanner{
 				height: 92%;
 				padding: 3% 3% 3% 3%;
