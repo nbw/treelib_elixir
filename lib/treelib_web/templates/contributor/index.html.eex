@@ -12,10 +12,22 @@
       </p>
 
       <div class="contributorImages">
-        <img src="/images/contrib-1.jpg"/>
-        <img src="/images/contrib-2.jpg"/>
-        <img src="/images/contrib-3.jpg"/>
-        <img src="/images/contrib-4.jpg"/>
+        <picture>
+          <source srcset="/images/contrib-1.webp" type="image/webp">
+          <img src="/images/contrib-1.jpg"/>
+        </picture>
+        <picture>
+          <source srcset="/images/contrib-2.webp" type="image/webp">
+          <img src="/images/contrib-2.jpg"/>
+        </picture>
+        <picture>
+          <source srcset="/images/contrib-3.webp" type="image/webp">
+          <img src="/images/contrib-3.jpg"/>
+        </picture>
+        <picture>
+          <source srcset="/images/contrib-4.webp" type="image/webp">
+          <img src="/images/contrib-4.jpg"/>
+        </picture>
       </div>
       <p class="note">
         Contributors are listed in alphabetical order.

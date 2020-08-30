@@ -22,15 +22,6 @@
       }
     }
 
-    &:first-child {
-      background-image: url("/images/cogyria-1.jpg");
-    }
-    &:nth-child(2n){
-      background-image: url("/images/cogyria-2.jpg");
-    }
-    &:nth-child(3n){
-      background-image: url("/images/cogyria-3.jpg");
-    }
     background-repeat: no-repeat;
     background-position: left top;
     background-attachment: fixed;
@@ -79,5 +70,29 @@
         margin: 9px;
       }
     }
+  }
+}
+
+.no-webp .homePage .banner {
+  &:first-child {
+    background-image: url("/images/cogyria-1.jpg");
+  }
+  &:nth-child(2n){
+    background-image: url("/images/cogyria-2.jpg");
+  }
+  &:nth-child(3n){
+    background-image: url("/images/cogyria-3.jpg");
+  }
+}
+
+.webp .homePage .banner {
+  &:first-child {
+    background-image: url("/images/cogyria-1.webp");
+  }
+  &:nth-child(2n){
+    background-image: url("/images/cogyria-2.webp");
+  }
+  &:nth-child(3n){
+    background-image: url("/images/cogyria-3.webp");
   }
 }

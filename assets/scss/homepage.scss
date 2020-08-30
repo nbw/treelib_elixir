@@ -21,8 +21,9 @@ $banner-height: 250px;
 		.banner {
 			background-size: auto;
 			background-position: center top;
+			background-repeat: repeat-y;
 			.innerBanner{
-				height: 90%;
+				height: 92%;
 				padding: 3% 3% 3% 3%;
 			}
 		}
@@ -33,15 +34,10 @@ $banner-height: 250px;
 	}
 	.aboutPage {
 		.banner {
-			background-image: url("/images/thuja.jpg");
 			background-size: auto;
 			background-position: center;
 			&:first-child {
 				height: 1000px;
-				background-image: url("/images/cogyria-1.jpg");
-			}
-			&:nth-child(2){
-				background-image: url("/images/cogyria-2.jpg");
 			}
 		}
 	}

@@ -170,3 +170,25 @@ $tableOfContentsListItem-border-color: #cacaca;
 		}
 	}
 }
+
+.no-webp .aboutPage .banner {	
+	background-image: url("/images/thuja.jpg");
+	&:first-child {
+		height: 1000px;
+		background-image: url("/images/cogyria-1.jpg");
+	}
+	&:nth-child(2){
+		background-image: url("/images/cogyria-2.jpg");
+	}
+}
+
+.webp .aboutPage .banner {
+		background-image: url("/images/thuja.webp");
+	&:first-child {
+		height: 1000px;
+		background-image: url("/images/cogyria-1.webp");
+	}
+	&:nth-child(2){
+		background-image: url("/images/cogyria-2.webp");
+	}
+}

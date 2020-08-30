@@ -1,6 +1,104 @@
 <link rel="stylesheet" type="text/css" href="/css/homepage.css">
 <div class="mainContainer">
-  <div id="app"></div>
+  <div id="app">
+    <div class="mainContainer">
+      <%= render TreelibWeb.SharedView, "_navbar.html" %>
+      <div class="homePage">
+        <div class="banner">
+          <div class="innerBanner">
+            <span class="helper"></span><div class="wrapper">
+              A high-quality tree database for educators, students and lay persons.
+              <div class="searchButton">
+                <a href="/search">
+                  <i class="fa fa-search">
+                  </i>
+                  start searching
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <p>
+            The <i>Tree Library</i> is a digital platform for teaching and studying trees with a focus on promoting awareness and understanding of trees and their global importance to the environment.
+          </p>
+          <div class="photoBanner">
+            <div>
+              <a href="/search?s=47">
+                <picture>
+                  <source srcset="images/homepage-banner/1.webp" type="image/webp" />
+                  <img src="images/homepage-banner/1.jpg" alt="Gymnocladus dioicusKentucky coffeetree"/>
+                </picture>
+              </a>
+              <a href="/search?s=2">
+                <picture>
+                  <source srcset="images/homepage-banner/9.webp" type="image/webp" />
+                  <img src="images/homepage-banner/9.jpg" alt="Liquidambar formosanaFormosan sweetgum"/>
+                </picture>
+              </a>
+            </div>
+            <div>
+              <a href="/search?s=31">
+                <picture>
+                  <source srcset="images/homepage-banner/6.webp" type="image/webp" />
+                  <img src="images/homepage-banner/6.jpg" alt="Nyssa sylvaticablack tupelo"/>
+                </picture>
+              </a>
+              <a href="/search?s=101">
+                <picture>
+                  <source srcset="images/homepage-banner/5.webp" type="image/webp" />
+                  <img src="images/homepage-banner/5.jpg" alt="Populus tremuloidestrembling aspen poplar"/>
+                </picture>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="banner">
+          <div class="innerBanner">
+            <span class="helper"></span><div class="wrapper">
+              Trees are our silent partners, sensing us as we move about, providing shelter, offering us beauty, and nurturing and protecting the earth.
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <p>
+            Make use of the site from any platform or device with access to an internet browser. Whether projecting in a classroom or studying from a phone while walking around a park, <b>TreeLib</b> aims to be accessible everywhere.  Want to develop a specific format for your class? Contact us to develop scripts and picture series to fit your needs.
+          </p>
+          <div class="photoBanner">
+            <div>
+              <a href="/search?s=78">
+                <picture>
+                  <source srcset="images/homepage-banner/4.webp" type="image/webp" />
+                  <img src="images/homepage-banner/4.jpg" alt="Tsuga heterophyllawestern hemlock"/>
+                </picture>
+              </a>
+              <a href="/search?s=42">
+                <picture>
+                  <source srcset="images/homepage-banner/2.webp" type="image/webp" />
+                  <img src="images/homepage-banner/2.jpg" alt="Cercis canadensiseastern redbud"/>
+                </picture>
+              </a>
+            </div>
+            <div>
+              <a href="/search?s=146">
+                <picture>
+                  <source srcset="images/homepage-banner/7.webp" type="image/webp" />
+                  <img src="images/homepage-banner/7.jpg" alt="Acer platanoidesNorway maple"/>
+                </picture>
+              </a>
+              <a href="/search?s=41">
+                <picture>
+                  <source srcset="images/homepage-banner/8.webp" type="image/webp" />
+                  <img src="images/homepage-banner/8.jpg" alt="Albizia julibrissinPersian silk tree"/>
+                </picture>
+              </a>
+            </div>
+          </div>
+          <p>
+            <b>TreeLib</b>&nbsp;is for educational purposes.  Copying information or pictures for commercial purposes is not permitted without specific written permission from the author.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<script src="<%= Routes.static_path(@conn, "/js/autres.bundle.js") %>"></script>
-<script src="<%= Routes.static_path(@conn, "/js/homepage.js") %>"></script>

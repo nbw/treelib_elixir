@@ -12,7 +12,10 @@ $family-color: $color-first-0;
 $genus-color: $color-fourth-0;
 $species-color: $color-third-0;
 
-html { font-size: 62.5%; }
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
 
 body {
   background-color: white;

@@ -1,5 +1,4 @@
 .contactPage {
-	background-image: url("/images/cogyria-2.jpg");
 	background-repeat: no-repeat;
 	background-position: left bottom;
 	background-attachment: fixed;
@@ -28,8 +27,16 @@
 				}
 			}
 		}
-				
-
+	}
+	.banner {
+		background-size: 100%;
+		background-position: center top;
+		background-repeat: repeat-y;
+		min-height: 500px;
+		.innerBanner{
+			height: 92%;
+			padding: 3% 3% 3% 3%;
+		}
 	}
 	img {
 		display:block;
@@ -65,4 +72,12 @@
 		}
 	}
   
+}
+
+.no-webp .contactPage .banner {
+	background-image: url("/images/cogyria-2.jpg");
+}
+
+.webp .contactPage .banner {
+	background-image: url("/images/cogyria-2.webp");
 }

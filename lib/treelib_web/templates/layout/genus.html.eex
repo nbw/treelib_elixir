@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Genus: <%= raw @page_data.genus.name %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,8 +8,9 @@
     <meta property="og:title"         content="TreeLib Genus: <%= @page_data.genus.name %>" />
     <meta property="og:description"   content="" />
     <link rel='shortcut icon' href="<%= Routes.static_path(@conn, "/images/favicon.ico") %>" type='image/x-icon'/ >
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/genus_page.css") %>">
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/modernizr-webp.min.js") %>"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -18,8 +20,8 @@
 </head>
 <body>
   <div class="mainContainer">
-    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <%# <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %1></p> %>
+    <%# <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %1></p> %>
     <main role="main">
       <%= render @view_module, @view_template, assigns %>
     </main>

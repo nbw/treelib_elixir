@@ -10,10 +10,12 @@ $searcher-grey-border: #dadada;
   width: 100%;
   padding: 0;
   margin: auto;
+
   > * {
     display: inline-block;
     vertical-align: middle;
   }
+
   input {
     width: $searcher-input-width - $searcher-input-icon-width - 17px;
     font-size: 1.6rem;
@@ -23,13 +25,13 @@ $searcher-grey-border: #dadada;
     border: 1px solid $searcher-grey-border;
     border-left: 3px solid $searcher-grey-border;
     border-right: 0px solid $searcher-grey-border;
-    border-radius: 0;
+    border-radius: 0px;
     background: white;
-    outline: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     box-sizing: border-box;
   }
+
   .icon {
     height: $searcher-input-height;
     min-width: $searcher-input-height;
@@ -40,36 +42,42 @@ $searcher-grey-border: #dadada;
     box-sizing: border-box;
     background-color: white;
     width: $searcher-input-icon-width;
+
     .fa-search {
       color: #777;
     }
   }
 }
+
 ul#searcher-results {
   background-color: white;
   position: absolute;
   overflow-y: scroll;
   max-height: calc(100% - 90px);
   z-index: 1000;
+
   & > * {
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
     perspective: 1000;
     -webkit-perspective: 1000;
   }
+
   .searcher-result {
     list-style: none;
     padding: 7px 10px 7px 7px;
-    // borders
     border-bottom: 1px solid $searcher-grey-border;
-    border-right:  1px solid $searcher-grey-border;
+    border-right: 1px solid $searcher-grey-border;
+
     &:hover {
       background-color: #fafafa;
     }
+
     ul.result-list {
       li {
         list-style: none;
         text-align: left;
+
         .type {
           float: right;
           font-size: 1.4rem;
@@ -78,15 +86,19 @@ ul#searcher-results {
       }
     }
   }
+
   .searcher-species {
     border-left: $searcher-border-left solid $species-color;
   }
+
   .searcher-genus {
     border-left: $searcher-border-left solid $genus-color;
   }
+
   .searcher-family {
     border-left: $searcher-border-left solid $family-color;
   }
+
   max-width: $searcher-input-width;
   width: 100%;
   padding: 0;
@@ -101,10 +113,12 @@ ul#searcher-results {
 @media screen and (max-width: $break-ipad-horiz) {
   #searcher-input {
     max-width: $searcher-ipad-input-width;
+
     input {
       width: calc(100% - #{$searcher-input-icon-width + 25px});
     }
   }
+
   ul#searcher-results {
     max-width: $searcher-ipad-input-width;
     max-height: 225px;
@@ -112,10 +126,12 @@ ul#searcher-results {
     width: 100%;
   }
 }
+
 @media screen and (max-width: $break-medium) {
   #searcher-input {
     display: none;
   }
+
   /*
    ul#searcher-results {
      .searcher-result:nth-child(n+6) {

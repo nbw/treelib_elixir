@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MinifyPlugin = require("babel-minify-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -40,6 +41,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({name: "autres", filename: "js/autres.bundle.js"}),
     new MinifyPlugin({}, {}),
+    new CompressionPlugin(),
     new CopyWebpackPlugin([{ from: "./assets"}]),
   ]
 };
