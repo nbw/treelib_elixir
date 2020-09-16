@@ -69,13 +69,13 @@
               <a href="/search?s=78">
                 <picture>
                   <source srcset="images/homepage-banner/4.webp" type="image/webp" />
-                  <img src="images/homepage-banner/4.jpg" alt="Tsuga heterophyllawestern hemlock"/>
+                  <img src="images/homepage-banner/4.jpg" alt="Tsuga heterophylla western hemlock"/>
                 </picture>
               </a>
               <a href="/search?s=42">
                 <picture>
                   <source srcset="images/homepage-banner/2.webp" type="image/webp" />
-                  <img src="images/homepage-banner/2.jpg" alt="Cercis canadensiseastern redbud"/>
+                  <img src="images/homepage-banner/2.jpg" alt="Cercis canadensis eastern redbud"/>
                 </picture>
               </a>
             </div>
@@ -83,18 +83,59 @@
               <a href="/search?s=146">
                 <picture>
                   <source srcset="images/homepage-banner/7.webp" type="image/webp" />
-                  <img src="images/homepage-banner/7.jpg" alt="Acer platanoidesNorway maple"/>
+                  <img src="images/homepage-banner/7.jpg" alt="Acer platanoides Norway maple"/>
                 </picture>
               </a>
               <a href="/search?s=41">
                 <picture>
                   <source srcset="images/homepage-banner/8.webp" type="image/webp" />
-                  <img src="images/homepage-banner/8.jpg" alt="Albizia julibrissinPersian silk tree"/>
+                  <img src="images/homepage-banner/8.jpg" alt="Albizia julibrissin Persian silk tree"/>
                 </picture>
               </a>
             </div>
           </div>
-          <p>
+        </div>
+        <div class="banner">
+          <div class="innerBanner">
+            <span class="helper"></span><div class="wrapper">
+              Trees are our silent partners, sensing us as we move about, providing shelter, offering us beauty, and nurturing and protecting the earth.
+            </div>
+          </div>
+        </div>
+        <div id="affiliates" class="section">
+          <div class="affiliate">
+            <a href="https://treecanada.ca/" target="_blank">
+              <picture>
+                <%# <source srcset="images/homepage-banner/7.webp" type="image/webp" /> %>
+                  <img src="images/affiliates/ArboretumWespelaar.png" alt="Arboretum Wespelaar"/>
+              </picture>
+            </a>
+          </div>
+          <div class="affiliate">
+            <a href="https://treecanada.ca/" target="_blank">
+              <picture>
+                <%# <source srcset="images/homepage-banner/7.webp" type="image/webp" /> %>
+                  <img src="images/affiliates/TreeCanada.png" alt="Arboretum Wespelaar"/>
+              </picture>
+            </a>
+          </div>
+          <%# <div class="affiliate"> %>
+          <%#   <a href="https://conifersociety.org/" target="_blank"> %>
+          <%#     <picture> %>
+          <%#       <%1# <source srcset="images/homepage-banner/7.webp" type="image/webp" /> %1> %>
+          <%#         <img src="images/affiliates/AmericanConifers.png" alt="American Conifer Society"/> %>
+          <%#     </picture> %>
+          <%#   </a> %>
+          <%# </div> %>
+          <p id="nocopy">
+            <b>Special thanks to Philippe de Spoelberch and UBC Botanical Garden</b>
+          </p>
+          </br>
+          </br>
+          </br>
+          </br>
+          </br>
+          <p id="nocopy">
             <b>TreeLib</b>&nbsp;is for educational purposes.  Copying information or pictures for commercial purposes is not permitted without specific written permission from the author.
           </p>
         </div>
