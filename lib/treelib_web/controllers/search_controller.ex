@@ -22,6 +22,8 @@ defmodule TreelibWeb.SearchController do
         }
       }
       render conn, "index.html", page_data: json_encode!(pay_load)
+    else
+      _ -> render conn, "index.html", page_data: json_encode!(%{ tree: Taxonomy.all})
     end
   end
 
@@ -35,6 +37,8 @@ defmodule TreelibWeb.SearchController do
         }
       }
       render conn, "index.html", page_data: json_encode!(pay_load)
+    else
+      _ -> render conn, "index.html", page_data: json_encode!(%{ tree: Taxonomy.all})
     end
   end
 
@@ -48,6 +52,8 @@ defmodule TreelibWeb.SearchController do
         }
       }
       render conn, "index.html", page_data: json_encode!(pay_load)
+    else
+      _ -> render conn, "index.html", page_data: json_encode!(%{ tree: Taxonomy.all})
     end
   end
 
