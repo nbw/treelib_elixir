@@ -98,13 +98,13 @@
         <div class="banner">
           <div class="innerBanner">
             <span class="helper"></span><div class="wrapper">
-              Trees are our silent partners, sensing us as we move about, providing shelter, offering us beauty, and nurturing and protecting the earth.
+              The Tree Library provides a digital data base for educators and botanical gardens for teaching, to link to as references to species and download photographs or expand special collections.
             </div>
           </div>
         </div>
         <div id="affiliates" class="section">
           <div class="affiliate">
-            <a href="https://treecanada.ca/" target="_blank">
+            <a href="https://www.arboretumwespelaar.be/" target="_blank">
               <picture>
                 <%# <source srcset="images/homepage-banner/7.webp" type="image/webp" /> %>
                   <img src="images/affiliates/ArboretumWespelaar.png" alt="Arboretum Wespelaar"/>
