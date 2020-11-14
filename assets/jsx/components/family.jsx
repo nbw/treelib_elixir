@@ -156,6 +156,7 @@ class Family extends React.Component {
           </div>
           <hr/>
           <div className="genera">
+            { f.genera.length > 0 ?
             <table>
               <thead>
                 <tr>
@@ -168,6 +169,7 @@ class Family extends React.Component {
               {genera}
               </tbody>
             </table>
+            : null }
           </div>
         </div>
         { (selectedPhoto != null) ?
