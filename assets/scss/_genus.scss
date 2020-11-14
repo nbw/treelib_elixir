@@ -48,6 +48,10 @@
         width: 100%;
         margin: 2rem auto;
         max-width: 800px;
+        thead tr th {
+			    border-bottom: 1px solid #AAA;
+          padding: 1rem;
+        }
         tr {
           &:nth-child(even) {
             background-color: #f2f2f2;
