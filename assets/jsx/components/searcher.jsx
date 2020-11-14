@@ -85,6 +85,12 @@ class Searcher extends React.Component {
 
   check(e) {
     const val = e.target.value
+
+    // Reset everything if search becomes empty
+    if (this.state.val.length > 0 && val.length == 0) {
+      this.props.resetHandler();
+    }
+
     this.update("val", val);
     if(val.length > 2){
       const families =  this.search(val, "families", 50);
@@ -122,6 +128,11 @@ class Searcher extends React.Component {
     return handler;
   }
 
+  reset() {
+    this.update("val", "");
+    this.props.resetHandler();
+  }
+
   render() {
     let self = this;
     let results = this.state.results.map(function(item){
@@ -150,7 +161,7 @@ class Searcher extends React.Component {
           <div className="icon">
             <i className="fa fa-search"></i>
           </div>
-        </div>
+        </div><button onClick={(e) => this.reset()}>Reset</button>
         <ul id="searcher-results">
          {results}
         </ul>

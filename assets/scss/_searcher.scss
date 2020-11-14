@@ -5,6 +5,24 @@ $searcher-input-icon-width: 20px;
 $searcher-border-left: 3px;
 $searcher-grey-border: #dadada;
 
+#searcher > * {
+  display: inline-block;
+}
+#searcher button {
+  background-color: #f1f1f1;
+  border-color: $searcher-grey-border;
+  border-style: solid;
+  border-radius: 3px;
+  margin: auto 1rem;
+  padding: 0.60rem;
+  outline: none;
+  box-shadow: none;
+
+  &:hover {
+    background-color: #d9d9d9;
+  }
+}
+
 #searcher-input {
   max-width: $searcher-input-width;
   width: 100%;
