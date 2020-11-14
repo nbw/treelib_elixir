@@ -21,13 +21,13 @@ class Family extends React.Component {
 
     // only grab photos (and reset index if new family)
     if(currFamily != nextFamily){
-      this.update("selectedPhotoIndex", null);
-      this.grabMorePhotos(nextFamily);
+      // this.update("selectedPhotoIndex", null);
+      // this.grabMorePhotos(nextFamily);
     }
   }
 
   componentDidMount(){
-    this.grabMorePhotos(this.props.family);
+    // this.grabMorePhotos(this.props.family);
   }
 
   update(name, value) {
@@ -105,8 +105,29 @@ class Family extends React.Component {
       selectedPhoto = this.state.selectedPhotoIndex,
       thumbs = [];
 
-    var genera = f.genera.map(function(g,i){
-      return <li key={i} ><a className="underlineable" href={'/search?g=' + g.id}>{g.name}</a></li>
+    var genera = f.genera.map(function(g,i) {
+      var species = g.species.map(function(s,j) {
+        return <li key={"s-" + s.id}>
+          <a className="underlineable" href={'/search?s=' + s.id}>
+            {s.name}&nbsp;<i>({s.common_name})</i>
+          </a>
+        </li>
+      });
+      return <tr key={i}>
+        <td>
+          {i+1}.
+        </td>
+        <td>
+          <a className="underlineable" href={'/search?g=' + g.id}>
+            {g.name}&nbsp;<i>({g.common_name})</i>
+          </a>
+        </td>
+        <td>
+          <ul>
+            { species }
+          </ul>
+        </td>
+      </tr>
     });
 
     if( photos && photos.length > 0 ) {
@@ -133,11 +154,20 @@ class Family extends React.Component {
           <div className="description">
             <div dangerouslySetInnerHTML={this.createMarkup(f.description)}></div>
           </div>
+          <hr/>
           <div className="genera">
-            <label className="genusTitle">Genera</label>
-            <ul>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Genera</th>
+                  <th>Species</th>
+                </tr>
+              </thead>
+              <tbody>
               {genera}
-            </ul>
+              </tbody>
+            </table>
           </div>
         </div>
         { (selectedPhoto != null) ?
