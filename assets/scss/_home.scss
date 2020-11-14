@@ -77,11 +77,11 @@
   &:first-child {
     background-image: url("/images/cogyria-1.jpg");
   }
-  &:nth-child(2n){
-    background-image: url("/images/cogyria-2.jpg");
-  }
   &:nth-child(3n){
     background-image: url("/images/cogyria-3.jpg");
+  }
+  &:nth-child(5n){
+    background-image: url("/images/cogyria-2.jpg");
   }
 }
 
@@ -89,10 +89,29 @@
   &:first-child {
     background-image: url("/images/cogyria-1.webp");
   }
-  &:nth-child(2n){
-    background-image: url("/images/cogyria-2.webp");
-  }
   &:nth-child(3n){
     background-image: url("/images/cogyria-3.webp");
   }
+  &:nth-child(5n){
+    background-image: url("/images/cogyria-2.webp");
+  }
+}
+
+#affiliates {
+  text-align: center;
+}
+
+.affiliate {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 4rem;
+
+  source,
+  img {
+    max-height: 150px;
+  }
+}
+
+#nocopy {
+  margin: 4em auto 2em auto;
 }
