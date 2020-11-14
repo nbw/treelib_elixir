@@ -5,7 +5,7 @@ defmodule Treelib.Mixfile do
     [
       app: :treelib,
       version: "0.0.3",
-      elixir: "~> 1.9.4",
+      elixir: "~> 1.10.3",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
