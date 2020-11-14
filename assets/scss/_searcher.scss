@@ -29,7 +29,7 @@ $searcher-grey-border: #dadada;
   padding: 0;
   margin: auto;
 
-  > * {
+  > *:not(ul) {
     display: inline-block;
     vertical-align: middle;
   }
@@ -120,13 +120,12 @@ ul#searcher-results {
   max-width: $searcher-input-width;
   width: 100%;
   padding: 0;
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
+  margin: $searcher-input-height auto 0 auto;
+  left: -70px;
   right: 0;
   text-align: center;
 }
+
 
 @media screen and (max-width: $break-ipad-horiz) {
   #searcher-input {
@@ -145,11 +144,21 @@ ul#searcher-results {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  #searcher {
+    button {
+      display: none;
+    }
+  }
+  ul#searcher-results {
+    left: 0;
+  }
+}
+
 @media screen and (max-width: $break-medium) {
   #searcher-input {
     display: none;
   }
-
   /*
    ul#searcher-results {
      .searcher-result:nth-child(n+6) {

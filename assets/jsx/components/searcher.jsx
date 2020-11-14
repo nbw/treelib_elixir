@@ -161,7 +161,8 @@ class Searcher extends React.Component {
           <div className="icon">
             <i className="fa fa-search"></i>
           </div>
-        </div><button onClick={(e) => this.reset()}>Reset</button>
+        </div>
+        <button onClick={(e) => this.reset()}>Reset</button>
         <ul id="searcher-results">
          {results}
         </ul>
