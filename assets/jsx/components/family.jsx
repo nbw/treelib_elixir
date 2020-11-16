@@ -109,7 +109,7 @@ class Family extends React.Component {
       var species = g.species.map(function(s,j) {
         return <li key={"s-" + s.id}>
           <a className="underlineable" href={'/search?s=' + s.id}>
-            {s.name}&nbsp;<i>({s.common_name})</i>
+            <i>{s.name}</i>&nbsp;({s.common_name})
           </a>
         </li>
       });
@@ -119,7 +119,7 @@ class Family extends React.Component {
         </td>
         <td>
           <a className="underlineable" href={'/search?g=' + g.id}>
-            {g.name}&nbsp;<i>({g.common_name})</i>
+            <i>{g.name}</i>&nbsp;({g.common_name})
           </a>
         </td>
         <td>
