@@ -22,10 +22,10 @@ defmodule Treelib.Tasks.MissingAlbums do
   def find_and_link(species) do
     name = "#{species.genus.name} #{species.name}"
 
-    IO.puts("[MA]: Searching: #{name}")
+    # IO.puts("[MA]: Searching: #{name}")
     PhotoManager.get_album_by_name(name)
     |> case do
-      nil -> IO.puts("--> Not found")
+      nil -> IO.puts("--> Not found: #{name}")
       pa -> IO.puts("--> Found an album with name #{name}")
         SpeciesManager.update_species(species, %{ album_id: pa.id })
     end
