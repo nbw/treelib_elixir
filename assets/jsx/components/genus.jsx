@@ -111,7 +111,7 @@ class Genus extends React.Component {
         </td>
         <td>
           <a className="underlineable" href={'/search?s=' + s.id}>
-            <i>{s.name}</i>&nbsp;({s.common_name})
+            <i>{`${g.name} ${s.name}`}</i>&nbsp;({s.common_name})
           </a>
         </td>
       </tr>

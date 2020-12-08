@@ -161,7 +161,7 @@ class Family extends React.Component {
               <thead>
                 <tr>
                   <th></th>
-                  <th>Genera</th>
+                  <th>Genus</th>
                   <th>Species</th>
                 </tr>
               </thead>
