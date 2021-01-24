@@ -14,8 +14,7 @@ defmodule TreelibWeb.SpeciesController do
     SpeciesManager,
     Species,
     GenusManager,
-    Genus,
-    Species.HardinessType
+    Genus
   }
 
   alias Treelib.QR.QrManager
@@ -92,7 +91,7 @@ defmodule TreelibWeb.SpeciesController do
             photo_albums: photo_albums,
             photos: photos,
             hardiness_types: Species.HardinessTypes.all(),
-            qr_code: qr_code
+            qr_code_url: QrManager.qr_code_url(qr_code)
           })
       )
     else

@@ -49,6 +49,7 @@ defmodule TreelibWeb.Router do
 
     get("/contributors", ContributorController, :index)
 
+    get("/qr/:id", QrController, :show)
     post("/qr", QrController, :create)
   end
 

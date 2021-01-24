@@ -8,6 +8,7 @@ import Dropper from './components/dropper.jsx';
 import Texter from './components/texter.jsx';
 import Markup from './components/markup.jsx';
 import CheckBoxer from './components/checkBoxer.jsx';
+import QrCode from './components/qr_code.jsx';
 
 var pg = pageData;
 
@@ -173,6 +174,26 @@ class App extends React.Component {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
+  renderQrCode() {
+    if(pg.species.id) {
+      if (pg.qr_code_url && pg.qr_code_url.length > 0) {
+        return <div>
+          <hr />
+          <QrCode value={pg.qr_code_url} />
+        </div>;
+      } else {
+        return <div>
+          <hr />
+          <Buttoner
+            id="qrCreate"
+            callback = {this.createQRCode.bind(this)}
+            text = "Create QR Code" />
+        </div>;
+      }
+    } else {
+      return null;
+    }
+  }
 
   render() {
     return (
@@ -235,15 +256,7 @@ class App extends React.Component {
                 />
               </li>
             </ul>
-            <hr />
-            { pg.species.id ? 
-              <div>
-                <hr />
-                <h2>Create QR CODE!</h2> 
-                <Buttoner
-                  callback = {this.createQRCode.bind(this)}
-                  text = "Create QR Code" />
-              </div> : null }
+            { this.renderQrCode() }
             <hr />
             <Dropper
               id = "photoAlbum"

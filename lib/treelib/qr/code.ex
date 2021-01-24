@@ -29,4 +29,3 @@ defmodule Treelib.QR.Code do
       order_by: c.id
   end
 end
-

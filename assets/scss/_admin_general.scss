@@ -73,6 +73,19 @@ a {
         }
     }
 }
+
+#qrCreate {
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #6D6;
+  width: 250px;
+  padding: 10px 0 10px 0;
+  &:hover {
+    background-color: #339933;
+  }
+}
+
 #saveButton {
     //text & color stuff
     color: white;

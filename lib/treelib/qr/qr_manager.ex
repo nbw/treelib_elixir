@@ -78,8 +78,9 @@ defmodule Treelib.QR.QrManager do
     Repo.delete(code)
   end
 
-  @doc false
-  def delete_code(%Code{} = code) do
-    Repo.delete(code)
+  def qr_code_url(nil), do: nil
+
+  def qr_code_url(%Code{} = code) do
+    TreelibWeb.Router.Helpers.qr_url(TreelibWeb.Endpoint, :show, code.id)
   end
 end

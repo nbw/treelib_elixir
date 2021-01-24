@@ -8,6 +8,7 @@ defmodule TreelibWeb.QrController do
   """
 
   alias Treelib.QR.QrManager
+  alias Treelib.QR.Code
   alias Treelib.Taxonomy.SpeciesManager
 
   def create(%{params: %{"species_id" => id}} = conn, _params) do
@@ -16,5 +17,20 @@ defmodule TreelibWeb.QrController do
       {:ok, code} = QrManager.create_code(species)
       render(conn, "create.json", code: code)
     end
+  end
+
+  def show(%{params: %{"id" => id}} = conn, _params) do
+    code = QrManager.get_code!(id)
+
+    conn
+    |> redirect(to: redirect_url(code))
+  end
+
+  defp redirect_url(%Code{type_id: id, type: "species"}) do
+    "/search?s=#{id}"
+  end
+
+  defp redirect_url(_) do
+    "/"
   end
 end
