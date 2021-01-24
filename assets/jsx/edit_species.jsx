@@ -85,7 +85,6 @@ class App extends React.Component {
         console.log('There has been a problem with your fetch operation: ' + error.message);
       });
   }
-
   hardinessInputs() {
     return  <li>
       <Inputer
@@ -114,15 +113,12 @@ class App extends React.Component {
               handler = {this.handleInputChange.bind(this, "hardiness_max_type")} />
       </li>;
   }
-
   hardiness_min(){
     return this.state.hardiness_enabled ? this.state.hardiness_min : null;
   }
-
   hardiness_max(){
     return this.state.hardiness_enabled ? this.state.hardiness_max : null;
   }
-
   hardiness_types() {
     return pg.hardiness_types.map(type =>{
       var obj = {};
@@ -131,7 +127,6 @@ class App extends React.Component {
       return obj;
     });
   }
-
   deleteMe() {
     var r = confirm("Are you sure you want to delete me?");
     if (r == true) {
@@ -157,6 +152,26 @@ class App extends React.Component {
           console.log('There has been a problem with your fetch operation: ' + error.message);
         });
     }
+  }
+  createQRCode() {
+    fetch('/qr?species_id=' + pg.species.id, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'X-CSRF-Token': CSRF_TOKEN,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    }).then(function(response) {
+      if(response.ok) {
+        window.location.href = window.location.origin + '/species/' + pg.species.id + "/edit";
+      } else {
+        console.log('Response was not ok.');
+        alert('Response was not ok.');
+      }
+    }).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
   }
 
   render() {
@@ -220,6 +235,15 @@ class App extends React.Component {
                 />
               </li>
             </ul>
+            <hr />
+            { pg.species.id ? 
+              <div>
+                <hr />
+                <h2>Create QR CODE!</h2> 
+                <Buttoner
+                  callback = {this.createQRCode.bind(this)}
+                  text = "Create QR Code" />
+              </div> : null }
             <hr />
             <Dropper
               id = "photoAlbum"

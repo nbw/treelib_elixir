@@ -9,5 +9,7 @@ defmodule Treelib.Repo.Migrations.CreateQrCodes do
 
       timestamps()
     end
+
+    create unique_index(:qr_codes, [:type, :type_id, :enabled])
   end
 end

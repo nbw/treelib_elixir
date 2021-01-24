@@ -7,6 +7,7 @@ defmodule Treelib.QR.QrManager do
   alias Treelib.Repo
 
   alias Treelib.QR.Code
+
   alias Treelib.Taxonomy.{
     Species,
     Genus,
@@ -15,17 +16,18 @@ defmodule Treelib.QR.QrManager do
 
   @doc false
   def get_code!(id) do
-    Code.active
+    Code.active()
     |> Repo.get!(id)
   end
 
   @doc false
   def get_code(id) do
-    Code.active
+    Code.active()
     |> Repo.get(id)
     |> case do
       %Code{} = code ->
         {:ok, code}
+
       nil ->
         {:error, :not_found}
     end
@@ -33,33 +35,31 @@ defmodule Treelib.QR.QrManager do
 
   @doc false
   def get_by_type!(type, type_id) do
-    Code.active
+    Code.active()
     |> Repo.get_by!(type: type, type_id: type_id)
   end
 
   @doc false
   def get_by_type(type, type_id) do
-    Code.active
+    Code.active()
     |> Repo.get_by(type: type, type_id: type_id)
-    |> case do
-      %Code{} = code ->
-        {:ok, code}
-      nil ->
-        {:error, :not_found}
-    end
   end
 
   @doc false
   def create_code(attrs \\ %{})
+
   def create_code(%Species{id: id}) do
     create_code(%{type: "species", type_id: id})
   end
+
   def create_code(%Genus{id: id}) do
     create_code(%{type: "genus", type_id: id})
   end
+
   def create_code(%Family{id: id}) do
     create_code(%{type: "family", type_id: id})
   end
+
   def create_code(attrs) do
     %Code{}
     |> Code.changeset(attrs)
@@ -83,6 +83,3 @@ defmodule Treelib.QR.QrManager do
     Repo.delete(code)
   end
 end
-
-
-
