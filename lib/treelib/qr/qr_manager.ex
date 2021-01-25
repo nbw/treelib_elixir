@@ -15,6 +15,14 @@ defmodule Treelib.QR.QrManager do
   }
 
   @doc false
+  def species_with_code do
+    Species.active()
+    |> join(:inner, [species], code in assoc(species, :code))
+    |> preload([:genus, :code])
+    |> Repo.all()
+  end
+
+  @doc false
   def get_code!(id) do
     Code.active()
     |> Repo.get!(id)

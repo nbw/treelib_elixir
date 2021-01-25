@@ -5,11 +5,26 @@ defmodule Treelib.Taxonomy.Species do
 
   import Treelib.Taxonomy.Species.HardinessValidator
 
+  alias Treelib.QR.Code
   alias Treelib.Taxonomy.Genus
   alias Treelib.Taxonomy.Species
   alias Treelib.PhotoManager.PhotoAlbum
 
-  @derive {Poison.Encoder, only: [:id, :name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_min_type, :hardiness_max, :hardiness_max_type, :hide, :contributors]}
+  @derive {Poison.Encoder,
+           only: [
+             :id,
+             :name,
+             :common_name,
+             :description,
+             :genus_id,
+             :album_id,
+             :hardiness_min,
+             :hardiness_min_type,
+             :hardiness_max,
+             :hardiness_max_type,
+             :hide,
+             :contributors
+           ]}
 
   schema "species" do
     field :name, :string
@@ -25,7 +40,10 @@ defmodule Treelib.Taxonomy.Species do
     belongs_to :genus, Genus
     belongs_to :album, PhotoAlbum
 
-    many_to_many :contributors, Treelib.Contributions.Contributor, join_through: "contributors_species"
+    many_to_many :contributors, Treelib.Contributions.Contributor,
+      join_through: "contributors_species"
+
+    has_one :code, Code, foreign_key: :type_id, references: :id, where: [type: "species"]
 
     timestamps()
   end
@@ -33,7 +51,18 @@ defmodule Treelib.Taxonomy.Species do
   @doc false
   def changeset(%Species{} = species, attrs) do
     species
-    |> cast(attrs, [:name, :common_name, :description, :genus_id, :album_id, :hardiness_min, :hardiness_max, :hardiness_min_type, :hardiness_max_type, :hide])
+    |> cast(attrs, [
+      :name,
+      :common_name,
+      :description,
+      :genus_id,
+      :album_id,
+      :hardiness_min,
+      :hardiness_max,
+      :hardiness_min_type,
+      :hardiness_max_type,
+      :hide
+    ])
     |> validate_required([:name, :common_name, :genus_id, :album_id])
     |> validate_hardiness
     |> foreign_key_constraint(:genus_id)
@@ -55,6 +84,6 @@ defmodule Treelib.Taxonomy.Species do
 
   @doc false
   def active_count() do
-    Treelib.Repo.aggregate(from(s in __MODULE__.active), :count, :id)
+    Treelib.Repo.aggregate(from(s in __MODULE__.active()), :count, :id)
   end
 end

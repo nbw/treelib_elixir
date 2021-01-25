@@ -6,9 +6,9 @@ defmodule Treelib.Mixfile do
       app: :treelib,
       version: "0.0.3",
       elixir: "~> 1.10.3",
-      elixirc_paths: elixirc_paths(Mix.env),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-      start_permanent: Mix.env == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
     ]
@@ -26,7 +26,7 @@ defmodule Treelib.Mixfile do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -44,21 +44,24 @@ defmodule Treelib.Mixfile do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 2.1"},
-
-      {:httpoison, "~> 1.2"}, # http client
-      {:poison, "~> 3.1"}, # json (included in phx too)
-
-      {:comeonin, "~> 5.0"}, # auth
-      {:bcrypt_elixir, "~> 2.0"}, # encryption
-
-      {:timex, "~> 3.6.1"}, # Dates and Time
+      # http client
+      {:httpoison, "~> 1.2"},
+      # json (included in phx too)
+      {:poison, "~> 3.1"},
+      # auth
+      {:comeonin, "~> 5.0"},
+      # encryption
+      {:bcrypt_elixir, "~> 2.0"},
+      # Dates and Time
+      {:timex, "~> 3.6.1"},
 
       # Testing
-      {:ex_machina, "~> 2.3", only: :test}, # fixtures for testing
-
+      # fixtures for testing
+      {:ex_machina, "~> 2.3", only: :test},
       {:flickrex, "~> 0.8"},
       {:sitemap, "~> 1.1"},
-      {:faker, "~> 0.12", only: [:dev, :test]} # for seeds
+      # for seeds
+      {:faker, "~> 0.12", only: [:dev, :test]}
     ]
   end
 

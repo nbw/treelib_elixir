@@ -73,5 +73,7 @@ defmodule TreelibWeb.Router do
     post("/oauth/access_token", OAuthController, :access_token)
     post("/refresh", AdminController, :refresh)
     resources("/contributors", AdminContributorController)
+
+    get("/qr", AdminQrController, :index)
   end
 end
