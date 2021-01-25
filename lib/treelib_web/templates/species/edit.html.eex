@@ -6,8 +6,6 @@
   </head>
   <body>
     <div class="mainContainer">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <div id="app" class="admin"></div>
     </div>
     <script type="text/javascript">
