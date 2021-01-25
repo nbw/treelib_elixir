@@ -30,6 +30,7 @@ class SearchSidebar extends React.Component {
       [name]: e.target.value
     });
   }
+
   familyClicked(item,e) {
     this.update('selectedGenus', null);
     this.update('selectedSpecies', null);
@@ -39,6 +40,7 @@ class SearchSidebar extends React.Component {
 
     window.history.pushState({},"title","?f="+item.id);
   }
+
   genusClicked(genus,e) {
     var family = this.findFamily(genus.fam_id);
     console.log(family);
@@ -51,6 +53,7 @@ class SearchSidebar extends React.Component {
 
     window.history.pushState({},"title","?g="+genus.id);
   }
+
   speciesClicked(species,e) {
     species = this.preloadSpeciesWithGenus(species);
     var genus = this.findGenus(species.genus_id);
@@ -64,14 +67,17 @@ class SearchSidebar extends React.Component {
 
     window.history.pushState({},"title","?s="+species.id);
   }
+
   hideSidebar(e) {
     var minimized = this.props.minimized;
     this.props.handler('sidebarMinimized', !minimized);
   }
+
   resetTree() {
     this.update('selectedGenus', null);
     this.update('selectedSpecies', null);
     this.update('selectedFamily', null);
+    this.props.selectedHandler(null, null, this.props.handler);
   }
 
   findGenus(genus_id) {
@@ -246,6 +252,7 @@ class SearchSidebar extends React.Component {
             <i className="fa fa-angle-left"></i>}
           </div>
           <Searcher
+            resetHandler = {this.resetTree.bind(this)}
             speciesHandler = {this.speciesClicked.bind(this)}
             genusHandler   = {this.genusClicked.bind(this)}
             familyHandler  = {this.familyClicked.bind(this)}

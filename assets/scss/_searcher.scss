@@ -5,13 +5,32 @@ $searcher-input-icon-width: 20px;
 $searcher-border-left: 3px;
 $searcher-grey-border: #dadada;
 
+#searcher > * {
+  display: inline-block;
+}
+#searcher button {
+  background-color: #f1f1f1;
+  border-color: $searcher-grey-border;
+  border-style: solid;
+  border-radius: 3px;
+  border-width: 1px;
+  margin: auto 1rem;
+  padding: 0.70rem;
+  outline: none;
+  box-shadow: none;
+
+  &:hover {
+    background-color: #d9d9d9;
+  }
+}
+
 #searcher-input {
   max-width: $searcher-input-width;
   width: 100%;
   padding: 0;
   margin: auto;
 
-  > * {
+  > *:not(ul) {
     display: inline-block;
     vertical-align: middle;
   }
@@ -102,13 +121,12 @@ ul#searcher-results {
   max-width: $searcher-input-width;
   width: 100%;
   padding: 0;
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
+  margin: $searcher-input-height auto 0 auto;
+  left: -70px;
   right: 0;
   text-align: center;
 }
+
 
 @media screen and (max-width: $break-ipad-horiz) {
   #searcher-input {
@@ -127,11 +145,21 @@ ul#searcher-results {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  #searcher {
+    button {
+      display: none;
+    }
+  }
+  ul#searcher-results {
+    left: 0;
+  }
+}
+
 @media screen and (max-width: $break-medium) {
   #searcher-input {
     display: none;
   }
-
   /*
    ul#searcher-results {
      .searcher-result:nth-child(n+6) {

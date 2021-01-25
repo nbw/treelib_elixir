@@ -19,13 +19,13 @@ class Genus extends React.Component {
       nextGenus = nextProps.genus;
     // only grab photos (and reset index if new genus)
     if(currGenus != nextGenus){
-      this.update("selectedPhotoIndex", null);
-      this.grabMorePhotos(nextGenus);
+      // this.update("selectedPhotoIndex", null);
+      // this.grabMorePhotos(nextGenus);
     }
   }
 
   componentDidMount(){
-    this.grabMorePhotos(this.props.genus);
+    // this.grabMorePhotos(this.props.genus);
   }
 
   update(name, value) {
@@ -105,11 +105,20 @@ class Genus extends React.Component {
       thumbs = [];
 
     var species_links = g.species.map(function(s,i){
-      return <li key={i} ><a className="underlineable" href={'/search?s=' + s.id}>{s.name}</a></li>
+      return <tr key={i}>
+        <td>
+          {i+1}.
+        </td>
+        <td>
+          <a className="underlineable" href={'/search?s=' + s.id}>
+            <i>{`${g.name} ${s.name}`}</i>&nbsp;({s.common_name})
+          </a>
+        </td>
+      </tr>
     });
     if( photos && photos.length > 0 ) {
       photos.forEach(function(link,index) {
-        if(index == selectedPhoto) { 
+        if(index == selectedPhoto) {
           thumbs.push(<img key={index} src={link.thumb} className="selected" />);
         } else {
           thumbs.push(<img key={index} src={link.thumb} onClick={() => self.update('selectedPhotoIndex',index)} />);
@@ -125,21 +134,26 @@ class Genus extends React.Component {
           { window.admin ? <a href={`/genus/${g.id}/edit`} className="adminEdit">edit</a> : "" }
         </div>
         <ShareLinker
-          path={'/genus/' + g.id + "/" + g.name.replace(/ /g,'_')} 
+          path={'/genus/' + g.id + "/" + g.name.replace(/ /g,'_')}
         />
         <div className="textContent">
           <div className="description">
             <div dangerouslySetInnerHTML={this.createMarkup(g.description)}></div>
           </div>
           <div className="species">
-            <label className="speciesTitle">Species</label>
-            <ul>
-              {species_links}
-            </ul>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Species</th>
+                </tr>
+              </thead>
+              <tbody>{species_links}</tbody>
+            </table>
           </div>
         </div>
-        { (selectedPhoto != null) ? 
-            <PhotoViewer 
+        { (selectedPhoto != null) ?
+            <PhotoViewer
               nextCallback={() => this.nextPhoto()}
               prevCallback={() => this.prevPhoto()}
               closeCallback={() => this.closePhotoviewer()}
@@ -149,9 +163,9 @@ class Genus extends React.Component {
               image={photos[selectedPhoto].medium}
               imageName={photos[selectedPhoto].name}
               imageDescription={photos[selectedPhoto].description}
-              original = {photos[selectedPhoto].original} 
+              original = {photos[selectedPhoto].original}
               flickr_url = {photos[selectedPhoto].flickr_url} /> : null }
-            { thumbs.length > 0 ? 
+            { thumbs.length > 0 ?
                 <div className="photos">
                   <label className="subtitle">The photos below have been randomly selected from species in {g.name}.</label>
                   <div className="thumbs">{thumbs}</div>
