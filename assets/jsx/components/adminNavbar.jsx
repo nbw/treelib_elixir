@@ -32,6 +32,7 @@ class AdminNavbar extends React.Component {
                 <div className="item"><a href="/genus/new" >Add Genus</a></div>
                 <div className="item"><a href="/species/new" >Add Species</a></div>
                 <div className="item"><a href="/admin/contributors" >Contributors</a></div>
+                <div className="item"><a href="/admin/qr" >QR</a></div>
                 <div className="item"><a href="/admin" >Master Tree</a></div>
                 <div className="refresh" onClick={(event) => self.refreshClick()}>Refresh</div>
             </div>

@@ -1,0 +1,47 @@
+<div id="app" class="admin">
+  <div>
+    <%= render TreelibWeb.AdminView, "_navbar.html", assigns %>
+    <h1>
+      QR Codes
+    </h1>
+    <table class="admin responsive" style="text-align: center;">
+      <thead>
+        <tr>
+          <th>Species</th>
+          <th>QR Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for s <- @species do %>
+          <tr>
+            <td>
+              <a href=<%= "/species/#{s.id}/edit" %>>
+                <i><%= "#{s.genus.name} #{s.name}" %></i></br>
+                <%= "#{s.genus.common_name} #{s.common_name}" %>
+              </a>
+            </td>
+            <td>
+              <div class="code" data-url='<%= qr_code(s.code) %>'></div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src='<%= Routes.static_path(@conn, "/js/autres.bundle.js") %>'></script>
+<script type="text/javascript" src='<%= Routes.static_path(@conn, "/js/qrcode.min.js") %>'></script>
+<script type="text/javascript">
+  const codes = document.getElementsByClassName("code");
+  for(let i = 0; i < codes.length; i++) {
+    QRCode.toDataURL(codes[i].getAttribute("data-url"), {width: 250})
+    .then(url => {
+      const img = document.createElement('img'); 
+      img.src =  url; 
+      codes[i].appendChild(img);
+    })
+    .catch(err => {
+      console.log("QR ERROR: ", err);
+    });
+  }
+</script>

@@ -2,73 +2,78 @@ defmodule TreelibWeb.Router do
   use TreelibWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html", "json"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug Phoenix.LiveView.Flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
-    plug TreelibWeb.CurrentUser
+    plug(:accepts, ["html", "json"])
+    plug(:fetch_session)
+    plug(:fetch_flash)
+    plug(Phoenix.LiveView.Flash)
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
+    plug(TreelibWeb.CurrentUser)
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/", TreelibWeb do
-    pipe_through :browser
+    pipe_through(:browser)
 
-    get "/", PageController, :home
-    get "/about", PageController, :about
-    get "/contact", PageController, :contact
+    get("/", PageController, :home)
+    get("/about", PageController, :about)
+    get("/contact", PageController, :contact)
 
-    get "/search", SearchController, :index
+    get("/search", SearchController, :index)
 
-    get  "/register", RegistrationController, :new
-    post "/register", RegistrationController, :create
+    get("/register", RegistrationController, :new)
+    post("/register", RegistrationController, :create)
 
-    get    "/login",  SessionController, :new
-    post   "/login",  SessionController, :create
-    delete "/logout", SessionController, :delete
+    get("/login", SessionController, :new)
+    post("/login", SessionController, :create)
+    delete("/logout", SessionController, :delete)
 
-    resources "/family", FamilyController, except: [:index, :show]
-    get "/family.json", FamilyController, :index
-    get "/family/:id/:name", FamilyController, :show
-    get "/family/:id", FamilyController, :show
+    resources("/family", FamilyController, except: [:index, :show])
+    get("/family.json", FamilyController, :index)
+    get("/family/:id/:name", FamilyController, :show)
+    get("/family/:id", FamilyController, :show)
 
-    resources "/genus", GenusController, except: [:index, :show]
-    get "/genus/:id/:name", GenusController, :show
-    get "/genus/:id", GenusController, :show
+    resources("/genus", GenusController, except: [:index, :show])
+    get("/genus/:id/:name", GenusController, :show)
+    get("/genus/:id", GenusController, :show)
 
-    resources "/species", SpeciesController, except: [:show]
-    get "/species.json", SpeciesController, :index_json
-    get "/species/:id/:name", SpeciesController, :show
-    get "/species/:id", SpeciesController, :show
+    resources("/species", SpeciesController, except: [:show])
+    get("/species.json", SpeciesController, :index_json)
+    get("/species/:id/:name", SpeciesController, :show)
+    get("/species/:id", SpeciesController, :show)
 
-    get "/photo_album.json", PhotoAlbumController, :index
+    get("/photo_album.json", PhotoAlbumController, :index)
 
-    get "/contributors", ContributorController, :index
+    get("/contributors", ContributorController, :index)
+
+    get("/qr/:id", QrController, :show)
+    post("/qr", QrController, :create)
   end
 
   scope "/", TreelibWeb do
-    get "/sitemap.xml", SitemapController, :sitemap
-    get "/sitemaps/sitemap.xml", SitemapController, :sitemap
-    get "/sitemaps/sitemap1.xml", SitemapController, :sitemap1
+    get("/sitemap.xml", SitemapController, :sitemap)
+    get("/sitemaps/sitemap.xml", SitemapController, :sitemap)
+    get("/sitemaps/sitemap1.xml", SitemapController, :sitemap1)
   end
 
   scope "/api", TreelibWeb do
-    pipe_through :api
+    pipe_through(:api)
 
-    get "/photos", PhotoController, :index
+    get("/photos", PhotoController, :index)
   end
 
   scope "/admin", TreelibWeb do
-    pipe_through :browser
+    pipe_through(:browser)
 
-    get "/", AdminController, :index
-    get "/oauth", OAuthController, :index
-    post "/oauth/access_token", OAuthController, :access_token
-    post "/refresh", AdminController, :refresh
-    resources "/contributors", AdminContributorController
+    get("/", AdminController, :index)
+    get("/oauth", OAuthController, :index)
+    post("/oauth/access_token", OAuthController, :access_token)
+    post("/refresh", AdminController, :refresh)
+    resources("/contributors", AdminContributorController)
+
+    get("/qr", AdminQrController, :index)
   end
 end
