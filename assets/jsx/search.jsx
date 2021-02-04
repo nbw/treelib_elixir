@@ -4,6 +4,7 @@ import Family         from './components/family.jsx';
 import Genus          from './components/genus.jsx';
 import Species        from './components/species.jsx';
 import SearchSidebar  from './components/searchSidebar.jsx';
+import { getAllUrlParams } from './helpers/params_helper.js';
 
 var pg = pageData;
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
       preSelected: pg.pre_selected || null
     };
   }
+
   componentDidMount() {
     if(pg.pre_selected){
       var pre = pg.pre_selected
@@ -30,6 +32,11 @@ class App extends React.Component {
         this.selectedHandler (pre.item, "family", this.update.bind(this));
       }
     }
+
+    const params = getAllUrlParams();
+    if (params["closed"]) {
+      this.update("sidebarMinimized", true);
+    }
     // window.addEventListener("fullScreenPhoto", () => {this.update('sidebarHidden', !this.state.sidebarHidden );});
   }
 
@@ -38,18 +45,20 @@ class App extends React.Component {
       [name]: value // ES6 computed property
     });
   }
+
   handleInputChange(name, e) {
     this.setState({
       [name]: e.target.value // ES6 computed property
     });
   }
+
   searchPreSelect(){
     var obj = {};
     if(pg.pre_selected){
-      var pre = pg.pre_selected,
-        families = pg.tree,
-        genera =  [].concat.apply([],families.map(function(f){return f.genera})),
-        species = [].concat.apply([],genera.map(function(g){return g.species}));
+      var pre = pg.pre_selected;
+      var families = pg.tree;
+      var genera =  [].concat.apply([],families.map(function(f){return f.genera}));
+        // species = [].concat.apply([],genera.map(function(g){return g.species}));
       if (pre.type == "species") {
         obj.species = pre.item;
         obj.genus = genera.find(function(g){ return g.id == obj.species.genus_id });
@@ -61,37 +70,6 @@ class App extends React.Component {
       }
       else if(pre.type == "family") {
         obj.family = pre.item;
-      }
-    }
-    return obj;
-  }
-
-  getAllUrlParams(url) {
-    var queryString = url ? url.split('?')[1] : window.location.search.slice(1),
-      obj = {};
-
-    if (queryString) {
-      queryString = queryString.split('#')[0];
-      var arr = queryString.split('&');
-
-      for (var i=0; i<arr.length; i++) {
-        var a = arr[i].split('='),
-          paramNum = undefined,
-          paramName = a[0].replace(/\[\d*\]/, function(v) {
-            paramNum = v.slice(1,-1);
-            return '';
-          }),
-          paramValue = typeof(a[1])==='undefined' ? true : a[1];
-
-        paramName = paramName.toLowerCase();
-        paramValue = paramValue.toLowerCase();
-
-        if (obj[paramName]) {
-          if (typeof obj[paramName] === 'string') { obj[paramName] = [obj[paramName]]; }
-          if (typeof paramNum === 'undefined') { obj[paramName].push(paramValue); }
-          else { obj[paramName][paramNum] = paramValue; }
-        }
-        else { obj[paramName] = paramValue; }
       }
     }
     return obj;

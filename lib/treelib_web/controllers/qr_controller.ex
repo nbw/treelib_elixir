@@ -27,7 +27,7 @@ defmodule TreelibWeb.QrController do
   end
 
   defp redirect_url(%Code{type_id: id, type: "species"}) do
-    "/search?s=#{id}"
+    "/search?s=#{id}&closed=1"
   end
 
   defp redirect_url(_) do
