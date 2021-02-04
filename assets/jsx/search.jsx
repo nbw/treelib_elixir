@@ -4,7 +4,6 @@ import Family         from './components/family.jsx';
 import Genus          from './components/genus.jsx';
 import Species        from './components/species.jsx';
 import SearchSidebar  from './components/searchSidebar.jsx';
-import { getAllUrlParams } from './helpers/params_helper.js';
 
 var pg = pageData;
 class App extends React.Component {
@@ -33,8 +32,8 @@ class App extends React.Component {
       }
     }
 
-    const params = getAllUrlParams();
-    if (params["closed"]) {
+    var searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has("closed")) {
       this.update("sidebarMinimized", true);
     }
     // window.addEventListener("fullScreenPhoto", () => {this.update('sidebarHidden', !this.state.sidebarHidden );});
