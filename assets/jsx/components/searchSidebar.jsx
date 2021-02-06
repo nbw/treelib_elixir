@@ -43,7 +43,6 @@ class SearchSidebar extends React.Component {
 
   genusClicked(genus,e) {
     var family = this.findFamily(genus.fam_id);
-    console.log(family);
 
     this.update('selectedSpecies', null);
     this.update('selectedFamily', family);

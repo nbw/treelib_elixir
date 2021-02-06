@@ -345,7 +345,7 @@ $searchBar-list-font-color-selected: #111;
 }
 
 @media screen and (max-width: $break-med-medium) {
-  .searchBar {
+  #searchBar {
     width: 50%;
 
     .nameSelector {
@@ -364,11 +364,11 @@ $searchBar-list-font-color-selected: #111;
     display: none;
   }
 
-  .searchBar .mobileCloseButton {
+  #searchBar .mobileCloseButton {
     display: block;
   }
 
-  .searchBar {
+  #searchBar {
     overflow-x: hidden;
     font-size: 1.4rem;
     width: 100%;
@@ -390,7 +390,7 @@ $searchBar-list-font-color-selected: #111;
   }
 
   .minimized {
-    &.searchBar {
+    &#searchBar {
       height: calc(#{$sidebar-title-height} + #{$mobile-hide-height});
       max-height: calc(#{$sidebar-title-height} + #{$mobile-hide-height});
       min-height: 45px + $mobile-hide-height;

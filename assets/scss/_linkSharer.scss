@@ -52,3 +52,9 @@ $share-width: 7.5rem;
 		}
 	}
 }
+
+@media screen and (max-width: $break-medium) {
+	.linkSharer {
+		display: none;
+	}	
+}
