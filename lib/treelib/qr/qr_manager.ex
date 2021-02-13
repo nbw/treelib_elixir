@@ -91,4 +91,10 @@ defmodule Treelib.QR.QrManager do
   def qr_code_url(%Code{} = code) do
     TreelibWeb.Router.Helpers.qr_url(TreelibWeb.Endpoint, :show, code.id)
   end
+
+  def increment_count(%Code{} = code) do
+    code
+    |> Code.changeset(%{count: code.count + 1})
+    |> Repo.update()
+  end
 end

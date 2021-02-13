@@ -15,10 +15,23 @@
         <%= for s <- @species do %>
           <tr>
             <td>
-              <a href=<%= "/species/#{s.id}/edit" %>>
-                <i><%= "#{s.genus.name} #{s.name}" %></i></br>
-                <%= "#{s.genus.common_name} #{s.common_name}" %>
-              </a>
+              <b>
+                <a href=<%= "/species/#{s.id}/edit" %>>
+                  <i><%= "#{s.genus.name} #{s.name}" %></i></br>
+                  <%= "#{s.genus.common_name} #{s.common_name}" %>
+                </a>
+              </b>
+              </br>
+              </br>
+              <span>
+                <%= "Scans: #{s.code.count}" %>
+              </span>
+              </br>
+              <span 
+                class="date"
+                data-date='<%= format_date(s.code.updated_at) %>'
+                style="font-size: 1.2rem;"
+              ></span>
             </td>
             <td>
               <div
@@ -56,5 +69,12 @@
     .catch(err => {
       console.log("QR ERROR: ", err);
     });
+  }
+  
+
+  const dates = document.getElementsByClassName("date");
+  for(let i = 0; i < dates.length; i++) {
+    const date = new Date(dates[i].getAttribute("data-date"));
+    dates[i].innerHTML = `(${date.toLocaleString()})`;
   }
 </script>

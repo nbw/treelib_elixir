@@ -20,7 +20,9 @@ defmodule TreelibWeb.QrController do
   end
 
   def show(%{params: %{"id" => id}} = conn, _params) do
-    code = QrManager.get_code!(id)
+    {:ok, code} =
+      QrManager.get_code!(id)
+      |> QrManager.increment_count()
 
     conn
     |> redirect(to: redirect_url(code))

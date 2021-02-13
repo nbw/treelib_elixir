@@ -9,6 +9,7 @@ defmodule Treelib.QR.Code do
   schema "qr_codes" do
     field :type, :string
     field :type_id, :integer
+    field :count, :integer
     field :enabled, :boolean
 
     timestamps()
@@ -17,7 +18,7 @@ defmodule Treelib.QR.Code do
   @doc false
   def changeset(%Code{} = code, attrs) do
     code
-    |> cast(attrs, [:type, :type_id])
+    |> cast(attrs, [:type, :type_id, :count])
     |> validate_required([:type, :type_id])
     |> validate_inclusion(:type, @types)
   end
