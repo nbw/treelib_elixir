@@ -4,81 +4,81 @@ $font-primary-color: rgb(77, 78, 83);
 $textbox-width: 70%;
 
 body {
-    background-color: #AAA;
-    font-family: Arial, "Helvetica Neue", Helvetica,sans-serif;
-    color: $font-primary-color;
-    padding:0;
-    margin: 0;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  background-color: #aaa;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: $font-primary-color;
+  padding: 0;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 hr {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-    margin: 15px 0 15px;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  margin: 15px 0 15px;
 }
 a {
-    text-decoration: none;
-    color: $font-primary-color;
-    &:hover{
-        color:black;
-    }
+  text-decoration: none;
+  color: $font-primary-color;
+  &:hover {
+    color: black;
+  }
 }
 #app.admin {
-    > div {
-        min-height: 100%;
-        background-color: white;
-        margin: 0 50px 0 50px;
-        padding: 0px 50px 50px 50px;
-    }
+  > div {
+    min-height: 100%;
+    background-color: white;
+    margin: 0 50px 0 50px;
+    padding: 0px 50px 50px 50px;
+  }
 }
 #adminNavbar {
-    background-color: white;
-    padding: 0 25px 0 25px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    * {
-        vertical-align: middle;
-        display: inline-block;
+  background-color: white;
+  padding: 0 25px 0 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  * {
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .item {
+    padding: 10px 15px 10px 15px;
+    a {
+      color: black;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
-    .item {
-        padding: 10px 15px 10px 15px;
-        a {
-            color: black;
-            text-decoration: none;
-                &:hover{
-                    text-decoration: underline;
-                }
-        }
-        &:hover{
-            background-color: #EEE;
-        }
+    &:hover {
+      background-color: #eee;
     }
-    .title {
-        padding: 0 20px 0 20px;
-        font-size: 17pt;
-        font-weight: bold;
-        a {
-            color: #339933;
-        }
+  }
+  .title {
+    padding: 0 20px 0 20px;
+    font-size: 17pt;
+    font-weight: bold;
+    a {
+      color: #339933;
     }
-    .refresh {
-        position:absolute;
-        top: 0.5em;
-        right: 6.5em;
-        &:hover{
-            font-weight: bold;
-        }
+  }
+  .refresh {
+    position: absolute;
+    top: 0.5em;
+    right: 6.5em;
+    &:hover {
+      font-weight: bold;
     }
+  }
 }
 
 #qrCreate {
   color: white;
   text-align: center;
   vertical-align: middle;
-  background-color: #6D6;
+  background-color: #6d6;
   width: 250px;
   padding: 10px 0 10px 0;
   &:hover {
@@ -87,205 +87,206 @@ a {
 }
 
 #saveButton {
-    //text & color stuff
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #67F;
-    font-size: 1.6rem;
+  //text & color stuff
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #67f;
+  font-size: 1.6rem;
 
-    //shape & positioning stuff
-    border-radius: 3px;
-    padding: 10px 0 10px 0;
-    width: 250px;
-    display:block;
-    margin: auto;
-    &:after{
-        content:'?';
+  //shape & positioning stuff
+  border-radius: 3px;
+  padding: 10px 0 10px 0;
+  width: 250px;
+  display: block;
+  margin: auto;
+  &:after {
+    content: "?";
+  }
+
+  &:hover {
+    background-color: #6d6;
+    &:after {
+      content: ".";
     }
-
-    &:hover{
-        background-color: #6D6;
-        &:after{
-            content:'.';
-        }
-    }
-
+  }
 }
 #deleteButton {
-    display: inline-block;
-    cursor: default;
-    color: #9f9f9f;
-    margin-left: 10px;
-    padding: 5px;
-    vertical-align: middle;
-    border: 1px solid rgba(0, 0, 0, 0.0);
-    border-radius: 2px;
-    &:hover{
-        color: $font-primary-color;
-        border: 1px solid rgba(0, 0, 0, 0.7);
-    }
+  display: inline-block;
+  cursor: default;
+  color: #9f9f9f;
+  margin-left: 10px;
+  padding: 5px;
+  vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 2px;
+  &:hover {
+    color: $font-primary-color;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+  }
 }
 
 #description {
-    vertical-align: middle;
-    display: inline-block;
-    width: $textbox-width;
-    .title {
-        vertical-align: top;
-        padding-top: 5px;
-    }
-    textarea {
-        padding: 5px;
-        width: 96%;
-        margin: 2% 2% 0 2%;
-        height: 20em;
-        resize: none;
-        outline: none;
-        border-color: #CCC;
-    }
+  vertical-align: middle;
+  display: inline-block;
+  width: $textbox-width;
+  .title {
+    vertical-align: top;
+    padding-top: 5px;
+  }
+  textarea {
+    padding: 5px;
+    width: 96%;
+    margin: 2% 2% 0 2%;
+    height: 20em;
+    resize: none;
+    outline: none;
+    border-color: #ccc;
+  }
 }
 
 .header-btn {
-    float: right;
-    font-size: 1.5rem;
-    padding: 1rem;
-    border-radius: 2px;
+  float: right;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 2px;
+  color: white;
+  min-width: 75px;
+  text-align: center;
+  &:hover {
     color: white;
-    min-width: 75px;
-    text-align: center;
-    &:hover {
-        color: white;
-    }
+  }
 }
 
 .admin .mainContainer {
-    background-color: #AAA;
-    min-height:100%;
+  background-color: #aaa;
+  min-height: 100%;
 }
 .mainTitle {
-    display: inline-block;
-    vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
 .commonTitle {
-    display: inline-block;
-    vertical-align: middle;
-    opacity: 0.8;
-    margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 0.8;
+  margin-left: 10px;
 }
 .item {
-    display: inline-block;
+  display: inline-block;
 }
 .question {
+  display: inline-block;
+  * {
+    // children too
     display: inline-block;
-    * { // children too
-        display: inline-block;
-    }
-    .title{
-        width:150px;
-        text-align: right;
-        padding: 0 10px 0 0;
-    }
+  }
+  .title {
+    width: 150px;
+    text-align: right;
+    padding: 0 10px 0 0;
+  }
 }
 .btn-std {
-    color: white;
-    text-align: center;
-    background-color: #67F;
-    border-radius: 3px;
-    padding: 5px;
-    &:after{
-        content:'?';
+  color: white;
+  text-align: center;
+  background-color: #67f;
+  border-radius: 3px;
+  padding: 5px;
+  &:after {
+    content: "?";
+  }
+  &:hover {
+    background-color: #6d6;
+    &:after {
+      content: ".";
     }
-    &:hover{
-        background-color: #6D6;
-        &:after{
-            content:'.';
-        }
-    }
+  }
 }
-.resetList{
-    padding: 0;
-    list-style:none;
+.resetList {
+  padding: 0;
+  list-style: none;
 }
 .markup {
-    vertical-align: middle;
-    display: inline-block;
-    width: 100% - $textbox-width;
-    table {
-        font-size: .7em;
-        border-collapse: collapse;
-        td {
-            border: 1px solid #CCC;
-            padding: 0.5rem;
-        }
-        th:not(:last-child) {
-            border-right: 1px dotted #CCC;
-        }
+  vertical-align: middle;
+  display: inline-block;
+  width: 100% - $textbox-width;
+  table {
+    font-size: 0.7em;
+    border-collapse: collapse;
+    td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
     }
+    th:not(:last-child) {
+      border-right: 1px dotted #ccc;
+    }
+  }
 }
 
 .undecorated-list {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .inline > * {
-    display: inline-block;
+  display: inline-block;
 }
 
 table.responsive {
-    width: 100%;
-    border-collapse:collapse;
+  width: 100%;
+  border-collapse: collapse;
 
-    tr:nth-child(even) {
-        background: #EEE;
-    }
-    td {
-        padding: 1.5rem;
-        padding-left: 2.5rem;
-    }
-    .center-column {
-        text-align: center;
-    }
+  tr:nth-child(even) {
+    background: #eee;
+  }
+  td {
+    padding: 1.5rem;
+    padding-left: 2.5rem;
+  }
+  .center-column {
+    text-align: center;
+  }
 }
 
 table.admin {
-    .action {
-        display: block;
-        min-width: 50px;
-        border: 0;
-        padding: 0.7rem;
-        border-radius: 2px;
-        margin: 3px;
+  .action {
+    display: block;
+    min-width: 50px;
+    border: 0;
+    padding: 0.7rem;
+    border-radius: 2px;
+    margin: 3px;
 
-        color: white;
-        background-color: #888;
-        &:hover {
-            background-color: #666;
-        }
-
+    color: white;
+    background-color: #888;
+    &:hover {
+      background-color: #666;
     }
-    .code > * {
-      display: block;
-      margin: auto;
-    }
+  }
+  .code > * {
+    display: block;
+    margin: auto;
+  }
 }
 
 .success {
-    background-color: $color-fourth-3;
-    &:hover {
-        background-color: $color-fourth-4;
-    }
+  background-color: $color-fourth-3;
+  &:hover {
+    background-color: $color-fourth-4;
+  }
 }
 
-.edit, table.admin .action.edit {
-    background-color: $color-third-3;
-    &:hover {
-        background-color: $color-third-4;
-    }
+.edit,
+table.admin .action.edit {
+  background-color: $color-third-3;
+  &:hover {
+    background-color: $color-third-4;
+  }
 }
-.delete, table.admin .action.delete {
-    background-color: $color-first-0;
-    &:hover {
-        background-color: $color-first-4;
-    }
+.delete,
+table.admin .action.delete {
+  background-color: $color-first-0;
+  &:hover {
+    background-color: $color-first-4;
+  }
 }

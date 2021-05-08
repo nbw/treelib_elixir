@@ -1,0 +1,50 @@
+<div id="app" class="admin">
+  <div>
+    <%= render TreelibWeb.AdminView, "_navbar.html", assigns %>
+    <h1>Admin Debug</p>
+    <hr/>
+    <h2>Flickr Cache Reset</h2>
+    <p>
+      Manually re-sync photos with Flickr. This is useful when you've added something to Flickr and it hasn't appeared on Treelib's system yet.
+    </p>
+    <%= if @reset do %>
+      <b>Reset triggered</b>
+    <% else %>
+      <button phx-click="reset">Reset</button>
+    <% end %>
+    <hr/>
+    <h2>Flickr Photo Relink</h2>
+    <p>
+      From time to time Flickr seems to rotate their servers which severes the link between a species on Treelib and a photo album on Flickr.
+    </p>
+    <p>
+      To repair the link it's necessary to reconnect each species by hand OR run Relink which attempts to automatically match species in Treelib's system to album names on Flickr.
+    </p>
+    <%= if !@relink do %>
+      <button phx-click="relink">Relink</button>
+    <% end %>
+    <%= if @relink && length(@unlinked_species) == 0 do %>
+      <b>Relinking..</b>
+    <% end %>
+    <%= if length(@unlinked_species) > 0 do %>
+      <h3>Unlinked species</h3>
+      <table>
+        <tbody>
+          <%= for {species, index} <- Enum.with_index(@unlinked_species) do %>
+            <tr>
+              <td>
+                <%= "#{index + 1}." %>
+              </td>
+              <td>
+                <%= species %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+<script src="<%= Routes.static_path(@socket, "/js/autres.bundle.js") %>"></script>
+<script src="<%= Routes.static_path(@socket, "/js/liveview.js") %>"></script>
