@@ -1,5 +1,3 @@
-require IEx
-
 defmodule TreelibWeb.QrController do
   use TreelibWeb, :controller
 
