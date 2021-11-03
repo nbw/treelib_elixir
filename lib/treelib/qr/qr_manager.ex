@@ -16,10 +16,18 @@ defmodule Treelib.QR.QrManager do
 
   @doc false
   def species_with_code do
-    Species.active()
-    |> join(:inner, [species], code in assoc(species, :code))
-    |> preload([:genus, :code])
-    |> Repo.all()
+    Repo.all(
+      from s in Species,
+        join: g in Genus,
+        join: c in Code,
+        on:
+          s.genus_id == g.id and
+            s.id == c.type_id and
+            c.type == "species",
+        where: s.enabled == true and s.hide == false,
+        order_by: [g.name, s.name]
+    )
+    |> Repo.preload([:code, :genus])
   end
 
   @doc false
