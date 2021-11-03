@@ -23,10 +23,10 @@ defmodule Flickr.API.HTTPClient do
 
   @return: [List] of [%Photoset]
   """
-  def parse_photosets_resp flickr_response do
+  def parse_photosets_resp(flickr_response) do
     flickr_response
     |> Map.fetch!("photoset")
-    |> Enum.map(&(Flickr.Photoset.new(&1)))
+    |> Enum.map(&Flickr.Photoset.new(&1))
   end
 
   @doc """
@@ -38,9 +38,9 @@ defmodule Flickr.API.HTTPClient do
   """
   def get_photosets(opts \\ %{}) do
     flickr_url("flickr.photosets.getList", opts)
-    |> Client.get!
+    |> Client.get!([], default_options())
     |> Map.fetch!(:body)
-    |> Parser.decode!
+    |> Parser.decode!()
     |> Map.fetch!("photosets")
   end
 
@@ -50,7 +50,6 @@ defmodule Flickr.API.HTTPClient do
   Also does the parsing
   """
   def get_all_photosets(photosets \\ [], page \\ 1) do
-
     # Response
     photosets_resp = get_photosets(%{page: page})
 
@@ -69,6 +68,7 @@ defmodule Flickr.API.HTTPClient do
       photosets
     end
   end
+
   @doc """
   For parsing the response of a Flickr
   photo request.
@@ -80,7 +80,7 @@ defmodule Flickr.API.HTTPClient do
     []
   end
 
-  def parse_photo_resp flickr_response do
+  def parse_photo_resp(flickr_response) do
     photoset_id =
       flickr_response
       |> Map.fetch!("photoset")
@@ -89,7 +89,7 @@ defmodule Flickr.API.HTTPClient do
     flickr_response
     |> Map.fetch!("photoset")
     |> Map.fetch!("photo")
-    |> Enum.map(&(Flickr.Photo.new(&1, photoset_id)))
+    |> Enum.map(&Flickr.Photo.new(&1, photoset_id))
   end
 
   @doc """
@@ -110,6 +110,7 @@ defmodule Flickr.API.HTTPClient do
     |> case do
       {:ok, resp} ->
         resp.body
+
       {:error, msg} ->
         IO.puts("Failed photo resync for photoset #{photoset_id}")
         IO.inspect(msg)
@@ -152,5 +153,10 @@ defmodule Flickr.API.HTTPClient do
     params = Map.merge(default_params, opts)
 
     @base_url <> URI.encode_query(params)
+  end
+
+  defp default_options do
+    # timeout after 10s
+    [recv_timeout: 10000]
   end
 end
