@@ -5,7 +5,7 @@ defmodule TreelibWeb.AdminDebugLiveView do
     Phoenix.View.render(TreelibWeb.AdminDebugView, "index.html", assigns)
   end
 
-  def mount(_, socket) do
+  def mount(_, _, socket) do
     {:ok, assign(socket, reset: false, relink: false, unlinked_species: [])}
   end
 

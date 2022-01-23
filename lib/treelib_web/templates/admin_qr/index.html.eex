@@ -4,6 +4,17 @@
     <h1>
       QR Codes
     </h1>
+    <div>
+      <hr/>
+      <p>
+        Simple QR generator code for urls:
+      </p>
+      <%= form_for :qr_url, Routes.admin_url_qr_path(TreelibWeb.Endpoint, :create), fn f -> %>
+        <%= text_input f, :url, value: "", placeholder: "url" %>
+        <%= submit "Create" %>
+      <% end %> 
+      <hr/>
+    </div>
     <table class="admin responsive" style="text-align: center;">
       <thead>
         <tr>

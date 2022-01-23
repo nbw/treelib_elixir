@@ -27,7 +27,7 @@ defmodule TreelibWeb.SpeciesController do
     live_render(conn, TreelibWeb.SpeciesLiveView,
       species: species,
       session: %{
-        species: species
+        "species" => species
       }
     )
 

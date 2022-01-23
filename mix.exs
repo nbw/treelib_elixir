@@ -33,14 +33,14 @@ defmodule Treelib.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.6"},
-      {:phoenix_pubsub, "~> 1.1.2"},
+      {:phoenix, "~> 1.5.0"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_live_view, "~> 0.4.1"},
+      {:phoenix_live_view, "~> 0.12.0"},
       {:ecto_sql, "~> 3.3.2"},
       {:postgrex, ">= 0.14.3"},
       # {:mariaex, "~> 0.8.2"},
-      {:phoenix_html, "~> 2.13.3"},
+      {:phoenix_html, "~> 2.14"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 2.1"},

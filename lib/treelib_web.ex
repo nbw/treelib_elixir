@@ -31,15 +31,15 @@ defmodule TreelibWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/treelib_web/templates",
-                        namespace: TreelibWeb
+      use Phoenix.View,
+        root: "lib/treelib_web/templates",
+        namespace: TreelibWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
 
-      import Phoenix.LiveView,
-      only: [live_render: 2, live_render: 3, live_link: 1, live_link: 2,
-             live_component: 2, live_component: 3, live_component: 4]
+      import Phoenix.LiveView
+      import Phoenix.LiveView.Helpers
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
