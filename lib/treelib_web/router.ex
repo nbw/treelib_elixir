@@ -5,7 +5,7 @@ defmodule TreelibWeb.Router do
     plug(:accepts, ["html", "json"])
     plug(:fetch_session)
     plug(:fetch_flash)
-    plug(Phoenix.LiveView.Flash)
+    plug(:fetch_live_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
     plug(TreelibWeb.CurrentUser)
@@ -76,5 +76,6 @@ defmodule TreelibWeb.Router do
     resources("/contributors", AdminContributorController)
 
     get("/qr", AdminQrController, :index)
+    resources("/url_qr", AdminUrlQrController, only: [:show, :create], singleton: true)
   end
 end

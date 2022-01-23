@@ -1,0 +1,43 @@
+<div id="app" class="admin">
+  <div>
+      <%= render TreelibWeb.AdminView, "_navbar.html", assigns %>
+    <h3>
+      <%= @url %>
+    </h3>
+    <div class="code" data-url='<%= @url %>'></div>
+  </div>
+</div>
+<script src='<%= Routes.static_path(@conn, "/js/autres.bundle.js") %>'></script>
+<script type="text/javascript" src='<%= Routes.static_path(@conn, "/js/qrcode.min.js") %>'></script>
+<script type="text/javascript">
+  const codes = document.getElementsByClassName("code");
+  for(let i = 0; i < codes.length; i++) {
+    const qr_url = codes[i].getAttribute("data-url");
+    const name = codes[i].getAttribute("data-name");
+
+    QRCode.toDataURL(qr_url, {width: 250})
+    .then(url => {
+      const a = document.createElement('a');
+      a.setAttribute("download", filename =  `qr_code_${Date.now()}.png`);
+      a.setAttribute("href", url);
+      a.innerHTML = "download";
+
+      const img = document.createElement('img');
+      img.src =  url;
+
+      codes[i].appendChild(img);
+      codes[i].appendChild(a);
+    })
+    .catch(err => {
+      console.log("QR ERROR: ", err);
+    });
+  }
+  
+
+  const dates = document.getElementsByClassName("date");
+  for(let i = 0; i < dates.length; i++) {
+    const date = new Date(dates[i].getAttribute("data-date"));
+    dates[i].innerHTML = `(${date.toLocaleString()})`;
+  }
+</script>
+
