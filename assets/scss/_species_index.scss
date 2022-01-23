@@ -3,7 +3,6 @@
     padding: 0 5% 20px 5%;
   }
 
-
   table {
     a:hover {
       text-decoration: underline;
@@ -29,13 +28,16 @@
         margin-bottom: 7px;
         margin-top: -2px;
       }
-      &:hover i{ opacity: 1;}
+      &:hover i {
+        opacity: 1;
+      }
     }
 
-    td, th {
+    td,
+    th {
       padding: 7px;
       &:nth-child(2) {
-        border-right: 1px #CCC dotted;
+        border-right: 1px #ccc dotted;
       }
       &:not(:first-child) {
         width: 350px;
@@ -47,11 +49,11 @@
 
     tbody tr {
       &:nth-child(odd) {
-        background-color: #EEE;
+        background-color: #eee;
       }
 
       &:hover {
-        background-color: #C5C5C5;
+        background-color: #c5c5c5;
       }
     }
   }
@@ -61,7 +63,6 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-
 
     height: 30px;
     padding: 5px;
@@ -86,11 +87,9 @@
     border-style: solid;
     height: 28px;
     vertical-align: middle;
+    padding: 6px;
     i {
       padding: 5px;
     }
   }
 }
-
-
-
