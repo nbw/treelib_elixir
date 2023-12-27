@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -46,33 +46,32 @@ config :treelib, :flickr_api, Flickr.API.HTTPClient
 
 ######################################
 # Heroku Config
-config :treelib, TreelibWeb.Endpoint,
-  load_from_system_env: true,
-  url: [scheme: "https", host: "treelib.ca", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
-  live_view: [
-    signing_salt: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
-  ]
+# config :treelib, TreelibWeb.Endpoint,
+#   load_from_system_env: true,
+#   url: [scheme: "https", host: "treelib.ca", port: 443],
+#   force_ssl: [rewrite_on: [:x_forwarded_proto]],
+#   cache_static_manifest: "priv/static/cache_manifest.json",
+#   secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+#   live_view: [
+#     signing_salt: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+#   ]
 
 
 # Configure your database
-config :treelib, Treelib.Repo,
-  url: System.get_env("DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-  ssl: true,
-  timeout: String.to_integer(System.get_env("DATABASE_TIMEOUT") || 15_000)
+# config :treelib, Treelib.Repo,
+#   url: System.get_env("DATABASE_URL"),
+#   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+#   ssl: true,
+#   timeout: String.to_integer(System.get_env("DATABASE_TIMEOUT") || 15_000)
 
 # Flickr
-config :treelib,
-  flickr_api_key: System.get_env("FLICKR_API_KEY"),
-  flickr_user_id: System.get_env("FLICKR_USER_ID"),
-  flickr_oauth_token: System.get_env("FLICKR_OAUTH_TOKEN"),
-  flickr_oauth_token_secret: System.get_env("FLICKR_OAUTH_TOKEN_SECRET")
-#####################################
+# config :treelib,
+#   flickr_api_key: System.get_env("FLICKR_API_KEY"),
+#   flickr_user_id: System.get_env("FLICKR_USER_ID"),
+#   flickr_oauth_token: System.get_env("FLICKR_OAUTH_TOKEN"),
+#   flickr_oauth_token_secret: System.get_env("FLICKR_OAUTH_TOKEN_SECRET")
 
-config :flickrex, :config, [
-  consumer_key:    System.get_env("FLICKR_API_KEY"),
-  consumer_secret: System.get_env("FLICKR_SECRET")
-]
+# config :flickrex, :config, [
+#   consumer_key:    System.get_env("FLICKR_API_KEY"),
+#   consumer_secret: System.get_env("FLICKR_SECRET")
+# ]
