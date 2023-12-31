@@ -4,10 +4,10 @@
   "version": "0.0.9",
   "license": "MIT",
   "scripts": {
-    "deploy": "webpack -p & sass --style=compressed ./scss:../priv/static/css",
+    "deploy": "webpack -p & node-sass ./scss/ -o ../priv/static/css/ --output-style compressed",
     "watch": "webpack --debug --watch --colors",
-    "sass": "sass --style=compressed ./scss:../priv/static/css",
-    "watch:sass": "sass --watch ./scss:../priv/static/css"
+    "sass": "node-sass ./scss/ -o ../priv/static/css/ --output-style compressed",
+    "watch:sass": "node-sass ./scss/ -o ../priv/static/css/ --watch --progress --inline --output-style compressed"
   },
   "engines": {
     "node": ">=14.0.0",
@@ -36,7 +36,7 @@
     "node-sass": "^4.14.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "sass": "^1.69.5",
+    "sass-loader": "^6.0.6",
     "stylelint": "^13.5.0",
     "stylelint-config-standard": "^20.0.0",
     "webpack": "^3.12.0",

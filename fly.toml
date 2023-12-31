@@ -1,0 +1,42 @@
+# fly.toml app configuration file generated for treelib on 2023-04-30T16:31:25+09:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "treelib"
+primary_region = "sea"
+kill_signal = "SIGTERM"
+kill_timeout = "5s"
+
+[experimental]
+  auto_rollback = true
+
+[deploy]
+  release_command = "/app/entry eval Treelib.Release.migrate"
+
+[env]
+  PHX_HOST = "treelib.fly.dev"
+  PRIMARY_REGION = "sea"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 4000
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 25
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "30s"
+    restart_limit = 0
