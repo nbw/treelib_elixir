@@ -5,7 +5,7 @@ defmodule Treelib.Mixfile do
     [
       app: :treelib,
       version: "0.0.3",
-      elixir: "~> 1.10.3",
+      elixir: "~> 1.16.0",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -37,7 +37,7 @@ defmodule Treelib.Mixfile do
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_live_view, "~> 0.12.0"},
-      {:ecto_sql, "~> 3.3.2"},
+      {:ecto_sql, "~> 3.11.0"},
       {:postgrex, ">= 0.14.3"},
       # {:mariaex, "~> 0.8.2"},
       {:phoenix_html, "~> 2.14"},
@@ -61,7 +61,9 @@ defmodule Treelib.Mixfile do
       {:flickrex, "~> 0.8"},
       {:sitemap, "~> 1.1"},
       # for seeds
-      {:faker, "~> 0.12", only: [:dev, :test]}
+      {:faker, "~> 0.12", only: [:dev, :test]},
+      # override to avoid compile error
+      {:ssl_verify_fun, "~> 1.1.7", override: true}
     ]
   end
 
@@ -73,6 +75,7 @@ defmodule Treelib.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      "assets.deploy": [],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"]

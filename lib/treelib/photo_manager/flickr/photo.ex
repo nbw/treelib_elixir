@@ -13,7 +13,8 @@ defmodule Flickr.Photo do
     :ispublic,
     :secret,
     :server,
-    :title
+    :title,
+    :date_update
   ]
 
   @doc """
