@@ -5,7 +5,7 @@ defmodule Treelib.Mixfile do
     [
       app: :treelib,
       version: "0.0.3",
-      elixir: "~> 1.14.3",
+      elixir: "~> 1.16.0",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -61,7 +61,8 @@ defmodule Treelib.Mixfile do
       {:flickrex, "~> 0.8"},
       {:sitemap, "~> 1.1"},
       # for seeds
-      {:faker, "~> 0.12", only: [:dev, :test]}
+      {:faker, "~> 0.12", only: [:dev, :test]},
+      {:ssl_verify_fun, "~> 1.1.7", override: true}
     ]
   end
 
