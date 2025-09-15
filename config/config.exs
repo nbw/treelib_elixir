@@ -11,6 +11,7 @@ config :treelib,
 
 # Configures the endpoint
 config :treelib, TreelibWeb.Endpoint,
+  live_view: [signing_salt: "GGVWQ7A_86dH_aWh"],
   url: [host: "localhost"],
   secret_key_base: "ff/IyKIkmkeEqVWnt8/eDJUvxnJy41twFU3YwF1gyfk/k3Un7yX1+0Rlz4+GOFew",
   render_errors: [view: TreelibWeb.ErrorView, accepts: ~w(html json)],
