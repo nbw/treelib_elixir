@@ -62,6 +62,7 @@ defmodule Treelib.Mixfile do
       {:sitemap, "~> 1.1"},
       # for seeds
       {:faker, "~> 0.12", only: [:dev, :test]},
+      # override to avoid compile error
       {:ssl_verify_fun, "~> 1.1.7", override: true}
     ]
   end
