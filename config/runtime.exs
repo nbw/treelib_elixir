@@ -38,8 +38,11 @@ if config_env() == :prod do
     System.get_env("FLY_APP_NAME") ||
       raise "FLY_APP_NAME not available"
 
+  # host = System.get_env("HOST") || "#{app_name}.fly.dev"
+  host = System.get_env("PHX_HOST")
+
   config :treelib, TreelibWeb.Endpoint,
-    url: [scheme: "https", host: "#{app_name}.fly.dev", port: 443],
+    url: [scheme: "https", host: host, port: 443],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
@@ -48,7 +51,7 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: String.to_integer(System.get_env("PORT") || "4000")
     ],
-    check_origin: [System.get_env("HOST_CORS"), "https://#{app_name}.fly.dev"],
+    check_origin: ["https://#{host}"],
     secret_key_base: secret_key_base
 
   config :treelib,

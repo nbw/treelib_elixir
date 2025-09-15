@@ -15,7 +15,7 @@ kill_timeout = "5s"
   release_command = "/app/entry eval Treelib.Release.migrate"
 
 [env]
-  PHX_HOST = "treelib.fly.dev"
+  PHX_HOST = "treelib.ca"
   PRIMARY_REGION = "sea"
 
 [[services]]
