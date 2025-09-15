@@ -6,7 +6,7 @@ defmodule TreelibWeb.OAuthController do
 
   def index(conn, _params) do
     with {:ok, _current_user} <- auth_admin(conn),
-         {:ok, %{body: request}} <- request_token,
+         {:ok, %{body: request}} <- request_token(),
          {:ok, auth_url} <- request_auth_url(request)
     do
       render conn, "index.html", url: auth_url, oauth_token: request.oauth_token, oauth_token_secret: request.oauth_token_secret
@@ -41,5 +41,3 @@ defmodule TreelibWeb.OAuthController do
     Flickrex.Auth.request_token() |> Flickrex.request()
   end
 end
-
-
